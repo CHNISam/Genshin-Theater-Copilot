@@ -6,7 +6,7 @@ import type {
   CharacterBase,
   Roster,
   RunState,
-  SeasonConfig,
+  ResolvedSeason,
   UserCharacter,
 } from "../domain/types";
 import { TIER_MULTIPLIER } from "../domain/types";
@@ -34,7 +34,7 @@ export function effectivePower(base: CharacterBase, user: UserCharacter): number
 }
 
 export interface BuildRosterOptions {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   roster: Roster;
   characters: ReadonlyMap<string, CharacterBase>;
   /** 是否按赛季限制元素过滤。默认 true。 */
@@ -83,12 +83,12 @@ export function availableMembers(members: TeamMember[], state: RunState): TeamMe
 /** 初始化耐力表。 */
 export function initialVigor(
   members: TeamMember[],
-  season: SeasonConfig,
+  season: ResolvedSeason,
   overrides: Record<string, number> = {},
 ): Record<string, number> {
   const out: Record<string, number> = {};
   for (const m of members) {
-    out[m.base.id] = overrides[m.base.id] ?? season.ruleOverrides.defaultVigor;
+    out[m.base.id] = overrides[m.base.id] ?? season.rules.defaultVigor;
   }
   return out;
 }

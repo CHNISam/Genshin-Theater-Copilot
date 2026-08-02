@@ -1,6 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Roster, RunObjective, RunState, SeasonConfig } from "../domain/types";
+import type {
+  Difficulty,
+  ResolvedSeason,
+  Roster,
+  RunObjective,
+  RunState,
+  SeasonConfig,
+} from "../domain/types";
 import { PUBLISHED_SEASONS, seasonById, seasonForDate } from "../data/seasons";
+import {
+  isDifficultySupported,
+  resolveSeason,
+  supportedDifficulties,
+  tryResolveSeason,
+} from "../season/resolve";
 import { CHARACTER_BY_ID } from "../data/characters";
 import { loadState, saveState } from "../storage/local";
 
@@ -9,11 +22,13 @@ export function createRunState(
   roster: Roster,
   objective: RunObjective,
 ): RunState {
-  const stages = [...season.stages].sort((a, b) => a.order - b.order);
+  // 关卡结构、耐力、刷新次数全部来自所选难度，不能用赛季顶层的"某一套"。
+  const resolved = resolveSeason(season, objective.difficulty);
+  const stages = [...resolved.stages].sort((a, b) => a.order - b.order);
   const owned = roster.characters.filter((c) => c.tier !== "unused");
   const vigor: Record<string, number> = {};
-  for (const c of owned) vigor[c.characterId] = season.ruleOverrides.defaultVigor;
-  if (roster.supportGuestId) vigor[roster.supportGuestId] = season.ruleOverrides.defaultVigor;
+  for (const c of owned) vigor[c.characterId] = resolved.rules.defaultVigor;
+  if (roster.supportGuestId) vigor[roster.supportGuestId] = resolved.rules.defaultVigor;
 
   const openingOwned = owned
     .map((c) => c.characterId)
@@ -33,7 +48,7 @@ export function createRunState(
       .filter((id) => !openingOwned.includes(id)),
     vigor,
     blossoms: 0,
-    refreshesRemaining: season.ruleOverrides.initialRefreshes,
+    refreshesRemaining: resolved.rules.initialRefreshes,
     buffLevels: {},
     buffBranchChoices: {},
     stageOverrides: {},
@@ -44,6 +59,13 @@ export function createRunState(
 
 export interface AppStore {
   season: SeasonConfig;
+  /**
+   * 当前难度解析出的赛季视图。目标未选定、或所选难度在本赛季包中未录入时为 null。
+   * 求解器与展示关卡结构的界面都必须用它，而不是直接读 `season`。
+   */
+  resolvedSeason: ResolvedSeason | null;
+  /** 本赛季包实际录入了哪些难度（派生自数据，不可声明）。 */
+  supportedDifficulties: Difficulty[];
   /** 本局目标。必须先选择，未选择时为 null。 */
   objective: RunObjective | null;
   setObjective: (objective: RunObjective) => void;
@@ -86,6 +108,26 @@ export function useAppStore(): AppStore {
     [seasonId, seasons, fallback],
   );
 
+  const supported = useMemo(() => supportedDifficulties(season), [season]);
+
+  /*
+   * 换赛季后，上一个赛季选定的难度可能在新赛季包里根本没录入。
+   * 此时必须清空目标让用户重选，而不是回退到某个"有数据的"难度——
+   * 那会让用户以为自己还在打原来那档。
+   */
+  useEffect(() => {
+    if (objective && !isDifficultySupported(season, objective.difficulty)) {
+      setObjective(null);
+      setRun(null);
+      setHistory([]);
+    }
+  }, [season, objective]);
+
+  const resolvedSeason = useMemo(
+    () => (objective ? tryResolveSeason(season, objective.difficulty) ?? null : null),
+    [season, objective],
+  );
+
   useEffect(() => {
     saveState({ seasonId: season.id, roster, run, objective });
   }, [season.id, roster, run, objective]);
@@ -109,7 +151,10 @@ export function useAppStore(): AppStore {
         for (const id of memberIds) {
           vigor[id] = Math.max(0, (vigor[id] ?? 0) - 1);
         }
-        const ordered = [...season.stages].sort((a, b) => a.order - b.order);
+        // 推进关卡必须走本局难度的关卡表。
+        const ordered = [...resolveSeason(season, prev.objective.difficulty).stages].sort(
+          (a, b) => a.order - b.order,
+        );
         const index = ordered.findIndex((s) => s.id === prev.currentStageId);
         const next = ordered[index + 1];
         return {
@@ -134,6 +179,8 @@ export function useAppStore(): AppStore {
 
   return {
     season,
+    resolvedSeason,
+    supportedDifficulties: supported,
     objective,
     setObjective,
     seasons,

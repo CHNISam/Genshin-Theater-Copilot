@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { DIFFICULTY_LABEL } from "../../domain/types";
+import { supportedDifficulties } from "../../season/resolve";
 import { validateSeason } from "../../season/validate";
 import { describeRequirement } from "../../solver/mechanics";
 import { CHARACTER_BY_ID } from "../../data/characters";
@@ -10,6 +12,8 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
     () => validateSeason(season, { knownCharacterIds: new Set(CHARACTER_BY_ID.keys()) }),
     [season],
   );
+
+  const difficulties = useMemo(() => supportedDifficulties(season), [season]);
 
   const name = (id: string): string => CHARACTER_BY_ID.get(id)?.name ?? id;
 
@@ -42,20 +46,37 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
               <td>{season.specialGuestIds.map(name).join("、")}</td>
             </tr>
             <tr>
-              <th>结构</th>
+              <th>已录入难度</th>
               <td>
-                {season.ruleOverrides.mainActCount} 幕主线 +{" "}
-                {season.ruleOverrides.tabletChallengeCount} 场圣牌；固定首领第{" "}
-                {season.ruleOverrides.bossActOrders.join("、")} 幕；每角色初始{" "}
-                {season.ruleOverrides.defaultVigor} 点耐力
+                {difficulties.length === 0 ? (
+                  <span className="muted">无</span>
+                ) : (
+                  difficulties.map((d) => DIFFICULTY_LABEL[d]).join("、")
+                )}
               </td>
             </tr>
+            {difficulties.map((d) => {
+              const rules = season.difficulties[d]!.rules;
+              return (
+                <tr key={d}>
+                  <th>{DIFFICULTY_LABEL[d]} 结构</th>
+                  <td>
+                    {rules.mainActCount} 幕主线 + {rules.tabletChallengeCount} 场圣牌；
+                    {rules.bossActOrders.length > 0
+                      ? `固定首领第 ${rules.bossActOrders.join("、")} 幕；`
+                      : "无固定首领幕位；"}
+                    {rules.teamSize} 人队；每角色初始 {rules.defaultVigor} 点耐力
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
-      <div className="panel">
-        <h2>关卡与机制</h2>
+      {difficulties.map((d) => (
+      <div className="panel" key={d}>
+        <h2>关卡与机制 · {DIFFICULTY_LABEL[d]}</h2>
         <div className="scroll-x">
           <table>
             <thead>
@@ -68,7 +89,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
               </tr>
             </thead>
             <tbody>
-              {[...season.stages]
+              {[...season.difficulties[d]!.stages]
                 .sort((a, b) => a.order - b.order)
                 .map((s) => (
                   <tr key={s.id}>
@@ -105,6 +126,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
           </table>
         </div>
       </div>
+      ))}
 
       <div className="grid2">
         <div className="panel">

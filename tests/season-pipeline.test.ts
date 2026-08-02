@@ -6,9 +6,24 @@ import { transitionSeason, diffSeasons } from "../src/season/lifecycle";
 import { buildResearchPrompt, extractJson, reviewDraft } from "../src/season/research";
 import { SEASON_2026_08 } from "../src/data/seasons/2026-08";
 import { CHARACTERS, CHARACTER_BY_ID } from "../src/data/characters";
-import type { SeasonConfig } from "../src/domain/types";
+import type { SeasonConfig, StageConfig } from "../src/domain/types";
 
 const knownCharacterIds = new Set(CHARACTER_BY_ID.keys());
+
+/** 改写月谕难度的关卡，保留赛季包其余部分。 */
+function withMoonlitStages(
+  base: SeasonConfig,
+  map: (stage: StageConfig) => StageConfig,
+): SeasonConfig {
+  const moonlit = base.difficulties.moonlit!;
+  return {
+    ...base,
+    difficulties: {
+      ...base.difficulties,
+      moonlit: { ...moonlit, stages: moonlit.stages.map(map) },
+    },
+  };
+}
 
 describe("赛季研究与发布流程", () => {
   it("内置赛季包本身通过校验", () => {
@@ -19,13 +34,10 @@ describe("赛季研究与发布流程", () => {
   });
 
   it("20. 赛季研究草稿未通过验证时不能发布", () => {
-    const broken = {
-      ...SEASON_2026_08,
-      status: "draft" as const,
-      stages: SEASON_2026_08.stages.map((s) =>
-        s.id === "act-8" ? { ...s, sourceRecords: [] } : s,
-      ),
-    };
+    const broken = withMoonlitStages(SEASON_2026_08, (s) =>
+      s.id === "moonlit-act-8" ? { ...s, sourceRecords: [] } : s,
+    );
+    broken.status = "draft";
 
     const validation = validateSeason(broken, { knownCharacterIds });
     expect(validation.ok).toBe(false);
@@ -104,12 +116,8 @@ describe("赛季研究与发布流程", () => {
 
   it("导入 Agent 输出：能剥离 markdown 代码围栏并给出差异摘要", () => {
     const next: SeasonConfig = {
-      ...SEASON_2026_08,
-      id: "2026-09",
-      status: "draft",
-      openingCharacterIds: [...SEASON_2026_08.openingCharacterIds, "raiden"],
-      stages: SEASON_2026_08.stages.map((s) =>
-        s.id === "act-8"
+      ...withMoonlitStages(SEASON_2026_08, (s) =>
+        s.id === "moonlit-act-8"
           ? {
               ...s,
               hardRequirements: [
@@ -123,6 +131,9 @@ describe("赛季研究与发布流程", () => {
             }
           : s,
       ),
+      id: "2026-09",
+      status: "draft",
+      openingCharacterIds: [...SEASON_2026_08.openingCharacterIds, "raiden"],
     };
     const agentOutput = ["前言说明", "```json", JSON.stringify({ season: next }), "```"].join("\n");
     const parsed = JSON.parse(extractJson(agentOutput)) as { season: unknown };

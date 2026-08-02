@@ -6,9 +6,11 @@
  */
 import type {
   CharacterBase,
+  DifficultyRules,
   MechanicCapability,
   RunState,
   Roster,
+  ResolvedSeason,
   SeasonConfig,
   StageConfig,
   UserCharacter,
@@ -74,10 +76,31 @@ export function stage(partial: Partial<StageConfig> & { id: string; order: numbe
   };
 }
 
+/** 从关卡列表推出自洽的难度规则，免得每个测试都手写一遍。 */
+export function rulesFor(
+  stages: StageConfig[],
+  partial: Partial<DifficultyRules> = {},
+): DifficultyRules {
+  return {
+    defaultVigor: 2,
+    teamSize: 4,
+    mainActCount: stages.filter((s) => s.type !== "tablet").length,
+    tabletChallengeCount: stages.filter((s) => s.type === "tablet").length,
+    bossActOrders: stages.filter((s) => s.type === "boss").map((s) => s.order),
+    supportGuestCountsForEntry: false,
+    initialRefreshes: 3,
+    ...partial,
+  };
+}
+
+/**
+ * 求解器只吃 ResolvedSeason（某一难度的扁平视图），所以夹具默认给它。
+ * 需要完整 SeasonConfig（走校验/发布流程）时用 seasonConfig()。
+ */
 export function season(
   stages: StageConfig[],
-  partial: Partial<SeasonConfig> = {},
-): SeasonConfig {
+  partial: Partial<ResolvedSeason> = {},
+): ResolvedSeason {
   return {
     id: partial.id ?? "test-season",
     name: partial.name ?? "测试赛季",
@@ -88,23 +111,41 @@ export function season(
     openingCharacterIds: partial.openingCharacterIds ?? [],
     specialGuestIds: partial.specialGuestIds ?? [],
     buffs: partial.buffs ?? [],
+    difficulty: partial.difficulty ?? "moonlit",
     stages,
     bosses: partial.bosses ?? [],
-    ruleOverrides: {
-      defaultVigor: 2,
-      supportedDifficulties: ["moonlit"],
-      teamSize: 4,
-      mainActCount: stages.filter((s) => s.type !== "tablet").length,
-      tabletChallengeCount: stages.filter((s) => s.type === "tablet").length,
-      bossActOrders: stages.filter((s) => s.type === "boss").map((s) => s.order),
-      supportGuestCountsForEntry: false,
-      initialRefreshes: 3,
-      ...partial.ruleOverrides,
-    },
+    rules: rulesFor(stages, partial.rules),
     sourceRecords: partial.sourceRecords ?? [],
     unresolvedQuestions: partial.unresolvedQuestions ?? [],
     dataVersion: partial.dataVersion ?? 1,
     generatedAt: partial.generatedAt ?? "2026-08-01T00:00:00+08:00",
+  };
+}
+
+/** 完整赛季包（按难度分套），用于校验与发布流程测试。 */
+export function seasonConfig(
+  stages: StageConfig[],
+  partial: Partial<SeasonConfig> = {},
+): SeasonConfig {
+  const resolved = season(stages);
+  return {
+    id: resolved.id,
+    name: resolved.name,
+    startsAt: resolved.startsAt,
+    endsAt: resolved.endsAt,
+    status: resolved.status,
+    allowedElements: resolved.allowedElements,
+    openingCharacterIds: resolved.openingCharacterIds,
+    specialGuestIds: resolved.specialGuestIds,
+    buffs: resolved.buffs,
+    difficulties: {
+      moonlit: { rules: resolved.rules, stages, bosses: resolved.bosses },
+    },
+    sourceRecords: [],
+    unresolvedQuestions: [],
+    dataVersion: 1,
+    generatedAt: resolved.generatedAt,
+    ...partial,
   };
 }
 
@@ -134,12 +175,12 @@ export function characterMap(bases: CharacterBase[]): ReadonlyMap<string, Charac
 }
 
 export function runState(
-  seasonConfig: SeasonConfig,
+  seasonConfig: ResolvedSeason,
   bases: CharacterBase[],
   partial: Partial<RunState> = {},
 ): RunState {
   const vigor: Record<string, number> = {};
-  for (const b of bases) vigor[b.id] = seasonConfig.ruleOverrides.defaultVigor;
+  for (const b of bases) vigor[b.id] = seasonConfig.rules.defaultVigor;
   const first = [...seasonConfig.stages].sort((a, b) => a.order - b.order)[0];
   return {
     seasonId: seasonConfig.id,

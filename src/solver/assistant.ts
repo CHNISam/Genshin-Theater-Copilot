@@ -8,7 +8,7 @@ import type {
   EventCandidate,
   Roster,
   RunState,
-  SeasonConfig,
+  ResolvedSeason,
   StageConfig,
 } from "../domain/types";
 import { buildRoster, availableMembers, type TeamMember } from "./roster";
@@ -28,7 +28,7 @@ import { canProvide, describeRequirement } from "./mechanics";
 import { ELEMENT_LABEL } from "../domain/types";
 
 export interface AssistantInput {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   roster: Roster;
   characters: ReadonlyMap<string, CharacterBase>;
   state: RunState;
@@ -37,6 +37,8 @@ export interface AssistantInput {
 export interface TeamPlan {
   label: string;
   team: TeamEvaluation;
+  /** 一句话结论：用户只看这一句也能做决定。 */
+  summary: string;
   reasons: string[];
   warnings: string[];
 }
@@ -283,6 +285,13 @@ function buildPlan(
     if (check.message) warnings.push(check.message);
   }
 
+  // 这一关刻意没动、但确实能用的强力角色
+  const usable = new Set(team.memberIds);
+  const spared = reservations
+    .filter((r) => !usable.has(r.characterId))
+    .map((r) => r.characterName)
+    .filter((name, i, arr) => arr.indexOf(name) === i);
+
   // 用这套队伍之后，未来两场是否仍有解
   const vigorAfter = { ...state.vigor };
   for (const id of team.memberIds) vigorAfter[id] = (vigorAfter[id] ?? 0) - 1;
@@ -300,9 +309,36 @@ function buildPlan(
   return {
     label: index === 0 ? "主方案" : `备用方案 ${index}`,
     team,
+    summary: summarize(team, stage, spared, after.feasible),
     reasons,
     warnings,
   };
+}
+
+/**
+ * 一句话结论。优先说"为什么这套行"，而不是罗列评分细节：
+ * 满足了机制 ＞ 省下了谁 ＞ 输出够用。
+ */
+function summarize(
+  team: TeamEvaluation,
+  stage: StageConfig,
+  spared: string[],
+  stillSafe: boolean,
+): string {
+  const parts: string[] = [];
+  const satisfied = team.mechanicChecks.filter((c) => c.satisfied);
+  if (satisfied.length > 0) {
+    parts.push(`满足本关的${satisfied.map((c) => describeRequirement(c.requirement)).join("、")}`);
+  } else if (stage.survivalPressure >= 3) {
+    parts.push("生存扛得住");
+  } else {
+    parts.push("输出够用");
+  }
+  if (spared.length > 0) {
+    parts.push(`同时把${spared.slice(0, 3).join("、")}留给后面`);
+  }
+  parts.push(stillSafe ? "打完后面两场仍有解" : "⚠ 打完后面会无解");
+  return `${parts.join("，")}。`;
 }
 
 interface EventScoreContext {
@@ -355,7 +391,7 @@ function scoreEvent(candidate: EventCandidate, ctx: EventScoreContext): EventRec
       const vigor = {
         ...ctx.input.state.vigor,
         [member.base.id]:
-          ctx.input.state.vigor[member.base.id] ?? ctx.input.season.ruleOverrides.defaultVigor,
+          ctx.input.state.vigor[member.base.id] ?? ctx.input.season.rules.defaultVigor,
       };
       const withMember = ctx.unlockedMembers.some((m) => m.base.id === member.base.id)
         ? ctx.unlockedMembers

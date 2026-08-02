@@ -5,7 +5,7 @@
  *   关卡硬机制可解 → 生存条件满足 → 队伍体系运转 → 稀缺资源消耗合理 → 祝福收益 → 单场输出
  * 前两项是**过滤器**（不满足直接淘汰），后四项才进入加权评分。
  */
-import type { BuffConfig, RunObjective, SeasonConfig, StageConfig } from "../domain/types";
+import type { BuffConfig, RunObjective, ResolvedSeason, StageConfig } from "../domain/types";
 import { ELEMENT_LABEL, RATE_RANK, ROLE_LABEL } from "../domain/types";
 import type { TeamMember } from "./roster";
 import {
@@ -75,7 +75,7 @@ export function weightsForStage(stage: StageConfig): StageWeights {
 }
 
 export interface TeamContext {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   stage: StageConfig;
   buffLevels: Record<string, number>;
   /** characterId -> 消耗一点耐力的稀缺代价（0~1+）。由 reservations 模块提供。 */
@@ -385,7 +385,7 @@ export function searchTeams(
   ctx: TeamContext,
   options: GenerateOptions = {},
 ): TeamSearchResult {
-  const teamSize = options.teamSize ?? ctx.season.ruleOverrides.teamSize;
+  const teamSize = options.teamSize ?? ctx.season.rules.teamSize;
   const poolLimit = options.poolLimit ?? 13;
   const limit = options.limit ?? 8;
 

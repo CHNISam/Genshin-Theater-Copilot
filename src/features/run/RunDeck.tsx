@@ -10,14 +10,30 @@ import type { AppStore } from "../../state/store";
  * 数据全部退到折叠区，只有在用户问"为什么"时才出现。
  */
 export function RunDeck({ store }: { store: AppStore }): JSX.Element {
-  const { season, roster, run } = store;
+  const { resolvedSeason: season, roster, run } = store;
   const [lineup, setLineup] = useState<string[] | null>(null);
 
-  const stages = useMemo(() => (run ? resolvedStages(season, run) : []), [season, run]);
+  const stages = useMemo(
+    () => (run && season ? resolvedStages(season, run) : []),
+    [season, run],
+  );
   const output = useMemo(
-    () => (run ? runAssistant({ season, roster, characters: store.characters, state: run }) : null),
+    () =>
+      run && season
+        ? runAssistant({ season, roster, characters: store.characters, state: run })
+        : null,
     [season, roster, run, store.characters],
   );
+
+  if (!season) {
+    return (
+      <div className="answer">
+        <p className="question">对局</p>
+        <h2 className="headline">先选难度</h2>
+        <p className="because">本赛季包里没有这一档难度的关卡结构，给不出可信结论。</p>
+      </div>
+    );
+  }
 
   if (!run || !output) {
     return (
@@ -39,7 +55,7 @@ export function RunDeck({ store }: { store: AppStore }): JSX.Element {
   const recommended = output.primaryPlan?.team.memberIds ?? [];
   const currentLineup = lineup ?? recommended;
   const lineupReady =
-    currentLineup.length === season.ruleOverrides.teamSize &&
+    currentLineup.length === season.rules.teamSize &&
     new Set(currentLineup).size === currentLineup.length;
 
   const hasEvent = run.eventCandidates.length > 0;
@@ -107,12 +123,12 @@ export function RunDeck({ store }: { store: AppStore }): JSX.Element {
             {recommended.length > 0 ? currentLineup.map(name).join(" · ") : "没有可行阵容"}
           </h2>
           <p className="because">
-            {output.primaryPlan?.reasons[0] ??
+            {output.primaryPlan?.summary ??
               "已解锁角色里凑不出这一关要的四人。展开「为什么」看缺什么。"}
           </p>
 
           <div className="lineup">
-            {Array.from({ length: season.ruleOverrides.teamSize }, (_, i) => {
+            {Array.from({ length: season.rules.teamSize }, (_, i) => {
               const id = currentLineup[i];
               const remaining = id ? run.vigor[id] ?? 0 : 0;
               return (
@@ -134,7 +150,7 @@ export function RunDeck({ store }: { store: AppStore }): JSX.Element {
                     ))}
                   </select>
                   <div className="pips">
-                    {Array.from({ length: season.ruleOverrides.defaultVigor }, (_, p) => (
+                    {Array.from({ length: season.rules.defaultVigor }, (_, p) => (
                       <span key={p} className={`pip ${p < remaining ? "on" : "spent"}`} />
                     ))}
                   </div>
@@ -453,7 +469,7 @@ function applyEvent(store: AppStore, candidate: EventCandidate): void {
         vigor: {
           ...run.vigor,
           [candidate.characterId]:
-            run.vigor[candidate.characterId] ?? store.season.ruleOverrides.defaultVigor,
+            run.vigor[candidate.characterId] ?? store.resolvedSeason?.rules.defaultVigor ?? 0,
         },
         blossoms: Math.max(0, run.blossoms - candidate.cost),
         eventCandidates: [],

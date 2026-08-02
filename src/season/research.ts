@@ -72,7 +72,9 @@ export function buildResearchPrompt(input: SeasonResearchRequest): string {
             openingCharacterIds: prev.openingCharacterIds,
             specialGuestIds: prev.specialGuestIds,
             buffIds: prev.buffs.map((b) => b.id),
-            ruleOverrides: prev.ruleOverrides,
+            difficulties: Object.fromEntries(
+              Object.entries(prev.difficulties).map(([d, pack]) => [d, pack?.rules]),
+            ),
           },
           null,
           2,

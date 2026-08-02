@@ -3,7 +3,9 @@
  * 研究结果不得未经校验直接进入生产配置。
  */
 import type { SeasonConfig, SeasonStatus } from "../domain/types";
+import { DIFFICULTY_LABEL } from "../domain/types";
 import { validateSeason, type ValidateOptions, type ValidationResult } from "./validate";
+import { allBosses, allStages, supportedDifficulties } from "./resolve";
 
 export interface SeasonDiff {
   addedCharacters: string[];
@@ -70,8 +72,24 @@ export function diffSeasons(prev: SeasonConfig | undefined, next: SeasonConfig):
   }
   diff.removedBuffs = [...prevBuffs.keys()];
 
-  const prevStages = new Map((prev?.stages ?? []).map((s) => [s.id, s]));
-  for (const stage of next.stages) {
+  /* ---- 难度增减 ---- *
+   * 难度整套的增删是求解结论层面的变化：用户能选的难度变了。
+   */
+  const prevDifficulties = prev ? supportedDifficulties(prev) : [];
+  const nextDifficulties = supportedDifficulties(next);
+  for (const d of nextDifficulties) {
+    if (!prevDifficulties.includes(d)) {
+      diff.solverImpacting.push(`新增「${DIFFICULTY_LABEL[d]}」难度的关卡结构`);
+    }
+  }
+  for (const d of prevDifficulties) {
+    if (!nextDifficulties.includes(d)) {
+      diff.solverImpacting.push(`移除「${DIFFICULTY_LABEL[d]}」难度的关卡结构，该难度将不再可选`);
+    }
+  }
+
+  const prevStages = new Map((prev ? allStages(prev) : []).map((s) => [s.id, s]));
+  for (const stage of allStages(next)) {
     const before = prevStages.get(stage.id);
     if (!before) {
       diff.addedStages.push(stage.id);
@@ -104,8 +122,8 @@ export function diffSeasons(prev: SeasonConfig | undefined, next: SeasonConfig):
   }
   diff.removedStages = [...prevStages.keys()];
 
-  const prevBosses = new Map((prev?.bosses ?? []).map((b) => [b.id, b]));
-  for (const boss of next.bosses) {
+  const prevBosses = new Map((prev ? allBosses(prev) : []).map((b) => [b.id, b]));
+  for (const boss of allBosses(next)) {
     const before = prevBosses.get(boss.id);
     if (!before) {
       diff.bossChanges.push(`新增首领 ${boss.name}`);

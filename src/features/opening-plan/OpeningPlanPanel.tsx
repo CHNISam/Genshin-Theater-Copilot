@@ -4,14 +4,17 @@ import { buildOpeningPlan } from "../../solver/opening";
 import type { AppStore } from "../../state/store";
 
 export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
+  const season = store.resolvedSeason;
   const plan = useMemo(() => {
-    if (store.roster.characters.length < store.season.ruleOverrides.teamSize) return null;
+    if (!season) return null;
+    if (store.roster.characters.length < season.rules.teamSize) return null;
     return buildOpeningPlan({
-      season: store.season,
+      season,
       roster: store.roster,
       characters: store.characters,
+      ...(store.objective ? { objective: store.objective } : {}),
     });
-  }, [store.season, store.roster, store.characters]);
+  }, [season, store.roster, store.characters, store.objective]);
 
   if (!plan) {
     return (

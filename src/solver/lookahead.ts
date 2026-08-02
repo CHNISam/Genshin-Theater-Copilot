@@ -7,7 +7,7 @@
  *
  * 不输出任何概率，只输出：可行路线数量、最早失败的关卡、是否仍有解。
  */
-import type { SeasonConfig, StageConfig } from "../domain/types";
+import type { ResolvedSeason, StageConfig } from "../domain/types";
 import type { TeamMember } from "./roster";
 import { searchTeams, type TeamContext } from "./team";
 
@@ -45,7 +45,7 @@ interface BeamNode {
 }
 
 export interface LookaheadInput {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   /** 已按 override 解析好的、按 order 升序的未来关卡。 */
   futureStages: StageConfig[];
   /** 已解锁的角色（含耐力为 0 的，函数内部会过滤）。 */

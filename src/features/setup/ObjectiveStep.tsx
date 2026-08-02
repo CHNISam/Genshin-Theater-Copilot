@@ -1,15 +1,22 @@
-import type { Difficulty, RunObjective, SeasonConfig } from "../../domain/types";
-import { DIFFICULTY_LABEL, describeObjective } from "../../domain/types";
+import type { DifficultyRules, RunObjective, SeasonConfig } from "../../domain/types";
+import { DIFFICULTIES, DIFFICULTY_LABEL, describeObjective } from "../../domain/types";
+import { defaultDifficulty, supportedDifficulties } from "../../season/resolve";
 
-const DIFFICULTY_DETAIL: Record<Difficulty, string> = {
-  light: "最低难度。",
+/** 每档难度的一句话定位。结构数字一律从数据读，这里只写"感受"。 */
+const DIFFICULTY_TONE: Record<(typeof DIFFICULTIES)[number], string> = {
+  light: "最低难度，练手用。",
   normal: "标准难度。",
-  hard: "有压力。",
-  visionary: "高难度。",
-  moonlit: "10 幕 + 2 场圣牌。",
+  hard: "开始有压力。",
+  visionary: "高难度，阵容要成型。",
+  moonlit: "最高难度，容错很低。",
 };
 
-const ALL: Difficulty[] = ["light", "normal", "hard", "visionary", "moonlit"];
+/** 用真实数据描述一档难度的结构，而不是写死文案。 */
+function describeStructure(rules: DifficultyRules): string {
+  const tablets =
+    rules.tabletChallengeCount > 0 ? ` + ${rules.tabletChallengeCount} 场圣牌` : "";
+  return `${rules.mainActCount} 幕${tablets}｜${rules.teamSize} 人队｜每人 ${rules.defaultVigor} 耐力`;
+}
 
 export function ObjectiveStep({
   season,
@@ -22,14 +29,15 @@ export function ObjectiveStep({
   onChange: (objective: RunObjective) => void;
   onNext: () => void;
 }): JSX.Element {
-  const supported = season.ruleOverrides.supportedDifficulties;
+  const supported = supportedDifficulties(season);
   const current: RunObjective = objective ?? {
-    difficulty: supported[0] ?? "moonlit",
+    difficulty: defaultDifficulty(season) ?? "moonlit",
     tablets: false,
     stars: false,
   };
-  const rules = season.ruleOverrides;
-  const totalStars = rules.mainActCount + rules.tabletChallengeCount;
+  // 圣牌场次、幕数在各难度之间不同，所以这些文案必须跟着所选难度走。
+  const rules = season.difficulties[current.difficulty]?.rules;
+  const totalStars = rules ? rules.mainActCount + rules.tabletChallengeCount : 0;
 
   return (
     <section>
@@ -45,19 +53,22 @@ export function ObjectiveStep({
           本期只有 {supported.map((d) => DIFFICULTY_LABEL[d]).join("、")} 的关卡数据。
         </p>
         <div className="choices">
-          {ALL.map((d) => {
-            const ok = supported.includes(d);
+          {DIFFICULTIES.map((d) => {
+            const pack = season.difficulties[d];
             return (
               <button
                 key={d}
                 type="button"
                 className="choice"
                 aria-pressed={current.difficulty === d}
-                disabled={!ok}
-                onClick={() => ok && onChange({ ...current, difficulty: d })}
+                disabled={!pack}
+                onClick={() => pack && onChange({ ...current, difficulty: d })}
               >
                 <div className="t">{DIFFICULTY_LABEL[d]}</div>
-                <div className="d">{ok ? DIFFICULTY_DETAIL[d] : "本期无数据"}</div>
+                <div className="d">
+                  {pack ? describeStructure(pack.rules) : "本期无数据"}
+                </div>
+                {pack && <div className="d muted">{DIFFICULTY_TONE[d]}</div>}
               </button>
             );
           })}
@@ -72,13 +83,20 @@ export function ObjectiveStep({
             type="button"
             className="choice"
             aria-pressed={current.tablets}
+            disabled={!rules || rules.tabletChallengeCount === 0}
             onClick={() => onChange({ ...current, tablets: !current.tablets })}
           >
-            <div className="t">打 {rules.tabletChallengeCount} 场圣牌挑战</div>
+            <div className="t">
+              {rules && rules.tabletChallengeCount > 0
+                ? `打 ${rules.tabletChallengeCount} 场圣牌挑战`
+                : "圣牌挑战"}
+            </div>
             <div className="d">
-              {current.tablets
-                ? "会为圣牌留出治疗和耐力。全部打完可抽月谕圣牌。"
-                : "跳过。圣牌不是通关前置，耐力全给主线。"}
+              {!rules || rules.tabletChallengeCount === 0
+                ? "本难度没有圣牌挑战。"
+                : current.tablets
+                  ? "会为圣牌留出治疗和耐力。全部打完可抽月谕圣牌。"
+                  : "跳过。圣牌不是通关前置，耐力全给主线。"}
             </div>
           </button>
 
@@ -97,7 +115,7 @@ export function ObjectiveStep({
           </button>
         </div>
 
-        {current.stars && !current.tablets && (
+        {rules && rules.tabletChallengeCount > 0 && current.stars && !current.tablets && (
           <div className="note warn" style={{ marginTop: 12 }}>
             满星是 {totalStars} 枚（{rules.mainActCount} 幕 + {rules.tabletChallengeCount}{" "}
             场圣牌）。不打圣牌最多拿 {rules.mainActCount} 枚——只想要这些的话，打低一档难度更省。

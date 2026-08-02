@@ -165,9 +165,8 @@ export const buffSchema = z.object({
 
 export const difficultySchema = z.enum(["light", "normal", "hard", "visionary", "moonlit"]);
 
-export const seasonRuleOverridesSchema = z.object({
+export const difficultyRulesSchema = z.object({
   defaultVigor: z.number().int().min(1).max(10),
-  supportedDifficulties: z.array(difficultySchema).min(1),
   teamSize: z.number().int().min(1).max(8),
   mainActCount: z.number().int().min(1).max(20),
   tabletChallengeCount: z.number().int().min(0).max(5),
@@ -176,6 +175,28 @@ export const seasonRuleOverridesSchema = z.object({
   initialRefreshes: z.number().int().min(0),
   note: z.string().optional(),
 });
+
+export const difficultyPackSchema = z.object({
+  rules: difficultyRulesSchema,
+  stages: z.array(stageSchema).min(1),
+  bosses: z.array(bossSchema).default([]),
+});
+
+/**
+ * 按难度分套。未录入的难度必须整个缺席，
+ * 不接受 `undefined` 占位——否则又会出现「键在、数据空」的假支持。
+ */
+export const seasonDifficultiesSchema = z
+  .object({
+    light: difficultyPackSchema.optional(),
+    normal: difficultyPackSchema.optional(),
+    hard: difficultyPackSchema.optional(),
+    visionary: difficultyPackSchema.optional(),
+    moonlit: difficultyPackSchema.optional(),
+  })
+  .refine((d) => Object.values(d).some((pack) => pack !== undefined), {
+    message: "赛季包至少要录入一个难度的关卡结构",
+  });
 
 export const seasonConfigSchema = z.object({
   id: z.string().min(1),
@@ -189,10 +210,9 @@ export const seasonConfigSchema = z.object({
   specialGuestIds: z.array(z.string()).default([]),
 
   buffs: z.array(buffSchema).default([]),
-  stages: z.array(stageSchema).min(1),
-  bosses: z.array(bossSchema).default([]),
 
-  ruleOverrides: seasonRuleOverridesSchema,
+  difficulties: seasonDifficultiesSchema,
+
   sourceRecords: z.array(sourceRecordSchema).default([]),
 
   unresolvedQuestions: z.array(unresolvedQuestionSchema).default([]),

@@ -3,7 +3,7 @@
  *   局内截图 / 用户确认信息 ＞ 已发布赛季固定配置 ＞ 赛季经验数据 ＞ 通用启发式
  * 因此实际观察到的敌人信息必须覆盖开局基准路线，而不是机械照抄。
  */
-import type { RunObjective, RunState, SeasonConfig, StageConfig } from "../domain/types";
+import type { RunObjective, RunState, ResolvedSeason, StageConfig } from "../domain/types";
 import { CONFIDENCE_RANK } from "../domain/types";
 
 export function resolveStage(stage: StageConfig, state: RunState): StageConfig {
@@ -31,19 +31,19 @@ export function stageRequiredByObjective(stage: StageConfig, objective: RunObjec
   return true;
 }
 
-export function resolvedStages(season: SeasonConfig, state: RunState): StageConfig[] {
+export function resolvedStages(season: ResolvedSeason, state: RunState): StageConfig[] {
   return [...season.stages]
     .sort((a, b) => a.order - b.order)
     .filter((s) => stageRequiredByObjective(s, state.objective))
     .map((s) => resolveStage(s, state));
 }
 
-export function currentStage(season: SeasonConfig, state: RunState): StageConfig | undefined {
+export function currentStage(season: ResolvedSeason, state: RunState): StageConfig | undefined {
   return resolvedStages(season, state).find((s) => s.id === state.currentStageId);
 }
 
 /** 严格晚于当前关卡且尚未完成的关卡。 */
-export function futureStages(season: SeasonConfig, state: RunState): StageConfig[] {
+export function futureStages(season: ResolvedSeason, state: RunState): StageConfig[] {
   const all = resolvedStages(season, state);
   const current = all.find((s) => s.id === state.currentStageId);
   const done = new Set(state.completedStageIds);
@@ -52,7 +52,7 @@ export function futureStages(season: SeasonConfig, state: RunState): StageConfig
 }
 
 /** 当前关卡及之后所有未完成关卡。 */
-export function remainingStages(season: SeasonConfig, state: RunState): StageConfig[] {
+export function remainingStages(season: ResolvedSeason, state: RunState): StageConfig[] {
   const current = currentStage(season, state);
   const rest = futureStages(season, state);
   return current ? [current, ...rest] : rest;

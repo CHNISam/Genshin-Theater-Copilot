@@ -9,7 +9,7 @@ import type {
   RunObjective,
   RunState,
   Roster,
-  SeasonConfig,
+  ResolvedSeason,
   StageConfig,
 } from "../domain/types";
 import { buildRoster, effectivePower, initialVigor, type TeamMember } from "./roster";
@@ -74,7 +74,7 @@ export interface OpeningPlan {
 }
 
 export interface OpeningPlanInput {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   roster: Roster;
   characters: ReadonlyMap<string, CharacterBase>;
   /** 助演候选。默认取 roster.supportGuestCandidates。 */
@@ -83,22 +83,18 @@ export interface OpeningPlanInput {
   objective?: RunObjective;
 }
 
-function makeBaselineState(season: SeasonConfig, members: TeamMember[]): RunState {
+function makeBaselineState(season: ResolvedSeason, members: TeamMember[]): RunState {
   const stages = [...season.stages].sort((a, b) => a.order - b.order);
   return {
     seasonId: season.id,
-    objective: {
-      difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
-      tablets: true,
-    stars: false,
-    },
+    objective: { difficulty: season.difficulty, tablets: true, stars: false },
     currentStageId: stages[0]?.id ?? "",
     completedStageIds: [],
     unlockedCharacterIds: members.map((m) => m.base.id),
     standbyCharacterIds: [],
     vigor: initialVigor(members, season),
     blossoms: 0,
-    refreshesRemaining: season.ruleOverrides.initialRefreshes,
+    refreshesRemaining: season.rules.initialRefreshes,
     buffLevels: {},
     buffBranchChoices: {},
     stageOverrides: {},
@@ -109,10 +105,12 @@ function makeBaselineState(season: SeasonConfig, members: TeamMember[]): RunStat
 
 export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   const { season } = input;
-  const objective: RunObjective = input.objective ?? {
-    difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
-    tablets: true,
-    stars: false,
+  // 难度以已解析的赛季视图为准：关卡结构来自哪个难度，结论就属于哪个难度，
+  // 不允许调用方传入的 objective 与之不一致而悄悄产生张冠李戴的规划。
+  const objective: RunObjective = {
+    tablets: input.objective?.tablets ?? true,
+    stars: input.objective?.stars ?? false,
+    difficulty: season.difficulty,
   };
   const stages = [...season.stages]
     .sort((a, b) => a.order - b.order)
@@ -409,7 +407,7 @@ function evaluateSupportGuest(
 function buildCoreModules(
   members: TeamMember[],
   stages: StageConfig[],
-  season: SeasonConfig,
+  season: ResolvedSeason,
   scarcity: Map<Element, number>,
 ): CoreModule[] {
   const cores = members

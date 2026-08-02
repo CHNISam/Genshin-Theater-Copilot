@@ -5,9 +5,10 @@
  *
  * 只有 `canPublish === true` 的草稿才允许进入 published。
  */
-import type { SeasonConfig, Confidence } from "../domain/types";
-import { CONFIDENCE_RANK } from "../domain/types";
+import type { SeasonConfig, Confidence, Difficulty } from "../domain/types";
+import { CONFIDENCE_RANK, DIFFICULTY_LABEL } from "../domain/types";
 import { seasonConfigSchema } from "./schema";
+import { supportedDifficulties } from "./resolve";
 
 export type IssueSeverity = "error" | "warning" | "info";
 
@@ -69,85 +70,125 @@ export function validateSeason(
     issues.push(err("bad-range", "endsAt", "结束时间必须晚于开始时间"));
   }
 
-  /* ---- 关卡 ---- */
-  const orders = new Set<number>();
-  const stageIds = new Set<string>();
-  for (const stage of season.stages) {
-    if (stageIds.has(stage.id)) {
-      issues.push(err("duplicate-stage-id", `stages.${stage.id}`, "关卡 id 重复"));
-    }
-    stageIds.add(stage.id);
-    if (orders.has(stage.order)) {
-      issues.push(
-        err("duplicate-order", `stages.${stage.id}.order`, `第 ${stage.order} 顺位重复`),
-      );
-    }
-    orders.add(stage.order);
+  /* ---- 逐难度校验 ---- *
+   * 每个难度是独立的一套结构：关卡顺位、幕数、首领幕位都只在本难度内自洽即可。
+   * 但关卡 id 要求**全季唯一**——局内状态（stageOverrides、currentStageId）按 id 存，
+   * 跨难度重名会让存档在切换难度后指向错误的关卡。
+   */
+  const stageIdOwner = new Map<string, Difficulty>();
 
-    if (stage.type === "boss" && stage.hardRequirements.length === 0) {
-      issues.push(
-        warn(
-          "boss-without-mechanic",
-          `stages.${stage.id}.hardRequirements`,
-          "首领关未记录任何硬机制，求解器将无法为其预留机制角色",
-        ),
-      );
+  for (const difficulty of supportedDifficulties(season)) {
+    const pack = season.difficulties[difficulty]!;
+    const at = `difficulties.${difficulty}`;
+    const orders = new Set<number>();
+    const localStageIds = new Set<string>();
+
+    for (const stage of pack.stages) {
+      const owner = stageIdOwner.get(stage.id);
+      if (owner !== undefined) {
+        issues.push(
+          err(
+            "duplicate-stage-id",
+            `${at}.stages.${stage.id}`,
+            owner === difficulty
+              ? "关卡 id 重复"
+              : `关卡 id 与「${DIFFICULTY_LABEL[owner]}」难度重复，关卡 id 必须全季唯一`,
+          ),
+        );
+      }
+      stageIdOwner.set(stage.id, difficulty);
+      localStageIds.add(stage.id);
+
+      if (orders.has(stage.order)) {
+        issues.push(
+          err("duplicate-order", `${at}.stages.${stage.id}.order`, `第 ${stage.order} 顺位重复`),
+        );
+      }
+      orders.add(stage.order);
+
+      if (stage.type === "boss" && stage.hardRequirements.length === 0) {
+        issues.push(
+          warn(
+            "boss-without-mechanic",
+            `${at}.stages.${stage.id}.hardRequirements`,
+            "首领关未记录任何硬机制，求解器将无法为其预留机制角色",
+          ),
+        );
+      }
+      if (stage.hardRequirements.length > 0 && stage.sourceRecords.length === 0) {
+        issues.push(
+          err(
+            "mechanic-without-source",
+            `${at}.stages.${stage.id}.sourceRecords`,
+            "声明了硬机制却没有任何来源记录",
+          ),
+        );
+      }
+      if (CONFIDENCE_RANK[stage.confidence] < minRank && stage.hardRequirements.length > 0) {
+        issues.push(
+          warn(
+            "low-confidence-mechanic",
+            `${at}.stages.${stage.id}.confidence`,
+            `硬机制可信度为 ${stage.confidence}，低于发布门槛 ${minConfidence}，需要人工复核`,
+          ),
+        );
+      }
     }
-    if (stage.hardRequirements.length > 0 && stage.sourceRecords.length === 0) {
+
+    /* ---- 规则一致性（本难度内） ---- */
+    const rules = pack.rules;
+    const expectedStages = rules.mainActCount + rules.tabletChallengeCount;
+    if (pack.stages.length !== expectedStages) {
       issues.push(
         err(
-          "mechanic-without-source",
-          `stages.${stage.id}.sourceRecords`,
-          "声明了硬机制却没有任何来源记录",
+          "stage-count-mismatch",
+          `${at}.stages`,
+          `关卡数量 ${pack.stages.length} 与规则声明的 ${rules.mainActCount}+${rules.tabletChallengeCount} 不一致`,
         ),
       );
     }
-    if (CONFIDENCE_RANK[stage.confidence] < minRank && stage.hardRequirements.length > 0) {
-      issues.push(
-        warn(
-          "low-confidence-mechanic",
-          `stages.${stage.id}.confidence`,
-          `硬机制可信度为 ${stage.confidence}，低于发布门槛 ${minConfidence}，需要人工复核`,
-        ),
-      );
-    }
-  }
-
-  /* ---- 规则一致性 ---- */
-  const rules = season.ruleOverrides;
-  const expectedStages = rules.mainActCount + rules.tabletChallengeCount;
-  if (season.stages.length !== expectedStages) {
-    issues.push(
-      err(
-        "stage-count-mismatch",
-        "stages",
-        `关卡数量 ${season.stages.length} 与规则声明的 ${rules.mainActCount}+${rules.tabletChallengeCount} 不一致`,
-      ),
-    );
-  }
-  for (const bossOrder of rules.bossActOrders) {
-    const stage = season.stages.find((s) => s.order === bossOrder);
-    if (!stage) {
-      issues.push(
-        err("missing-boss-stage", "stages", `规则声明第 ${bossOrder} 幕为首领关，但缺少该关卡`),
-      );
-    } else if (stage.type !== "boss") {
+    const tablets = pack.stages.filter((s) => s.type === "tablet").length;
+    if (tablets !== rules.tabletChallengeCount) {
       issues.push(
         err(
-          "boss-type-mismatch",
-          `stages.${stage.id}.type`,
-          `第 ${bossOrder} 幕应为 boss，实际为 ${stage.type}`,
+          "tablet-count-mismatch",
+          `${at}.stages`,
+          `圣牌挑战关卡数 ${tablets} 与规则声明的 ${rules.tabletChallengeCount} 不一致`,
         ),
       );
     }
-  }
+    for (const bossOrder of rules.bossActOrders) {
+      const stage = pack.stages.find((s) => s.order === bossOrder);
+      if (!stage) {
+        issues.push(
+          err(
+            "missing-boss-stage",
+            `${at}.stages`,
+            `规则声明第 ${bossOrder} 幕为首领关，但缺少该关卡`,
+          ),
+        );
+      } else if (stage.type !== "boss") {
+        issues.push(
+          err(
+            "boss-type-mismatch",
+            `${at}.stages.${stage.id}.type`,
+            `第 ${bossOrder} 幕应为 boss，实际为 ${stage.type}`,
+          ),
+        );
+      }
+    }
 
-  /* ---- 首领引用 ---- */
-  for (const boss of season.bosses) {
-    if (boss.stageId && !stageIds.has(boss.stageId)) {
-      issues.push(
-        err("unknown-stage-ref", `bosses.${boss.id}.stageId`, `引用了不存在的关卡 ${boss.stageId}`),
-      );
+    /* ---- 首领引用（只能引用本难度的关卡） ---- */
+    for (const boss of pack.bosses) {
+      if (boss.stageId && !localStageIds.has(boss.stageId)) {
+        issues.push(
+          err(
+            "unknown-stage-ref",
+            `${at}.bosses.${boss.id}.stageId`,
+            `引用了本难度不存在的关卡 ${boss.stageId}`,
+          ),
+        );
+      }
     }
   }
 

@@ -9,7 +9,7 @@ import type {
   Confidence,
   Element,
   MechanicRequirement,
-  SeasonConfig,
+  ResolvedSeason,
   StageConfig,
 } from "../domain/types";
 import { CONFIDENCE_RANK } from "../domain/types";
@@ -48,7 +48,7 @@ export interface UnmetFutureRequirement {
 }
 
 export interface ReservationInput {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   /** 严格晚于当前关卡、按 order 升序的未来关卡。 */
   futureStages: StageConfig[];
   unlockedMembers: TeamMember[];

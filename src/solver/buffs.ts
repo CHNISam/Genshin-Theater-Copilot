@@ -8,7 +8,7 @@
 import type {
   BuffConfig,
   ReactionValue,
-  SeasonConfig,
+  ResolvedSeason,
   StageConfig,
 } from "../domain/types";
 import { REACTION_ELEMENTS } from "../domain/types";
@@ -35,7 +35,7 @@ export interface BuffEvaluation {
 }
 
 export interface BuffEvaluationInput {
-  season: SeasonConfig;
+  season: ResolvedSeason;
   remainingStages: StageConfig[];
   /** 当前可用（已解锁且有耐力）的角色。 */
   availableMembers: TeamMember[];

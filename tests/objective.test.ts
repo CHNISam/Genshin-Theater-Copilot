@@ -4,7 +4,26 @@ import { remainingStages, futureStages } from "../src/solver/stages";
 import { damageMultiplierFor, penalizeOverkill, searchTeams } from "../src/solver/team";
 import { computeReservations } from "../src/solver/reservations";
 import { buildRoster } from "../src/solver/roster";
-import { apply, char, characterMap, fillers, heal, member, runState, season, stage } from "./fixtures";
+import {
+  isDifficultySupported,
+  resolveSeason,
+  supportedDifficulties,
+  tryResolveSeason,
+  UnsupportedDifficultyError,
+} from "../src/season/resolve";
+import {
+  apply,
+  char,
+  characterMap,
+  fillers,
+  heal,
+  member,
+  rulesFor,
+  runState,
+  season,
+  seasonConfig,
+  stage,
+} from "./fixtures";
 
 function seasonWithTablets() {
   const stages = [
@@ -120,14 +139,42 @@ describe("目标与难度", () => {
   });
 
   it("赛季包未录入该难度结构时必须显式暴露，不能假装支持", () => {
-    const config = seasonWithTablets();
-    const bases = fillers(8, "cryo");
-    const state = runState(config, bases, {
-      objective: { difficulty: "hard", tablets: false, stars: false },
+    // 只录入月谕的赛季包。
+    const pack = seasonConfig(seasonWithTablets().stages);
+
+    expect(supportedDifficulties(pack)).toEqual(["moonlit"]);
+    expect(isDifficultySupported(pack, "hard")).toBe(false);
+
+    // 关键：未录入的难度必须抛错，绝不能悄悄回退到月谕的关卡结构——
+    // 那会让用户拿到一份看起来正常、实际上属于另一档难度的攻略。
+    expect(() => resolveSeason(pack, "hard")).toThrow(UnsupportedDifficultyError);
+    expect(tryResolveSeason(pack, "hard")).toBeUndefined();
+  });
+
+  it("已录入的难度各自解析出自己的关卡结构与规则", () => {
+    const light = [stage({ id: "light-1", order: 1 }), stage({ id: "light-2", order: 2 })];
+    const moonlit = seasonWithTablets().stages;
+    const pack = seasonConfig([], {
+      difficulties: {
+        light: { rules: rulesFor(light, { teamSize: 4, defaultVigor: 3 }), stages: light, bosses: [] },
+        moonlit: { rules: rulesFor(moonlit), stages: moonlit, bosses: [] },
+      },
     });
-    // 本期赛季包只描述了月谕结构
-    expect(config.ruleOverrides.supportedDifficulties).toEqual(["moonlit"]);
-    expect(config.ruleOverrides.supportedDifficulties).not.toContain(state.objective.difficulty);
+
+    expect(supportedDifficulties(pack)).toEqual(["light", "moonlit"]);
+
+    const resolvedLight = resolveSeason(pack, "light");
+    const resolvedMoonlit = resolveSeason(pack, "moonlit");
+
+    expect(resolvedLight.difficulty).toBe("light");
+    expect(resolvedLight.stages.map((s) => s.id)).toEqual(["light-1", "light-2"]);
+    expect(resolvedLight.rules.defaultVigor).toBe(3);
+    expect(resolvedLight.rules.tabletChallengeCount).toBe(0);
+
+    // 两档难度的结构必须互不污染。
+    expect(resolvedMoonlit.stages.map((s) => s.id)).not.toContain("light-1");
+    expect(resolvedMoonlit.rules.tabletChallengeCount).toBeGreaterThan(0);
+    expect(resolvedMoonlit.rules.defaultVigor).toBe(2);
   });
 });
 

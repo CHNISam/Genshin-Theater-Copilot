@@ -5,7 +5,11 @@ import { resolveStage } from "../src/solver/stages";
 import { evaluateBuffOptions } from "../src/solver/buffs";
 import { CHARACTERS, CHARACTER_BY_ID } from "../src/data/characters";
 import { SEASON_2026_08 } from "../src/data/seasons/2026-08";
-import type { BuffConfig, SeasonConfig } from "../src/domain/types";
+import { resolveSeason } from "../src/season/resolve";
+
+/** 真实赛季包的月谕难度视图。求解器只吃已解析的难度视图。 */
+const MOONLIT_2026_08 = resolveSeason(SEASON_2026_08, "moonlit");
+import type { BuffConfig, ResolvedSeason } from "../src/domain/types";
 import { apply, char, characterMap, fillers, heal, member, rosterOf, runState, season, stage } from "./fixtures";
 
 const TEST_BUFF: BuffConfig = {
@@ -44,7 +48,7 @@ function deadEndScenario() {
       hardRequirements: [{ type: "custom", mechanicId: "special-gimmick", minimumStrength: 2 }],
     }),
   ];
-  const config: SeasonConfig = season(stages, { buffs: [TEST_BUFF] });
+  const config: ResolvedSeason = season(stages, { buffs: [TEST_BUFF] });
   const all = [...pool, savior];
   const state = runState(config, all, {
     unlockedCharacterIds: pool.map((p) => p.id),
@@ -226,7 +230,7 @@ describe("开局规划", () => {
     }
 
     const plan = buildOpeningPlan({
-      season: SEASON_2026_08,
+      season: MOONLIT_2026_08,
       roster,
       characters: CHARACTER_BY_ID,
     });
@@ -245,7 +249,7 @@ describe("开局规划", () => {
       supportGuestCandidates: ["sandonie", "neuvillette"],
     };
     const plan = buildOpeningPlan({
-      season: SEASON_2026_08,
+      season: MOONLIT_2026_08,
       roster,
       characters: CHARACTER_BY_ID,
     });
@@ -278,8 +282,8 @@ describe("祝福规划", () => {
     ].map((c) => member(c));
 
     const input = {
-      season: SEASON_2026_08,
-      remainingStages: SEASON_2026_08.stages,
+      season: MOONLIT_2026_08,
+      remainingStages: MOONLIT_2026_08.stages,
       buffLevels: {},
       blossoms: 10,
     };

@@ -353,6 +353,9 @@ export interface ReactionValue {
 /** 难度：轻简 / 普通 / 困难 / 卓越 / 月谕。 */
 export type Difficulty = "light" | "normal" | "hard" | "visionary" | "moonlit";
 
+/** 由低到高。顺序有意义：UI 排序与「缺省取最高难度」都依赖它。 */
+export const DIFFICULTIES = ["light", "normal", "hard", "visionary", "moonlit"] as const;
+
 export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
   light: "轻简",
   normal: "普通",
@@ -382,10 +385,14 @@ export function describeObjective(objective: RunObjective): string {
   return "只求通关";
 }
 
-export interface SeasonRuleOverrides {
+/**
+ * 单个难度的规则参数。
+ *
+ * 这些值在不同难度之间是**真的不一样**的（幕数、队伍人数、初始耐力、圣牌场次都会变），
+ * 所以它们必须挂在难度下面，而不是挂在赛季上面。
+ */
+export interface DifficultyRules {
   defaultVigor: number;
-  /** 该赛季包实际录入了哪些难度的结构。未录入的难度不得假装支持。 */
-  supportedDifficulties: Difficulty[];
   teamSize: number;
   mainActCount: number;
   tabletChallengeCount: number;
@@ -394,6 +401,17 @@ export interface SeasonRuleOverrides {
   supportGuestCountsForEntry: boolean;
   initialRefreshes: number;
   note?: string;
+}
+
+/**
+ * 一个难度的完整结构。未录入的难度必须直接缺席这张表，
+ * 而不是留一个空壳——"支持哪些难度"由本表的键派生，不允许单独声明，
+ * 否则就会出现"声明支持但没有数据"的假支持。
+ */
+export interface DifficultyPack {
+  rules: DifficultyRules;
+  stages: StageConfig[];
+  bosses: BossConfig[];
 }
 
 export type SeasonStatus = "draft" | "review" | "published" | "archived";
@@ -405,17 +423,47 @@ export interface SeasonConfig {
   endsAt: string;
   status: SeasonStatus;
 
+  /* 以下三项与难度无关，全赛季共享。 */
   allowedElements: Element[];
   openingCharacterIds: string[];
   specialGuestIds: string[];
-
   buffs: BuffConfig[];
+
+  /** 按难度分套的关卡结构与规则。至少录入一个难度。 */
+  difficulties: Partial<Record<Difficulty, DifficultyPack>>;
+
+  sourceRecords: SourceRecord[];
+
+  unresolvedQuestions: UnresolvedQuestion[];
+  dataVersion: number;
+  generatedAt: string;
+  reviewedAt?: string;
+}
+
+/**
+ * 赛季 + 已选难度解析出的扁平视图。
+ *
+ * 求解器只吃这个，不吃 `SeasonConfig`——这样"忘了按难度取数据"在类型层面就编译不过。
+ */
+export interface ResolvedSeason {
+  id: string;
+  name: string;
+  startsAt: string;
+  endsAt: string;
+  status: SeasonStatus;
+
+  allowedElements: Element[];
+  openingCharacterIds: string[];
+  specialGuestIds: string[];
+  buffs: BuffConfig[];
+
+  /** 本视图对应的难度。 */
+  difficulty: Difficulty;
+  rules: DifficultyRules;
   stages: StageConfig[];
   bosses: BossConfig[];
 
-  ruleOverrides: SeasonRuleOverrides;
   sourceRecords: SourceRecord[];
-
   unresolvedQuestions: UnresolvedQuestion[];
   dataVersion: number;
   generatedAt: string;
