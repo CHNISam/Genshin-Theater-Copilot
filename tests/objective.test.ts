@@ -151,13 +151,17 @@ describe("目标与难度", () => {
     expect(tryResolveSeason(pack, "hard")).toBeUndefined();
   });
 
-  it("已录入的难度各自解析出自己的关卡结构与规则", () => {
-    const light = [stage({ id: "light-1", order: 1 }), stage({ id: "light-2", order: 2 })];
-    const moonlit = seasonWithTablets().stages;
-    const pack = seasonConfig([], {
+  /*
+   * 五个难度共用同一套幕，区别只在"打到第几幕、含不含圣牌"。
+   * 因此这里锁定的是：同一份关卡表在不同难度下必须裁剪成不同的结构，
+   * 低难度绝不能拿到自己根本打不到的幕。
+   */
+  it("同一套关卡在不同难度下裁剪出不同结构", () => {
+    const shared = seasonWithTablets().stages;
+    const pack = seasonConfig(shared, {
       difficulties: {
-        light: { rules: rulesFor(light, { teamSize: 4, defaultVigor: 3 }), stages: light, bosses: [] },
-        moonlit: { rules: rulesFor(moonlit), stages: moonlit, bosses: [] },
+        light: rulesFor(shared, { clearAtAct: 1, includesTablets: false, defaultVigor: 3 }),
+        moonlit: rulesFor(shared, { clearAtAct: 2, includesTablets: true }),
       },
     });
 
@@ -167,12 +171,12 @@ describe("目标与难度", () => {
     const resolvedMoonlit = resolveSeason(pack, "moonlit");
 
     expect(resolvedLight.difficulty).toBe("light");
-    expect(resolvedLight.stages.map((s) => s.id)).toEqual(["light-1", "light-2"]);
+    expect(resolvedLight.stages.map((s) => s.id)).toEqual(["act-1"]);
     expect(resolvedLight.rules.defaultVigor).toBe(3);
     expect(resolvedLight.rules.tabletChallengeCount).toBe(0);
 
-    // 两档难度的结构必须互不污染。
-    expect(resolvedMoonlit.stages.map((s) => s.id)).not.toContain("light-1");
+    // 两档难度的结构必须互不污染：轻简打不到第 2 幕，也没有圣牌。
+    expect(resolvedMoonlit.stages.map((s) => s.id)).toEqual(["act-1", "act-2", "tablet-1"]);
     expect(resolvedMoonlit.rules.tabletChallengeCount).toBeGreaterThan(0);
     expect(resolvedMoonlit.rules.defaultVigor).toBe(2);
   });

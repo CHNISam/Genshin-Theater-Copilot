@@ -5,7 +5,7 @@
 import type { SeasonConfig, SeasonStatus } from "../domain/types";
 import { DIFFICULTY_LABEL } from "../domain/types";
 import { validateSeason, type ValidateOptions, type ValidationResult } from "./validate";
-import { allBosses, allStages, supportedDifficulties } from "./resolve";
+import { supportedDifficulties } from "./resolve";
 
 export interface SeasonDiff {
   addedCharacters: string[];
@@ -88,8 +88,8 @@ export function diffSeasons(prev: SeasonConfig | undefined, next: SeasonConfig):
     }
   }
 
-  const prevStages = new Map((prev ? allStages(prev) : []).map((s) => [s.id, s]));
-  for (const stage of allStages(next)) {
+  const prevStages = new Map((prev?.stages ?? []).map((s) => [s.id, s]));
+  for (const stage of next.stages) {
     const before = prevStages.get(stage.id);
     if (!before) {
       diff.addedStages.push(stage.id);
@@ -122,8 +122,8 @@ export function diffSeasons(prev: SeasonConfig | undefined, next: SeasonConfig):
   }
   diff.removedStages = [...prevStages.keys()];
 
-  const prevBosses = new Map((prev ? allBosses(prev) : []).map((b) => [b.id, b]));
-  for (const boss of allBosses(next)) {
+  const prevBosses = new Map((prev?.bosses ?? []).map((b) => [b.id, b]));
+  for (const boss of next.bosses) {
     const before = prevBosses.get(boss.id);
     if (!before) {
       diff.bossChanges.push(`新增首领 ${boss.name}`);

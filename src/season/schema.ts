@@ -166,36 +166,36 @@ export const buffSchema = z.object({
 export const difficultySchema = z.enum(["light", "normal", "hard", "visionary", "moonlit"]);
 
 export const difficultyRulesSchema = z.object({
-  defaultVigor: z.number().int().min(1).max(10),
+  clearAtAct: z.number().int().min(1).max(20),
+  includesTablets: z.boolean(),
+
   teamSize: z.number().int().min(1).max(8),
-  mainActCount: z.number().int().min(1).max(20),
-  tabletChallengeCount: z.number().int().min(0).max(5),
-  bossActOrders: z.array(z.number().int().min(1)).default([]),
-  supportGuestCountsForEntry: z.boolean(),
+  defaultVigor: z.number().int().min(1).max(10),
   initialRefreshes: z.number().int().min(0),
+  supportGuestCountsForEntry: z.boolean(),
+
+  /* 未核实的字段必须缺席，不接受 0 或占位值。 */
+  requiredCharacterCount: z.number().int().min(1).max(60).optional(),
+  minimumCharacterLevel: z.number().int().min(1).max(90).optional(),
+  enemyLevel: z.number().int().min(1).max(120).optional(),
+
   note: z.string().optional(),
 });
 
-export const difficultyPackSchema = z.object({
-  rules: difficultyRulesSchema,
-  stages: z.array(stageSchema).min(1),
-  bosses: z.array(bossSchema).default([]),
-});
-
 /**
- * 按难度分套。未录入的难度必须整个缺席，
+ * 各难度规则。未录入的难度必须整个缺席，
  * 不接受 `undefined` 占位——否则又会出现「键在、数据空」的假支持。
  */
 export const seasonDifficultiesSchema = z
   .object({
-    light: difficultyPackSchema.optional(),
-    normal: difficultyPackSchema.optional(),
-    hard: difficultyPackSchema.optional(),
-    visionary: difficultyPackSchema.optional(),
-    moonlit: difficultyPackSchema.optional(),
+    light: difficultyRulesSchema.optional(),
+    normal: difficultyRulesSchema.optional(),
+    hard: difficultyRulesSchema.optional(),
+    visionary: difficultyRulesSchema.optional(),
+    moonlit: difficultyRulesSchema.optional(),
   })
-  .refine((d) => Object.values(d).some((pack) => pack !== undefined), {
-    message: "赛季包至少要录入一个难度的关卡结构",
+  .refine((d) => Object.values(d).some((rules) => rules !== undefined), {
+    message: "赛季包至少要录入一个难度的规则",
   });
 
 export const seasonConfigSchema = z.object({
@@ -211,6 +211,8 @@ export const seasonConfigSchema = z.object({
 
   buffs: z.array(buffSchema).default([]),
 
+  stages: z.array(stageSchema).min(1),
+  bosses: z.array(bossSchema).default([]),
   difficulties: seasonDifficultiesSchema,
 
   sourceRecords: z.array(sourceRecordSchema).default([]),

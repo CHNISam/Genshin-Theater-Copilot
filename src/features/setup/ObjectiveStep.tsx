@@ -1,6 +1,6 @@
-import type { DifficultyRules, RunObjective, SeasonConfig } from "../../domain/types";
+import type { ResolvedRules, RunObjective, SeasonConfig } from "../../domain/types";
 import { DIFFICULTIES, DIFFICULTY_LABEL, describeObjective } from "../../domain/types";
-import { defaultDifficulty, supportedDifficulties } from "../../season/resolve";
+import { defaultDifficulty, supportedDifficulties, tryResolveSeason } from "../../season/resolve";
 
 /** 每档难度的一句话定位。结构数字一律从数据读，这里只写"感受"。 */
 const DIFFICULTY_TONE: Record<(typeof DIFFICULTIES)[number], string> = {
@@ -12,10 +12,14 @@ const DIFFICULTY_TONE: Record<(typeof DIFFICULTIES)[number], string> = {
 };
 
 /** 用真实数据描述一档难度的结构，而不是写死文案。 */
-function describeStructure(rules: DifficultyRules): string {
+function describeStructure(rules: ResolvedRules): string {
   const tablets =
     rules.tabletChallengeCount > 0 ? ` + ${rules.tabletChallengeCount} 场圣牌` : "";
-  return `${rules.mainActCount} 幕${tablets}｜${rules.teamSize} 人队｜每人 ${rules.defaultVigor} 耐力`;
+  const entry =
+    rules.requiredCharacterCount !== undefined
+      ? `｜准入 ${rules.requiredCharacterCount} 人`
+      : "";
+  return `打到第 ${rules.mainActCount} 幕${tablets}｜${rules.teamSize} 人队｜每人 ${rules.defaultVigor} 耐力${entry}`;
 }
 
 export function ObjectiveStep({
@@ -35,8 +39,8 @@ export function ObjectiveStep({
     tablets: false,
     stars: false,
   };
-  // 圣牌场次、幕数在各难度之间不同，所以这些文案必须跟着所选难度走。
-  const rules = season.difficulties[current.difficulty]?.rules;
+  // 通关线与圣牌场次随难度变，所以这些文案必须跟着所选难度走。
+  const rules = tryResolveSeason(season, current.difficulty)?.rules;
   const totalStars = rules ? rules.mainActCount + rules.tabletChallengeCount : 0;
 
   return (
@@ -54,21 +58,21 @@ export function ObjectiveStep({
         </p>
         <div className="choices">
           {DIFFICULTIES.map((d) => {
-            const pack = season.difficulties[d];
+            const resolved = tryResolveSeason(season, d);
             return (
               <button
                 key={d}
                 type="button"
                 className="choice"
                 aria-pressed={current.difficulty === d}
-                disabled={!pack}
-                onClick={() => pack && onChange({ ...current, difficulty: d })}
+                disabled={!resolved}
+                onClick={() => resolved && onChange({ ...current, difficulty: d })}
               >
                 <div className="t">{DIFFICULTY_LABEL[d]}</div>
                 <div className="d">
-                  {pack ? describeStructure(pack.rules) : "本期无数据"}
+                  {resolved ? describeStructure(resolved.rules) : "本期无数据"}
                 </div>
-                {pack && <div className="d muted">{DIFFICULTY_TONE[d]}</div>}
+                {resolved && <div className="d muted">{DIFFICULTY_TONE[d]}</div>}
               </button>
             );
           })}

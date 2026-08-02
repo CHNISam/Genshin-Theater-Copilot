@@ -4,13 +4,7 @@
  * 这是纯投影，不含任何策略判断——求解优先级、机制取舍一律不在这里发生。
  * 求解器与 UI 都只应该拿到 `ResolvedSeason`，从而不可能误用别的难度的关卡结构。
  */
-import type {
-  BossConfig,
-  Difficulty,
-  ResolvedSeason,
-  SeasonConfig,
-  StageConfig,
-} from "../domain/types";
+import type { Difficulty, ResolvedRules, ResolvedSeason, SeasonConfig } from "../domain/types";
 import { DIFFICULTIES, DIFFICULTY_LABEL } from "../domain/types";
 
 /**
@@ -53,10 +47,29 @@ export class UnsupportedDifficultyError extends Error {
  * 那会让用户拿到一份看起来正常、实际上属于另一个难度的攻略。
  */
 export function resolveSeason(season: SeasonConfig, difficulty: Difficulty): ResolvedSeason {
-  const pack = season.difficulties[difficulty];
-  if (!pack) {
+  const rules = season.difficulties[difficulty];
+  if (!rules) {
     throw new UnsupportedDifficultyError(season.id, difficulty, supportedDifficulties(season));
   }
+
+  /*
+   * 难度对关卡表的作用只有两条：打到第几幕、含不含圣牌。
+   * 关卡本身是全难度共享的同一批事实。
+   */
+  const stages = season.stages
+    .filter((s) =>
+      s.type === "tablet" ? rules.includesTablets : s.order <= rules.clearAtAct,
+    )
+    .sort((a, b) => a.order - b.order);
+
+  const stageIds = new Set(stages.map((s) => s.id));
+  const resolvedRules: ResolvedRules = {
+    ...rules,
+    mainActCount: rules.clearAtAct,
+    tabletChallengeCount: stages.filter((s) => s.type === "tablet").length,
+    bossActOrders: stages.filter((s) => s.type === "boss").map((s) => s.order),
+  };
+
   return {
     id: season.id,
     name: season.name,
@@ -70,9 +83,10 @@ export function resolveSeason(season: SeasonConfig, difficulty: Difficulty): Res
     buffs: season.buffs,
 
     difficulty,
-    rules: pack.rules,
-    stages: pack.stages,
-    bosses: pack.bosses,
+    rules: resolvedRules,
+    stages,
+    // 首领同样只保留本难度打得到的那些。
+    bosses: season.bosses.filter((b) => !b.stageId || stageIds.has(b.stageId)),
 
     sourceRecords: season.sourceRecords,
     unresolvedQuestions: season.unresolvedQuestions,
@@ -80,19 +94,6 @@ export function resolveSeason(season: SeasonConfig, difficulty: Difficulty): Res
     generatedAt: season.generatedAt,
     reviewedAt: season.reviewedAt,
   };
-}
-
-/**
- * 全难度关卡的扁平列表，仅供跨版本 diff 一类的全局巡检使用。
- * 关卡 id 全季唯一，所以拍平不会丢信息。**求解器不得使用**——它必须按难度取数据。
- */
-export function allStages(season: SeasonConfig): StageConfig[] {
-  return supportedDifficulties(season).flatMap((d) => season.difficulties[d]!.stages);
-}
-
-/** 同上，全难度首领的扁平列表。 */
-export function allBosses(season: SeasonConfig): BossConfig[] {
-  return supportedDifficulties(season).flatMap((d) => season.difficulties[d]!.bosses);
 }
 
 /** 解析失败时返回 undefined 的版本，供 UI 在「难度不可选」时使用。 */

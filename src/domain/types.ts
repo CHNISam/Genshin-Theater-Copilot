@@ -386,32 +386,46 @@ export function describeObjective(objective: RunObjective): string {
 }
 
 /**
- * 单个难度的规则参数。
+ * 单个难度的规则。
  *
- * 这些值在不同难度之间是**真的不一样**的（幕数、队伍人数、初始耐力、圣牌场次都会变），
- * 所以它们必须挂在难度下面，而不是挂在赛季上面。
+ * 关键事实：五个难度**共用同一套 10 幕**，区别只在打到第几幕、敌人多强、准入门槛多高。
+ * 轻简的第 3 幕就是月谕的第 3 幕，所以关卡本身绝不能按难度复制五份——
+ * 那会让同一个机制事实存五个副本，改一处就得改五处。
  */
 export interface DifficultyRules {
-  defaultVigor: number;
+  /** 通关需要完成到第几幕。已核实：轻简 3 / 普通 6 / 困难 8 / 卓越 10 / 月谕 10。 */
+  clearAtAct: number;
+  /** 本难度是否包含圣牌挑战关卡。已核实：仅月谕包含。 */
+  includesTablets: boolean;
+
   teamSize: number;
-  mainActCount: number;
-  tabletChallengeCount: number;
-  bossActOrders: number[];
+  defaultVigor: number;
+  initialRefreshes: number;
   /** 助演角色是否计入准入数量。 */
   supportGuestCountsForEntry: boolean;
-  initialRefreshes: number;
+
+  /* 以下三项尚未全部核实。未核实的难度必须留空，不得填推测值。 */
+  /** 准入所需的符合元素与等级要求的备选角色数量。 */
+  requiredCharacterCount?: number;
+  /** 准入所需的角色最低等级。 */
+  minimumCharacterLevel?: number;
+  /** 本难度的敌人等级。 */
+  enemyLevel?: number;
+
   note?: string;
 }
 
 /**
- * 一个难度的完整结构。未录入的难度必须直接缺席这张表，
- * 而不是留一个空壳——"支持哪些难度"由本表的键派生，不允许单独声明，
- * 否则就会出现"声明支持但没有数据"的假支持。
+ * 某一难度解析出来的规则视图：难度自身的参数 + 由共享关卡表推导出的结构数字。
+ * 下游只读这个，不需要知道"幕数是算出来的"。
  */
-export interface DifficultyPack {
-  rules: DifficultyRules;
-  stages: StageConfig[];
-  bosses: BossConfig[];
+export interface ResolvedRules extends DifficultyRules {
+  /** 本难度实际要打的主线幕数（= clearAtAct）。 */
+  mainActCount: number;
+  /** 本难度实际包含的圣牌挑战场次。 */
+  tabletChallengeCount: number;
+  /** 本难度范围内的首领幕位。 */
+  bossActOrders: number[];
 }
 
 export type SeasonStatus = "draft" | "review" | "published" | "archived";
@@ -429,8 +443,15 @@ export interface SeasonConfig {
   specialGuestIds: string[];
   buffs: BuffConfig[];
 
-  /** 按难度分套的关卡结构与规则。至少录入一个难度。 */
-  difficulties: Partial<Record<Difficulty, DifficultyPack>>;
+  /** 全难度共享的关卡表：10 幕主线 + 圣牌挑战。难度只决定打到哪一幕、含不含圣牌。 */
+  stages: StageConfig[];
+  bosses: BossConfig[];
+
+  /**
+   * 各难度的规则。未录入的难度必须直接缺席这张表——
+   * "支持哪些难度"由本表的键派生，不允许单独声明，否则会出现"声明支持但没有数据"的假支持。
+   */
+  difficulties: Partial<Record<Difficulty, DifficultyRules>>;
 
   sourceRecords: SourceRecord[];
 
@@ -459,7 +480,8 @@ export interface ResolvedSeason {
 
   /** 本视图对应的难度。 */
   difficulty: Difficulty;
-  rules: DifficultyRules;
+  rules: ResolvedRules;
+  /** 已按通关线与圣牌开关裁剪过的关卡：本难度真正要打的那些。 */
   stages: StageConfig[];
   bosses: BossConfig[];
 

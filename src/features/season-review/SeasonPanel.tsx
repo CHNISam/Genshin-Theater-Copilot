@@ -56,16 +56,24 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
               </td>
             </tr>
             {difficulties.map((d) => {
-              const rules = season.difficulties[d]!.rules;
+              const rules = season.difficulties[d]!;
               return (
                 <tr key={d}>
-                  <th>{DIFFICULTY_LABEL[d]} 结构</th>
+                  <th>{DIFFICULTY_LABEL[d]} 规则</th>
                   <td>
-                    {rules.mainActCount} 幕主线 + {rules.tabletChallengeCount} 场圣牌；
-                    {rules.bossActOrders.length > 0
-                      ? `固定首领第 ${rules.bossActOrders.join("、")} 幕；`
-                      : "无固定首领幕位；"}
-                    {rules.teamSize} 人队；每角色初始 {rules.defaultVigor} 点耐力
+                    打到第 {rules.clearAtAct} 幕；
+                    {rules.includesTablets ? "含圣牌挑战；" : "不含圣牌挑战；"}
+                    {rules.teamSize} 人队；每角色初始 {rules.defaultVigor} 点耐力；
+                    初始刷新 {rules.initialRefreshes} 次；
+                    助演{rules.supportGuestCountsForEntry ? "计入" : "不计入"}准入数量
+                    {rules.requiredCharacterCount !== undefined
+                      ? `；准入需 ${rules.requiredCharacterCount} 名备选角色`
+                      : ""}
+                    {rules.minimumCharacterLevel !== undefined
+                      ? `；角色最低 ${rules.minimumCharacterLevel} 级`
+                      : ""}
+                    {rules.enemyLevel !== undefined ? `；敌人 ${rules.enemyLevel} 级` : ""}
+                    {rules.note ? <div className="muted">{rules.note}</div> : null}
                   </td>
                 </tr>
               );
@@ -74,13 +82,16 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
         </table>
       </div>
 
-      {difficulties.map((d) => (
-      <div className="panel" key={d}>
-        <h2>关卡与机制 · {DIFFICULTY_LABEL[d]}</h2>
+      <div className="panel">
+        <h2>关卡与机制（全难度共享）</h2>
+        <p className="muted">
+          五个难度共用同一份关卡表，难度只决定打到第几幕、含不含圣牌。
+        </p>
         <div className="scroll-x">
           <table>
             <thead>
               <tr>
+                <th>幕</th>
                 <th>关卡</th>
                 <th>类型</th>
                 <th>硬机制</th>
@@ -89,10 +100,11 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
               </tr>
             </thead>
             <tbody>
-              {[...season.difficulties[d]!.stages]
+              {[...season.stages]
                 .sort((a, b) => a.order - b.order)
                 .map((s) => (
                   <tr key={s.id}>
+                    <td className="muted">{s.order}</td>
                     <td>{s.name}</td>
                     <td className="muted">{s.type}</td>
                     <td>
@@ -126,7 +138,6 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
           </table>
         </div>
       </div>
-      ))}
 
       <div className="grid2">
         <div className="panel">

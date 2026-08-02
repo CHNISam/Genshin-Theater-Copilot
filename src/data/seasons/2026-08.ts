@@ -26,6 +26,19 @@ const WIKI: SourceRecord = {
   confidence: "high",
 };
 
+/** 难度结构（通关线、首领幕位、耐力规则）的来源。多个来源互相印证。 */
+const DIFFICULTY_RULES: SourceRecord = {
+  title: "幻想真境剧诗 · 难度规则（轻简/普通/困难分别完成前 3/6/8 幕；卓越 10 幕；月谕 10 幕 + 2 场圣牌）",
+  sourceType: "community-confirmed",
+  url: "https://zh.moegirl.org.cn/%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97",
+  accessedAt: "2026-08-02",
+  excerpt:
+    "在轻简、普通、困难模式下，成功通过挑战需要完成前 3、6、8 幕战斗演出；" +
+    "在卓越模式下需要完成全部 10 幕；在月谕模式下，除 10 幕外还会随战斗推进解锁两个圣牌挑战关卡。" +
+    "每一名角色初始具有 2 点耐力，每关参战后消耗 1 点。",
+  confidence: "high",
+};
+
 const USER_RUN: SourceRecord = {
   title: "用户本期实战记录（2026-08 月谕通关）",
   sourceType: "user-observed",
@@ -195,23 +208,13 @@ export const SEASON_2026_08: SeasonConfig = {
     },
   ],
 
-  difficulties: {
-    // 本赛季包只录入了月谕难度。其余难度不在这张表里 —— "支持哪些难度"由本表的键派生，
-    // 不允许单独声明，否则就会出现"声明支持但没有数据"的假支持。
-    moonlit: {
-      rules: {
-      defaultVigor: 2,
-      teamSize: 4,
-      mainActCount: 10,
-      tabletChallengeCount: 2,
-      bossActOrders: [3, 6, 8, 10],
-      supportGuestCountsForEntry: false,
-      initialRefreshes: 3,
-      note: "10 幕主线 + 2 场圣牌挑战；每名角色初始 2 点耐力，参战一次消耗 1 点。",
-      },
-      stages: [
+  /*
+   * 关卡表全难度共享：五个难度打的是同一批幕，区别只在打到第几幕、含不含圣牌。
+   * 因此第 8 幕的水盾这类机制事实只存一份。
+   */
+  stages: [
       {
-        id: "moonlit-act-1",
+        id: "act-1",
         order: 1,
         name: "第1幕",
         type: "normal",
@@ -227,7 +230,7 @@ export const SEASON_2026_08: SeasonConfig = {
         note: "普通幕，随机战斗事件。适合消耗次级主 C 的第一点耐力。",
       },
       {
-        id: "moonlit-act-2",
+        id: "act-2",
         order: 2,
         name: "第2幕",
         type: "normal",
@@ -242,7 +245,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-act-3",
+        id: "act-3",
         order: 3,
         name: "第3幕（固定首领）",
         type: "boss",
@@ -264,7 +267,7 @@ export const SEASON_2026_08: SeasonConfig = {
         note: "固定首领幕。用中级资产解决，不动最终保险牌。",
       },
       {
-        id: "moonlit-act-4",
+        id: "act-4",
         order: 4,
         name: "第4幕（守护）",
         type: "defense",
@@ -291,7 +294,7 @@ export const SEASON_2026_08: SeasonConfig = {
         note: "本期实战观察：守护目标不被摧毁即可，不必消耗强力主 C。等价于多出一次输出容错。",
       },
       {
-        id: "moonlit-act-5",
+        id: "act-5",
         order: 5,
         name: "第5幕",
         type: "normal",
@@ -306,7 +309,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-act-6",
+        id: "act-6",
         order: 6,
         name: "第6幕（固定首领）",
         type: "boss",
@@ -321,7 +324,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-act-7",
+        id: "act-7",
         order: 7,
         name: "第7幕",
         type: "normal",
@@ -336,7 +339,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-act-8",
+        id: "act-8",
         order: 8,
         name: "第8幕（固定首领 · 水盾）",
         type: "boss",
@@ -366,7 +369,7 @@ export const SEASON_2026_08: SeasonConfig = {
         note: "水盾机制为本期实战观察，可信度 medium，需要下一次实战复核破盾效率阈值。",
       },
       {
-        id: "moonlit-act-9",
+        id: "act-9",
         order: 9,
         name: "第9幕",
         type: "normal",
@@ -381,7 +384,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-act-10",
+        id: "act-10",
         order: 10,
         name: "第10幕（终局首领）",
         type: "boss",
@@ -402,7 +405,7 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
       },
       {
-        id: "moonlit-tablet-1",
+        id: "tablet-1",
         order: 11,
         name: "圣牌挑战一",
         type: "tablet",
@@ -434,7 +437,7 @@ export const SEASON_2026_08: SeasonConfig = {
           "未完成会一直保留；全部完成后可在第十幕通关后抽取「月谕圣牌」。",
       },
       {
-        id: "moonlit-tablet-2",
+        id: "tablet-2",
         order: 12,
         name: "圣牌挑战二",
         type: "tablet",
@@ -455,12 +458,12 @@ export const SEASON_2026_08: SeasonConfig = {
         confidence: "medium",
         sourceRecords: [USER_RUN],
       },
-      ],
-      bosses: [
+  ],
+  bosses: [
       {
-        id: "moonlit-boss-act3",
+        id: "boss-act3",
         name: "第3幕首领",
-        stageId: "moonlit-act-3",
+        stageId: "act-3",
         hardMechanics: [],
         effectiveElements: ["cryo", "electro", "hydro"],
         effectiveReactions: ["superconduct", "frozen"],
@@ -469,9 +472,9 @@ export const SEASON_2026_08: SeasonConfig = {
         confidence: "medium",
       },
       {
-        id: "moonlit-boss-act6",
+        id: "boss-act6",
         name: "第6幕首领",
-        stageId: "moonlit-act-6",
+        stageId: "act-6",
         hardMechanics: [],
         effectiveElements: ["cryo", "electro", "hydro"],
         effectiveReactions: ["superconduct", "frozen", "electro-charged"],
@@ -480,9 +483,9 @@ export const SEASON_2026_08: SeasonConfig = {
         confidence: "medium",
       },
       {
-        id: "moonlit-boss-act8",
+        id: "boss-act8",
         name: "第8幕首领（水盾）",
-        stageId: "moonlit-act-8",
+        stageId: "act-8",
         hardMechanics: [
           {
             type: "shield-break",
@@ -503,9 +506,9 @@ export const SEASON_2026_08: SeasonConfig = {
         confidence: "medium",
       },
       {
-        id: "moonlit-boss-act10",
+        id: "boss-act10",
         name: "第10幕终局首领",
-        stageId: "moonlit-act-10",
+        stageId: "act-10",
         hardMechanics: [],
         effectiveElements: ["cryo", "electro", "hydro"],
         effectiveReactions: ["frozen", "superconduct", "electro-charged"],
@@ -513,13 +516,64 @@ export const SEASON_2026_08: SeasonConfig = {
         sourceRecords: [WIKI],
         confidence: "medium",
       },
-      ],
+  ],
+
+  /*
+   * 只录入卓越与月谕两档——攻略读者主要打这两档。
+   *
+   * 轻简/普通/困难的通关线其实已经查实（分别是前 3 / 6 / 8 幕，见 DIFFICULTY_RULES 来源），
+   * 但准入人数与等级只对普通(8 名/40 级)、困难(12 名/70 级)有实锤，且这三档暂不做，
+   * 所以整条不录 —— 未录入的难度在界面上直接置灰，不能假装支持。
+   */
+  difficulties: {
+    visionary: {
+      clearAtAct: 10,
+      includesTablets: false,
+      teamSize: 4,
+      defaultVigor: 2,
+      initialRefreshes: 3,
+      supportGuestCountsForEntry: false,
+      note: "需完成全部 10 幕战斗演出，不含圣牌挑战。准入人数与角色等级要求尚未查实。",
+    },
+    moonlit: {
+      clearAtAct: 10,
+      includesTablets: true,
+      teamSize: 4,
+      defaultVigor: 2,
+      initialRefreshes: 3,
+      supportGuestCountsForEntry: false,
+      note:
+        "最高难度：10 幕主线之外，随战斗推进额外解锁 2 个圣牌挑战关卡。" +
+        "每名角色初始 2 点耐力，参战一次消耗 1 点。",
     },
   },
 
-  sourceRecords: [OFFICIAL, WIKI, USER_RUN],
+  sourceRecords: [OFFICIAL, WIKI, DIFFICULTY_RULES, USER_RUN],
 
   unresolvedQuestions: [
+    {
+      id: "visionary-moonlit-entry-requirements",
+      question: "卓越与月谕的准入角色数量与最低等级分别是多少？",
+      conflictingClaims: [
+        {
+          claim: "困难为 12 名备选角色 / 70 级；普通为 8 名 / 40 级。卓越与月谕未见明确数字。",
+          source: "游民星空玩法详解、网易云游戏攻略",
+          confidence: "medium",
+        },
+        {
+          claim: "困难需选择 18 位角色才可开启（疑为含 6 名开幕角色的合计口径）。",
+          source: "网易云游戏攻略、知乎解析",
+          confidence: "low",
+        },
+      ],
+      blocksPublish: false,
+    },
+    {
+      id: "difficulty-enemy-level",
+      question: "各难度的敌人等级分别是多少？",
+      conflictingClaims: [],
+      blocksPublish: false,
+    },
     {
       id: "act8-shield-threshold",
       question: "第8幕水盾所需的冰附着效率阈值具体是多少？",

@@ -4,25 +4,25 @@ import { describe, expect, it } from "vitest";
 import { validateSeason } from "../src/season/validate";
 import { transitionSeason, diffSeasons } from "../src/season/lifecycle";
 import { buildResearchPrompt, extractJson, reviewDraft } from "../src/season/research";
+import {
+  isDifficultySupported,
+  resolveSeason,
+  supportedDifficulties,
+  tryResolveSeason,
+  UnsupportedDifficultyError,
+} from "../src/season/resolve";
 import { SEASON_2026_08 } from "../src/data/seasons/2026-08";
 import { CHARACTERS, CHARACTER_BY_ID } from "../src/data/characters";
 import type { SeasonConfig, StageConfig } from "../src/domain/types";
 
 const knownCharacterIds = new Set(CHARACTER_BY_ID.keys());
 
-/** 改写月谕难度的关卡，保留赛季包其余部分。 */
-function withMoonlitStages(
+/** 改写关卡表，保留赛季包其余部分。关卡是全难度共享的一份。 */
+function withStages(
   base: SeasonConfig,
   map: (stage: StageConfig) => StageConfig,
 ): SeasonConfig {
-  const moonlit = base.difficulties.moonlit!;
-  return {
-    ...base,
-    difficulties: {
-      ...base.difficulties,
-      moonlit: { ...moonlit, stages: moonlit.stages.map(map) },
-    },
-  };
+  return { ...base, stages: base.stages.map(map) };
 }
 
 describe("赛季研究与发布流程", () => {
@@ -34,8 +34,8 @@ describe("赛季研究与发布流程", () => {
   });
 
   it("20. 赛季研究草稿未通过验证时不能发布", () => {
-    const broken = withMoonlitStages(SEASON_2026_08, (s) =>
-      s.id === "moonlit-act-8" ? { ...s, sourceRecords: [] } : s,
+    const broken = withStages(SEASON_2026_08, (s) =>
+      s.id === "act-8" ? { ...s, sourceRecords: [] } : s,
     );
     broken.status = "draft";
 
@@ -116,8 +116,8 @@ describe("赛季研究与发布流程", () => {
 
   it("导入 Agent 输出：能剥离 markdown 代码围栏并给出差异摘要", () => {
     const next: SeasonConfig = {
-      ...withMoonlitStages(SEASON_2026_08, (s) =>
-        s.id === "moonlit-act-8"
+      ...withStages(SEASON_2026_08, (s) =>
+        s.id === "act-8"
           ? {
               ...s,
               hardRequirements: [
@@ -170,5 +170,56 @@ describe("赛季研究与发布流程", () => {
     const files = readdirSync(resolve(process.cwd(), "prompts"));
     expect(files).toContain("season-research.md");
     expect(files).toContain("season-conflict-review.md");
+  });
+});
+
+/*
+ * 共享幕模型：五档难度共用同一份 10 幕关卡表，难度只决定
+ * 「打到第几幕、含不含圣牌」。这里用真实赛季包锁定这一语义，
+ * 防止有人再把关卡按难度复制成多份。
+ */
+describe("内置赛季包的共享幕语义", () => {
+  it("关卡表只有一份：10 幕主线 + 2 场圣牌挑战", () => {
+    const mainActs = SEASON_2026_08.stages.filter((s) => s.type !== "tablet");
+    const tablets = SEASON_2026_08.stages.filter((s) => s.type === "tablet");
+    expect(mainActs.map((s) => s.order).sort((a, b) => a - b)).toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    ]);
+    expect(tablets).toHaveLength(2);
+  });
+
+  it("卓越解析出 10 幕、0 场圣牌", () => {
+    const resolved = resolveSeason(SEASON_2026_08, "visionary");
+    expect(resolved.difficulty).toBe("visionary");
+    expect(resolved.rules.mainActCount).toBe(10);
+    expect(resolved.rules.tabletChallengeCount).toBe(0);
+    expect(resolved.stages).toHaveLength(10);
+    expect(resolved.stages.every((s) => s.type !== "tablet")).toBe(true);
+  });
+
+  it("月谕解析出 10 幕 + 2 场圣牌", () => {
+    const resolved = resolveSeason(SEASON_2026_08, "moonlit");
+    expect(resolved.difficulty).toBe("moonlit");
+    expect(resolved.rules.mainActCount).toBe(10);
+    expect(resolved.rules.tabletChallengeCount).toBe(2);
+    expect(resolved.stages).toHaveLength(12);
+  });
+
+  it("两档难度共用同一批主线幕对象，不是各自的副本", () => {
+    const visionary = resolveSeason(SEASON_2026_08, "visionary");
+    const moonlit = resolveSeason(SEASON_2026_08, "moonlit");
+    const moonlitMain = moonlit.stages.filter((s) => s.type !== "tablet");
+    expect(visionary.stages.map((s) => s.id)).toEqual(moonlitMain.map((s) => s.id));
+    // 同一个对象引用：机制事实只有一份，改一处就是改全部。
+    expect(visionary.stages[7]).toBe(moonlitMain[7]);
+  });
+
+  it("未录入的难度必须显式不可用，不得静默回退", () => {
+    expect(supportedDifficulties(SEASON_2026_08)).toEqual(["visionary", "moonlit"]);
+    for (const difficulty of ["light", "normal", "hard"] as const) {
+      expect(isDifficultySupported(SEASON_2026_08, difficulty)).toBe(false);
+      expect(() => resolveSeason(SEASON_2026_08, difficulty)).toThrow(UnsupportedDifficultyError);
+      expect(tryResolveSeason(SEASON_2026_08, difficulty)).toBeUndefined();
+    }
   });
 });

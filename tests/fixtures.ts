@@ -10,6 +10,7 @@ import type {
   MechanicCapability,
   RunState,
   Roster,
+  ResolvedRules,
   ResolvedSeason,
   SeasonConfig,
   StageConfig,
@@ -81,14 +82,30 @@ export function rulesFor(
   stages: StageConfig[],
   partial: Partial<DifficultyRules> = {},
 ): DifficultyRules {
+  const mainActs = stages.filter((s) => s.type !== "tablet");
   return {
+    // 难度只声明"打到第几幕、含不含圣牌"，关卡表是全难度共享的。
+    clearAtAct: mainActs.reduce((max, s) => Math.max(max, s.order), 0),
+    includesTablets: stages.some((s) => s.type === "tablet"),
     defaultVigor: 2,
     teamSize: 4,
+    supportGuestCountsForEntry: false,
+    initialRefreshes: 3,
+    ...partial,
+  };
+}
+
+/** 求解器视图用的规则：在难度规则之上补出由关卡表派生的那几项。 */
+export function resolvedRulesFor(
+  stages: StageConfig[],
+  partial: Partial<ResolvedRules> = {},
+): ResolvedRules {
+  const base = rulesFor(stages, partial);
+  return {
+    ...base,
     mainActCount: stages.filter((s) => s.type !== "tablet").length,
     tabletChallengeCount: stages.filter((s) => s.type === "tablet").length,
     bossActOrders: stages.filter((s) => s.type === "boss").map((s) => s.order),
-    supportGuestCountsForEntry: false,
-    initialRefreshes: 3,
     ...partial,
   };
 }
@@ -114,7 +131,7 @@ export function season(
     difficulty: partial.difficulty ?? "moonlit",
     stages,
     bosses: partial.bosses ?? [],
-    rules: rulesFor(stages, partial.rules),
+    rules: resolvedRulesFor(stages, partial.rules),
     sourceRecords: partial.sourceRecords ?? [],
     unresolvedQuestions: partial.unresolvedQuestions ?? [],
     dataVersion: partial.dataVersion ?? 1,
@@ -122,7 +139,10 @@ export function season(
   };
 }
 
-/** 完整赛季包（按难度分套），用于校验与发布流程测试。 */
+/**
+ * 完整赛季包，用于校验与发布流程测试。
+ * 关卡表是全难度共享的一份；难度只决定打到第几幕、含不含圣牌。
+ */
 export function seasonConfig(
   stages: StageConfig[],
   partial: Partial<SeasonConfig> = {},
@@ -138,9 +158,9 @@ export function seasonConfig(
     openingCharacterIds: resolved.openingCharacterIds,
     specialGuestIds: resolved.specialGuestIds,
     buffs: resolved.buffs,
-    difficulties: {
-      moonlit: { rules: resolved.rules, stages, bosses: resolved.bosses },
-    },
+    stages,
+    bosses: resolved.bosses,
+    difficulties: { moonlit: rulesFor(stages) },
     sourceRecords: [],
     unresolvedQuestions: [],
     dataVersion: 1,
