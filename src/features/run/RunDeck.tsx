@@ -180,6 +180,55 @@ export function RunDeck({ store }: { store: AppStore }): JSX.Element {
         </div>
       )}
 
+      {/* 走岔了怎么办：只给出路，不追究是怎么走到这一步的 */}
+      {output.recovery.inTrouble && (
+        <div className="panel">
+          <h2>还有这些办法</h2>
+          <p className="hint">{output.recovery.diagnosis}</p>
+          <div className="choices">
+            {output.recovery.options.map((option) => (
+              <div className="choice" key={option.kind + (option.reservationId ?? "")}>
+                <div className="t">
+                  {option.title}
+                  {option.restoresFeasibility && <span className="chip ok">能救回来</span>}
+                </div>
+                <div className="d">{option.detail}</div>
+                <div className="d muted">代价：{option.cost}</div>
+                {option.kind === "drop-tablets" && (
+                  <button
+                    className="btn sm"
+                    style={{ marginTop: 8 }}
+                    onClick={() => {
+                      const next = { ...run.objective, tablets: false };
+                      store.setObjective(next);
+                      store.updateRun({ objective: next });
+                    }}
+                  >
+                    放弃圣牌
+                  </button>
+                )}
+                {option.kind === "release-reservation" && option.reservationId && (
+                  <button
+                    className="btn sm"
+                    style={{ marginTop: 8 }}
+                    onClick={() =>
+                      store.updateRun({
+                        releasedReservations: [
+                          ...run.releasedReservations,
+                          option.reservationId as string,
+                        ],
+                      })
+                    }
+                  >
+                    解除预留
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* 需要立刻知道的风险 */}
       {!safety.safe && <div className="note bad">{safety.message}</div>}
       {safety.safe && !safety.fullRun.feasible && (

@@ -25,6 +25,7 @@ import {
 import { lookahead, routeDiversity, twoStageSafety, type LookaheadResult, type RouteDiversity } from "./lookahead";
 import { evaluateBuffOptions, planBuffPortfolio, type BuffEvaluation, type BuffPortfolio } from "./buffs";
 import { canProvide, describeRequirement } from "./mechanics";
+import { planRecovery, type RecoveryPlan } from "./recovery";
 import { ELEMENT_LABEL } from "../domain/types";
 
 export interface AssistantInput {
@@ -76,6 +77,8 @@ export interface AssistantOutput {
   eventRecommendation?: EventRecommendation;
   rejectedEvents: EventRecommendation[];
   shouldRefresh: { recommended: boolean; reason: string };
+  /** 当前状态已经出问题时的出路。没问题时 inTrouble 为 false、options 为空。 */
+  recovery: RecoveryPlan;
   notes: string[];
 }
 
@@ -247,6 +250,19 @@ export function runAssistant(input: AssistantInput): AssistantOutput {
       : "角色缺失才会导致无解，祝福不理想通常只是打得慢；当前没有关键缺口，不建议为祝福分支消耗刷新。",
   };
 
+  /* ---------- 容灾 ---------- *
+   * 只看当前状态，不看用户有没有按推荐走：他随便换了人、或者随机不给面子，
+   * 走到同一个局面就该拿到同一套出路。 */
+  const recovery = planRecovery({
+    season,
+    state,
+    unlockedMembers,
+    remainingStages: remaining,
+    reservations,
+    unmetFutureRequirements,
+    fullRun,
+  });
+
   return {
     stage,
     primaryPlan,
@@ -262,6 +278,7 @@ export function runAssistant(input: AssistantInput): AssistantOutput {
     eventRecommendation,
     rejectedEvents,
     shouldRefresh,
+    recovery,
     notes,
   };
 }
