@@ -18,7 +18,8 @@
     "season:publish": "tsx scripts/publish-season.ts",
     "verify": "npm run lint && npm run typecheck && npm run test && npm run build",
     "vision:fingerprints": "tsx scripts/build-avatar-fingerprints.ts",
-    "data:update": "npm run vision:fingerprints"
+    "data:update": "npm run data:characters && npm run vision:fingerprints",
+    "data:characters": "tsx scripts/build-character-index.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

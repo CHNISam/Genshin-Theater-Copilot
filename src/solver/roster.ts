@@ -48,6 +48,10 @@ export function buildRoster(options: BuildRosterOptions): TeamMember[] {
   const allowed = new Set(season.allowedElements);
   const specialGuests = new Set(season.specialGuestIds);
 
+  // 助演一期只能借一个：候选里没被选中的那些不进池子，
+  // 否则会把"我可能借到的所有人"当成"我全都有"，直接高估可行路线。
+  const guestCandidates = new Set(roster.supportGuestCandidates ?? []);
+
   const out: TeamMember[] = [];
   for (const user of roster.characters) {
     if (user.tier === "unused") continue;
@@ -55,6 +59,7 @@ export function buildRoster(options: BuildRosterOptions): TeamMember[] {
     if (!base) continue;
     const isSpecialGuest = specialGuests.has(base.id);
     const isSupportGuest = roster.supportGuestId === base.id;
+    if (guestCandidates.has(base.id) && !isSupportGuest) continue;
     if (filterByElement && !allowed.has(base.element) && !isSpecialGuest) continue;
     out.push({
       base,

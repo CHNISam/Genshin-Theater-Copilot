@@ -15,14 +15,14 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
 
   return (
     <section className="panel">
-      <div className="card">
+      <div className="panel">
         <h2>本期赛季（公共信息，无需用户录入）</h2>
         <div className="row">
-          <span className="tag">{season.id}</span>
-          <span className={`tag ${season.status === "published" ? "good" : "warn"}`}>
+          <span className="chip">{season.id}</span>
+          <span className={`chip ${season.status === "published" ? "good" : "warn"}`}>
             {season.status}
           </span>
-          <span className="tag">数据版本 v{season.dataVersion}</span>
+          <span className="chip">数据版本 v{season.dataVersion}</span>
           <span className="muted">
             {season.startsAt.slice(0, 10)} → {season.endsAt.slice(0, 10)}
           </span>
@@ -54,7 +54,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
         </table>
       </div>
 
-      <div className="card">
+      <div className="panel">
         <h2>关卡与机制</h2>
         <div className="scroll-x">
           <table>
@@ -88,7 +88,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
                     </td>
                     <td>
                       <span
-                        className={`tag ${
+                        className={`chip ${
                           s.confidence === "confirmed" || s.confidence === "high"
                             ? "good"
                             : s.confidence === "medium"
@@ -106,10 +106,10 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="grid-2">
-        <div className="card">
+      <div className="grid2">
+        <div className="panel">
           <h2>校验结果</h2>
-          <div className={`callout ${validation.canPublish ? "good" : "warn"}`}>
+          <div className={`note ${validation.canPublish ? "ok" : "warn"}`}>
             ok={String(validation.ok)}，canPublish={String(validation.canPublish)}
           </div>
           {validation.issues.length === 0 ? (
@@ -118,7 +118,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
             <ul className="reasons">
               {validation.issues.map((issue, i) => (
                 <li key={i}>
-                  <span className={`tag ${issue.severity === "error" ? "bad" : "warn"}`}>
+                  <span className={`chip ${issue.severity === "error" ? "bad" : "warn"}`}>
                     {issue.code}
                   </span>
                   {issue.path}：{issue.message}
@@ -128,15 +128,15 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
           )}
         </div>
 
-        <div className="card">
+        <div className="panel">
           <h2>未解决的来源冲突</h2>
           {season.unresolvedQuestions.length === 0 ? (
             <p className="muted">无。</p>
           ) : (
             season.unresolvedQuestions.map((q) => (
-              <div key={q.id} className="plan">
-                <div className="team">{q.question}</div>
-                {q.blocksPublish && <span className="tag bad">阻塞发布</span>}
+              <div key={q.id} className="slot">
+                <div className="who">{q.question}</div>
+                {q.blocksPublish && <span className="chip bad">阻塞发布</span>}
                 <ul className="reasons">
                   {q.conflictingClaims.map((c, i) => (
                     <li key={i}>
@@ -153,7 +153,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
           <ul className="reasons">
             {season.sourceRecords.map((s, i) => (
               <li key={i}>
-                <span className="tag">{s.sourceType}</span>
+                <span className="chip">{s.sourceType}</span>
                 {s.title}
                 <span className="muted"> · {s.confidence}</span>
               </li>
@@ -162,7 +162,7 @@ export function SeasonPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="card">
+      <div className="panel">
         <h2>如何更新到下一期</h2>
         <ol className="reasons">
           <li>

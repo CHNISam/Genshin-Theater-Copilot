@@ -18,6 +18,7 @@ import { lookahead, type PathStep } from "./lookahead";
 import { canProvide, describeRequirement } from "./mechanics";
 import { elementScarcity } from "./reservations";
 import { evaluateBuffOptions, planBuffPortfolio, type BuffPortfolio } from "./buffs";
+import { ELEMENT_LABEL } from "../domain/types";
 import { stageRequiredByObjective } from "./stages";
 
 export interface SupportGuestEvaluation {
@@ -88,7 +89,8 @@ function makeBaselineState(season: SeasonConfig, members: TeamMember[]): RunStat
     seasonId: season.id,
     objective: {
       difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
-      goal: "clear-with-tablets",
+      tablets: true,
+    stars: false,
     },
     currentStageId: stages[0]?.id ?? "",
     completedStageIds: [],
@@ -109,7 +111,8 @@ export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   const { season } = input;
   const objective: RunObjective = input.objective ?? {
     difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
-    goal: "clear-with-tablets",
+    tablets: true,
+    stars: false,
   };
   const stages = [...season.stages]
     .sort((a, b) => a.order - b.order)
@@ -265,7 +268,7 @@ export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   }
   for (const { element, level } of scarceElements) {
     if (level >= 0.5) {
-      riskNodes.push(`${element} 系出场额度紧张（紧缺度 ${(level * 100).toFixed(0)}%），容易被前期随意消耗掉。`);
+      riskNodes.push(`${ELEMENT_LABEL[element]}系出场额度紧张（${(level * 100).toFixed(0)}%），容易被前期随意消耗掉。`);
     }
   }
   if (!baseline.feasible && baseline.failedStageName) {
@@ -373,7 +376,7 @@ function evaluateSupportGuest(
       contends.push(need.element);
       score -= level * 60;
       reasons.push(
-        `会争抢已经紧张的 ${need.element} 系队友（紧缺度 ${(level * 100).toFixed(0)}%），这会削弱其他主 C。`,
+        `会争抢已经紧张的${ELEMENT_LABEL[need.element]}系队友（紧缺度 ${(level * 100).toFixed(0)}%），削弱其他主 C。`,
       );
     }
   }
@@ -434,7 +437,7 @@ function buildCoreModules(
     for (const need of core.base.teammateNeeds ?? []) {
       if (need.type === "requires-element" && need.element) {
         const level = scarcity.get(need.element) ?? 0;
-        if (level > 0.2) consumesScarce.push(`${need.element} 系队友`);
+        if (level > 0.2) consumesScarce.push(`${ELEMENT_LABEL[need.element]}系队友`);
       }
     }
 

@@ -50,6 +50,49 @@ export const REACTION_ELEMENTS: Record<ReactionId, [Element, Element | "any"]> =
   "lunar-bloom": ["hydro", "dendro"],
 };
 
+/** 中文标签。界面与求解器的解释文本都用它，避免给中文用户看到 cryo/hydro。 */
+export const ELEMENT_LABEL: Record<Element, string> = {
+  pyro: "火",
+  hydro: "水",
+  electro: "雷",
+  cryo: "冰",
+  anemo: "风",
+  geo: "岩",
+  dendro: "草",
+};
+
+export const REACTION_LABEL: Record<ReactionId, string> = {
+  vaporize: "蒸发",
+  melt: "融化",
+  "electro-charged": "感电",
+  frozen: "冻结",
+  superconduct: "超导",
+  overload: "超载",
+  bloom: "绽放",
+  quicken: "原激化",
+  burning: "燃烧",
+  swirl: "扩散",
+  crystallize: "结晶",
+  "lunar-charged": "月感电",
+  "lunar-bloom": "月绽放",
+};
+
+export const ROLE_LABEL: Record<CharacterRole, string> = {
+  "main-dps": "主输出",
+  "sub-dps": "副输出",
+  buffer: "增益",
+  healer: "治疗",
+  shielder: "护盾",
+  control: "控制",
+  battery: "充能",
+};
+
+export const RATE_LABEL: Record<"low" | "medium" | "high", string> = {
+  low: "低频",
+  medium: "中频",
+  high: "高频",
+};
+
 export type Rate = "low" | "medium" | "high";
 export const RATE_RANK: Record<Rate, number> = { low: 1, medium: 2, high: 3 };
 
@@ -320,21 +363,23 @@ export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
 
 /**
  * 本局目标。必须由用户先选择——它会改变求解结论，不能默认。
- *  - clear               只求通关最后一幕；圣牌挑战不是通关前置，可整体跳过
- *  - clear-with-tablets  通关 + 完成两场圣牌挑战（全部完成后可抽月谕圣牌）
- *  - full-stars          追满星章：每幕明星挑战都要达成，对输出与速度要求更高
+ *
+ * 圣牌与星章是**两个正交的开关**，不能揉成一条线：
+ *  - tablets：打不打两场圣牌挑战。圣牌不是通关前置，不打就整体跳过，耐力全给主线。
+ *  - stars：追不追每幕明星挑战的星章。追星对输出与速度有要求，此时不再回避"用强了"。
+ * 二者可以任意组合（例如只打主线但追星）。
  */
-export type RunGoal = "clear" | "clear-with-tablets" | "full-stars";
-
-export const GOAL_LABEL: Record<RunGoal, string> = {
-  clear: "只求通关",
-  "clear-with-tablets": "通关 + 圣牌挑战",
-  "full-stars": "追满星章",
-};
-
 export interface RunObjective {
   difficulty: Difficulty;
-  goal: RunGoal;
+  tablets: boolean;
+  stars: boolean;
+}
+
+export function describeObjective(objective: RunObjective): string {
+  if (objective.tablets && objective.stars) return "满星（含圣牌）";
+  if (objective.tablets) return "通关 + 圣牌";
+  if (objective.stars) return "通关 + 追星";
+  return "只求通关";
 }
 
 export interface SeasonRuleOverrides {

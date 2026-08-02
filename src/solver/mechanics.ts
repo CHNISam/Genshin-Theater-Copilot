@@ -10,7 +10,14 @@ import type {
   ReactionId,
   TeamCondition,
 } from "../domain/types";
-import { RATE_RANK, REACTION_ELEMENTS, TIER_MULTIPLIER } from "../domain/types";
+import {
+  ELEMENT_LABEL,
+  RATE_LABEL,
+  RATE_RANK,
+  REACTION_ELEMENTS,
+  REACTION_LABEL,
+  TIER_MULTIPLIER,
+} from "../domain/types";
 import type { TeamMember } from "./roster";
 
 export interface MechanicCheck {
@@ -173,7 +180,7 @@ export function reactionSupported(
         return {
           satisfied: true,
           providers: [member.base.id],
-          detail: `${member.base.name} 直接提供 ${reaction} 触发能力`,
+          detail: `${member.base.name}直接提供${REACTION_LABEL[reaction]}触发能力`,
         };
       }
     }
@@ -186,7 +193,7 @@ export function reactionSupported(
     return {
       satisfied: false,
       providers: [],
-      detail: `缺少频率 ≥ ${minRate} 的 ${pair[0]} 附着`,
+      detail: `缺少${RATE_LABEL[minRate]}以上的${ELEMENT_LABEL[pair[0]]}附着`,
     };
   }
   if (pair[1] === "any") {
@@ -195,22 +202,26 @@ export function reactionSupported(
       ? {
           satisfied: true,
           providers: [first.characterId, other.characterId],
-          detail: `${reaction}：${first.characterId} + ${other.characterId}`,
+          detail: `${REACTION_LABEL[reaction]}：${first.characterId} + ${other.characterId}`,
         }
-      : { satisfied: false, providers: [first.characterId], detail: `缺少可被 ${pair[0]} 反应的第二元素` };
+      : {
+          satisfied: false,
+          providers: [first.characterId],
+          detail: `缺少可与${ELEMENT_LABEL[pair[0]]}反应的第二元素`,
+        };
   }
   const second = bestApplication(team, pair[1], minRank);
   if (!second) {
     return {
       satisfied: false,
       providers: [first.characterId],
-      detail: `缺少频率 ≥ ${minRate} 的 ${pair[1]} 附着`,
+      detail: `缺少${RATE_LABEL[minRate]}以上的${ELEMENT_LABEL[pair[1]]}附着`,
     };
   }
   return {
     satisfied: true,
     providers: [first.characterId, second.characterId],
-    detail: `${reaction}：${first.characterId} + ${second.characterId}`,
+    detail: `${REACTION_LABEL[reaction]}：${first.characterId} + ${second.characterId}`,
   };
 }
 
@@ -240,8 +251,12 @@ export function checkRequirement(
         providers,
         margin: bestRank - minRank,
         detail: satisfied
-          ? `已有频率 ≥ ${minRate} 的 ${req.acceptedElements.join("/")} 附着：${providers.join("、")}`
-          : `需要频率 ≥ ${minRate} 的 ${req.acceptedElements.join("/")} 附着，当前队伍最高只有 ${
+          ? `已有${RATE_LABEL[minRate]}以上的${req.acceptedElements
+              .map((e) => ELEMENT_LABEL[e])
+              .join("/")}附着：${providers.join("、")}`
+          : `需要${RATE_LABEL[minRate]}以上的${req.acceptedElements
+              .map((e) => ELEMENT_LABEL[e])
+              .join("/")}附着，当前队伍最高只有${
               bestRank === 0 ? "无" : ["", "低", "中", "高"][bestRank]
             }频`,
       };
@@ -268,7 +283,7 @@ export function checkRequirement(
         requirement: req,
         providers: [],
         margin: -1,
-        detail: `无法稳定触发 ${req.acceptedReactions.join("/")}${
+        detail: `无法稳定触发${req.acceptedReactions.map((r) => REACTION_LABEL[r]).join("/")}${
           failure ? `（${failure.detail}）` : ""
         }`,
       };
@@ -291,10 +306,10 @@ export function checkRequirement(
         providers,
         margin: best - req.minimumEfficiency,
         detail: satisfied
-          ? `可破 ${req.shieldElement} 盾：${providers.join("、")}`
-          : `破 ${req.shieldElement} 盾需要 ${req.effectiveElements.join(
-              "/",
-            )} 效率 ≥ ${req.minimumEfficiency}，当前最高 ${best.toFixed(1)}`,
+          ? `可破${ELEMENT_LABEL[req.shieldElement]}盾：${providers.join("、")}`
+          : `破${ELEMENT_LABEL[req.shieldElement]}盾需要${req.effectiveElements
+              .map((e) => ELEMENT_LABEL[e])
+              .join("/")}效率 ≥ ${req.minimumEfficiency}，当前最高 ${best.toFixed(1)}`,
       };
     }
 
@@ -386,11 +401,17 @@ export function canProvide(member: TeamMember, req: MechanicRequirement): boolea
 export function describeRequirement(req: MechanicRequirement): string {
   switch (req.type) {
     case "element":
-      return `${req.acceptedElements.join("/")} 附着（≥${req.minimumApplicationRate ?? "low"}频）`;
+      return `${req.acceptedElements.map((e) => ELEMENT_LABEL[e]).join("/")}附着（${
+        RATE_LABEL[req.minimumApplicationRate ?? "low"]
+      }以上）`;
     case "reaction":
-      return `${req.acceptedReactions.join("/")} 反应（≥${req.minimumTriggerRate ?? "low"}频）`;
+      return `${req.acceptedReactions.map((r) => REACTION_LABEL[r]).join("/")}（${
+        RATE_LABEL[req.minimumTriggerRate ?? "low"]
+      }以上）`;
     case "shield-break":
-      return `破 ${req.shieldElement} 盾（${req.effectiveElements.join("/")}，效率≥${req.minimumEfficiency}）`;
+      return `破${ELEMENT_LABEL[req.shieldElement]}盾（用${req.effectiveElements
+        .map((e) => ELEMENT_LABEL[e])
+        .join("/")}，效率≥${req.minimumEfficiency}）`;
     case "healing":
       return `${req.scope === "party-wide" ? "全队治疗" : "治疗"}≥${req.minimumStrength}`;
     case "control":

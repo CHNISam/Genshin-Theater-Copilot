@@ -25,6 +25,7 @@ import {
 import { lookahead, routeDiversity, twoStageSafety, type LookaheadResult, type RouteDiversity } from "./lookahead";
 import { evaluateBuffOptions, planBuffPortfolio, type BuffEvaluation, type BuffPortfolio } from "./buffs";
 import { canProvide, describeRequirement } from "./mechanics";
+import { ELEMENT_LABEL } from "../domain/types";
 
 export interface AssistantInput {
   season: SeasonConfig;
@@ -192,7 +193,7 @@ export function runAssistant(input: AssistantInput): AssistantOutput {
   const scarcestResources = [...scarcity.entries()]
     .filter(([, v]) => v >= 0.35)
     .sort((a, b) => b[1] - a[1])
-    .map(([element, v]) => `${element}（紧缺度 ${(v * 100).toFixed(0)}%）`);
+    .map(([element, v]) => `${ELEMENT_LABEL[element]}系紧缺（${(v * 100).toFixed(0)}%）`);
   for (const unmet of unmetFutureRequirements) {
     scarcestResources.unshift(`${unmet.stageName} 的「${describeRequirement(unmet.requirement)}」暂无人可用`);
   }
@@ -379,7 +380,7 @@ function scoreEvent(candidate: EventCandidate, ctx: EventScoreContext): EventRec
         const level = scarcity.get(cap.element) ?? 0;
         if (level >= 0.35) {
           score += level * 30;
-          reasons.push(`补充当前紧缺的 ${cap.element} 系出场额度。`);
+          reasons.push(`补充当前紧缺的${ELEMENT_LABEL[cap.element]}系出场额度。`);
         }
       }
 

@@ -1,0 +1,69 @@
+name: 角色库自动更新
+
+# 新版本上线会有新角色。这个工作流每周跑一次，把官方角色索引与感知指纹重新生成，
+# 有变化就开 PR 到 develop —— 只提 PR，不直接推分支、不部署任何东西。
+on:
+  schedule:
+    - cron: "0 20 * * 1" # 每周一 04:00 (UTC+8)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: 重新生成角色事实表与指纹
+        run: npm run data:update
+
+      - name: 校验（不通过就不开 PR）
+        run: npm run lint && npm run typecheck && npm run test && npm run build
+
+      - name: 统计变化
+        id: diff
+        run: |
+          if git diff --quiet -- src/data/characters/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "summary<<EOF"
+              node -e "
+                const f = require('./src/data/characters/official.json');
+                console.log('官方角色总数：' + f.characters.length);
+              "
+              echo ""
+              echo '未标注机制的角色只会填位，不会被当作硬机制的解，需要人工补 curated.ts。'
+              echo EOF
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 开 PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          base: develop
+          branch: chore/data-refresh
+          commit-message: "chore(data): 刷新官方角色索引与感知指纹"
+          title: "chore(data): 刷新官方角色索引与感知指纹"
+          body: |
+            自动生成，来源：EnkaNetwork/API-docs 角色索引 + enka.network 图标。
+
+            ${{ steps.diff.outputs.summary }}
+
+            仓库只提交 64bit 感知哈希，不提交任何官方图片素材。
+            合入前请人工确认新角色是否需要补机制标注。
+          labels: data, automated

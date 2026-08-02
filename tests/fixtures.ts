@@ -143,7 +143,7 @@ export function runState(
   const first = [...seasonConfig.stages].sort((a, b) => a.order - b.order)[0];
   return {
     seasonId: seasonConfig.id,
-    objective: { difficulty: "moonlit", goal: "clear-with-tablets" },
+    objective: { difficulty: "moonlit", tablets: true, stars: false },
     currentStageId: first?.id ?? "",
     completedStageIds: [],
     unlockedCharacterIds: bases.map((b) => b.id),

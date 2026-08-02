@@ -1,0 +1,888 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-02T07:42:07.472Z",
+  "source": "EnkaNetwork/API-docs 角色索引（官方数据挖掘），只取客观事实",
+  "note": "机制能力与输出档位不在这里，见 src/data/characters/curated.ts",
+  "characters": [
+    {
+      "id": "aino",
+      "name": "爱诺",
+      "element": "hydro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Aino"
+    },
+    {
+      "id": "albedo",
+      "name": "阿贝多",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Albedo"
+    },
+    {
+      "id": "alhatham",
+      "name": "艾尔海森",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Alhatham"
+    },
+    {
+      "id": "aloy",
+      "name": "埃洛伊",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Aloy"
+    },
+    {
+      "id": "ambor",
+      "name": "安柏",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Ambor"
+    },
+    {
+      "id": "arlecchino",
+      "name": "阿蕾奇诺",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Arlecchino"
+    },
+    {
+      "id": "ayaka",
+      "name": "神里绫华",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Ayaka"
+    },
+    {
+      "id": "ayato",
+      "name": "神里绫人",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Ayato"
+    },
+    {
+      "id": "baizhuer",
+      "name": "白术",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Baizhuer"
+    },
+    {
+      "id": "barbara",
+      "name": "芭芭拉",
+      "element": "hydro",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Barbara"
+    },
+    {
+      "id": "beidou",
+      "name": "北斗",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Beidou"
+    },
+    {
+      "id": "bennett",
+      "name": "班尼特",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Bennett"
+    },
+    {
+      "id": "candace",
+      "name": "坎蒂丝",
+      "element": "hydro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Candace"
+    },
+    {
+      "id": "charlotte",
+      "name": "夏洛蒂",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Charlotte"
+    },
+    {
+      "id": "chasca",
+      "name": "恰斯卡",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Chasca"
+    },
+    {
+      "id": "chevreuse",
+      "name": "夏沃蕾",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Chevreuse"
+    },
+    {
+      "id": "chiori",
+      "name": "千织",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Chiori"
+    },
+    {
+      "id": "chongyun",
+      "name": "重云",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Chongyun"
+    },
+    {
+      "id": "citlali",
+      "name": "茜特菈莉",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Citlali"
+    },
+    {
+      "id": "clorinde",
+      "name": "克洛琳德",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Clorinde"
+    },
+    {
+      "id": "collei",
+      "name": "柯莱",
+      "element": "dendro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Collei"
+    },
+    {
+      "id": "columbina",
+      "name": "哥伦比娅",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Columbina"
+    },
+    {
+      "id": "cyno",
+      "name": "赛诺",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Cyno"
+    },
+    {
+      "id": "dahlia",
+      "name": "塔利雅",
+      "element": "hydro",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Dahlia"
+    },
+    {
+      "id": "dehya",
+      "name": "迪希雅",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Dehya"
+    },
+    {
+      "id": "diluc",
+      "name": "迪卢克",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Diluc"
+    },
+    {
+      "id": "diona",
+      "name": "迪奥娜",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Diona"
+    },
+    {
+      "id": "dori",
+      "name": "多莉",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Dori"
+    },
+    {
+      "id": "durin",
+      "name": "杜林",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Durin"
+    },
+    {
+      "id": "emilie",
+      "name": "艾梅莉埃",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Emilie"
+    },
+    {
+      "id": "escoffier",
+      "name": "爱可菲",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Escoffier"
+    },
+    {
+      "id": "eula",
+      "name": "优菈",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Eula"
+    },
+    {
+      "id": "faruzan",
+      "name": "珐露珊",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Faruzan"
+    },
+    {
+      "id": "feiyan",
+      "name": "烟绯",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Feiyan"
+    },
+    {
+      "id": "fischl",
+      "name": "菲谢尔",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Fischl"
+    },
+    {
+      "id": "flins",
+      "name": "菲林斯",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Flins"
+    },
+    {
+      "id": "freminet",
+      "name": "菲米尼",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Freminet"
+    },
+    {
+      "id": "furina",
+      "name": "芙宁娜",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Furina"
+    },
+    {
+      "id": "gaming",
+      "name": "嘉明",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Gaming"
+    },
+    {
+      "id": "ganyu",
+      "name": "甘雨",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Ganyu"
+    },
+    {
+      "id": "gorou",
+      "name": "五郎",
+      "element": "geo",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Gorou"
+    },
+    {
+      "id": "heizo",
+      "name": "鹿野院平藏",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Heizo"
+    },
+    {
+      "id": "hutao",
+      "name": "胡桃",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Hutao"
+    },
+    {
+      "id": "iansan",
+      "name": "伊安珊",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Iansan"
+    },
+    {
+      "id": "ifa",
+      "name": "伊法",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Ifa"
+    },
+    {
+      "id": "ineffa",
+      "name": "伊涅芙",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Ineffa"
+    },
+    {
+      "id": "itto",
+      "name": "荒泷一斗",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Itto"
+    },
+    {
+      "id": "jahoda",
+      "name": "雅珂达",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Jahoda"
+    },
+    {
+      "id": "kachina",
+      "name": "卡齐娜",
+      "element": "geo",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Kachina"
+    },
+    {
+      "id": "kaeya",
+      "name": "凯亚",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Kaeya"
+    },
+    {
+      "id": "kaveh",
+      "name": "卡维",
+      "element": "dendro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Kaveh"
+    },
+    {
+      "id": "kazuha",
+      "name": "枫原万叶",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Kazuha"
+    },
+    {
+      "id": "keqing",
+      "name": "刻晴",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Keqing"
+    },
+    {
+      "id": "kinich",
+      "name": "基尼奇",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Kinich"
+    },
+    {
+      "id": "klee",
+      "name": "可莉",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Klee"
+    },
+    {
+      "id": "kokomi",
+      "name": "珊瑚宫心海",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Kokomi"
+    },
+    {
+      "id": "lanyan",
+      "name": "蓝砚",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Lanyan"
+    },
+    {
+      "id": "lauma",
+      "name": "菈乌玛",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Lauma"
+    },
+    {
+      "id": "layla",
+      "name": "莱依拉",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Layla"
+    },
+    {
+      "id": "linette",
+      "name": "琳妮特",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Linette"
+    },
+    {
+      "id": "liney",
+      "name": "林尼",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Liney"
+    },
+    {
+      "id": "lisa",
+      "name": "丽莎",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Lisa"
+    },
+    {
+      "id": "liuyun",
+      "name": "闲云",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Liuyun"
+    },
+    {
+      "id": "mavuika",
+      "name": "玛薇卡",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Mavuika"
+    },
+    {
+      "id": "mika",
+      "name": "米卡",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Mika"
+    },
+    {
+      "id": "mizuki",
+      "name": "梦见月瑞希",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Mizuki"
+    },
+    {
+      "id": "momoka",
+      "name": "绮良良",
+      "element": "dendro",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Momoka"
+    },
+    {
+      "id": "mona",
+      "name": "莫娜",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Mona"
+    },
+    {
+      "id": "mualani",
+      "name": "玛拉妮",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Mualani"
+    },
+    {
+      "id": "nahida",
+      "name": "纳西妲",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Nahida"
+    },
+    {
+      "id": "navia",
+      "name": "娜维娅",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Navia"
+    },
+    {
+      "id": "nefer",
+      "name": "奈芙尔",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Nefer"
+    },
+    {
+      "id": "neuvillette",
+      "name": "那维莱特",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Neuvillette"
+    },
+    {
+      "id": "nilou",
+      "name": "妮露",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Nilou"
+    },
+    {
+      "id": "ningguang",
+      "name": "凝光",
+      "element": "geo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Ningguang"
+    },
+    {
+      "id": "noel",
+      "name": "诺艾尔",
+      "element": "geo",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Noel"
+    },
+    {
+      "id": "olorun",
+      "name": "欧洛伦",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Olorun"
+    },
+    {
+      "id": "player-boy",
+      "name": "旅行者",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_PlayerBoy"
+    },
+    {
+      "id": "player-girl",
+      "name": "旅行者",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_PlayerGirl"
+    },
+    {
+      "id": "qin",
+      "name": "琴",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Qin"
+    },
+    {
+      "id": "qiqi",
+      "name": "七七",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Qiqi"
+    },
+    {
+      "id": "razor",
+      "name": "雷泽",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Razor"
+    },
+    {
+      "id": "rosaria",
+      "name": "罗莎莉亚",
+      "element": "cryo",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Rosaria"
+    },
+    {
+      "id": "sara",
+      "name": "九条裟罗",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Sara"
+    },
+    {
+      "id": "sayu",
+      "name": "早柚",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Sayu"
+    },
+    {
+      "id": "sethos",
+      "name": "赛索斯",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Sethos"
+    },
+    {
+      "id": "shenhe",
+      "name": "申鹤",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Shenhe"
+    },
+    {
+      "id": "shinobu",
+      "name": "久岐忍",
+      "element": "electro",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Shinobu"
+    },
+    {
+      "id": "shougun",
+      "name": "雷电将军",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Shougun"
+    },
+    {
+      "id": "sigewinne",
+      "name": "希格雯",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Sigewinne"
+    },
+    {
+      "id": "skirk-new",
+      "name": "丝柯克",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_SkirkNew"
+    },
+    {
+      "id": "sucrose",
+      "name": "砂糖",
+      "element": "anemo",
+      "rarity": 4,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Sucrose"
+    },
+    {
+      "id": "tartaglia",
+      "name": "达达利亚",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Tartaglia"
+    },
+    {
+      "id": "tighnari",
+      "name": "提纳里",
+      "element": "dendro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Tighnari"
+    },
+    {
+      "id": "tohma",
+      "name": "托马",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Tohma"
+    },
+    {
+      "id": "varesa",
+      "name": "瓦雷莎",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Varesa"
+    },
+    {
+      "id": "venti",
+      "name": "温迪",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Venti"
+    },
+    {
+      "id": "wanderer",
+      "name": "流浪者",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Wanderer"
+    },
+    {
+      "id": "wriothesley",
+      "name": "莱欧斯利",
+      "element": "cryo",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Wriothesley"
+    },
+    {
+      "id": "xiangling",
+      "name": "香菱",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Xiangling"
+    },
+    {
+      "id": "xiao",
+      "name": "魈",
+      "element": "anemo",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Xiao"
+    },
+    {
+      "id": "xilonen",
+      "name": "希诺宁",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Xilonen"
+    },
+    {
+      "id": "xingqiu",
+      "name": "行秋",
+      "element": "hydro",
+      "rarity": 4,
+      "weaponType": "sword",
+      "iconName": "UI_AvatarIcon_Xingqiu"
+    },
+    {
+      "id": "xinyan",
+      "name": "辛焱",
+      "element": "pyro",
+      "rarity": 4,
+      "weaponType": "claymore",
+      "iconName": "UI_AvatarIcon_Xinyan"
+    },
+    {
+      "id": "yae",
+      "name": "八重神子",
+      "element": "electro",
+      "rarity": 5,
+      "weaponType": "catalyst",
+      "iconName": "UI_AvatarIcon_Yae"
+    },
+    {
+      "id": "yaoyao",
+      "name": "瑶瑶",
+      "element": "dendro",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Yaoyao"
+    },
+    {
+      "id": "yelan",
+      "name": "夜兰",
+      "element": "hydro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Yelan"
+    },
+    {
+      "id": "yoimiya",
+      "name": "宵宫",
+      "element": "pyro",
+      "rarity": 5,
+      "weaponType": "bow",
+      "iconName": "UI_AvatarIcon_Yoimiya"
+    },
+    {
+      "id": "yunjin",
+      "name": "云堇",
+      "element": "geo",
+      "rarity": 4,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Yunjin"
+    },
+    {
+      "id": "zhongli",
+      "name": "钟离",
+      "element": "geo",
+      "rarity": 5,
+      "weaponType": "polearm",
+      "iconName": "UI_AvatarIcon_Zhongli"
+    }
+  ]
+}

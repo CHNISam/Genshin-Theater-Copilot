@@ -6,7 +6,7 @@
  * 前两项是**过滤器**（不满足直接淘汰），后四项才进入加权评分。
  */
 import type { BuffConfig, RunObjective, SeasonConfig, StageConfig } from "../domain/types";
-import { RATE_RANK } from "../domain/types";
+import { ELEMENT_LABEL, RATE_RANK, ROLE_LABEL } from "../domain/types";
 import type { TeamMember } from "./roster";
 import {
   capabilityFactor,
@@ -91,11 +91,11 @@ export interface TeamContext {
  * 因此提高输出要求、并且不再把"过剩"当成浪费。
  */
 export function damageMultiplierFor(objective: RunObjective | undefined): number {
-  return objective?.goal === "full-stars" ? 1.3 : 1;
+  return objective?.stars ? 1.3 : 1;
 }
 
 export function penalizeOverkill(objective: RunObjective | undefined): boolean {
-  return objective?.goal !== "full-stars";
+  return !objective?.stars;
 }
 
 /* ------------------------------------------------------------------ */
@@ -151,9 +151,14 @@ export function teamCoherence(team: TeamMember[]): { value: number; notes: strin
   return { value: weightSum === 0 ? 1 : weighted / weightSum, notes };
 }
 
-function describeNeed(need: { type: string; element?: string; role?: string; characterId?: string }): string {
-  if (need.type === "requires-element") return `${need.element} 系队友`;
-  if (need.type === "requires-role") return `${need.role} 定位队友`;
+function describeNeed(need: {
+  type: string;
+  element?: keyof typeof ELEMENT_LABEL;
+  role?: keyof typeof ROLE_LABEL;
+  characterId?: string;
+}): string {
+  if (need.type === "requires-element" && need.element) return `${ELEMENT_LABEL[need.element]}系队友`;
+  if (need.type === "requires-role" && need.role) return `${ROLE_LABEL[need.role]}位`;
   return `队友 ${need.characterId}`;
 }
 

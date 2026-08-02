@@ -55,6 +55,14 @@ export interface AppStore {
   setRun: (run: RunState | null) => void;
   updateRun: (patch: Partial<RunState>) => void;
   startRun: () => void;
+  /**
+   * 记录"这一关我实际上用了这四个人"。
+   * 耐力由此推导，用户不需要手填；也不要求这四个人就是我们推荐的那四个。
+   */
+  confirmTeam: (memberIds: string[]) => void;
+  /** 撤销上一次确认出战（点错了、或者想改主意）。 */
+  undo: () => void;
+  canUndo: boolean;
   characters: typeof CHARACTER_BY_ID;
 }
 
@@ -68,6 +76,7 @@ export function useAppStore(): AppStore {
   );
   const [roster, setRoster] = useState<Roster>(persisted?.roster ?? { characters: [] });
   const [run, setRun] = useState<RunState | null>(persisted?.run ?? null);
+  const [history, setHistory] = useState<RunState[]>([]);
   const [objective, setObjective] = useState<RunObjective | null>(
     persisted?.objective ?? persisted?.run?.objective ?? null,
   );
@@ -87,8 +96,41 @@ export function useAppStore(): AppStore {
 
   const startRun = useCallback(() => {
     if (!objective) return;
+    setHistory([]);
     setRun(createRunState(season, roster, objective));
   }, [season, roster, objective]);
+
+  const confirmTeam = useCallback(
+    (memberIds: string[]) => {
+      setRun((prev) => {
+        if (!prev) return prev;
+        setHistory((h) => [...h.slice(-19), prev]);
+        const vigor = { ...prev.vigor };
+        for (const id of memberIds) {
+          vigor[id] = Math.max(0, (vigor[id] ?? 0) - 1);
+        }
+        const ordered = [...season.stages].sort((a, b) => a.order - b.order);
+        const index = ordered.findIndex((s) => s.id === prev.currentStageId);
+        const next = ordered[index + 1];
+        return {
+          ...prev,
+          vigor,
+          completedStageIds: [...prev.completedStageIds, prev.currentStageId],
+          currentStageId: next?.id ?? prev.currentStageId,
+          eventCandidates: [],
+        };
+      });
+    },
+    [season],
+  );
+
+  const undo = useCallback(() => {
+    setHistory((h) => {
+      const previous = h[h.length - 1];
+      if (previous) setRun(previous);
+      return h.slice(0, -1);
+    });
+  }, []);
 
   return {
     season,
@@ -102,6 +144,9 @@ export function useAppStore(): AppStore {
     setRun,
     updateRun,
     startRun,
+    confirmTeam,
+    undo,
+    canUndo: history.length > 0,
     characters: CHARACTER_BY_ID,
   };
 }

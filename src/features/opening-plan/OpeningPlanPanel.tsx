@@ -1,3 +1,4 @@
+import { ELEMENT_LABEL } from "../../domain/types";
 import { useMemo } from "react";
 import { buildOpeningPlan } from "../../solver/opening";
 import type { AppStore } from "../../state/store";
@@ -15,7 +16,7 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
   if (!plan) {
     return (
       <section className="panel">
-        <div className="card">
+        <div className="panel">
           <p className="muted">先在「角色池」录入至少 4 名角色。</p>
         </div>
       </section>
@@ -25,37 +26,37 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
   return (
     <section className="panel">
       {plan.riskNodes.length > 0 && (
-        <div className="card">
+        <div className="panel">
           <h2>最大风险节点</h2>
           {plan.riskNodes.map((risk) => (
-            <div key={risk} className="callout bad">
+            <div key={risk} className="note bad">
               {risk}
             </div>
           ))}
         </div>
       )}
 
-      <div className="grid-2">
-        <div className="card">
+      <div className="grid2">
+        <div className="panel">
           <h2>助演推荐</h2>
           {plan.supportGuestRanking.length === 0 ? (
             <p className="muted">在角色池页填写「助演候选」后，这里会比较它们的战略价值。</p>
           ) : (
             plan.supportGuestRanking.map((guest, i) => (
-              <div key={guest.characterId} className="plan">
-                <div className="team">
-                  {i === 0 && <span className="tag core">推荐</span>}
+              <div key={guest.characterId} className="slot">
+                <div className="who">
+                  {i === 0 && <span className="chip core">推荐</span>}
                   {guest.characterName}
                   <span className="muted" style={{ marginLeft: 8 }}>
                     战略评分 {guest.score}
                   </span>
                 </div>
                 {guest.contendsScarceElements.length > 0 && (
-                  <span className="tag warn">
-                    争抢 {guest.contendsScarceElements.join("/")} 系资源
+                  <span className="chip warn">
+                    争抢{guest.contendsScarceElements.map((e) => ELEMENT_LABEL[e]).join("/")}系资源
                   </span>
                 )}
-                {guest.selfSufficient && <span className="tag good">自带续航</span>}
+                {guest.selfSufficient && <span className="chip good">自带续航</span>}
                 <ul className="reasons">
                   {guest.reasons.map((r, idx) => (
                     <li key={idx}>{r}</li>
@@ -66,19 +67,19 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
           )}
         </div>
 
-        <div className="card">
+        <div className="panel">
           <h2>稀缺资源</h2>
           {plan.scarceElements.length === 0 && plan.scarceFunctions.length === 0 ? (
             <p className="muted">当前没有明显紧缺的元素或功能位。</p>
           ) : (
             <>
               {plan.scarceElements.map((s) => (
-                <div key={s.element} className="callout warn">
-                  {s.element} 系紧缺度 {(s.level * 100).toFixed(0)}%：多名主 C 争抢同一批队友。
+                <div key={s.element} className="note warn">
+                  {ELEMENT_LABEL[s.element]}系紧缺 {(s.level * 100).toFixed(0)}%：多名主 C 争抢同一批队友。
                 </div>
               ))}
               {plan.scarceFunctions.map((f) => (
-                <div key={f} className="callout">
+                <div key={f} className="note">
                   {f}
                 </div>
               ))}
@@ -90,7 +91,7 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
             <p className="muted">没有角色被判定为固定机制关的稀缺解。</p>
           ) : (
             plan.mustPreserve.map((m) => (
-              <div key={m.id} className="callout bad">
+              <div key={m.id} className="note bad">
                 <strong>{m.name}</strong>：{m.reason}
               </div>
             ))
@@ -103,7 +104,7 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="card">
+      <div className="panel">
         <h2>核心作战模块</h2>
         <div className="scroll-x">
           <table>
@@ -131,12 +132,12 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="grid-2">
-        <div className="card">
+      <div className="grid2">
+        <div className="panel">
           <h2>固定首领预案</h2>
           {plan.bossPlans.map((b) => (
-            <div key={b.stageName} className="plan">
-              <div className="team">{b.stageName}</div>
+            <div key={b.stageName} className="slot">
+              <div className="who">{b.stageName}</div>
               <div className="muted">机制：{b.mechanics.join("；") || "无已确认硬机制"}</div>
               <ul className="reasons">
                 {b.answers.map((a, i) => (
@@ -148,11 +149,11 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
           ))}
         </div>
 
-        <div className="card">
+        <div className="panel">
           <h2>圣牌 / 生存关预案</h2>
           {plan.tabletPlans.map((t) => (
-            <div key={t.stageName} className="plan">
-              <div className="team">{t.stageName}</div>
+            <div key={t.stageName} className="slot">
+              <div className="who">{t.stageName}</div>
               <div className="muted">{t.note}</div>
               <ul className="reasons">
                 {t.answers.map((a, i) => (
@@ -172,7 +173,7 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="card">
+      <div className="panel">
         <h2>关键角色获取截止点</h2>
         <div className="scroll-x">
           <table>
@@ -192,7 +193,7 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
                   <td>第 {d.latestActOrder} 幕前</td>
                   <td className={d.candidates.length === 0 ? "" : "muted"}>
                     {d.candidates.length === 0 ? (
-                      <span className="tag bad">无人可用</span>
+                      <span className="chip bad">无人可用</span>
                     ) : (
                       d.candidates.join("、")
                     )}
@@ -211,10 +212,10 @@ export function OpeningPlanPanel({ store }: { store: AppStore }): JSX.Element {
         </div>
       </div>
 
-      <div className="card">
+      <div className="panel">
         <h2>基准十二场路线</h2>
         {!plan.baselineFeasible && (
-          <div className="callout bad">
+          <div className="note bad">
             推演在「{plan.baselineFailedStage}」断裂：即使假设角色全部解锁也无解。
           </div>
         )}

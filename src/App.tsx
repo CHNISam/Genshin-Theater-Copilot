@@ -1,101 +1,159 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DIFFICULTY_LABEL, describeObjective } from "./domain/types";
 import { useAppStore } from "./state/store";
-import { RosterPanel } from "./features/roster/RosterPanel";
+import { ObjectiveStep } from "./features/setup/ObjectiveStep";
+import { RosterStep } from "./features/roster/RosterStep";
 import { OpeningPlanPanel } from "./features/opening-plan/OpeningPlanPanel";
-import { RunAssistantPanel } from "./features/run-assistant/RunAssistantPanel";
+import { RunDeck } from "./features/run/RunDeck";
 import { SeasonPanel } from "./features/season-review/SeasonPanel";
 import { exportStateJson, importStateJson, downloadJson } from "./storage/local";
 
-const TABS = [
-  { id: "roster", label: "角色池" },
-  { id: "opening", label: "开局规划" },
-  { id: "run", label: "局内助手" },
-  { id: "season", label: "赛季数据" },
-] as const;
+type StepId = "objective" | "roster" | "opening" | "run" | "season";
 
-type TabId = (typeof TABS)[number]["id"];
+const STEPS: { id: StepId; label: string }[] = [
+  { id: "objective", label: "目标" },
+  { id: "roster", label: "角色" },
+  { id: "opening", label: "开局" },
+  { id: "run", label: "对局" },
+];
 
 export function App(): JSX.Element {
   const store = useAppStore();
-  const [tab, setTab] = useState<TabId>("roster");
+  const ready = store.roster.characters.filter((c) => c.tier !== "unused").length >= 4;
+  const [step, setStep] = useState<StepId>(() =>
+    !store.objective ? "objective" : store.run ? "run" : ready ? "opening" : "roster",
+  );
+
+  // 目标是一切结论的前提：没选就必须先选
+  useEffect(() => {
+    if (!store.objective && step !== "objective") setStep("objective");
+  }, [store.objective, step]);
+
+  const unlocked: Record<StepId, boolean> = {
+    objective: true,
+    roster: Boolean(store.objective),
+    opening: Boolean(store.objective) && ready,
+    run: Boolean(store.objective) && ready,
+    season: true,
+  };
 
   return (
-    <div className="app">
-      <header className="masthead">
-        <h1>TheaterPilot · 剧诗领航</h1>
-        <span className="sub">
-          幻想真境剧诗动态规划工具（非官方）· 当前赛季 {store.season.name}
-        </span>
-        <div className="row" style={{ marginLeft: "auto" }}>
-          <select
-            value={store.season.id}
-            onChange={(e) => store.setSeasonId(e.target.value)}
-            style={{ width: "auto" }}
-            aria-label="切换赛季"
-          >
-            {store.seasons.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.id}
-              </option>
-            ))}
-          </select>
-          <button
-            className="action"
-            onClick={() =>
-              downloadJson(
-                `theater-pilot-${store.season.id}.json`,
-                exportStateJson({
-                  seasonId: store.season.id,
-                  roster: store.roster,
-                  run: store.run,
-                  objective: store.objective,
-                }),
-              )
-            }
-          >
-            导出存档
+    <div className="shell">
+      <header className="topbar">
+        <h1 className="brand">
+          TheaterPilot
+          <small>剧诗领航 · 非官方</small>
+        </h1>
+
+        {store.objective && (
+          <button className="chip accent" onClick={() => setStep("objective")}>
+            {DIFFICULTY_LABEL[store.objective.difficulty]} · {describeObjective(store.objective)}
           </button>
-          <label className="action">
-            导入存档
-            <input
-              type="file"
-              accept="application/json"
-              style={{ display: "none" }}
-              onChange={async (e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                try {
-                  const state = importStateJson(await file.text());
-                  store.setSeasonId(state.seasonId);
-                  store.setRoster(state.roster);
-                  store.setRun(state.run);
-                  if (state.objective) store.setObjective(state.objective);
-                } catch (error) {
-                  alert(`导入失败：${(error as Error).message}`);
-                }
-              }}
-            />
-          </label>
-        </div>
+        )}
+
+        <span className="spacer" />
+
+        <button className="btn quiet sm" onClick={() => setStep("season")}>
+          本期赛季
+        </button>
+        <button
+          className="btn quiet sm"
+          onClick={() =>
+            downloadJson(
+              `theater-pilot-${store.season.id}.json`,
+              exportStateJson({
+                seasonId: store.season.id,
+                roster: store.roster,
+                run: store.run,
+                objective: store.objective,
+              }),
+            )
+          }
+        >
+          导出
+        </button>
+        <label className="btn quiet sm">
+          导入
+          <input
+            type="file"
+            accept="application/json"
+            style={{ display: "none" }}
+            onChange={async (e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              try {
+                const state = importStateJson(await file.text());
+                store.setSeasonId(state.seasonId);
+                store.setRoster(state.roster);
+                store.setRun(state.run);
+                if (state.objective) store.setObjective(state.objective);
+              } catch (error) {
+                alert(`导入失败：${(error as Error).message}`);
+              }
+            }}
+          />
+        </label>
       </header>
 
-      <nav className="tabs" role="tablist">
-        {TABS.map((t) => (
+      <nav className="steps">
+        {STEPS.map((s, i) => (
           <button
-            key={t.id}
-            role="tab"
-            aria-selected={tab === t.id}
-            onClick={() => setTab(t.id)}
+            key={s.id}
+            className={`step${unlocked[s.id] && step !== s.id ? " done" : ""}`}
+            aria-current={step === s.id}
+            disabled={!unlocked[s.id]}
+            onClick={() => setStep(s.id)}
           >
-            {t.label}
+            <span className="num">{i + 1}</span>
+            {s.label}
           </button>
         ))}
       </nav>
 
-      {tab === "roster" && <RosterPanel store={store} />}
-      {tab === "opening" && <OpeningPlanPanel store={store} />}
-      {tab === "run" && <RunAssistantPanel store={store} />}
-      {tab === "season" && <SeasonPanel store={store} />}
+      {step === "objective" && (
+        <ObjectiveStep
+          season={store.season}
+          objective={store.objective}
+          onChange={store.setObjective}
+          onNext={() => setStep("roster")}
+        />
+      )}
+
+      {step === "roster" && <RosterStep store={store} onNext={() => setStep("opening")} />}
+
+      {step === "opening" && (
+        <>
+          <OpeningPlanPanel store={store} />
+          <div className="row">
+            <button
+              className="btn primary"
+              onClick={() => {
+                if (!store.run) store.startRun();
+                setStep("run");
+              }}
+            >
+              {store.run ? "回到对局" : "开始对局"}
+            </button>
+            {store.run && (
+              <button
+                className="btn quiet"
+                onClick={() => {
+                  if (confirm("放弃当前对局，重新开始？")) {
+                    store.setRun(null);
+                    store.startRun();
+                  }
+                }}
+              >
+                重开一局
+              </button>
+            )}
+          </div>
+        </>
+      )}
+
+      {step === "run" && <RunDeck store={store} />}
+
+      {step === "season" && <SeasonPanel store={store} />}
     </div>
   );
 }

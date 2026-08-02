@@ -27,7 +27,7 @@ export function resolveStage(stage: StageConfig, state: RunState): StageConfig {
  * 把耐力全部留给主线——这会实质改变预留与路线结论，所以目标必须由用户先选。
  */
 export function stageRequiredByObjective(stage: StageConfig, objective: RunObjective): boolean {
-  if (stage.type === "tablet" && objective.goal === "clear") return false;
+  if (stage.type === "tablet" && !objective.tablets) return false;
   return true;
 }
 

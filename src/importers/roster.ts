@@ -1,23 +1,27 @@
 /**
- * 低摩擦角色池导入。
+ * 名字文本导入（截图识别的兜底路径，见 ./vision/）。
  *
  * 隐私边界：不要求账号密码、不要求米游社 Cookie、不上传任何凭证。
- * 第一版提供三条路径：
- *   1. 粘贴名字列表（最低摩擦，支持别名与语音输入错字）
- *   2. 导入本工具导出的 JSON
- *   3. 导入第三方工具的通用 JSON（角色名 + 命座/等级）
- * 截图 OCR 见 ./ocr.ts，其结果同样走 DetectedValue → 快速确认。
+ *
+ * 匹配策略：**只接受精确命中**（官方名 / id / 无歧义别名）。
+ * 近似的一律不自动采用，而是把候选交给用户点选——
+ * 静默接受近似匹配会把错误固化进角色池，之后所有推荐都建立在错的角色上。
  */
 import type { CharacterBase, DetectedValue, InvestmentTier, Roster, UserCharacter } from "../domain/types";
 import { AMBIGUOUS_ALIASES, CHARACTER_ALIASES } from "../data/characters/aliases";
 
 export interface MatchResult {
+  /** 只有**精确**命中（官方名 / id / 无歧义别名）才有值。 */
   characterId?: string;
   matchedName?: string;
   confidence: number;
   requiresConfirmation: boolean;
+  /** 没有精确命中时给出的候选，交给用户点选——绝不静默替用户猜。 */
   alternatives: { characterId: string; name: string }[];
 }
+
+/** 认为"精确命中、可以直接采用"的门槛。低于它一律进人工确认。 */
+export const EXACT_MATCH_CONFIDENCE = 0.9;
 
 function normalize(input: string): string {
   return input
@@ -98,27 +102,24 @@ export function matchCharacter(
     };
   }
 
-  // 3) 模糊匹配
-  let best: { c: CharacterBase; distance: number } | undefined;
+  // 3) 没有精确命中：给出最接近的几个候选，但**不替用户决定**。
+  //    刻意不返回 characterId —— 静默接受近似匹配会把错误固化进角色池。
+  const scored: { c: CharacterBase; distance: number }[] = [];
   for (const c of characters) {
-    const candidates = [c.name, ...(CHARACTER_ALIASES[c.id] ?? [])];
-    for (const candidate of candidates) {
-      const distance = editDistance(query, normalize(candidate));
-      if (!best || distance < best.distance) best = { c, distance };
+    let best = Number.POSITIVE_INFINITY;
+    for (const candidate of [c.name, ...(CHARACTER_ALIASES[c.id] ?? [])]) {
+      best = Math.min(best, editDistance(query, normalize(candidate)));
     }
+    scored.push({ c, distance: best });
   }
-  if (best && best.distance <= 2) {
-    const confidence = best.distance === 1 ? 0.75 : 0.55;
-    return {
-      characterId: best.c.id,
-      matchedName: best.c.name,
-      confidence,
-      requiresConfirmation: true,
-      alternatives: [{ characterId: best.c.id, name: best.c.name }],
-    };
-  }
+  scored.sort((a, b) => a.distance - b.distance);
+  const near = scored.filter((x) => x.distance <= 3).slice(0, 5);
 
-  return { confidence: 0, requiresConfirmation: true, alternatives: [] };
+  return {
+    confidence: 0,
+    requiresConfirmation: true,
+    alternatives: near.map((x) => ({ characterId: x.c.id, name: x.c.name })),
+  };
 }
 
 function aliasSiblings(
@@ -183,13 +184,16 @@ export function parseRosterText(
         : undefined;
 
     const match = matchCharacter(nameToken, characters);
-    const value: UserCharacter | null = match.characterId
-      ? {
-          characterId: match.characterId,
-          tier,
-          ...(constellation !== undefined ? { constellation } : {}),
-        }
-      : null;
+    const exact =
+      match.characterId !== undefined && match.confidence >= EXACT_MATCH_CONFIDENCE;
+    const value: UserCharacter | null =
+      exact && match.characterId
+        ? {
+            characterId: match.characterId,
+            tier,
+            ...(constellation !== undefined ? { constellation } : {}),
+          }
+        : null;
 
     out.push({
       raw: line,
@@ -197,7 +201,7 @@ export function parseRosterText(
       detected: {
         value,
         confidence: match.confidence,
-        requiresConfirmation: match.requiresConfirmation || match.characterId === undefined,
+        requiresConfirmation: !exact,
         rawText: line,
       },
     });

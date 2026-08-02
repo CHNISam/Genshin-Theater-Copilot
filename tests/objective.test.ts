@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
 import type { RunObjective } from "../src/domain/types";
 import { remainingStages, futureStages } from "../src/solver/stages";
-import { searchTeams } from "../src/solver/team";
+import { damageMultiplierFor, penalizeOverkill, searchTeams } from "../src/solver/team";
 import { computeReservations } from "../src/solver/reservations";
-import { apply, char, fillers, heal, member, runState, season, stage } from "./fixtures";
+import { buildRoster } from "../src/solver/roster";
+import { apply, char, characterMap, fillers, heal, member, runState, season, stage } from "./fixtures";
 
 function seasonWithTablets() {
   const stages = [
@@ -23,9 +24,11 @@ function seasonWithTablets() {
   return season(stages);
 }
 
-const CLEAR: RunObjective = { difficulty: "moonlit", goal: "clear" };
-const WITH_TABLETS: RunObjective = { difficulty: "moonlit", goal: "clear-with-tablets" };
-const FULL_STARS: RunObjective = { difficulty: "moonlit", goal: "full-stars" };
+/** 两个正交的轴：打不打圣牌、追不追星章。 */
+const CLEAR: RunObjective = { difficulty: "moonlit", tablets: false, stars: false };
+const WITH_TABLETS: RunObjective = { difficulty: "moonlit", tablets: true, stars: false };
+const STARS_NO_TABLETS: RunObjective = { difficulty: "moonlit", tablets: false, stars: true };
+const FULL_STARS: RunObjective = { difficulty: "moonlit", tablets: true, stars: true };
 
 describe("目标与难度", () => {
   it("目标为「只求通关」时，圣牌挑战不纳入剩余关卡", () => {
@@ -68,7 +71,22 @@ describe("目标与难度", () => {
     expect(reservedForClear).toHaveLength(0);
   });
 
-  it("目标为「满星」时，提高输出要求并关闭过剩惩罚", () => {
+  it("追星与打圣牌是两个独立开关：可以只打主线但追星", () => {
+    const config = seasonWithTablets();
+    const bases = fillers(8, "cryo");
+    const state = runState(config, bases, { objective: STARS_NO_TABLETS });
+
+    // 不打圣牌 → 圣牌不进剩余关卡
+    expect(remainingStages(config, state).map((s) => s.id)).toEqual(["act-1", "act-2"]);
+    // 但追星 → 输出要求仍然抬高
+    expect(damageMultiplierFor(STARS_NO_TABLETS)).toBeGreaterThan(
+      damageMultiplierFor(WITH_TABLETS),
+    );
+    expect(penalizeOverkill(STARS_NO_TABLETS)).toBe(false);
+    expect(penalizeOverkill(WITH_TABLETS)).toBe(true);
+  });
+
+  it("追星时提高输出要求并关闭过剩惩罚", () => {
     const strong = char({
       id: "strong",
       baseDamage: 9,
@@ -105,10 +123,58 @@ describe("目标与难度", () => {
     const config = seasonWithTablets();
     const bases = fillers(8, "cryo");
     const state = runState(config, bases, {
-      objective: { difficulty: "hard", goal: "clear" },
+      objective: { difficulty: "hard", tablets: false, stars: false },
     });
     // 本期赛季包只描述了月谕结构
     expect(config.ruleOverrides.supportedDifficulties).toEqual(["moonlit"]);
     expect(config.ruleOverrides.supportedDifficulties).not.toContain(state.objective.difficulty);
+  });
+});
+
+describe("助演约束", () => {
+  it("一期只能借一个助演：未被选中的候选不得进入可用池", () => {
+    const own = fillers(6, "cryo");
+    const guestA = char({ id: "guest-a", name: "助演甲", baseDamage: 9, roles: ["main-dps"] });
+    const guestB = char({ id: "guest-b", name: "助演乙", baseDamage: 9, roles: ["main-dps"] });
+    const config = season([stage({ id: "a", order: 1 })]);
+
+    const members = buildRoster({
+      season: config,
+      characters: characterMap([...own, guestA, guestB]),
+      roster: {
+        characters: [
+          ...own.map((c) => ({ characterId: c.id, tier: "usable" as const })),
+          { characterId: "guest-a", tier: "core" as const },
+          { characterId: "guest-b", tier: "core" as const },
+        ],
+        supportGuestId: "guest-a",
+        supportGuestCandidates: ["guest-a", "guest-b"],
+      },
+    });
+
+    const ids = members.map((m) => m.base.id);
+    expect(ids).toContain("guest-a");
+    expect(ids).not.toContain("guest-b");
+    expect(members.filter((m) => m.supportGuest)).toHaveLength(1);
+  });
+
+  it("还没决定借谁时，所有助演候选都不进池子", () => {
+    const own = fillers(6, "cryo");
+    const guestA = char({ id: "guest-a", name: "助演甲" });
+    const config = season([stage({ id: "a", order: 1 })]);
+
+    const members = buildRoster({
+      season: config,
+      characters: characterMap([...own, guestA]),
+      roster: {
+        characters: [
+          ...own.map((c) => ({ characterId: c.id, tier: "usable" as const })),
+          { characterId: "guest-a", tier: "core" as const },
+        ],
+        supportGuestCandidates: ["guest-a"],
+      },
+    });
+
+    expect(members.map((m) => m.base.id)).not.toContain("guest-a");
   });
 });
