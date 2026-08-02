@@ -1,0 +1,333 @@
+/*
+ * 设计取向：信息密度优先。这是一个每局要用几十次的决策工具，
+ * 因此几乎不使用动效——只保留按钮按压反馈与低频面板切换的淡入。
+ * 参考 emil-design-eng：高频操作不加动画；动画只服务反馈与防止突兀变化。
+ */
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --bg: #0e1116;
+  --bg-raised: #161b22;
+  --bg-sunken: #0a0d12;
+  --border: #232b36;
+  --border-strong: #313c4a;
+  --text: #e6edf3;
+  --text-dim: #9aa7b4;
+  --text-faint: #6b7887;
+
+  --accent: #6ea8fe;
+  --good: #3fb950;
+  --warn: #d29922;
+  --bad: #f85149;
+
+  --radius: 8px;
+  --radius-sm: 5px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7f9;
+    --bg-raised: #ffffff;
+    --bg-sunken: #eceff3;
+    --border: #dfe3e8;
+    --border-strong: #c6ccd4;
+    --text: #1c2128;
+    --text-dim: #57606a;
+    --text-faint: #8c959f;
+    --accent: #0969da;
+    --good: #1a7f37;
+    --warn: #9a6700;
+    --bad: #cf222e;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+header.masthead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+header.masthead h1 {
+  font-size: 17px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+header.masthead .sub {
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+nav.tabs {
+  display: flex;
+  gap: 2px;
+  margin: 14px 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+nav.tabs button {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+nav.tabs button:hover {
+  color: var(--text);
+}
+
+nav.tabs button[aria-selected="true"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+section.panel {
+  animation: panel-in 160ms var(--ease-out);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.card > h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.card > h3 {
+  margin: 14px 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+button.action {
+  appearance: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out), background-color 120ms ease;
+}
+
+button.action:hover {
+  background: var(--border);
+}
+
+button.action:active {
+  transform: scale(0.97);
+}
+
+button.action.primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+
+button.action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+textarea,
+input[type="text"],
+input[type="number"],
+select {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  width: 100%;
+}
+
+textarea {
+  min-height: 132px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-faint);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+ul.reasons {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: var(--text-dim);
+}
+
+ul.reasons li {
+  margin-bottom: 2px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-dim);
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.tag.core {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.tag.good {
+  color: var(--good);
+  border-color: var(--good);
+}
+.tag.warn {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+.tag.bad {
+  color: var(--bad);
+  border-color: var(--bad);
+}
+
+.callout {
+  border-left: 3px solid var(--border-strong);
+  padding: 8px 12px;
+  background: var(--bg-sunken);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 10px;
+}
+
+.callout.good {
+  border-left-color: var(--good);
+}
+.callout.warn {
+  border-left-color: var(--warn);
+}
+.callout.bad {
+  border-left-color: var(--bad);
+}
+
+.muted {
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: var(--bg-sunken);
+}
+
+.plan .team {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.scroll-x {
+  overflow-x: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section.panel {
+    animation: none;
+  }
+  button.action {
+    transition: background-color 120ms ease;
+  }
+  button.action:active {
+    transform: none;
+  }
+}
