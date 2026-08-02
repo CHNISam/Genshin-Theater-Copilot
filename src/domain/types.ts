@@ -307,8 +307,40 @@ export interface ReactionValue {
  * 赛季
  * ------------------------------------------------------------------ */
 
+/** 难度：轻简 / 普通 / 困难 / 卓越 / 月谕。 */
+export type Difficulty = "light" | "normal" | "hard" | "visionary" | "moonlit";
+
+export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
+  light: "轻简",
+  normal: "普通",
+  hard: "困难",
+  visionary: "卓越",
+  moonlit: "月谕",
+};
+
+/**
+ * 本局目标。必须由用户先选择——它会改变求解结论，不能默认。
+ *  - clear               只求通关最后一幕；圣牌挑战不是通关前置，可整体跳过
+ *  - clear-with-tablets  通关 + 完成两场圣牌挑战（全部完成后可抽月谕圣牌）
+ *  - full-stars          追满星章：每幕明星挑战都要达成，对输出与速度要求更高
+ */
+export type RunGoal = "clear" | "clear-with-tablets" | "full-stars";
+
+export const GOAL_LABEL: Record<RunGoal, string> = {
+  clear: "只求通关",
+  "clear-with-tablets": "通关 + 圣牌挑战",
+  "full-stars": "追满星章",
+};
+
+export interface RunObjective {
+  difficulty: Difficulty;
+  goal: RunGoal;
+}
+
 export interface SeasonRuleOverrides {
   defaultVigor: number;
+  /** 该赛季包实际录入了哪些难度的结构。未录入的难度不得假装支持。 */
+  supportedDifficulties: Difficulty[];
   teamSize: number;
   mainActCount: number;
   tabletChallengeCount: number;
@@ -351,7 +383,8 @@ export interface SeasonConfig {
 
 export interface RunState {
   seasonId: string;
-  difficulty: "moonlit" | "visionary";
+  /** 本局目标：难度 + 通关目标。必须显式选择。 */
+  objective: RunObjective;
   /** 当前待决策的关卡 id。 */
   currentStageId: string;
   completedStageIds: string[];

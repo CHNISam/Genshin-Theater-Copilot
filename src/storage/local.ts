@@ -2,13 +2,14 @@
  * 本地持久化 + JSON 导入导出。
  * 全部存在浏览器本地，不上传任何数据，也不涉及账号凭证。
  */
-import type { Roster, RunState } from "../domain/types";
+import type { Roster, RunObjective, RunState } from "../domain/types";
 
 export interface PersistedState {
   version: 1;
   seasonId: string;
   roster: Roster;
   run: RunState | null;
+  objective: RunObjective | null;
   updatedAt: string;
 }
 

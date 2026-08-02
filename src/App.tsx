@@ -44,7 +44,12 @@ export function App(): JSX.Element {
             onClick={() =>
               downloadJson(
                 `theater-pilot-${store.season.id}.json`,
-                exportStateJson({ seasonId: store.season.id, roster: store.roster, run: store.run }),
+                exportStateJson({
+                  seasonId: store.season.id,
+                  roster: store.roster,
+                  run: store.run,
+                  objective: store.objective,
+                }),
               )
             }
           >
@@ -64,6 +69,7 @@ export function App(): JSX.Element {
                   store.setSeasonId(state.seasonId);
                   store.setRoster(state.roster);
                   store.setRun(state.run);
+                  if (state.objective) store.setObjective(state.objective);
                 } catch (error) {
                   alert(`导入失败：${(error as Error).message}`);
                 }

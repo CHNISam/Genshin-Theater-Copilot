@@ -5,7 +5,7 @@
  *   关卡硬机制可解 → 生存条件满足 → 队伍体系运转 → 稀缺资源消耗合理 → 祝福收益 → 单场输出
  * 前两项是**过滤器**（不满足直接淘汰），后四项才进入加权评分。
  */
-import type { BuffConfig, SeasonConfig, StageConfig } from "../domain/types";
+import type { BuffConfig, RunObjective, SeasonConfig, StageConfig } from "../domain/types";
 import { RATE_RANK } from "../domain/types";
 import type { TeamMember } from "./roster";
 import {
@@ -82,6 +82,20 @@ export interface TeamContext {
   scarcityCost?: Record<string, number>;
   /** 忽略生存与输出门槛（用于诊断"为什么都不可行"）。 */
   ignoreSoftGates?: boolean;
+  /** 本局目标。影响输出要求与是否惩罚过剩。 */
+  objective?: RunObjective;
+}
+
+/**
+ * 追满星章时，每幕的明星挑战通常附带速度或输出条件，
+ * 因此提高输出要求、并且不再把"过剩"当成浪费。
+ */
+export function damageMultiplierFor(objective: RunObjective | undefined): number {
+  return objective?.goal === "full-stars" ? 1.3 : 1;
+}
+
+export function penalizeOverkill(objective: RunObjective | undefined): boolean {
+  return objective?.goal !== "full-stars";
 }
 
 /* ------------------------------------------------------------------ */
@@ -220,7 +234,7 @@ export function evaluateTeam(team: TeamMember[], ctx: TeamContext): TeamEvaluati
 
   /* 4) 输出 */
   const damage = teamDamage(team, coherence.value);
-  const damageNeed = stage.damagePressure * 2.2;
+  const damageNeed = stage.damagePressure * 2.2 * damageMultiplierFor(ctx.objective);
   if (!ctx.ignoreSoftGates && damageNeed > 0 && damage < damageNeed * 0.4) {
     rejections.push(
       `输出严重不足：本关伤害压力 ${stage.damagePressure}，队伍等效输出仅 ${damage.toFixed(1)}`,
@@ -260,9 +274,12 @@ export function evaluateTeam(team: TeamMember[], ctx: TeamContext): TeamEvaluati
    * 却会把本可以留给后面的资产消耗掉。因此对明显的过剩扣分。
    */
   const damageRatio = damageNeed === 0 ? 1 : damage / damageNeed;
-  const damageOverkill = Math.max(0, damageRatio - 1.2);
+  const overkillEnabled = penalizeOverkill(ctx.objective);
+  const damageOverkill = overkillEnabled ? Math.max(0, damageRatio - 1.2) : 0;
   const survivalOverkill =
-    survivalNeed === 0 ? 0 : Math.max(0, survival / Math.max(1, survivalNeed) - 1.5);
+    !overkillEnabled || survivalNeed === 0
+      ? 0
+      : Math.max(0, survival / Math.max(1, survivalNeed) - 1.5);
   if (damageOverkill > 0.3) {
     explanation.push(
       `本关伤害压力仅 ${stage.damagePressure}，该队等效输出 ${damage.toFixed(
@@ -277,7 +294,10 @@ export function evaluateTeam(team: TeamMember[], ctx: TeamContext): TeamEvaluati
     coherence: coherence.value,
     scarcity: scarcity + damageOverkill * 0.5 + survivalOverkill * 0.15,
     buff: buff.value / 10,
-    damage: damageNeed === 0 ? Math.min(1, damage / 12) : Math.min(1.2, damageRatio),
+    damage:
+      damageNeed === 0
+        ? Math.min(1, damage / 12)
+        : Math.min(overkillEnabled ? 1.2 : 2, damageRatio),
     control: Math.min(1.5, control / 6),
   };
 
@@ -311,6 +331,12 @@ export interface GenerateOptions {
   poolLimit?: number;
   /** 返回的可行队伍数量上限。 */
   limit?: number;
+  /**
+   * 必须出现在每支候选队伍中的角色。
+   * 用于回答"以某个核心为前提，最好的一队是什么"，
+   * 而不是"这一关全局最好的一队是什么"——后者会因为过剩惩罚把强核心排除掉。
+   */
+  require?: string[];
 }
 
 /** 与本关相关度：用于裁剪候选池，但硬机制提供者永远保留。 */
@@ -358,14 +384,22 @@ export function searchTeams(
   const poolLimit = options.poolLimit ?? 13;
   const limit = options.limit ?? 8;
 
-  const ranked = [...pool].sort(
-    (a, b) => stageRelevance(b, ctx.stage) - stageRelevance(a, ctx.stage),
-  );
-  const trimmed = ranked.slice(0, Math.max(poolLimit, teamSize));
+  const requiredIds = new Set(options.require ?? []);
+  const required = pool.filter((m) => requiredIds.has(m.base.id));
+  if (required.length < requiredIds.size || required.length > teamSize) {
+    return { feasible: [], rejected: [] };
+  }
+
+  const ranked = [...pool]
+    .filter((m) => !requiredIds.has(m.base.id))
+    .sort((a, b) => stageRelevance(b, ctx.stage) - stageRelevance(a, ctx.stage));
+  const slots = teamSize - required.length;
+  const trimmed = ranked.slice(0, Math.max(poolLimit, slots));
 
   const feasible: TeamEvaluation[] = [];
   const rejected: TeamEvaluation[] = [];
-  for (const combo of combinations(trimmed, teamSize)) {
+  for (const rest of combinations(trimmed, slots)) {
+    const combo = [...required, ...rest];
     const evaluation = evaluateTeam(combo, ctx);
     if (evaluation.feasible) feasible.push(evaluation);
     else if (rejected.length < 400) rejected.push(evaluation);

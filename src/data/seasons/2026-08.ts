@@ -48,13 +48,16 @@ export const SEASON_2026_08: SeasonConfig = {
 
   ruleOverrides: {
     defaultVigor: 2,
+    supportedDifficulties: ["moonlit"],
     teamSize: 4,
     mainActCount: 10,
     tabletChallengeCount: 2,
     bossActOrders: [3, 6, 8, 10],
     supportGuestCountsForEntry: false,
     initialRefreshes: 3,
-    note: "月谕模式：10 幕主线 + 2 场圣牌挑战；每名角色初始 2 点耐力，参战一次消耗 1 点。",
+    note:
+      "本赛季包只录入了月谕难度结构：10 幕主线 + 2 场圣牌挑战；每名角色初始 2 点耐力，参战一次消耗 1 点。" +
+      "轻简/普通/困难/卓越的关卡结构尚未录入，不得假装支持。",
   },
 
   buffs: [
@@ -424,8 +427,11 @@ export const SEASON_2026_08: SeasonConfig = {
       survivalPressure: 4,
       controlValue: 2,
       confidence: "medium",
-      sourceRecords: [USER_RUN],
-      note: "生存压力显著高于输出压力，目标是拖过时间而不是极限输出。",
+      sourceRecords: [USER_RUN, WIKI],
+      note:
+        "生存压力显著高于输出压力，目标是拖过时间而不是极限输出。" +
+        "圣牌挑战不是通关第十幕的前置条件：月谕难度下角色累计消耗一定耐力后出现，最多同时存在 2 个，" +
+        "未完成会一直保留；全部完成后可在第十幕通关后抽取「月谕圣牌」。",
     },
     {
       id: "tablet-2",
@@ -513,23 +519,6 @@ export const SEASON_2026_08: SeasonConfig = {
   sourceRecords: [OFFICIAL, WIKI, USER_RUN],
 
   unresolvedQuestions: [
-    {
-      id: "tablet-prerequisite",
-      question: "两场圣牌挑战是否是通关第十幕的前置条件？",
-      conflictingClaims: [
-        {
-          claim: "圣牌挑战是额外内容，不是通过第十幕的前置条件，只求通关时可以跳过。",
-          source: "资料页推断",
-          confidence: "medium",
-        },
-        {
-          claim: "用户本期实际把圣牌挑战一并完成，按 12 场规划资源。",
-          source: "用户实战记录",
-          confidence: "medium",
-        },
-      ],
-      blocksPublish: false,
-    },
     {
       id: "act8-shield-threshold",
       question: "第8幕水盾所需的冰附着效率阈值具体是多少？",

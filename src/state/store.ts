@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Roster, RunState, SeasonConfig } from "../domain/types";
+import type { Roster, RunObjective, RunState, SeasonConfig } from "../domain/types";
 import { PUBLISHED_SEASONS, seasonById, seasonForDate } from "../data/seasons";
 import { CHARACTER_BY_ID } from "../data/characters";
 import { loadState, saveState } from "../storage/local";
 
-export function createRunState(season: SeasonConfig, roster: Roster): RunState {
+export function createRunState(
+  season: SeasonConfig,
+  roster: Roster,
+  objective: RunObjective,
+): RunState {
   const stages = [...season.stages].sort((a, b) => a.order - b.order);
   const owned = roster.characters.filter((c) => c.tier !== "unused");
   const vigor: Record<string, number> = {};
@@ -17,7 +21,7 @@ export function createRunState(season: SeasonConfig, roster: Roster): RunState {
 
   return {
     seasonId: season.id,
-    difficulty: "moonlit",
+    objective,
     currentStageId: stages[0]?.id ?? "",
     completedStageIds: [],
     unlockedCharacterIds: [
@@ -40,6 +44,9 @@ export function createRunState(season: SeasonConfig, roster: Roster): RunState {
 
 export interface AppStore {
   season: SeasonConfig;
+  /** 本局目标。必须先选择，未选择时为 null。 */
+  objective: RunObjective | null;
+  setObjective: (objective: RunObjective) => void;
   seasons: SeasonConfig[];
   setSeasonId: (id: string) => void;
   roster: Roster;
@@ -61,6 +68,9 @@ export function useAppStore(): AppStore {
   );
   const [roster, setRoster] = useState<Roster>(persisted?.roster ?? { characters: [] });
   const [run, setRun] = useState<RunState | null>(persisted?.run ?? null);
+  const [objective, setObjective] = useState<RunObjective | null>(
+    persisted?.objective ?? persisted?.run?.objective ?? null,
+  );
 
   const season = useMemo(
     () => seasonById(seasonId, seasons) ?? fallback ?? seasons[0]!,
@@ -68,19 +78,22 @@ export function useAppStore(): AppStore {
   );
 
   useEffect(() => {
-    saveState({ seasonId: season.id, roster, run });
-  }, [season.id, roster, run]);
+    saveState({ seasonId: season.id, roster, run, objective });
+  }, [season.id, roster, run, objective]);
 
   const updateRun = useCallback((patch: Partial<RunState>) => {
     setRun((prev) => (prev ? { ...prev, ...patch } : prev));
   }, []);
 
   const startRun = useCallback(() => {
-    setRun(createRunState(season, roster));
-  }, [season, roster]);
+    if (!objective) return;
+    setRun(createRunState(season, roster, objective));
+  }, [season, roster, objective]);
 
   return {
     season,
+    objective,
+    setObjective,
     seasons,
     setSeasonId,
     roster,

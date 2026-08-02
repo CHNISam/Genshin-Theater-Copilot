@@ -1,0 +1,426 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-02T03:33:10.303Z",
+  "source": "enka.network UI assets + EnkaNetwork/API-docs 角色索引",
+  "note": "只保存 64bit 感知哈希，不保存任何官方图片素材。重新生成：npm run vision:fingerprints",
+  "entries": [
+    {
+      "characterId": "aino",
+      "name": "爱诺",
+      "iconName": "UI_AvatarIcon_Aino",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2b174f2f0f37aad4",
+        "full": "4c8e868aafb74715",
+        "center": "0b2b174d6f0fb2ab"
+      }
+    },
+    {
+      "characterId": "arlecchino",
+      "name": "阿蕾奇诺",
+      "iconName": "UI_AvatarIcon_Arlecchino",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2fa7ae8cc8cc7596",
+        "full": "4c0eae8ecce83355",
+        "center": "2b2f25af8ccccc55"
+      }
+    },
+    {
+      "characterId": "ayaka",
+      "name": "神里绫华",
+      "iconName": "UI_AvatarIcon_Ayaka",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "0b0b8a8ea9cc554d",
+        "full": "4c4e0e0e0e680f29",
+        "center": "9e0b0fae8e29cc55"
+      }
+    },
+    {
+      "characterId": "barbara",
+      "name": "芭芭拉",
+      "iconName": "UI_AvatarIcon_Barbara",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "2a86aa8ecc961715",
+        "full": "16074d4d4d4d1717",
+        "center": "0e6a86ae86cc9717"
+      }
+    },
+    {
+      "characterId": "beidou",
+      "name": "北斗",
+      "iconName": "UI_AvatarIcon_Beidou",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "ccd4dacecac8cccc",
+        "full": "b1e97c584c696969",
+        "center": "e2c6d6dacecec8cc"
+      }
+    },
+    {
+      "characterId": "bennett",
+      "name": "班尼特",
+      "iconName": "UI_AvatarIcon_Bennett",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "2b2b2b8e0d8c4d4d",
+        "full": "16cf8e8acc8d6d55",
+        "center": "870b0b2b960c8c4c"
+      }
+    },
+    {
+      "characterId": "candace",
+      "name": "坎蒂丝",
+      "iconName": "UI_AvatarIcon_Candace",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "ee8e8e8eaad48d0c",
+        "full": "33684dcccc4ccd8d",
+        "center": "ecae8e8e8eaad68e"
+      }
+    },
+    {
+      "characterId": "charlotte",
+      "name": "夏洛蒂",
+      "iconName": "UI_AvatarIcon_Charlotte",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "1abeaf0f0bb26317",
+        "full": "70fc9c0e8e92b28e",
+        "center": "b63a3eaf0d0d3369"
+      }
+    },
+    {
+      "characterId": "chevreuse",
+      "name": "夏沃蕾",
+      "iconName": "UI_AvatarIcon_Chevreuse",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "ccab9a4cccaa3373",
+        "full": "cc4ce89acccc332b",
+        "center": "8eccaa1b0dccaa33"
+      }
+    },
+    {
+      "characterId": "diona",
+      "name": "迪奥娜",
+      "iconName": "UI_AvatarIcon_Diona",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "690f4d4d4df03333",
+        "full": "69172bab0fa896d7",
+        "center": "17694d4d0f4dea33"
+      }
+    },
+    {
+      "characterId": "dori",
+      "name": "多莉",
+      "iconName": "UI_AvatarIcon_Dori",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "9e4f0f2b2bab2b69",
+        "full": "6fce0e0f0b8e3a2b",
+        "center": "cf974f0e2b2b2b2b"
+      }
+    },
+    {
+      "characterId": "eula",
+      "name": "优菈",
+      "iconName": "UI_AvatarIcon_Eula",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2f6f0f8eeaca4d54",
+        "full": "151b2e2e4ee0a995",
+        "center": "392f670f8feaca4d"
+      }
+    },
+    {
+      "characterId": "fischl",
+      "name": "菲谢尔",
+      "iconName": "UI_AvatarIcon_Fischl",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "b2a32b8eaa335533",
+        "full": "4c0d172f4d96b292",
+        "center": "8ea2a2aa8eaa3355"
+      }
+    },
+    {
+      "characterId": "flins",
+      "name": "菲林斯",
+      "iconName": "UI_AvatarIcon_Flins",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "ae2a0eccccc82b8e",
+        "full": "f0ecc48ecce8ce4d",
+        "center": "c4ae2e0f868ec82b"
+      }
+    },
+    {
+      "characterId": "furina",
+      "name": "芙宁娜",
+      "iconName": "UI_AvatarIcon_Furina",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "070f2f0daaf0aae8",
+        "full": "bc0c8e2f8fd5e8e8",
+        "center": "0c060f6d0dabf2a8"
+      }
+    },
+    {
+      "characterId": "ganyu",
+      "name": "甘雨",
+      "iconName": "UI_AvatarIcon_Ganyu",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "332b2f0e8e8e6979",
+        "full": "cc86aa2f8ecc2b33",
+        "center": "87332b6f0f8e866d"
+      }
+    },
+    {
+      "characterId": "kaeya",
+      "name": "凯亚",
+      "iconName": "UI_AvatarIcon_Kaeya",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "baa6e6cce9f56afe",
+        "full": "60d8d4e46c737c56",
+        "center": "98bea6a6c6e9f5ea"
+      }
+    },
+    {
+      "characterId": "kazuha",
+      "name": "枫原万叶",
+      "iconName": "UI_AvatarIcon_Kazuha",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "0b2b2e0e6ce2a373",
+        "full": "0e8e8f8e0e65d2b2",
+        "center": "070b2b2f076ce2a3"
+      }
+    },
+    {
+      "characterId": "keqing",
+      "name": "刻晴",
+      "iconName": "UI_AvatarIcon_Keqing",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "9f968e4d69719696",
+        "full": "aace868e0f6973c4",
+        "center": "9e9d178d4f6868d5"
+      }
+    },
+    {
+      "characterId": "kuki-shinobu",
+      "name": "久岐忍",
+      "iconName": "UI_AvatarIcon_Shinobu",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "3a176baab2aa8ecc",
+        "full": "8e8e96aebad4cdcc",
+        "center": "1b2b174de8b2aa8e"
+      }
+    },
+    {
+      "characterId": "layla",
+      "name": "莱依拉",
+      "iconName": "UI_AvatarIcon_Layla",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "ce96968e8e8e1755",
+        "full": "704cccd6cecc1717",
+        "center": "ab8e92970e8e8e17"
+      }
+    },
+    {
+      "characterId": "mika",
+      "name": "米卡",
+      "iconName": "UI_AvatarIcon_Mika",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "0b272b8e0e0b0d2e",
+        "full": "0e0e0faacc8e8f8e",
+        "center": "2b0b25698e0f2b0c"
+      }
+    },
+    {
+      "characterId": "mona",
+      "name": "莫娜",
+      "iconName": "UI_AvatarIcon_Mona",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2ee78e8e2b69cccc",
+        "full": "9997a64cccaae84d",
+        "center": "3b26e78e8e2969cc"
+      }
+    },
+    {
+      "characterId": "nahida",
+      "name": "纳西妲",
+      "iconName": "UI_AvatarIcon_Nahida",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2c2e690e2ab0323b",
+        "full": "4b1f8d290db0b197",
+        "center": "1e2c2f6c0d6a203a"
+      }
+    },
+    {
+      "characterId": "neuvillette",
+      "name": "那维莱特",
+      "iconName": "UI_AvatarIcon_Neuvillette",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "0e2e068e4dd55517",
+        "full": "0e168e8e8f4b170f",
+        "center": "33162e06974dd555"
+      }
+    },
+    {
+      "characterId": "olorun",
+      "name": "欧洛伦",
+      "iconName": "UI_AvatarIcon_Olorun",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "ecd4944c4d6b6921",
+        "full": "72e0e5d48caba383",
+        "center": "e8f4d696044d6a69"
+      }
+    },
+    {
+      "characterId": "qiqi",
+      "name": "七七",
+      "iconName": "UI_AvatarIcon_Qiqi",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "17376b0f0e54d496",
+        "full": "70cc962f8eb4d4cc",
+        "center": "9617336a0f0e54d6"
+      }
+    },
+    {
+      "characterId": "raiden",
+      "name": "雷电将军",
+      "iconName": "UI_AvatarIcon_Shougun",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "5c9c0ececcf455bb",
+        "full": "f0b8d88ccce83353",
+        "center": "74549e0ececcd8d4"
+      }
+    },
+    {
+      "characterId": "rosaria",
+      "name": "罗莎莉亚",
+      "iconName": "UI_AvatarIcon_Rosaria",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "a6b29e8e8e8e5755",
+        "full": "1655d4dccccc9617",
+        "center": "aaa6b29e8e8e0f57"
+      }
+    },
+    {
+      "characterId": "shenhe",
+      "name": "申鹤",
+      "iconName": "UI_AvatarIcon_Shenhe",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "1f8b0f0f2b695dcc",
+        "full": "8e0f9e8a8f3b694d",
+        "center": "0b2f890d0d2b61dd"
+      }
+    },
+    {
+      "characterId": "skirk",
+      "name": "丝柯克",
+      "iconName": "UI_AvatarIcon_SkirkNew",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "2b2b4d4d69333115",
+        "full": "0e1e8f2b2f333397",
+        "center": "2a2b254d4d6c7331"
+      }
+    },
+    {
+      "characterId": "sucrose",
+      "name": "砂糖",
+      "iconName": "UI_AvatarIcon_Sucrose",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "2b55178ce8e83355",
+        "full": "0c8e0f0fcce9332b",
+        "center": "8e2b17178eece82b"
+      }
+    },
+    {
+      "characterId": "tighnari",
+      "name": "提纳里",
+      "iconName": "UI_AvatarIcon_Tighnari",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "cccc8e9ecc703879",
+        "full": "e8e8cccc4ce8383a",
+        "center": "eccccc8e96ccf038"
+      }
+    },
+    {
+      "characterId": "venti",
+      "name": "温迪",
+      "iconName": "UI_AvatarIcon_Venti",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "e4c48cccccccf0e8",
+        "full": "78f2e5cccc6c7869",
+        "center": "f9e4c68ecccccce8"
+      }
+    },
+    {
+      "characterId": "xingqiu",
+      "name": "行秋",
+      "iconName": "UI_AvatarIcon_Xingqiu",
+      "rarity": 4,
+      "hashes": {
+        "portrait": "989a8ecccce8781a",
+        "full": "70d8d8cc4c68989c",
+        "center": "ac9a9e8ed4cce8f8"
+      }
+    },
+    {
+      "characterId": "yae-miko",
+      "name": "八重神子",
+      "iconName": "UI_AvatarIcon_Yae",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "0b178e0d8e8f6971",
+        "full": "0f8e960d8e8e2317",
+        "center": "0f0b178e0d8d8f6d"
+      }
+    },
+    {
+      "characterId": "yelan",
+      "name": "夜兰",
+      "iconName": "UI_AvatarIcon_Yelan",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "c0c4cc4d4d69e84d",
+        "full": "7078604d4d692969",
+        "center": "d4c8c48ececce8e8"
+      }
+    },
+    {
+      "characterId": "zhongli",
+      "name": "钟离",
+      "iconName": "UI_AvatarIcon_Zhongli",
+      "rarity": 5,
+      "hashes": {
+        "portrait": "c4d4968ce8e8ccaa",
+        "full": "7070c4c44c6849cc",
+        "center": "d8c6d69684eccccc"
+      }
+    }
+  ]
+}

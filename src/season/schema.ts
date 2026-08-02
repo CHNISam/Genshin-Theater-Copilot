@@ -163,8 +163,11 @@ export const buffSchema = z.object({
   patchNote: z.string().optional(),
 });
 
+export const difficultySchema = z.enum(["light", "normal", "hard", "visionary", "moonlit"]);
+
 export const seasonRuleOverridesSchema = z.object({
   defaultVigor: z.number().int().min(1).max(10),
+  supportedDifficulties: z.array(difficultySchema).min(1),
   teamSize: z.number().int().min(1).max(8),
   mainActCount: z.number().int().min(1).max(20),
   tabletChallengeCount: z.number().int().min(0).max(5),

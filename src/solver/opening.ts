@@ -6,6 +6,7 @@
 import type {
   CharacterBase,
   Element,
+  RunObjective,
   RunState,
   Roster,
   SeasonConfig,
@@ -17,6 +18,7 @@ import { lookahead, type PathStep } from "./lookahead";
 import { canProvide, describeRequirement } from "./mechanics";
 import { elementScarcity } from "./reservations";
 import { evaluateBuffOptions, planBuffPortfolio, type BuffPortfolio } from "./buffs";
+import { stageRequiredByObjective } from "./stages";
 
 export interface SupportGuestEvaluation {
   characterId: string;
@@ -76,13 +78,18 @@ export interface OpeningPlanInput {
   characters: ReadonlyMap<string, CharacterBase>;
   /** 助演候选。默认取 roster.supportGuestCandidates。 */
   supportGuestCandidates?: string[];
+  /** 本局目标。决定圣牌挑战是否纳入规划。 */
+  objective?: RunObjective;
 }
 
 function makeBaselineState(season: SeasonConfig, members: TeamMember[]): RunState {
   const stages = [...season.stages].sort((a, b) => a.order - b.order);
   return {
     seasonId: season.id,
-    difficulty: "moonlit",
+    objective: {
+      difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
+      goal: "clear-with-tablets",
+    },
     currentStageId: stages[0]?.id ?? "",
     completedStageIds: [],
     unlockedCharacterIds: members.map((m) => m.base.id),
@@ -100,7 +107,13 @@ function makeBaselineState(season: SeasonConfig, members: TeamMember[]): RunStat
 
 export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   const { season } = input;
-  const stages = [...season.stages].sort((a, b) => a.order - b.order);
+  const objective: RunObjective = input.objective ?? {
+    difficulty: season.ruleOverrides.supportedDifficulties[0] ?? "moonlit",
+    goal: "clear-with-tablets",
+  };
+  const stages = [...season.stages]
+    .sort((a, b) => a.order - b.order)
+    .filter((s) => stageRequiredByObjective(s, objective));
   const members = buildRoster({ season, roster: input.roster, characters: input.characters });
   const notes: string[] = [];
 
@@ -199,7 +212,7 @@ export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   const bossPlans = stages
     .filter((s) => s.type === "boss")
     .map((stage) => {
-      const ctx: TeamContext = { season, stage, buffLevels: {} };
+      const ctx: TeamContext = { season, stage, buffLevels: {}, objective };
       const result = searchTeams(members, ctx, { limit: 3 });
       return {
         stageName: stage.name,
@@ -214,7 +227,7 @@ export function buildOpeningPlan(input: OpeningPlanInput): OpeningPlan {
   const tabletPlans = stages
     .filter((s) => s.type === "tablet" || s.type === "survival")
     .map((stage) => {
-      const ctx: TeamContext = { season, stage, buffLevels: {} };
+      const ctx: TeamContext = { season, stage, buffLevels: {}, objective };
       const result = searchTeams(members, ctx, { limit: 2 });
       return {
         stageName: stage.name,
@@ -406,11 +419,9 @@ function buildCoreModules(
     const bossStage =
       stages.find((s) => s.type === "boss") ?? stages[stages.length - 1] ?? stages[0];
     if (!bossStage) break;
-    const pool = members.filter((m) => m.base.id !== core.base.id);
     const ctx: TeamContext = { season, stage: bossStage, buffLevels: {} };
-    const best = searchTeams([core, ...pool], ctx, { limit: 4 }).feasible.find((t) =>
-      t.memberIds.includes(core.base.id),
-    );
+    // 以该核心为前提求最优队伍；不能用全局最优再过滤，否则过剩惩罚会把强核心整个排除。
+    const best = searchTeams(members, ctx, { limit: 4, require: [core.base.id] }).feasible[0];
     const teammates = (best?.members ?? [])
       .filter((m) => m.base.id !== core.base.id)
       .map((m) => ({
@@ -432,10 +443,13 @@ function buildCoreModules(
       coreName: core.base.name,
       teammates,
       suitableStages: stages
-        .filter((s) => {
-          const check = searchTeams([core, ...pool], { season, stage: s, buffLevels: {} }, { limit: 1 });
-          return check.feasible.some((t) => t.memberIds.includes(core.base.id));
-        })
+        .filter(
+          (s) =>
+            searchTeams(members, { season, stage: s, buffLevels: {} }, {
+              limit: 1,
+              require: [core.base.id],
+            }).feasible.length > 0,
+        )
         .map((s) => s.name),
       consumesScarce,
     });

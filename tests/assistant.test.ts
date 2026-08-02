@@ -91,6 +91,22 @@ describe("局内助手", () => {
     expect(output.shouldRefresh.reason).toContain("关键缺口");
   });
 
+  it("13c. 还没有录入事件候选时，刷新建议不能自相矛盾", () => {
+    const { config, all, state } = deadEndScenario();
+    const noCandidates = { ...state, eventCandidates: [] };
+    const output = runAssistant({
+      season: config,
+      roster: rosterOf(all, "usable"),
+      characters: characterMap(all),
+      state: noCandidates,
+    });
+
+    expect(output.shouldRefresh.recommended).toBe(false);
+    // 不得在"不建议刷新"的同时给出"值得消耗一次刷新"的理由
+    expect(output.shouldRefresh.reason).not.toContain("值得消耗");
+    expect(output.shouldRefresh.reason).toContain("候选");
+  });
+
   it("15. 局内实际敌人信息覆盖开局基准配置", () => {
     const base = stage({
       id: "act-1",

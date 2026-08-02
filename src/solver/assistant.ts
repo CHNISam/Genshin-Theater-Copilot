@@ -146,6 +146,7 @@ export function runAssistant(input: AssistantInput): AssistantOutput {
       stage,
       buffLevels: state.buffLevels,
       scarcityCost: costs,
+      objective: state.objective,
     };
     let result = searchTeams(available, ctx, { limit: 6 });
     if (result.feasible.length === 0) {
@@ -230,7 +231,11 @@ export function runAssistant(input: AssistantInput): AssistantOutput {
   const shouldRefresh = {
     recommended:
       criticalNeed && !bestEventHelps && state.refreshesRemaining > 0 && events.length > 0,
-    reason: criticalNeed
+    reason: events.length === 0
+      ? criticalNeed
+        ? "存在关键缺口，但还没有录入当前事件候选，无法判断刷新是否划算。请先录入候选。"
+        : "还没有录入事件候选。当前也没有关键缺口，正常开战即可。"
+      : criticalNeed
       ? bestEventHelps
         ? "当前候选中已有能解决关键缺口的选项，不需要刷新。"
         : state.refreshesRemaining > 0

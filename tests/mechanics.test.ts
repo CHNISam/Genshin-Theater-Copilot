@@ -216,3 +216,31 @@ describe("稀缺资源消耗", () => {
     expect(usedCores).toHaveLength(1);
   });
 });
+
+describe("指定必选成员的队伍搜索", () => {
+  it("require 指定的角色必须出现在每个候选队伍中", () => {
+    const star = char({
+      id: "must-use",
+      baseDamage: 9,
+      roles: ["main-dps"],
+      capabilities: [apply("cryo", "high")],
+    });
+    const others = Array.from({ length: 6 }, (_, i) =>
+      char({ id: `other-${i}`, baseDamage: 3, capabilities: [apply("electro", "medium")] }),
+    );
+    // 简单关卡：不加 require 时，过剩惩罚会让最强核心落选
+    const easyStage = stage({ id: "easy", order: 1, type: "normal", damagePressure: 2 });
+    const pool = [member(star, "core"), ...others.map((c) => member(c, "usable"))];
+    const ctx = { season: season([easyStage]), stage: easyStage, buffLevels: {} };
+
+    const withoutRequire = searchTeams(pool, ctx, { limit: 4 });
+    expect(withoutRequire.feasible.every((t) => t.memberIds.includes("must-use"))).toBe(false);
+
+    const withRequire = searchTeams(pool, ctx, { limit: 4, require: ["must-use"] });
+    expect(withRequire.feasible.length).toBeGreaterThan(0);
+    for (const team of withRequire.feasible) {
+      expect(team.memberIds).toContain("must-use");
+      expect(team.memberIds).toHaveLength(4);
+    }
+  });
+});

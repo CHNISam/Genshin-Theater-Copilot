@@ -92,6 +92,7 @@ export function season(
     bosses: partial.bosses ?? [],
     ruleOverrides: {
       defaultVigor: 2,
+      supportedDifficulties: ["moonlit"],
       teamSize: 4,
       mainActCount: stages.filter((s) => s.type !== "tablet").length,
       tabletChallengeCount: stages.filter((s) => s.type === "tablet").length,
@@ -142,7 +143,7 @@ export function runState(
   const first = [...seasonConfig.stages].sort((a, b) => a.order - b.order)[0];
   return {
     seasonId: seasonConfig.id,
-    difficulty: "moonlit",
+    objective: { difficulty: "moonlit", goal: "clear-with-tablets" },
     currentStageId: first?.id ?? "",
     completedStageIds: [],
     unlockedCharacterIds: bases.map((b) => b.id),

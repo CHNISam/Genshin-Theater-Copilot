@@ -3,7 +3,7 @@
  *   局内截图 / 用户确认信息 ＞ 已发布赛季固定配置 ＞ 赛季经验数据 ＞ 通用启发式
  * 因此实际观察到的敌人信息必须覆盖开局基准路线，而不是机械照抄。
  */
-import type { RunState, SeasonConfig, StageConfig } from "../domain/types";
+import type { RunObjective, RunState, SeasonConfig, StageConfig } from "../domain/types";
 import { CONFIDENCE_RANK } from "../domain/types";
 
 export function resolveStage(stage: StageConfig, state: RunState): StageConfig {
@@ -21,9 +21,20 @@ export function resolveStage(stage: StageConfig, state: RunState): StageConfig {
   };
 }
 
+/**
+ * 目标是否要求打这一关。
+ * 圣牌挑战不是通关前置，因此"只求通关"时整体排除，
+ * 把耐力全部留给主线——这会实质改变预留与路线结论，所以目标必须由用户先选。
+ */
+export function stageRequiredByObjective(stage: StageConfig, objective: RunObjective): boolean {
+  if (stage.type === "tablet" && objective.goal === "clear") return false;
+  return true;
+}
+
 export function resolvedStages(season: SeasonConfig, state: RunState): StageConfig[] {
   return [...season.stages]
     .sort((a, b) => a.order - b.order)
+    .filter((s) => stageRequiredByObjective(s, state.objective))
     .map((s) => resolveStage(s, state));
 }
 
