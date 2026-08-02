@@ -4,3 +4,4 @@ dist
 *.local
 seasons/drafts/
 seasons/tasks/
+tsconfig.tsbuildinfo
