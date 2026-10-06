@@ -1,0 +1,62 @@
+{
+  "season_id": "2026-10-v7.1",
+  "captured_at": "2026-10-06",
+  "status": "partial_verified",
+  "objective_default": "stable_clear_act_10_plus_2_sacred_cards",
+  "allowed_elements": ["hydro", "cryo", "anemo"],
+  "opening_characters": [
+    "neuvillette",
+    "barbara",
+    "citlali",
+    "kaeya",
+    "wanderer",
+    "brenny"
+  ],
+  "structure": {
+    "acts": 10,
+    "boss_acts": [3, 6, 8, 10],
+    "sacred_card_challenges": 2
+  },
+  "verified_mechanic_hints": {
+    "act_10": [
+      "high_frequency_cryo_is_a_key_solution"
+    ],
+    "sacred_card_1": [
+      "party_wide_hp_pressure",
+      "healing_is_high_value"
+    ],
+    "sacred_card_2": [
+      "enemy_death_explosions_create_survival_pressure",
+      "range_is_comfort_value_not_a_hard_requirement"
+    ]
+  },
+  "verified_buff_facts": {
+    "freeze_base": {
+      "trigger": "freeze",
+      "duration_seconds": 6,
+      "effect": "hydro_and_cryo_characters_gain_40_percent_crit_damage"
+    },
+    "freeze_branch_ice_shatter": {
+      "name": "冰裂之势",
+      "effect": "during_chill_hydro_or_cryo_damage_applies_ice_shatter_and_reduces_hydro_and_cryo_resistance_by_8_percent_per_stack",
+      "stack_cap": "not_yet_encoded_until_reverified_from_current_text"
+    }
+  },
+  "provenance": [
+    {
+      "kind": "current_cycle_overview",
+      "url": "https://www.taptap.cn/moment/854722812772879793",
+      "notes": "2026-10 7.1 water/cryo/anemo cycle; act 10 and Sacred Card mechanic notes"
+    },
+    {
+      "kind": "system_and_buff_reference",
+      "url": "https://wiki.biligame.com/ys/%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97",
+      "notes": "current Theater rules and Freeze radiant blessing text"
+    },
+    {
+      "kind": "current_cycle_walkthrough_reference",
+      "url": "https://www.bilibili.com/list/ml44731932?bvid=BV1RmN16vEhe&oid=116911157288714",
+      "notes": "2026-10 low-investment route; reference only, not policy"
+    }
+  ]
+}
