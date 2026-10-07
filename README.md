@@ -2,6 +2,8 @@
 
 轻量的幻想真境剧诗 Harness / SOP：保护后续角色耐力，也检查当前战斗的依据；重复失败不收敛时，实际试战入口会停止放行。
 
+项目进度与下一步只看 [Backlog.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/Backlog.md)：当前 NOW 是真实账号 dogfood v1.0.0。项目级方向、Goals、Ideas、Docs 在 [项目表](https://docs.google.com/spreadsheets/d/1GCgixxH7XKs3jb68ohrV0SO1ai3Iesd2ZVBBuAk8v40/edit)；剧诗执行规则在 [docs/SOP.md](docs/SOP.md)。历史计划和复盘是资料与证据，不维护并行任务状态。
+
 **Windows 下载：[GitHub Releases](https://github.com/CHNISam/Genshin-Theater-Copilot/releases/latest)** → `Genshin-Theater-Copilot-v1.0.0-win-x64.zip`。解压，双击 `theater.cmd`。自带官方 Python 精简运行时，无需安装 Python、clone 或联网运行。适用 Windows 10/11 x64。
 
 第一次先选“演示”，或在解压目录 PowerShell 中运行：

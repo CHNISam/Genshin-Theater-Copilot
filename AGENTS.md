@@ -2,6 +2,19 @@
 
 This repository is a strategy/constraint project for Imaginarium Theater.
 
+## Project execution status
+
+- Read [Backlog.md](Backlog.md) before selecting project work; it is the only
+  project execution status. Update it with outcome evidence when work closes.
+- The Google Sheet `Genshin-Theater-Copilot-Project` owns Overview / Goals / Ideas /
+  Docs, not concrete task logs. Do not maintain a parallel task system in plans,
+  prompts, retrospectives, or a new project checklist.
+- [docs/SOP.md](docs/SOP.md) owns gameplay execution rules. Its run state and the
+  game-fact precedence below are separate from project task status.
+- v1.0.0 is the completed baseline. Prioritize real-player dogfood and demonstrated
+  friction; do not add CLI features or choose GUI/OCR/Web/background monitoring
+  without the evidence gates in Backlog.md.
+
 ## Source of Truth order
 
 1. Current live run state supplied by the operator.

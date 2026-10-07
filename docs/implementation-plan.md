@@ -1,4 +1,9 @@
-# Harness implementation and verification plan
+# v1.0.0 implementation plan (archived)
+
+Completed in [v1.0.0](https://github.com/CHNISam/Genshin-Theater-Copilot/releases/tag/v1.0.0).
+This is historical design/validation context, not an active task list. Current
+project execution status is maintained only in [Backlog.md](../Backlog.md);
+gameplay execution follows [SOP.md](SOP.md).
 
 User scope: preserve the existing strategic search; add current-fight evidence and a mechanical stop gate; absorb history; ship a small Windows portable release.
 

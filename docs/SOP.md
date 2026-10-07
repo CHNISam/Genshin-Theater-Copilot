@@ -1,6 +1,6 @@
-# 唯一执行 SOP
+# 剧诗执行 SOP
 
-本文件是操作流程；README/QUICKSTART 只是入口，历史路线不是第二套执行规则。
+本文件是唯一剧诗操作流程；README/QUICKSTART 只是入口，历史路线不是第二套执行规则。项目开发优先级与执行状态只看 [Backlog.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/Backlog.md)，不在本 SOP 维护待办。
 
 ## 1. 本期预检与开局预算
 
