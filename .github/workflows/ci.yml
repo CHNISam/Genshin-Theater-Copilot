@@ -1,16 +1,65 @@
-name: policy-ci
-
+name: Validate and release portable Harness
 on:
   push:
+    branches: [main]
   pull_request:
-
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: harness-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Run policy regression tests
-        run: python -m unittest discover -s tests -v
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m src.cli validate-season seasons/2026-10-v7.1.json
+  windows:
+    needs: tests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python tools/build_portable.py
+      - name: Smoke extracted portable with bundled runtime
+        shell: pwsh
+        run: |
+          $archive = (Get-ChildItem dist/*-win-x64.zip).FullName
+          python tools/smoke_portable.py $archive --report dist/WINDOWS-SMOKE.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validated-release-assets
+          path: dist/*
+          if-no-files-found: error
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [tests, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-release-assets
+          path: dist
+      - name: Publish new version only after native smoke
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          version=$(cat VERSION)
+          tag="v$version"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Version already published; bump VERSION for the next release."
+            exit 0
+          fi
+          gh release create "$tag" dist/* --target "$GITHUB_SHA" --title "Genshin Theater Copilot $tag" --notes-file docs/release-notes.md

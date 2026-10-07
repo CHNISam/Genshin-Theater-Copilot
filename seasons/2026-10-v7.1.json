@@ -1,9 +1,14 @@
 {
-  "season_id": "2026-10-v7.1",
-  "captured_at": "2026-10-06",
+  "id": "2026-10-v7.1",
+  "starts_at": "2026-10-01",
+  "ends_at": "2026-11-01",
+  "captured_at": "2026-10-07",
   "status": "partial_verified",
-  "objective_default": "stable_clear_act_10_plus_2_sacred_cards",
-  "allowed_elements": ["hydro", "cryo", "anemo"],
+  "allowed_elements": [
+    "hydro",
+    "cryo",
+    "anemo"
+  ],
   "opening_characters": [
     "neuvillette",
     "barbara",
@@ -12,51 +17,228 @@
     "wanderer",
     "brenny"
   ],
-  "structure": {
-    "acts": 10,
-    "boss_acts": [3, 6, 8, 10],
-    "sacred_card_challenges": 2
+  "facts": {
+    "act-3-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-3",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "恒常机关阵列：锁血阶段优先击败发光机兵解除机制。",
+      "any_of": [
+        "focus-glowing-add"
+      ]
+    },
+    "act-6-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-6",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "嵌合兽怪箭士：击倒升高柱子取得输出窗口；星烁是可选解，能打到柱子的攻击也可处理。",
+      "any_of": [
+        "hit-elevated-column",
+        "stellar-column-break"
+      ]
+    },
+    "act-8-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-8",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "嵌合翼骏狮：冰或星烁破雷盾；空中阶段需明确应对激光和击落方案。",
+      "any_of": [
+        "cryo-shield-break-with-airborne-plan",
+        "stellar-break-with-airborne-plan"
+      ]
+    },
+    "act-10-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-10",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "秘源机兵·统御械：高频冰可压制荡除并进入凝滞；夜魂应战也是攻略中的另一条机制路径。",
+      "any_of": [
+        "high-frequency-cryo",
+        "nightsoul-counter-plan"
+      ]
+    },
+    "card-1-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "card-1",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "兽境猎犬带来全队血线压力；需全队回血或经实战验证的等效生存方案。",
+      "any_of": [
+        "party-heal",
+        "tested-party-survival"
+      ]
+    },
+    "card-2-mechanic": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "card-2",
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "value": "遗迹敌人死亡爆炸造成生存压力；需爆炸处理方案，远程仅舒适建议。",
+      "any_of": [
+        "explosion-survival-plan"
+      ]
+    },
+    "act-1-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-1",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "act-2-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-2",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "act-4-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-4",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "act-5-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-5",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "act-7-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-7",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "act-9-live-objective": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "encounter_id": "act-9",
+      "sources": [],
+      "value": null,
+      "any_of": [
+        "observed-objective-plan"
+      ]
+    },
+    "freeze-base": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "sources": [],
+      "value": null,
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+    },
+    "freeze-ice-shatter": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "sources": [],
+      "value": null,
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+    },
+    "hydro-swirl": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "sources": [],
+      "value": null,
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+    },
+    "cryo-swirl": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "sources": [],
+      "value": null,
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+    }
   },
-  "verified_mechanic_hints": {
-    "act_10": [
-      "high_frequency_cryo_is_a_key_solution"
+  "encounters": {
+    "act-3": [
+      "act-3-mechanic"
     ],
-    "sacred_card_1": [
-      "party_wide_hp_pressure",
-      "healing_is_high_value"
+    "act-6": [
+      "act-6-mechanic"
     ],
-    "sacred_card_2": [
-      "enemy_death_explosions_create_survival_pressure",
-      "range_is_comfort_value_not_a_hard_requirement"
+    "act-8": [
+      "act-8-mechanic"
+    ],
+    "act-10": [
+      "act-10-mechanic"
+    ],
+    "card-1": [
+      "card-1-mechanic"
+    ],
+    "card-2": [
+      "card-2-mechanic"
+    ],
+    "act-1": [
+      "act-1-live-objective"
+    ],
+    "act-2": [
+      "act-2-live-objective"
+    ],
+    "act-4": [
+      "act-4-live-objective"
+    ],
+    "act-5": [
+      "act-5-live-objective"
+    ],
+    "act-7": [
+      "act-7-live-objective"
+    ],
+    "act-9": [
+      "act-9-live-objective"
     ]
   },
-  "verified_buff_facts": {
-    "freeze_base": {
-      "trigger": "freeze",
-      "duration_seconds": 6,
-      "effect": "hydro_and_cryo_characters_gain_40_percent_crit_damage"
-    },
-    "freeze_branch_ice_shatter": {
-      "name": "冰裂之势",
-      "effect": "during_chill_hydro_or_cryo_damage_applies_ice_shatter_and_reduces_hydro_and_cryo_resistance_by_8_percent_per_stack",
-      "stack_cap": "not_yet_encoded_until_reverified_from_current_text"
-    }
-  },
-  "provenance": [
+  "sources": [
     {
-      "kind": "current_cycle_overview",
       "url": "https://www.taptap.cn/moment/854722812772879793",
-      "notes": "2026-10 7.1 water/cryo/anemo cycle; act 10 and Sacred Card mechanic notes"
+      "kind": "dated-current-cycle-guide",
+      "author": "冻梨游研社",
+      "published_at": "2026-10-01",
+      "accessed_at": "2026-10-07"
     },
     {
-      "kind": "system_and_buff_reference",
-      "url": "https://wiki.biligame.com/ys/%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97",
-      "notes": "current Theater rules and Freeze radiant blessing text"
-    },
-    {
-      "kind": "current_cycle_walkthrough_reference",
-      "url": "https://www.bilibili.com/list/ml44731932?bvid=BV1RmN16vEhe&oid=116911157288714",
-      "notes": "2026-10 low-investment route; reference only, not policy"
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "kind": "community-system-reference",
+      "accessed_at": "2026-10-07",
+      "limitation": "Accessible rendering does not establish exact October buff branches."
     }
+  ],
+  "unresolved": [
+    "Exact current blessing levels/branches/stack caps/costs need current in-game text or independently inspectable primary evidence.",
+    "Random ordinary encounters need live observation before their fight contract.",
+    "Account vigor/builds/current recruitment are operator-supplied; history is not a live snapshot."
   ]
 }

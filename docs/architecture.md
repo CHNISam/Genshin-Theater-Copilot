@@ -1,137 +1,14 @@
-# Strategy architecture
+# 轻量 Harness 边界
 
-## Problem frame
+执行顺序以 [SOP](SOP.md) 为准。现有未来路线搜索仍是核心之一。
 
-Imaginarium Theater is a **dynamic resource-allocation problem under partial
-information**, not a static stage-by-stage team list.
+- `src/theater_guard.py`：纯战略资源分配。Checkpoint alternatives、SAFE/CONDITIONAL/BROKEN、动态候选排序、真实备选均保留；不构造完整战斗队，也不假装知道概率。
+- `src/fight_guard.py`：固定策略阈值，最佳可比进度、连续无进展、机制失败、总预算，和去掉名称/备注的实质方案标识。
+- `src/harness.py`：当前关事实/能力/证据/四人检查；trial ticket→record；stop→有证据的reroute；已过→next；统一快照与资源事务。失败事务不会修改原状态。
+- `src/cli.py`：一个 CLI/文本菜单，JSON 导入与原子保存、备份、并发锁。所有执行入口均调用相同 guard。无需第三方依赖。
 
-The scarce strategic resources are primarily:
-- character vigor/uses;
-- access to unrecruited standby characters;
-- flowers/refresh opportunities;
-- mechanism-specific capability;
-- time/opportunity before a checkpoint deadline.
+SOP 负责来源语义、实战差异、能力标签条件、正确度量与真正变更的人工判断。机械部分负责类型/作用域/状态/资源/停止阈值，不能把人工评审标签理解成自动计算已证明伤害够。
 
-The system should answer:
+Run JSON 是受信用户数据，不是防篡改数据库；可读便于 AI 协作，正常命令不允许覆盖 objective/completion/attempt journal。没有后台进程、OCR、游戏控制、完整角色数据库、自动调研模型依赖。旧 account/plan 仅保留范围明确的知识；公用事实、账号事实、policy 与 run 仍分离。
 
-> Given the state now, which actions remain strategically safe, and which one has
-> the best leverage without closing the run?
-
-## Root causes of prior planning failures
-
-### 1. Static-script failure
-A fixed "act N -> character X" table breaks as soon as recruitment order changes.
-
-**Correction:** represent each important checkpoint with multiple valid plans and
-recompute from live state.
-
-### 2. Strength-over-mechanic failure
-A generally stronger character can still be the wrong asset when an encounter
-requires a specific element, hit pattern, healing profile, range, or reaction.
-
-**Correction:** checkpoint mechanics define admissible plans before power ranking.
-
-### 3. Buff-first failure
-Buff optimization can consume flowers or bias planning before the roster needed
-to finish the run is secured.
-
-**Correction:** feasibility/recruitment gaps outrank buff optimization.
-
-### 4. Unverified-effect failure
-A guide summary or memory of a prior cycle can misstate a current buff.
-
-**Correction:** current buff text + provenance is required before hard-coding the effect.
-
-### 5. Over-planning auxiliaries
-Trying to prescribe every support/filler adds complexity without changing the
-strategic decision.
-
-**Correction:** keep auxiliaries tactical unless they are a mechanism key.
-
-### 6. Randomness treated as certainty
-A standby character may be recruitable later but is not guaranteed now.
-
-**Correction:** distinguish SAFE routes (currently unlocked) from CONDITIONAL
-routes (depend on future recruitment) and BROKEN routes.
-
-## Model
-
-```text
-verified season facts
-        +
-account capability map
-        +
-live run state
-        |
-        v
-strategic checkpoint plans
-        |
-        v
-future-route feasibility
-        |
-        +--> BROKEN      => block / emergency decision
-        +--> CONDITIONAL => warn + raise recruitment priority
-        +--> SAFE        => rank by soft policy
-```
-
-A **checkpoint plan** is deliberately small. It lists only strategically scarce
-characters/capabilities whose vigor matters. Filler slots are omitted.
-
-Example:
-
-```python
-Checkpoint(
-    "Act 10",
-    options=(
-        PlanOption("Skirk route", {"skirk": 1}),
-        PlanOption("Ayaka fallback", {"ayaka": 1, "cryo_support": 1}),
-    ),
-)
-```
-
-The engine does not claim that these are the entire four-person teams. It only
-protects the strategic resources.
-
-## Hard-but-flexible invariant
-
-An action is hard-blocked only when, after applying it, **no combination of
-remaining checkpoint options fits inside remaining vigor**.
-
-This gives both properties we want:
-- **hard**: a truly dead future state cannot silently pass;
-- **flexible**: named characters are not frozen to acts when a valid fallback exists.
-
-## Recruitment
-
-Recruitment is dynamic. Candidate ranking should prefer the candidate that:
-1. turns BROKEN -> CONDITIONAL/SAFE;
-2. turns CONDITIONAL -> SAFE;
-3. increases the number of feasible future routes;
-4. improves soft preferences after strategic safety is already equal.
-
-This makes "who to draw now?" state-dependent instead of a fixed global tier list.
-
-## Buffs
-
-Buff selection belongs after the hard feasibility layer.
-
-A future buff scorer should consume:
-- verified effect text;
-- affected elements/reactions/characters;
-- planned checkpoint cores;
-- expected number of future uses;
-- mechanism relevance;
-- opportunity cost in flowers.
-
-It must never invent an effect or let a generic guide recommendation override the
-actual account plan.
-
-## Input surface
-
-Do not build a UI prematurely. The desired end state is low-friction state capture.
-Acceptable future sources include:
-- small manual snapshots at decision points;
-- screenshot-assisted extraction;
-- an available trustworthy API/import.
-
-The implementation should be chosen only when input friction becomes the dominant gap.
+Portable ZIP 使用官方 SHA-256 固定的 CPython 3.13.12 embeddable，`_pth` 加入本包目录、隔离系统环境；`.cmd` 是用户入口。源码包不含运行时；Windows包带源码/模板/核心 tests，以便同一规则检查。本机 Linux 构建不能证明 Windows可运行；原生 Windows CI 先验证 ZIP 才有权限发布 Release。

@@ -1,0 +1,6 @@
+{
+  "flat_failures": 2,
+  "min_gain": 10,
+  "max_attempts": 6,
+  "max_seconds": 900
+}

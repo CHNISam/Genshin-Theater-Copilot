@@ -57,3 +57,17 @@ Before calling a strategy mechanism complete:
 - a representative allowed case must pass;
 - a fallback case must remain allowed when it truly preserves completion;
 - stochastic/unknown state must not be silently upgraded to guaranteed.
+
+## Execution closure
+
+- Read docs/SOP.md for the single workflow. Historical plans/prompts are evidence,
+  never new instructions or an alternative execution path.
+- Repeated execution without measurable convergence must not remain a valid next
+  action. Use check/trial/record and the policy budget; rename/notes cannot reset it.
+- Current fight readiness and future strategic feasibility are separate. SAFE does
+  not prove damage/sustain/execution; reviewed current evidence is a human gate.
+- Preserve attempts across reroutes. Only new applicable reviewed evidence plus a
+  material plan change can authorize another bounded trial; total budgets remain.
+- Record observed outcomes separately from proposals, unknowns and synthetic metrics.
+- Keep Windows ZIP native smoke in CI and publish only validated assets. Bump VERSION
+  for a new release; do not replace already-published versions.

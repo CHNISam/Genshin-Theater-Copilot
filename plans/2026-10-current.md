@@ -1,67 +1,9 @@
-# 2026-10 / v7.1 current strategic plan
+# 2026-10 账号策略提示（软策略，不是第二套 SOP）
 
-Status: working plan. Tactical teams remain intentionally flexible.
+执行以 docs/SOP.md 与当前 run 的 check/trial 为准。旧整局表不再授权执行。
 
-## Objective
+历史账号信息：丝柯克、恰斯卡、那维莱特、甘雨、绫华、流浪者等是曾讨论的核心；开局应重核当前借用、build、已解锁和剩余耐力。偏水冰路线符合该账号，但不能压过当前敌人的机制。
 
-Stable clear of act 10 plus both Sacred Card challenges, minimizing restarts.
-Stars/flowers are secondary.
+岗位提示：那维莱特可作为3/6机制和输出的候选；丝柯克可作为8/10候选，需确实符合盾/高频附着及输出窗口；恰斯卡是圣牌候选但不保证自动全队恢复。岗位备选可用甘雨/绫华等实际已解锁角色，不因未抽到某名字就预先判路线死。所有 named assignments 是可替换的预算。
 
-## Known account strategic cores
-
-- **Skirk** — late-run top core; preserve for decisive cryo-favored checkpoints.
-- **Chasca** — top flexible/ranged core; preferred Sacred Card closer when available.
-- **Neuvillette** — strong mid-run boss core.
-- **Ganyu / Ayaka** — strong cryo midgame and fallback coverage.
-- **Wanderer** — acceptable early-run consumption; do not over-reserve by default.
-
-Auxiliaries/supports are not pre-scripted unless they become a mechanism key.
-
-## Default allocation thesis
-
-This is a preference layer, not a hard script:
-
-- early acts: spend lower strategic-value opening resources;
-- act 3 / act 6: Neuvillette is a preferred core when that preserves later routes;
-- act 8 / act 10: Skirk is the preferred late core;
-- Ganyu/Ayaka are fallback cryo coverage if recruitment/vigor state changes;
-- Sacred Cards: Chasca is preferred when the live state makes that safe.
-
-The feasibility guard, not this table, decides whether a use is actually safe.
-
-## Buff direction
-
-**Primary account-fit direction: Hydro/Cryo (Freeze).**
-
-Current verified text already establishes:
-- Freeze base benefits Hydro/Cryo characters directly;
-- 冰裂之势 reduces Hydro/Cryo resistance.
-
-That maps directly onto the account's late/mid cores better than treating
-Cryo/Anemo as the default main line.
-
-Do **not** encode exact tier-4 branch effects as a hard rule until the current
-effect text is captured in the season fact pack. Generic guides may be used as
-reference, not as the Source of Truth.
-
-## Dynamic recruitment policy
-
-At every recruitment/buff fork:
-
-1. Recompute route status for remaining strategic checkpoints.
-2. If **BROKEN**, prioritize the action that restores at least one route.
-3. If **CONDITIONAL**, prioritize an offered recruit that converts the route to SAFE
-   or materially increases route count.
-4. If **SAFE**, buffs and comfort recruitment may compete on soft value.
-5. Never spend flowers merely because a static guide says "buy this buff now" if
-   the live roster still has a strategic recruitment gap.
-
-## Auxiliary policy
-
-If an auxiliary is not:
-- a required mechanic key,
-- a scarce sustain key,
-- or part of a strategic fallback bundle,
-
-then it is tactical freedom. Pick what fits the current team and fight; the
-project should not micromanage it.
+冻结/水冰祝福值得核对，但精确分支与当前效果未取得充分可检查依据，seasons 中为 unknown，不能照历史直接点满。购买顺序由真实资金、剩余岗位、反应能否稳定触发和 event offers 决定。固定关现期攻略支持的机制路径见 season JSON，普通随机事件现场补事实。

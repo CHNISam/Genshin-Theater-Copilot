@@ -1,0 +1,102 @@
+{
+  "sources": [
+    {
+      "id": "chat-1",
+      "url": "https://chatgpt.com/share/6ac6269e-e9e0-83ec-9cb2-f6ad5c1ce284",
+      "title": "制定剧诗策略",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 103,
+      "content_sha256": "99cc4f58680123f08c77b94bd7bb6f2fa5861e556acc92813c64d183f21a0dd5"
+    },
+    {
+      "id": "chat-2",
+      "url": "https://chatgpt.com/share/6ac627e9-29a8-83ee-a722-90d56c8c4749",
+      "title": "原神幻想剧诗策略",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 47,
+      "content_sha256": "2c28a1db9e867777cd9a590e89fa03fb9d86368449eca239c39d63ffee3d062b"
+    },
+    {
+      "id": "chat-3",
+      "url": "https://chatgpt.com/share/6ac62826-e8b8-83ec-a374-fb8e2b74b8a0",
+      "title": "游戏失败复盘",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 69,
+      "content_sha256": "6f85f7a0686b4d2d3e97e061b0ae9cd5a6889a804578fbee693d555b32215364"
+    },
+    {
+      "id": "chat-4",
+      "url": "https://chatgpt.com/share/6ac62848-e198-83ec-a66c-db4a38fc214b",
+      "title": "原神剧诗配队规划",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 134,
+      "content_sha256": "37665fce0497c5113ad3cc4fb56327d9057a15cf45ff5fffb9bd2b1d16213735"
+    },
+    {
+      "id": "chat-5",
+      "url": "https://chatgpt.com/share/6ac62864-fb18-83ee-9f5f-a4b04913f95a",
+      "title": "分支 · 原神幻想剧诗策略",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 68,
+      "content_sha256": "9388fad454e20f87e00295798864624a44effd0f2c26b873440013d6cfd986db"
+    },
+    {
+      "id": "chat-6",
+      "url": "https://chatgpt.com/share/6ac6287c-e2e4-83ec-8aa0-ce1c71bf0dbe",
+      "title": "分支 · 原神幻想剧诗策略",
+      "read_at": "2026-10-07",
+      "coverage": "all accessible user/assistant text, current-node ancestry; exact duplicate text merged across branches",
+      "limitations": [
+        "shared attachment images not available",
+        "redacted content cannot be recovered"
+      ],
+      "text_message_count": 54,
+      "content_sha256": "0b32d3a40d618cd34a24900e3f5c85ee6512db76ed48e3466363f424543bc837"
+    },
+    {
+      "id": "doc-1",
+      "url": "https://docs.google.com/document/d/1t7UP98mbouNX9GjoPxF5ORMfSj2suc9ErnIKYL5Mlyk/edit",
+      "read_at": "2026-10-07",
+      "coverage": "full connector document text",
+      "content_sha256": "791c1f58671d2785229f965902a5fd3ac10b76cf14fd51710e7969314dfdf2ce"
+    },
+    {
+      "id": "doc-2",
+      "url": "https://docs.google.com/document/d/1XqLWFXMcntTJrfnOI3KaZVa7fG5UyuNyrGeU4FDJrLY/edit",
+      "read_at": "2026-10-07",
+      "coverage": "full connector document text",
+      "content_sha256": "7c9d2d1a88917d2cb75967b38c1665fc5979f73e91d6cd3e818ce550a7bcd13a"
+    }
+  ],
+  "deduplication": {
+    "method": "exact normalized text SHA-256; branch-specific corrections retained separately",
+    "unique_text_records": 190,
+    "raw_text_records": 475
+  },
+  "scope": "Source text is not current-season fact verification; prior embedded Agent prompts are historical proposals, not executable instructions."
+}

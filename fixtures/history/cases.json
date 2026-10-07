@@ -1,0 +1,174 @@
+[
+  {
+    "id": "researched-but-no-convergence",
+    "sources": [
+      "chat-3:message:e2d80e67-c965-4d7d-bea3-e77c26ef8f6f",
+      "chat-3:full-thread"
+    ],
+    "outcome": "operator-reported final failure after prior research, multi-round planning, execution and corrections",
+    "observed": [
+      "repeated attempts did not clearly converge",
+      "operator rejected the diagnosis that no research had been done"
+    ],
+    "unknown": [
+      "exact encounter identity",
+      "root bottleneck",
+      "per-attempt numeric metrics",
+      "actual builds/buff text in missing screenshots"
+    ],
+    "policy": "stop-and-diagnose",
+    "tests": [
+      "test_original_failure_future_safe_does_not_allow_third_flat_trial",
+      "test_missing_telemetry_cannot_prove_convergence",
+      "test_failure_stop_is_wired_to_actual_authorization"
+    ],
+    "simulation": {
+      "numeric_metrics": "synthetic; not historical telemetry",
+      "scores": [
+        40,
+        42
+      ],
+      "seconds": [
+        90,
+        90
+      ],
+      "expect": "REPEATED_NON_CONVERGENCE"
+    }
+  },
+  {
+    "id": "actual-vigor-over-old-reservation",
+    "sources": [
+      "chat-4:message:08cba241-78bd-43d1-971f-c24d98ee039c",
+      "doc-1"
+    ],
+    "outcome": "operator repeatedly corrected outdated vigor assumptions",
+    "observed": [
+      "Lauma last use, Barbara/Sandrone exhaustion cannot be overwritten by reservations"
+    ],
+    "policy": "live-state-first",
+    "tests": [
+      "test_duplicates_unrecruited_zero_vigor_rejected",
+      "test_stale_rotation_or_build_requires_review_not_silent_reset"
+    ]
+  },
+  {
+    "id": "buff-purchase-consumes-recruit-budget",
+    "sources": [
+      "chat-4:message:73e028f5-2527-4ba1-90c7-c86d7bbab9da",
+      "doc-1"
+    ],
+    "outcome": "operator could not afford recruit after buff purchase",
+    "policy": "resource-ledger",
+    "tests": [
+      "test_purchase_affordability_and_state_updates"
+    ]
+  },
+  {
+    "id": "shield-is-not-party-or-full-hp-heal",
+    "sources": [
+      "doc-1",
+      "chat-4:message:111d2ad7-1973-4fb3-a1cb-0ac972a89ca3"
+    ],
+    "outcome": "healing requirement operator-confirmed for that cycle; not an eternal boss rule",
+    "policy": "mechanic-capability-before-strength",
+    "tests": [
+      "test_bad_current_mechanic_blocks_even_with_future_safe"
+    ]
+  },
+  {
+    "id": "weak-dendro-plan-not-validated-fix",
+    "sources": [
+      "doc-1",
+      "chat-4:message:e29597ac-245c-4c7c-a534-5a522d095690"
+    ],
+    "outcome": "Kaveh setup underperformed; operator used Cyno + Ororon to pass a stage. AI proposed Lauma/Fischl fixes are not proved executed successes.",
+    "policy": "observed-vs-proposed",
+    "tests": [
+      "test_history_outcomes_do_not_turn_proposals_into_facts"
+    ]
+  },
+  {
+    "id": "mechanic-core-wrong-stage",
+    "sources": [
+      "chat-5:message:9bd0b656-4a07-4d56-a638-77a672b4a57b"
+    ],
+    "outcome": "operator reports prior mechanism team assigned to wrong encounter",
+    "policy": "mechanic-reservation-and-fallback",
+    "tests": [
+      "test_history_mechanic_core_cannot_be_exhausted_early"
+    ]
+  },
+  {
+    "id": "no-guaranteed-reroll-or-ownership",
+    "sources": [
+      "chat-6:message:c38cb136-8b02-4b14-9896-4f37273780db",
+      "chat-2:full-thread"
+    ],
+    "outcome": "operator observed two event rerolls without recruitment event",
+    "policy": "random-is-conditional",
+    "tests": [
+      "test_conditional_future_stays_warning_not_guaranteed",
+      "test_history_shared_support_double_booking"
+    ]
+  },
+  {
+    "id": "august-resource-structure",
+    "sources": [
+      "chat-5:message:3f554085-c781-4368-be9b-15e34db36a63",
+      "chat-2:full-thread",
+      "chat-6:full-thread"
+    ],
+    "outcome": "operator later reports aggregate clear; no complete trustworthy per-attempt telemetry",
+    "observed": [
+      "goal includes 10 acts and both cards",
+      "ample sustain does not mean scarce hydro functions are covered",
+      "borrowed C6 options compared on marginal mechanic/resource value, not a tier list"
+    ],
+    "policy": "account-specific-option-value",
+    "tests": [
+      "test_partial_coverage_cannot_disappear_from_objective",
+      "test_history_shared_support_double_booking"
+    ]
+  },
+  {
+    "id": "september-completed-run",
+    "sources": [
+      "chat-4:message:fb7a20a6-d67d-455d-b910-2c51792b3dd2",
+      "doc-1"
+    ],
+    "outcome": "operator-confirmed clear",
+    "observed": [
+      "escalated to strong borrowed core after weaker output failed",
+      "current build and actual reaction/normal-attack driving matter",
+      "buff selection follows remaining actual teams; no spend-for-spending rule"
+    ],
+    "policy": "scoped-success-not-universal-route",
+    "tests": [
+      "test_reviewed_changed_plan_bounded_trial_then_pass",
+      "test_new_id_for_same_source_is_not_new_evidence"
+    ]
+  },
+  {
+    "id": "older-document-incomplete-final",
+    "sources": [
+      "doc-2"
+    ],
+    "outcome": "record reaches act 9; final act checkbox incomplete; final clear not established",
+    "policy": "do-not-promote-history-to-current-facts",
+    "tests": [
+      "test_old_season_evidence_and_unreviewed_reference_block"
+    ]
+  },
+  {
+    "id": "october-account-correction",
+    "sources": [
+      "chat-1:full-thread"
+    ],
+    "outcome": "operator corrected generic cryo/anemo bias and overbroad buff claims; hydro/cryo account preference retained as soft policy",
+    "policy": "current-buff-source-required",
+    "tests": [
+      "test_unknown_only_blocks_relevant_fact",
+      "test_history_current_buff_claim_is_not_inherited"
+    ]
+  }
+]

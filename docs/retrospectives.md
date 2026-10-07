@@ -1,53 +1,38 @@
-# Historical strategy lessons
+# 历史提炼与 regression
 
-These are operator-validated lessons from prior Theater cycles. They are regression
-inputs, not timeless game facts. Season-specific names/mechanics must be reverified
-before reuse.
+完整可访问文本已读：六份 ChatGPT 共享会话＋两份 Google Docs。来源、哈希、消息数量、去重方法及缺失附件见 [sources.json](../fixtures/history/sources.json)，逐案例来源定位和 regression 见 [cases.json](../fixtures/history/cases.json)。不存聊天原文，不以 AI 引用标记代替重新核查。
 
-## 2026-04 cycle
-The useful planning unit was not raw DPS. Water/ice/geo boss mechanics required
-reserving the right elemental/mechanical answers for boss acts.
+## 已查、已规划、已纠偏，仍磨很久失败
 
-**Reusable closure:** boss mechanism constraints must enter before generic strength.
+用户确认：提前研究过，多轮规划和实战中调整过，仍未明显收敛，最后失败并损失奖励。这不是“未查攻略”。从可访问材料无法可靠确定准确敌人/关号、主导瓶颈和每轮数值，所以不补写某 Boss 根因。
 
-## 2026-08 cycle
-The successful run was planned backward from late checkpoints. Key examples included
-reserving Sandrone for act 8, Skirk for act 10, Charlotte across Sacred Card
-challenges, and Xingqiu as hydro disaster recovery. Early acts consumed lower-value
-resources.
+失败类别：系统保护未来资源，但对当前策略无效的执行没有退出条件。case `researched-but-no-convergence` 将它接入未来 SAFE＋当前失败的授权回归。40/42%、90s 都是明确标注的合成反例；真实历史缺遥测本身也会触发 missing-telemetry 回归。stop 不随换方案名消失，新证据及实质变化可以有限重试，但总预算不重置。
 
-The run was reported as smooth and broadly matched the plan.
+## 完成的 9 月局
 
-**Reusable closure:** backward reservation + fallback coverage works.
+操作者在最后明确“总算打完了”，doc-1 是综合复盘。保留当前库存优先、机制治疗、反应/操作匹配、强借用核心作为有 future fallback 的升级手段。
 
-## 2026-09 cycle
-A critical correction occurred when a generic buff recommendation conflicted with
-the actual roster/mechanism needs. Stage 8 required a Lunar-Charged solution
-(Columbina + Aino in that cycle), stage 6 needed hydro shield breaking, stage 10
-needed strong healing, and the two jailbreak/challenge mechanics imposed healing /
-energy constraints.
+错误与纠偏：
 
-**Reusable closure:** a usable missing character/mechanism key can outrank another
-buff purchase; buffs follow the actual future teams.
+| 实战问题 | 进入的机制/验证 |
+|---|---|
+| 旧计划继续推荐已耗尽角色；菈乌玛还剩一次被当作两次 | actual vigor / four-team checks / sync；失败不静默改库存 |
+| Buff 升级后剩60，仍假设还能买角色 | 真实 cost 事务和 overspend regression |
+| 衰减/全队掉血的岗位被泛化为盾奶同类 | 能力标签和 mechanic providers，当前事实限定范围 |
+| 卡维草附着不足，AI提出替换却被当作成功 | observed/proposed 分离；用户报告的赛诺＋欧洛伦过关才记实际结果 |
+| “雷神”被忽略精通/直伤 build，普攻驱动与重击错配 | 账号能力与rotation为人工审核点；build变化要求复核 |
+| 强行追额外 Buff，忽略剩余实际队伍/资金 | future alternatives＋当前资源再算；不做固定购买表 |
 
-## 2026-10 / 7.1 cycle
-Two failure modes reappeared:
-- a generic guide-style cryo/anemo buff priority was over-applied to this account;
-- buff wording was described too loosely, creating a false impression of universal
-  damage gain.
+用户现场走过的自由队伍也能成功，不能因偏离初始 named reservation 就淘汰。硬的是机制能力和未来资源，软的是非必要挂件/旧最优队名。
 
-The account's relevant strategic cores include Skirk, Chasca, Neuvillette, Ganyu,
-Ayaka, and Wanderer. The current cycle also makes high-frequency cryo and sustain
-mechanics decision-relevant in late/special fights.
+## 8 月局与随机分支
 
-**New regression requirement:** current buff effects must be provenance-checked;
-account-fit and checkpoint feasibility must be evaluated before ranking buff lines.
+主会话及分支大量重复，统一提炼；后续用户说已经通关，可记录 aggregate clear，但不把缺失的完整实战日志补齐。目标是12场；生存位充足不等于稀缺水功能/辅助额度充足。满命借用需比较机制与资源边际价值，不写永远选某人。早招募有期权价值，具体截止期需按替代者和实时缺口调整。
 
-## Permanent policy extracted from these runs
+用户见到两次 event reroll 没有伙伴：不保证所有刷新出现角色，更不保证取得指定人。事件重置和候选阵容重置不同，历史所讨论的特殊事件效果仍需本期核对。现有 CONDITIONAL 和回归继续保留。
 
-- Plan backward from decisive checkpoints.
-- Preserve at least one fallback route.
-- Treat recruitment deadlines dynamically.
-- Spend ordinary/filler characters freely when they are not future keys.
-- Do not micromanage auxiliaries unless they become a mechanism key.
-- Recompute after each decision-relevant state change.
+## 较早 Google 作战表与 10 月纠偏
+
+doc-2 的最后幕未勾选完成，仅能证明记录推进到第9幕；其中旧机制/Buff/具体队伍不移植为本期事实。原仓库提到的4月细节在本次八份可访问来源中没有充分独立定位，撤去“已验证4月实战”宣称。
+
+10月用户纠正泛化冰风攻略、忽略账号水冰核心和过宽的“全员 Buff”结论。保留账号偏好为软策略，把 exact Buff 数值/分支降回 unknown 直到新证据；fixed boss guide_supported 与当前账号体验仍需逐关合同。历史计划只能提示岗位和备选，不能强行命名唯一角色。
