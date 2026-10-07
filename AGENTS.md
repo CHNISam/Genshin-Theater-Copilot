@@ -71,12 +71,3 @@ Before calling a strategy mechanism complete:
 - Record observed outcomes separately from proposals, unknowns and synthetic metrics.
 - Keep Windows ZIP native smoke in CI and publish only validated assets. Bump VERSION
   for a new release; do not replace already-published versions.
-
-
-## Project management
-
-- `Backlog.md` is the single source of truth for execution status and current work.
-- The Google project sheet is for project-level Goals, Ideas, and Docs; do not duplicate task logs there.
-- `docs/SOP.md`, QUICKSTART, plans, prompts, and historical material are product/process references, not competing task queues.
-- New ideas stay out of the Backlog until they are selected for execution. Once selected, define the intended outcome and proof before implementation.
-- Current priority is real-run usability validation. Do not expand CLI/UI/automation merely because the mechanism exists; use real operator friction to justify the next change.
