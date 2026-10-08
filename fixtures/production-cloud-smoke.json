@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-08",
+  "code_ref": "bcc6df74c9b055df36a6a95152675ee966baac73",
+  "host": "current ChatGPT Work session",
+  "storage": "existing private Google Sheets journal; location not published",
+  "proof_scope": "Real connector IO and new Python-process recovery over synthetic demo inputs; not real play or device switching",
+  "checkpoints": [
+    {
+      "op": "initial",
+      "revision": 1,
+      "commit_id": "90c4abb36c8d4f550ef70f619806a6b3ebbe4d635cf86b499b3a953a0518e701",
+      "pending": false,
+      "attempts": 0,
+      "flowers": 100,
+      "rerolls": 1,
+      "completed": []
+    },
+    {
+      "op": "purchase",
+      "revision": 2,
+      "commit_id": "1ad5a59225549e47c46228bc54492502a9445f692fb8bf409de8d178edb4284a",
+      "pending": false,
+      "attempts": 0,
+      "flowers": 40,
+      "rerolls": 1,
+      "completed": []
+    },
+    {
+      "op": "sync",
+      "revision": 3,
+      "commit_id": "c1a4b9b58a1ce4cb2a2c3f97a627ed941fafb76fd721de3d4317b6a1f93100a1",
+      "pending": false,
+      "attempts": 0,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "authorize",
+      "revision": 4,
+      "commit_id": "2e20f08585cf54cdbdfe229cc05720c7c94af64a06bf7aaa864da8cb9296797d",
+      "pending": true,
+      "attempts": 0,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "fail",
+      "revision": 5,
+      "commit_id": "0e21043927d3d2e2c7b6743eb22c10bd03f66dd8601d7949799dfe32a88f6bf3",
+      "pending": false,
+      "attempts": 1,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "authorize",
+      "revision": 6,
+      "commit_id": "da9c8f136da44fe5429e9b6d5d528bda0dc2f5f78a7027038a87c094adcf7d3b",
+      "pending": true,
+      "attempts": 1,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "fail",
+      "revision": 7,
+      "commit_id": "99a9f2164bedc7ed52549186393e341638e3c832ffaa97262933fb93b570c74c",
+      "pending": false,
+      "attempts": 2,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "reroute",
+      "revision": 8,
+      "commit_id": "776473d0ebadd2e50659460829748c975b3cadc9a98590815b5021f21b12d675",
+      "pending": false,
+      "attempts": 2,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "authorize",
+      "revision": 9,
+      "commit_id": "2430ede2155a572525a42d3c295dfdb2e57300f06470bb8a554385ab89756d97",
+      "pending": true,
+      "attempts": 2,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": []
+    },
+    {
+      "op": "pass",
+      "revision": 10,
+      "commit_id": "b5aeef8b168d4d06b1c8010700708252ae86b4c99406ead86c25d209fcb10b12",
+      "pending": false,
+      "attempts": 3,
+      "flowers": 120,
+      "rerolls": 2,
+      "completed": [
+        "act-8"
+      ]
+    }
+  ],
+  "identical_append_replay": {
+    "real_connector_append": true,
+    "revision": 10,
+    "attempts": 3,
+    "core_vigor": 1,
+    "unchanged": true
+  },
+  "live_intake_migration": {
+    "real_connector_append_and_readback": true,
+    "revision": 2,
+    "phase": "intake",
+    "harness": null,
+    "history_preserved": true,
+    "account_and_game_outcomes_invented": false
+  },
+  "limits": [
+    "No real player account/fight observations",
+    "No actual mobile-to-desktop session switch",
+    "Lost-ack retry scenario simulated using an actual written/readback row, not a real network timeout",
+    "Single writer only; no server CAS"
+  ]
+}

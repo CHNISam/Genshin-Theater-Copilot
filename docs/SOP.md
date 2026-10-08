@@ -82,3 +82,13 @@ BLOCKED 时合法下一步是查证和诊断，不是执行重试。程序没有
 run 保存全部结果，记录 observed / proposed / unknown。经操作者确认的重大失败写入 fixtures/history 或新的 case；具体战斗观察留 season/run 范围，通用教训写 policy。先写能重现错误的 regression，确认坏 case 拒绝、代表性允许 case 和真实备选仍通过，且试战入口实际调用检查。新规则不要只添一句 README。
 
 B站 watchlist 在 maintenance/watchlist.json；只添加用户推荐的 UID/主页。新内容先 pending（可检查定位、日期、赛季、主张、实战证据、未解决事项），再按上述事实审核进入赛季包/策略；不是自动订阅，也不自动把 UP 主观点升为机制事实。
+
+## 8. 实际使用收口
+
+Agent从AGENT.md唯一入口自动发现存档、初始化和研究，玩家只给现场并执行操作。当前账号审查见 `src.execution_review`：合同明确 damage/sustain/execution 的证据等级；真实clear与guide-proposal严格分开。review绑定当前配置、目标和证据，变更后重新审核；supported需有可定位clear，uncertain只支持有依据的有限probe，insufficient拒绝试战。未来capability_review不替代资源求解器；已知不够的路线被剔除，未审查的路线保持警告。没有成功概率数据库，不报估计百分比。
+
+候选招募排名只是资源杠杆。Agent还须比较真实build、机制适配、当前/后续覆盖、真实cost与失败代价；route数量更多不能覆盖账号能力不足。随机奖励/恢复/属性变动按现场sync，只记录发生后的actual；候选/预计收入不能入账。现有purchase覆盖招募/增益/刷新；其他事件用已有sync记录实际资源并observe来源，不自建事件服务。
+
+当前check.next_action不因无关公共资料欠账退回研究。持有但未依赖的未知增益不纳入论证；一旦作为依据就必须列入buff_fact_ids并核验。首次/恢复研究一次并记实际尝试，无法读取时按范围选择已具备证据的打法；关键依赖不足才暂停，不问玩家整理公开表。默认目标含两张圣牌时，必须先完成它们再进第10幕；check和next均检查。
+
+保存和恢复用session.prepare_save/confirm_save，不把工具成功返回视为保存完成。暂离/切设备先保留pending与最近实际资源，返回只询问未记录结果/现场变化。仅有模拟与connector验证时，不关闭真实手机/电脑验收。

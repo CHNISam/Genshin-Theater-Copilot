@@ -24,7 +24,7 @@
 
 ### B-02｜Agent 入口实用复测与兼容性验证
 
-**现状：** 默认入口已经确定为通用 AI + SOP + 独立共享状态，Windows CLI 降为次级适配。实现及当前会话可用范围见 D-02 / [验证记录](docs/agent-validation.md)。
+**现状：** 默认入口为AGENT.md通用AI + SOP + 独立共享状态，Windows CLI为次级适配。2026-10-08生产收口补入账号执行证据审查、未来已知不足路线排除、pending优先恢复、末关顺序、按相关依赖研究与存档发现/写前核对/原行重试/读回、显式代码升级。实现及范围见[生产验证](docs/production-validation.md)。真实现场与实际跨设备仍未验证，不能标完整产品验收。
 
 **完成证据：** 随 B-01 复测“当前局面 → 建议 → 实际操作 → 反馈 → 保存 → 新会话恢复”，确认用户无需 CLI/JSON。失败/未知/条件路线不会被简化输出隐藏。ChatGPT Work 手机端须单独实测其实际工具，不能凭当前电脑会话推定支持。Claude/Gemini 仅在其真实工具允许读仓库、执行guard、读写状态且恢复成功后扩展支持声明；未测继续标理论可适配。无工具降级须明确未机械验证/未保存。无真实摩擦证据不开发新前端或服务。
 
@@ -37,6 +37,8 @@
 ### B-04｜当期公共资料完整交付（仍未关闭）
 
 **2026-10-08实际进展：** 补充开幕/特邀及期次的可追溯依据、六个固定节点的阶段参数/敌人数量/生存目标、六条现期增益数值或功能片段；24个分支的通用参考库存已经结构化，但没有把旧/通用表升级为本期完整文本。凝渡本期描述已读取并按用户优先级收录；百渊候选 UID520175970 的往期页面可核对，本期条目未取得。公告只取得转载，未伪称官方原始账号。BWIKI“当期”正文仍8月，已排除；第8节点抗性/窗口存在攻略冲突，保留共同机制、隔离争议参数。
+
+**本轮追加研究：** 凝渡简介复核、直接视频BV12Zak6LEMF、三张增益图与原始请求、HomDGCat/HoneyHunter复查仍不可读；替代收藏页搜索结果与正文不符，拒绝采信。新增decision_brief/普通候选部分目录/末关顺序，仍区分proposal与clear，未补造完整分支。
 
 **完整性：** 本次全量严审仍为 PARTIAL_PUBLIC：48个公共交付单元仅12个完整、36个缺失/不完整/冲突；不是12/48字段或实战可靠率。已有数值片段仍可查，但不等于完整分支。图片/视频/数据库读取的实际失败与替代尝试在 season.research；次日再查，不能归为仅现场可知。
 
@@ -83,3 +85,11 @@ GUI / OCR / 自动读取游戏 / Web App / 后台监控暂不开发。只有 B-0
 **验证：** tests/test_season_readiness.py的18项重现分支删除、嵌套空值、过期、来源错季、捕获日期伪刷新、重分类逃逸、下一期清单、实际live authorize拒绝/刷新修复；全部86项回归通过（原68保留）。CI增加公共缺口audit artifact与共同机制门槛；strict是完整交付门槛，不能以CI绿代替。本次证据和限制见docs/season-validation.md；未发布/替换v1.0.0。
 
 D-03收尾证据：[PR #2](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/2) 已合入main；[源码a235bd1的CI](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37727185047)回归/非UTF环境/18项原生Windows烟测通过。完整公共严审仍12/48、退出2，B-04保持未完成。
+
+### D-04｜Agent生产适配的可验证收口（实战验收另列）
+
+已交付并复用原Harness：live账号能力/成功证据/有限probe分层并绑定相关事实、配置和目标；资源SAFE与未来能力路线分开，明确不足剔除，条件招募保留警告；当前公共依赖与全量资料欠账分开，现场未知走观察、pending优先记录；先完成required cards再末关；现有私有Sheet自动发现、literal/header/完整链验证、写前head核对、原行重试与readback确认；显式代码迁移保留全部历史。用户仍只需AGENT入口和最少当前画面，无新增App/服务。
+
+**实际证据：** [PR #3](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/3)，源码bcc6df7的[CI](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37733105296)全套105/非UTF core102/Windows smoke18通过。当前Work真实connector完成10检查点及重复相同行追加，逐步新进程读回，结果与资源未重复结算；既有live/intake留痕升级r2读回，没有补造账号。独立审查三项问题均重现修复并复核。详见[生产验证](docs/production-validation.md)。
+
+**范围：** 关闭本轮适配缺陷和当前工具技术闭环，不关闭B-01/B-02真实现场/实际跨设备、B-03阈值实战校准、B-04完整公共交付（仍12/48）。源码审查字段不能证明外部事实真伪，云端仍单写者；普通无工具AI/其他Agent没有新增已实测支持声明。
