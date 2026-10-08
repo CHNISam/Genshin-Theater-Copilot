@@ -1,6 +1,6 @@
 你正在更新 Genshin Theater Copilot 的 {{season}} 赛季包。按 docs/SOP.md 的同一流程工作。
 
-先读 AGENTS.md、现有 seasons JSON、fixtures/history/cases.json 和 tests。保留正确 guard。
+先读 AGENT.md、docs/SOP.md、现有 seasons JSON 与相关历史案例。由你联网检索/核对，用户无需调用 CLI；具有执行工具时直接使用 harness.validate_season。维护者改公共包时读 AGENTS.md 并跑相应回归。保留正确 guard。
 
 1. 从官方公告/游戏内当前文本确定月份、版本、开放区间、模式、元素、开幕/特邀角色。确认实际生效日期，不能只搜“10月”而拿到去年攻略。
 2. 查固定 3/6/8/10 幕和两圣牌；普通随机战只留 unknown，遇到真实事件再补事实。逐项记录有效元素/反应、附着频率、治疗范围、机制窗口、替代解。区分硬条件、优势、舒适建议；不得把攻略角色名提升为唯一解。

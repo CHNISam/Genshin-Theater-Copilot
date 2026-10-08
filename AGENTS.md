@@ -1,6 +1,10 @@
 # Project instructions
 
-This repository is a strategy/constraint project for Imaginarium Theater.
+This repository is an Agent-first strategy/constraint project for Imaginarium Theater.
+General-purpose AI hosts own reasoning/research/interaction. Start gameplay at
+[AGENT.md](AGENT.md); the player must not operate the CLI or maintain internal JSON.
+Cloud storage owns persistence only; no model backend, app or Cloud Run service.
+Verify actual host tools; never infer mobile/other-agent support from SOP readability.
 
 ## Project execution status
 
@@ -11,7 +15,7 @@ This repository is a strategy/constraint project for Imaginarium Theater.
   prompts, retrospectives, or a new project checklist.
 - [docs/SOP.md](docs/SOP.md) owns gameplay execution rules. Its run state and the
   game-fact precedence below are separate from project task status.
-- v1.0.0 is the completed baseline. Prioritize real-player dogfood and demonstrated
+- v1.0.0 is the completed baseline. Preserve its validated core; prioritize Agent-native cross-device dogfood and demonstrated
   friction; do not add CLI features or choose GUI/OCR/Web/background monitoring
   without the evidence gates in Backlog.md.
 

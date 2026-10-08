@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-08",
+  "environment": "this ChatGPT Work session: Google Drive connector + Linux Python 3.12, fresh process per step",
+  "source_ref": "8677b8b14899f5be0ab64e9c2ef5de24dc5adc32",
+  "population": "synthetic demo only, not real game, mobile UI, or other AI hosts",
+  "run_id": "cloud-smoke-published-2026-10-08",
+  "initial_commit_id": "70f15428f3d0faa5784f79ed8e12ff52b2ba7cff64024c5af0040d55c631a2b5",
+  "steps": [
+    {
+      "commit_id": "2e0cf6660d046dd1046355cf0527edc938dede0d8c987846b2289bcfdb0c1d72",
+      "revision": 2,
+      "stage": "authorize",
+      "report": {
+        "status": "WARN",
+        "route": "SAFE",
+        "reasons": [],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "ONE_PREPARED_TRIAL",
+        "attempts": 0
+      },
+      "attempts": 0,
+      "pending": true,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "222afc6c0c7b1f20d2f54c60e2d1e7d2b96835a0f766ace82e5ac719476674db",
+      "revision": 3,
+      "stage": "record_fail",
+      "report": {
+        "status": "WARN",
+        "route": "SAFE",
+        "reasons": [],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "ONE_PREPARED_TRIAL",
+        "attempts": 1
+      },
+      "attempts": 1,
+      "pending": false,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "d5fa4c228f5c788c9b826b23cefb056d3a62897892c09f8578476bcf2aa68eb9",
+      "revision": 4,
+      "stage": "authorize",
+      "report": {
+        "status": "WARN",
+        "route": "SAFE",
+        "reasons": [],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "ONE_PREPARED_TRIAL",
+        "attempts": 1
+      },
+      "attempts": 1,
+      "pending": true,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "ff5c0352e97101ad4b64ac643599adae2d7bba19abc62c2b70a664ad2d0ceb9e",
+      "revision": 5,
+      "stage": "record_fail",
+      "report": {
+        "status": "BLOCKED",
+        "route": "SAFE",
+        "reasons": [
+          "REPEATED_NON_CONVERGENCE"
+        ],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "RESEARCH_OR_REPLAN",
+        "attempts": 2
+      },
+      "attempts": 2,
+      "pending": false,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "eb561c50d9b04a85ab3796989195df83ff16141470f9b5b8cdb613531aa6e72d",
+      "revision": 6,
+      "stage": "reroute",
+      "report": {
+        "status": "WARN",
+        "route": "SAFE",
+        "reasons": [],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "ONE_PREPARED_TRIAL",
+        "attempts": 2
+      },
+      "attempts": 2,
+      "pending": false,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "81600d856c3d56e49e9838b151d4f8820e826e52ffb74bcbcd033f52646a8ea1",
+      "revision": 7,
+      "stage": "authorize",
+      "report": {
+        "status": "WARN",
+        "route": "SAFE",
+        "reasons": [],
+        "warnings": [
+          "SYNTHETIC_DEMO_NOT_GAME_FACTS"
+        ],
+        "next_action": "ONE_PREPARED_TRIAL",
+        "attempts": 2
+      },
+      "attempts": 2,
+      "pending": true,
+      "core_vigor": 2
+    },
+    {
+      "commit_id": "e2f8dc0bc061137e52d386e29bc389560e72fabdf4b85c0291b890bbe73d8500",
+      "revision": 8,
+      "stage": "record_pass",
+      "report": {
+        "status": "COMPLETE",
+        "route": "SAFE",
+        "reasons": [
+          "ENCOUNTER_COMPLETE"
+        ],
+        "warnings": [],
+        "next_action": "NEXT_ENCOUNTER_OR_FINISH"
+      },
+      "attempts": 3,
+      "pending": false,
+      "core_vigor": 1
+    }
+  ],
+  "final_readback": "r8; 3 attempts; 1 reroute; act-8 complete; core vigor 1; no pending; hash matched; all 17 journal rows read and validated",
+  "live_intake_readback": "Separate live/intake r1 ready for field information; no game run activated and no current game facts supplied."
+}

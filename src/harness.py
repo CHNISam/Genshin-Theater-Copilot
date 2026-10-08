@@ -322,3 +322,14 @@ def prepare(run,package):
     run['fight']=deepcopy(package['fight']);run['evidence'].extend(deepcopy(package['evidence']))
     run['audit'].append(dict(kind='prepare-contract',at=_stamp()))
     return check(run)
+
+
+@_transaction
+def refresh_season(run, season):
+    """Same-season fact correction; never clear attempts or unlock a pending trial."""
+    _idle(run)
+    validate_season(season)
+    _require(season['id'] == run['season']['id'], 'new season needs a new run')
+    run['season'] = deepcopy(season)
+    run['audit'].append(dict(kind='season-refresh', at=_stamp()))
+    return check(run)

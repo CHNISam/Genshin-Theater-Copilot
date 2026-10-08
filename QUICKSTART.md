@@ -1,4 +1,10 @@
-# 5 分钟上手
+# 使用入口
+
+主入口：打开通用 AI，把 [AGENT.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/AGENT.md)、游戏截图和已有存档链接交给它。AI 负责研究、记录与 guard；你只提供现场并操作游戏。恢复时说“继续局号 …”，不需要学下面的命令。工具与平台限制见 [Agent 运行适配](docs/agent-runtime.md)。
+
+## 可选 Windows CLI 上手
+
+以下是 v1.0.0 的本地高级用户/调试入口，不是通用 Agent 使用的前提。
 
 Windows 10/11 x64：下载 Release 的 `*-win-x64.zip`，解压后双击 `theater.cmd`。不要在 ZIP 预览里直接运行。双击菜单支持初始化、检查、授权、录入和打开说明；其他操作在解压目录 PowerShell 中调用同一个入口。
 

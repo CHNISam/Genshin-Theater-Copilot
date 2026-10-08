@@ -140,9 +140,7 @@ def main(argv=None):
             elif cmd=='next':
                 package=load(args.input);harness.next_fight(run,package['fight'],package['evidence']);report=harness.check(run)
             elif cmd=='season':
-                harness._idle(run);season=load(args.input);harness.validate_season(season)
-                if season['id']!=run['season']['id']:raise ValueError('new season needs a new run')
-                run['season']=season;harness.validate(run);run['audit'].append(dict(kind='season-refresh',at=harness._stamp()));report=harness.check(run)
+                report=harness.refresh_season(run,load(args.input))
             else:raise ValueError('unknown command')
             if run!=before:save(args.run,run)
             return display(report)

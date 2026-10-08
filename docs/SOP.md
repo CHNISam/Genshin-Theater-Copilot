@@ -2,9 +2,17 @@
 
 本文件是唯一剧诗操作流程；README/QUICKSTART 只是入口，历史路线不是第二套执行规则。项目开发优先级与执行状态只看 [Backlog.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/Backlog.md)，不在本 SOP 维护待办。
 
+## 0. Agent 原生执行边界
+
+主入口是 [AGENT.md](../AGENT.md)：用户打开通用 AI，提供截图/口述并执行游戏操作；AI 负责研究、计划、录入和下一步决策。云端仅保存游戏局状态，不负责推理。工具、完整状态和手机/电脑恢复协议见 [agent-runtime.md](agent-runtime.md)。没有执行/写入工具时须标明降级，不能伪称 guard 已执行或状态已保存。
+
+下文 `sync / check / trial / record / next / prepare / reroute / event / research` 表示工作步骤，**不要求玩家运行命令**。有代码执行能力的 Agent 通过 `src.agent_state.act` 调同一 Harness：trial→authorize、next→next_fight、event→purchase、season→refresh_season；research 由 Agent 联网按 prompts/season-research.md 完成。Windows CLI 是可选适配器。
+
+开局事实未齐可先存 intake；只有真实账号/现场资料齐备才激活机械 run。每次选择或反馈后更新；推荐本身不代表已执行。试战先授权、保存 pending 并读回再执行，反馈记录也必须保存。换设备/Agent 从云端完整状态恢复，保留所有失败、预算和 pending；单会话写入、检测到分叉就停止，不凭聊天记忆续局。
+
 ## 1. 本期预检与开局预算
 
-维护者/AI 用 `research --season YYYY-MM` 准备公共资料。逐项获取来源、发布时间、访问时间、版本/有效区间、机制与 Buff 当前文本。`verified`、`guide_supported`、`unknown`、`conflict` 不能混用。`validate-season` 只验证结构、来源字段和同季范围，**不自动证明来源内容正确**。人工核对后导入；新月 init 新存档。
+AI 直接按 [赛季研究提示](../prompts/season-research.md) 联网准备公共资料；不要求玩家调用 research。逐项获取来源、发布时间、访问时间、版本/有效区间、机制与 Buff 当前文本。`verified`、`guide_supported`、`unknown`、`conflict` 不能混用。`validate-season` 只验证结构、来源字段和同季范围，**不自动证明来源内容正确**。人工核对后导入；新月 init 新存档。
 
 账号能力从当前画面/操作事实取得，旧月份角色练度只作为提问线索。只录决策相关 build 和 tags/source：高频附着≠元素标签，全队治疗≠单人回血，治疗到满血≠护盾，普攻驱动≠重击，精通雷神≠直伤雷神。特殊队伍条件由人工检查后再给出能力标签；不要假装程序有完整角色伤害数据库。
 
