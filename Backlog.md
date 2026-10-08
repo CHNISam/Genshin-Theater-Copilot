@@ -81,3 +81,5 @@ GUI / OCR / 自动读取游戏 / Web App / 后台监控暂不开发。只有 B-0
 根因是 validate_season只遍历已列facts，check只看当前引用，research只输出提示，空watchlist及没有独立清单/日级重试使公开缺失长期不可见。保留原Harness，新增src/season_readiness.py；live check/authorize接入来源注册、正文期次、定位、复核时效、独立树/分支和关键配置检查。明确PUBLIC研究债与LIVE未知，父节点和已取得canonical增益自动检查；无关分支/争议数值不阻塞共同机制。首次/恢复/到期研究循环在AGENT/SOP与公共证据协议，host联网执行，代码不冒充爬虫或后台服务。
 
 **验证：** tests/test_season_readiness.py的18项重现分支删除、嵌套空值、过期、来源错季、捕获日期伪刷新、重分类逃逸、下一期清单、实际live authorize拒绝/刷新修复；全部86项回归通过（原68保留）。CI增加公共缺口audit artifact与共同机制门槛；strict是完整交付门槛，不能以CI绿代替。本次证据和限制见docs/season-validation.md；未发布/替换v1.0.0。
+
+D-03收尾证据：[PR #2](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/2) 已合入main；[源码a235bd1的CI](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37727185047)回归/非UTF环境/18项原生Windows烟测通过。完整公共严审仍12/48、退出2，B-04保持未完成。

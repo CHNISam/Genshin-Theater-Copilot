@@ -24,4 +24,4 @@ URL、定位、日期、具体参数/冲突和检索尝试保存在seasons/2026-
 
 审查发现“删除已取得增益后依赖退出scope”和“只填一级价格就被计完整”两处绕过；已分别用失败测试重现后修复。取得增益的canonical ID和固定机制由独立政策导出，四级价格及修正规则缺一仍不完整。86项本地回归通过。旧code_ref存档的正式代码迁移未实现；须独立加载新资料预检，不能称旧guard已自动升级。
 
-首轮原生Windows烟测发现新测试依赖默认UTF-8，而CLI回归的子进程未继承父进程-X utf8。已在Linux ASCII默认环境复现18个解码错误，显式UTF-8读取资料修复，并将非UTF默认环境自测接入CI；需重新以当前提交完成原生烟测。
+首轮原生Windows烟测发现新测试依赖默认UTF-8，而CLI回归的子进程未继承父进程-X utf8。已在Linux ASCII默认环境复现18个解码错误，显式UTF-8读取资料修复，并将非UTF默认环境自测接入CI；修复后的源码提交 `a235bd18c3b12f920204b10302db9704eabf0c0b` 已在 [CI run 13](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37727185047) 通过86项完整测试、83项非UTF默认环境core测试，以及18项原生Windows烟测。
