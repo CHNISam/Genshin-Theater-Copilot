@@ -64,7 +64,7 @@ def display(report):
 
 def self_test():
     suite=unittest.TestSuite()
-    for pattern in ('test_theater_guard.py','test_fight_guard.py','test_harness.py','test_history.py','test_season.py','test_season_readiness.py','test_agent_state.py'):
+    for pattern in ('test_theater_guard.py','test_fight_guard.py','test_harness.py','test_history.py','test_season.py','test_season_readiness.py','test_agent_state.py','test_production.py','test_session.py'):
         suite.addTests(unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern=pattern))
     return 0 if unittest.TextTestRunner(verbosity=1).run(suite).wasSuccessful() else 2
 

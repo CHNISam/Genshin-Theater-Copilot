@@ -5,6 +5,7 @@ from functools import wraps
 import hashlib
 import json
 import math
+from . import execution_review
 from .season_readiness import assess, decision_requirements, mechanic_requirements, requirements, FOUNDATION
 from .fight_guard import convergence, strategy_key, validate_reroute
 from .theater_guard import Checkpoint, PlanOption, status_after_use, route_status, rank_recruit_candidates
@@ -142,18 +143,21 @@ def check(run):
     validate(run)
     reasons=[]; warnings=[]
     fight=run['fight']
-    readiness=None
+    readiness=None; public_blockers=[];live_blockers=[]
     if run['mode']=='live':
         buff_ids=list(fight.get('buff_fact_ids',[])) if fight else []
-        canonical=set(requirements(run['season']))|set(run['season']['facts'])
-        buff_ids.extend(k for k in run['buffs'] if k in canonical)
+        # Ownership is recorded even when an effect is not used as a decision premise.
+        # Only explicitly relied-on effects need full current contracts.
+        if set(run['buffs'])-set(buff_ids): warnings.append('ACQUIRED_BUFFS_NOT_USED_AS_BASIS')
         scoped=list(FOUNDATION)+decision_requirements(run['season'],fight.get('encounter_id') if fight else None,buff_ids)
         readiness=assess(run['season'],required=scoped)
-        reasons.extend('SEASON_RESEARCH_REQUIRED:'+g['fact_id']+':'+g['reason'] for g in readiness['decision_blockers'] if g['reason']!='LIVE_OBSERVATION_REQUIRED')
+        public_blockers=[g for g in readiness['decision_blockers'] if g['reason']!='LIVE_OBSERVATION_REQUIRED']
+        live_blockers=[g for g in readiness['decision_blockers'] if g['reason']=='LIVE_OBSERVATION_REQUIRED']
+        reasons.extend('SEASON_RESEARCH_REQUIRED:'+g['fact_id']+':'+g['reason'] for g in public_blockers)
         if readiness['policy_issue']: reasons.append('SEASON_RESEARCH_REQUIRED:'+readiness['policy_issue'])
         if readiness['research_required']: warnings.append('PUBLIC_RESEARCH_DEBT')
     if fight is None:
-        return dict(status='BLOCKED',route='UNKNOWN',reasons=reasons+['FIGHT_CONTRACT_REQUIRED'],warnings=warnings,season_readiness=readiness,next_action='RESEARCH_SEASON' if readiness and readiness['research_due'] else 'PREPARE_CONTRACT')
+        return dict(status='BLOCKED',route='UNKNOWN',reasons=reasons+['FIGHT_CONTRACT_REQUIRED'],warnings=warnings,season_readiness=readiness,next_action='RESEARCH_SEASON' if public_blockers or (readiness and readiness['policy_issue']) else 'PREPARE_CONTRACT')
     if fight['encounter_id'] in run['completed']:
         route=route_status(run['vigor'],_checkpoints(run),set(run['unlocked']),set(run['vigor'])).name
         return dict(status='COMPLETE',route=route,reasons=['ENCOUNTER_COMPLETE'],warnings=[],next_action='NEXT_ENCOUNTER_OR_FINISH',season_readiness=readiness)
@@ -166,6 +170,8 @@ def check(run):
     if run['mode']=='demo': warnings.append('SYNTHETIC_DEMO_NOT_GAME_FACTS')
     elif not (run['season']['starts_at']<=date.today().isoformat()<run['season']['ends_at']): reasons.append('SEASON_OUT_OF_DATE')
     encounter=fight['encounter_id']
+    if encounter=='act-10' and (set(run['objective']) & {'card-1','card-2'})-set(run['completed']):
+        reasons.append('FINISH_WOULD_SKIP_REQUIRED_CARDS')
     if encounter in run['completed']: reasons.append('ENCOUNTER_COMPLETE')
     required=mechanic_requirements(run['season'],encounter) if run['mode']=='live' else run['season']['encounters'].get(encounter)
     if not required: reasons.append('ENCOUNTER_FACTS_REQUIRED')
@@ -194,6 +200,15 @@ def check(run):
         ev=evidence.get(eid)
         if not ev or ev['reviewed'] is not True or ev['season_id']!=run['season']['id'] or ev['encounter_id']!=encounter or ev['objective']!=encounter or ev['kind'] not in ('clear-reference','live-observation'):
             reasons.append('EVIDENCE_NOT_APPLICABLE:'+eid)
+    execution_basis='synthetic';capability_route=route
+    if run['mode']=='live':
+        execution_reasons,execution_basis=execution_review.current(run,_effective(run))
+        reasons.extend(execution_reasons)
+        capability_route,uncertain=execution_review.future(run,team) if team_ok else ('BROKEN',[])
+        if capability_route=='BROKEN': reasons.append('FUTURE_CAPABILITY_ROUTE_BROKEN')
+        if capability_route=='CONDITIONAL' and 'FUTURE_REQUIRES_RANDOM_RECRUITMENT' not in warnings: warnings.append('FUTURE_REQUIRES_RANDOM_RECRUITMENT')
+        if uncertain: warnings.append('FUTURE_ACCOUNT_CAPABILITY_UNCERTAIN')
+        if execution_basis=='bounded-probe': warnings.append('BOUNDED_PROBE_NOT_CLEAR_PREDICTION')
     attempts=_episode(run)
     start=_start(run)
     reviews=[r for r in run['reroutes'] if r['encounter_id']==encounter]
@@ -204,7 +219,8 @@ def check(run):
     if stop and stop not in reasons: reasons.append(stop)
     if run['pending'] is not None: reasons.append('TRIAL_ALREADY_AUTHORIZED_RECORD_RESULT')
     return dict(status='BLOCKED' if reasons else ('WARN' if warnings else 'READY'),route=route,reasons=reasons,warnings=warnings,
-                next_action=('RESEARCH_SEASON' if readiness and readiness['research_due'] else ('RESEARCH_OR_REPLAN' if reasons else 'ONE_PREPARED_TRIAL')),attempts=len(attempts),season_readiness=readiness)
+                next_action=('RECORD_PENDING_RESULT' if run['pending'] else ('RESEARCH_SEASON' if public_blockers or (readiness and readiness['policy_issue']) else ('OBSERVE_CURRENT_STATE' if live_blockers else ('RESEARCH_OR_REPLAN' if reasons else 'ONE_PREPARED_TRIAL')))),attempts=len(attempts),season_readiness=readiness,
+                execution_basis=execution_basis,capability_route=capability_route,clear_prediction=False)
 
 
 def _transaction(fn):
@@ -314,6 +330,7 @@ def next_fight(run,fight,evidence):
     _idle(run)
     _require(run['fight'] is None or run['fight']['encounter_id'] in run['completed'],'current objective must be cleared first')
     encounter=fight['encounter_id']
+    _require(encounter!='act-10' or not ((set(run['objective']) & {'card-1','card-2'})-set(run['completed'])), 'complete required cards before final encounter')
     _require(encounter in [p['id'] for p in run['checkpoints']],'next encounter must be an outstanding checkpoint')
     run['checkpoints']=[p for p in run['checkpoints'] if p['id']!=encounter]
     run['fight']=deepcopy(fight); run['evidence'].extend(evidence)

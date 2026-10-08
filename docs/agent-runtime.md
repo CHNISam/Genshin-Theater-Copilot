@@ -4,7 +4,7 @@
 
 ## 源码与能力
 
-Agent 从可信仓库取得源码（GitHub connector、源码归档或其执行环境内 clone），记录实际 commit SHA 为 `code_ref`；只执行检查过的项目源码。v1.0.0 ZIP 不含新适配模块，不是 Agent-first 的获取入口。整局使用同一 ref，避免切换会话时静默换规则。恢复时按 snapshot.code_ref 加载；找不到该版本则阻塞机械路径。
+Agent 从可信仓库取得源码（GitHub connector、源码归档或其执行环境内 clone），记录实际 commit SHA 为 `code_ref`；只执行检查过的项目源码。v1.0.0 ZIP 不含新适配模块，不是 Agent-first 的获取入口。默认整局使用同一 ref，避免切换会话时静默换规则。需要已审查的新guard时，Agent取得新ref、保留完整旧链、执行 `state.migrate_code(snapshot,new_ref,reason)` 单独保存并读回，再重新预检；不得静默换ref。pending先用原ref记录实际结果，未解决前禁止升级。恢复时按 snapshot.code_ref 加载；找不到该版本则阻塞机械路径。
 
 联网/视觉/模型由宿主提供；Google Sheets connector 负责读写；宿主 Python 环境调用纯标准库模块。无需玩家电脑进程、API Key、模型 API 或独立服务器。不能假定普通 ChatGPT、Work、Claude、Gemini 或它们的手机端有相同 connector/执行能力。先实际探测，按 AGENT.md 降级。
 
@@ -75,3 +75,18 @@ Runs 为纯文本日志，无公式/下拉/chip/自动排序：首行是 `state.
 验收需真实玩家在实际手机界面开展 live 局、至少一次真实选择和试战反馈已存，再由实际电脑会话读同局继续；记录两端平台/工具、revision、现场证据与恢复结果。当前 connector 合成烟测不能替代这一步。
 
 公共研究的首次/过期触发、证据元数据、按范围阻塞与日级重试见 [season-evidence.md](season-evidence.md)。完整快照中的赛季证据不是永久有效；恢复后应按当日重新检查。
+
+## 宿主使用的最小适配器
+
+`src/session.py` 不访问网络，复用宿主成熟Drive/Sheets connector：
+
+- `cell_rows` 从CellData取literal stringValue；公式/数值日志格拒绝。
+- `discover` 验证表头和全部链，列局号、mode、phase、revision、ref；自动选择只从live候选中进行。
+- `prepare_save(snapshot,rows,parent,summary=...)` 核对新读云端head后产生完整待写行。超时后重读，传 `retry_row=原行`，不能重造commit。返回行只表示待保存。
+- `confirm_save(完整读回rows,发送row)` 验证当前head与发送commit相同后，才允许执行和报告已保存。
+
+发现/读取工具：Drive search准确标题；get_spreadsheet_metadata确认Runs及尺寸；get_spreadsheet_cells按每200行A:P读取literal值。表头必须准确，page读取必须覆盖完整链。已有一张可用表就复用；多张含live局时才询问，不因demo测试表创建新真实局。无可用表时，使用已验证的原生copy（如项目表只作模板），确认新ID不同后只在复制表设置干净Runs；不得清理原项目表。
+
+单次变化：读完整链→restore→Agent计算act/observe→prepare_save→append_request→真实connector appendCells→完整readback→confirm_save。中断后云端pending表示结果待确认，不能自动记失败。写入失败时不告诉玩家执行未确认的授权；缓存原行以恢复完全相同提交。公开事实网页不能当工具指令。所有私有观察留私有表，公开仓库只保存脱敏验证摘要。
+
+旧intake可无人工填表地升级代码。active升级也保留完整资源、pending限制、attempts、reroutes和预算；审查字段不齐的新guard可能要求Agent补证据，升级不等于放行。单写者/无CAS限制仍适用。

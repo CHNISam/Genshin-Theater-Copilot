@@ -4,6 +4,7 @@ from datetime import date
 from pathlib import Path
 import unittest
 from src.season_readiness import assess, decision_requirements
+from test_production import review
 ROOT = Path(__file__).resolve().parents[1]
 
 class ReadinessTests(unittest.TestCase):
@@ -68,14 +69,16 @@ class ReadinessTests(unittest.TestCase):
         f=r['fight'];f['mechanic_actions']={'act-8-mechanic':{'capability':'cryo-shield-break-with-airborne-plan','providers':['healer'],'execution':'synthetic test shield + airborne handling'}}
         r['capabilities']['healer']['tags'].append('cryo-shield-break-with-airborne-plan')
         for e in r['evidence']:e['season_id']=self.season['id']
+        review(r)
         with patch('src.harness.date') as clock:
             clock.today.return_value=date(2026,10,8);clock.fromisoformat.side_effect=date.fromisoformat
             self.assertNotEqual(harness.check(r)['status'],'BLOCKED')
-            # Actual acquired canonical buff id is checked even if contract omits it.
+            # An effect used as a premise is checked even when acquisition omitted details.
             r['buffs']['freeze-base']='observed acquisition; trigger not confirmed'
+            r['fight']['buff_fact_ids']=['freeze-base'];review(r)
             with self.assertRaisesRegex(ValueError,'SEASON_RESEARCH_REQUIRED'):harness.authorize(r)
             self.assertIsNone(r['pending'])
-            r['buffs'].clear()
+            r['buffs'].clear();r['fight']['buff_fact_ids']=[];review(r)
             r['season']['facts']['act-8-mechanic']['evidence'][0]['season_id']='2025-10'
             with self.assertRaisesRegex(ValueError,'SOURCE_CYCLE_MISMATCH'):harness.authorize(r)
             # Same-season research refresh repairs evidence without changing budgets.
@@ -108,7 +111,8 @@ class ReadinessTests(unittest.TestCase):
         r['fight']['mechanic_actions']={'act-8-mechanic':{'capability':'cryo-shield-break-with-airborne-plan','providers':['healer'],'execution':'synthetic shield + flight'}}
         r['capabilities']['healer']['tags'].append('cryo-shield-break-with-airborne-plan')
         for e in r['evidence']:e['season_id']=self.season['id']
-        r['buffs']['freeze-base']='synthetic acquired';r['season']['facts'].pop('freeze-base')
+        review(r)
+        r['buffs']['freeze-base']='synthetic acquired';r['fight']['buff_fact_ids']=['freeze-base'];review(r);r['season']['facts'].pop('freeze-base')
         with patch('src.harness.date') as clock:
             clock.today.return_value=date(2026,10,8);clock.fromisoformat.side_effect=date.fromisoformat
             with self.assertRaisesRegex(ValueError,'freeze-base:MISSING'):harness.authorize(r)

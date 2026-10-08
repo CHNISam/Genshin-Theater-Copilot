@@ -1055,6 +1055,30 @@
       "sources": [],
       "evidence": [],
       "reason": "public_research_gap; not actual random outcome"
+    },
+    "run-end-order": {
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "status": "guide_supported",
+      "value": {
+        "final_encounter": "act-10",
+        "required_before_final": [
+          "card-1",
+          "card-2"
+        ],
+        "reason": "Final main encounter ends the performance; missed required cards cannot then be revisited."
+      },
+      "sources": [
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "section9 first paragraph: required cards before final",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
     }
   },
   "encounters": {
@@ -1529,7 +1553,60 @@
         "target": "HoneyHunter / HomDGCat",
         "method": "public tutorial/database open",
         "result": "inaccessible / HTTP502; no current detail extracted"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "production follow-up / full current buff and public catalogs",
+        "method": "two-engine exact-title/branch/value searches; creator direct video BV12Zak6LEMF; images9/10/11 and raw fetch; HomDGCat/HoneyHunter retry; candidate BV1RmN16vEhe body check",
+        "result": "凝渡 description rechecked; direct video412; three current images timeout and raw403; databases502/403. Candidate collection search result claimed October but fetched body was another video, rejected. No full-current branch numbers promoted."
       }
     ]
+  },
+  "decision_brief": {
+    "season_id": "2026-10-v7.1",
+    "status": "guide_proposal_not_clear_evidence",
+    "sources": [
+      "https://www.bilibili.com/list/362965193",
+      "https://www.taptap.cn/moment/854722812772879793"
+    ],
+    "locator": "凝渡 October2 description + TapTap sections role preparation / act3; title and month rechecked October8",
+    "opening": {
+      "suggestion": "Start ordinary early stages with the trial Wanderer/Kaeya/Barbara core where current enemy/objective fits; save trial Neuvillette for act3/5 if own damage coverage is weak.",
+      "risk": "Trial Wanderer damage can be insufficient without supports or needed buffs; bounded account review required before execution."
+    },
+    "later": {
+      "requirements": [
+        "reserve high-frequency cryo and real damage for act10",
+        "reserve appropriate shield/airborne handling for act8",
+        "party-wide survival pressure on card1; mobility and healing on card2",
+        "complete both required cards before act10 ends run"
+      ],
+      "borrowing": "Inspect actually available helper builds; high strength claim or guide title is not clear proof."
+    },
+    "buff_policy": "Prioritize effects covering actual planned damage and needs; source descriptions disagree on cryo-swirl level2 branch, so compare current exact effect rather than blindly left/right.",
+    "limitations": [
+      "descriptions read, videos not observed",
+      "no account-specific clear proof",
+      "full public coverage remains partial",
+      "current choice text and cost can be observed locally without asking player to reconstruct public catalogs"
+    ]
+  },
+  "ordinary_reference": {
+    "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+    "locator": "sections6/7 selected ordinary enemy descriptions",
+    "status": "partial_guide_catalog",
+    "act-4": {
+      "option": "Fatui variant",
+      "simultaneous_enemies": 2,
+      "star_monolith_hp_min_pct": 35,
+      "tactic": "draw aggro and survive; full enemy pool not confirmed"
+    },
+    "act-7": {
+      "option": "two abyss lectors",
+      "pyro_variant": "hydro coverage",
+      "electro_variant": "cryo coverage",
+      "tactic": "move to boundary to group them; account review required"
+    },
+    "limits": "No claim of complete ordinary encounter pool, exact HP, or verified account clearance."
   }
 }

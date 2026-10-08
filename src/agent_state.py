@@ -79,17 +79,32 @@ def activate(snapshot, run):
     result = deepcopy(snapshot)
     result.update(phase='active', harness=deepcopy(run))
     if run['mode']=='live':
-        result['next_action']=harness.check(run)['next_action']
+        result['next_action']='RECORD_PENDING_RESULT' if run['pending'] else harness.check(run)['next_action']
     validate(result)
     return result
 
 
-def research_status(snapshot, season=None):
+def migrate_code(snapshot, code_ref, reason):
+    """Host-reviewed rule upgrade; preserves the full journal and execution history."""
+    validate(snapshot)
+    _require(_text(code_ref) and code_ref!=snapshot['code_ref'] and _text(reason),'new code ref and review reason required')
+    _require(not snapshot['harness'] or snapshot['harness']['pending'] is None,'record pending result with pinned code before migration')
+    result=observe(snapshot,{'kind':'observed','source':'local:code-migration','text':reason,
+                            'code_migration':{'from':snapshot['code_ref'],'to':code_ref}})
+    result['code_ref']=code_ref
+    validate(result)
+    return result
+
+
+def research_status(snapshot, season=None, *, required=None):
     """Host calls on first contact/restore and before public-data decisions."""
     validate(snapshot)
     pack=season if season is not None else (snapshot['harness']['season'] if snapshot['harness'] else None)
     _require(pack is not None, 'intake requires current public season pack')
-    return harness.assess(pack)
+    if required is None:
+        fight=snapshot['harness']['fight'] if snapshot['harness'] else None
+        required=list(harness.FOUNDATION)+harness.decision_requirements(pack,fight.get('encounter_id') if fight else None,fight.get('buff_fact_ids',[]) if fight else [])
+    return harness.assess(pack,required=required)
 
 
 def act(snapshot, operation, payload=None):
@@ -148,8 +163,15 @@ def checkpoint(snapshot, parent=None, *, summary=''):
     if parent is not None:
         _validate_record(parent)
         previous = parent['snapshot']
-        for field in ('run_id', 'mode', 'code_ref'):
+        for field in ('run_id', 'mode'):
             _require(snapshot[field] == previous[field], 'checkpoint identity/ref change')
+        if snapshot['code_ref']!=previous['code_ref']:
+            new_observations=snapshot['observations'][len(previous['observations']):]
+            _require(any(o.get('source')=='local:code-migration' and o.get('kind')=='observed' and
+                         o.get('code_migration')=={'from':previous['code_ref'],'to':snapshot['code_ref']}
+                         for o in new_observations),'code change requires explicit audited migration')
+            _require(not previous['harness'] or previous['harness']['pending'] is None,'cannot migrate pending trial')
+            _require(snapshot['harness']==previous['harness'],'migration cannot alter run state')
         _require(not (previous['phase'] == 'active' and snapshot['phase'] == 'intake'), 'cannot reset an active run')
         # Preserve observed provenance and all executed history at save boundaries.
         _require(snapshot['observations'][:len(previous['observations'])] == previous['observations'], 'observation history rewritten')
