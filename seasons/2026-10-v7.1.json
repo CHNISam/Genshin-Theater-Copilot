@@ -2,8 +2,8 @@
   "id": "2026-10-v7.1",
   "starts_at": "2026-10-01",
   "ends_at": "2026-11-01",
-  "captured_at": "2026-10-07",
-  "status": "partial_verified",
+  "captured_at": "2026-10-08",
+  "status": "partial_public",
   "allowed_elements": [
     "hydro",
     "cryo",
@@ -28,6 +28,15 @@
       "value": "恒常机关阵列：锁血阶段优先击败发光机兵解除机制。",
       "any_of": [
         "focus-glowing-add"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "三、对局分析 / act-3",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "act-6-mechanic": {
@@ -41,6 +50,15 @@
       "any_of": [
         "hit-elevated-column",
         "stellar-column-break"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "三、对局分析 / act-6",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "act-8-mechanic": {
@@ -54,6 +72,15 @@
       "any_of": [
         "cryo-shield-break-with-airborne-plan",
         "stellar-break-with-airborne-plan"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "三、对局分析 / act-8",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "act-10-mechanic": {
@@ -67,6 +94,15 @@
       "any_of": [
         "high-frequency-cryo",
         "nightsoul-counter-plan"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "三、对局分析 / act-10",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "card-1-mechanic": {
@@ -80,6 +116,15 @@
       "any_of": [
         "party-heal",
         "tested-party-survival"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "三、对局分析 / card-1",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "card-2-mechanic": {
@@ -87,11 +132,27 @@
       "season_id": "2026-10-v7.1",
       "encounter_id": "card-2",
       "sources": [
-        "https://www.taptap.cn/moment/854722812772879793"
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
       ],
-      "value": "遗迹敌人死亡爆炸造成生存压力；需爆炸处理方案，远程仅舒适建议。",
+      "value": "遗迹敌人关有爆炸血线压力，须安排爆炸生存与追怪方案；触发时点存在来源差异，不假定仅击杀触发。",
       "any_of": [
         "explosion-survival-plan"
+      ],
+      "knowledge_class": "public",
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "圣牌二 / 爆炸生存共同部分",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "圣牌二 / 爆炸生存共同部分",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
       ]
     },
     "act-1-live-objective": {
@@ -102,7 +163,8 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "act-2-live-objective": {
       "status": "unknown",
@@ -112,7 +174,8 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "act-4-live-objective": {
       "status": "unknown",
@@ -122,7 +185,8 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "act-5-live-objective": {
       "status": "unknown",
@@ -132,7 +196,8 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "act-7-live-objective": {
       "status": "unknown",
@@ -142,7 +207,8 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "act-9-live-objective": {
       "status": "unknown",
@@ -152,35 +218,843 @@
       "value": null,
       "any_of": [
         "observed-objective-plan"
-      ]
+      ],
+      "knowledge_class": "live"
     },
     "freeze-base": {
-      "status": "unknown",
+      "status": "guide_supported",
       "season_id": "2026-10-v7.1",
-      "sources": [],
-      "value": null,
-      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+      "knowledge_class": "public",
+      "value": {
+        "trigger": "freeze (system reference; exact current trigger pending)",
+        "effects": {
+          "hydro_cryo_crit_damage_pct": 40
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "freeze-base"
     },
     "freeze-ice-shatter": {
       "status": "unknown",
       "season_id": "2026-10-v7.1",
       "sources": [],
       "value": null,
-      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text.",
+      "knowledge_class": "public",
+      "alias_of": "freeze-2-2"
     },
     "hydro-swirl": {
       "status": "unknown",
       "season_id": "2026-10-v7.1",
       "sources": [],
       "value": null,
-      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text.",
+      "knowledge_class": "public",
+      "alias_of": "hydro-swirl-base"
     },
     "cryo-swirl": {
       "status": "unknown",
       "season_id": "2026-10-v7.1",
       "sources": [],
       "value": null,
-      "reason": "Old chat/existing partial pack are not fresh verification of exact current text."
+      "reason": "Old chat/existing partial pack are not fresh verification of exact current text.",
+      "knowledge_class": "public",
+      "alias_of": "cryo-swirl-base"
+    },
+    "season-identity": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "id": "2026-10-v7.1",
+        "version": "7.1",
+        "starts_at": "2026-10-01",
+        "ends_at": "2026-11-01",
+        "allowed_elements": [
+          "hydro",
+          "cryo",
+          "anemo"
+        ]
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+          "locator": "October cycle section",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "October cycle section",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "opening-roster": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": [
+        "neuvillette",
+        "barbara",
+        "citlali",
+        "kaeya",
+        "wanderer",
+        "brenny"
+      ],
+      "sources": [
+        "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+          "locator": "October opening characters",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "October opening characters",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "guest-roster": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": [
+        "ineffa",
+        "yae-miko",
+        "thoma",
+        "chiori"
+      ],
+      "sources": [
+        "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+          "locator": "October invited characters",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "October invited characters",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "buff-inventory": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": [
+        "freeze",
+        "hydro-swirl",
+        "cryo-swirl"
+      ],
+      "sources": [
+        "https://www.bilibili.com/list/362965193",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.bilibili.com/list/362965193",
+          "locator": "Description blessing routes / section 四",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Description blessing routes / section 四",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "buff-progression": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "max_level": 4,
+        "levels": {
+          "1": "base",
+          "2": [
+            "1",
+            "2"
+          ],
+          "3": "advanced base",
+          "4": {
+            "1": [
+              "A",
+              "B"
+            ],
+            "2": [
+              "A",
+              "B"
+            ]
+          }
+        }
+      },
+      "sources": [
+        "https://www.bilibili.com/list/362965193",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.bilibili.com/list/362965193",
+          "locator": "本期1/2/3/4级推荐路径（价格另列）",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "本期1/2/3/4级推荐路径（价格另列）",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "opening-blessing": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "hp_pct": 20,
+        "attack_pct": 20,
+        "defense_pct": 20,
+        "scope": "opening characters added to party"
+      },
+      "sources": [
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "section 一 seasonal effect",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "act-3-configuration": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "恒常机关阵列",
+        "lock_hp_pct": 30,
+        "normal_resistance_pct": {
+          "physical": 70,
+          "other": 10
+        },
+        "stun_resistance_delta_pct": -50,
+        "enemy_level": null,
+        "hp": null,
+        "clear_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage act-3",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage act-3",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "act-6-configuration": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "历经百战的嵌合兽怪箭士",
+        "normal_resistance_pct": {
+          "cryo": 40,
+          "dendro": 40,
+          "geo": 40,
+          "pyro": -20,
+          "other": 10
+        },
+        "stun_seconds": 13,
+        "stun_resistance_delta_pct": -50,
+        "enemy_level": null,
+        "hp": null,
+        "clear_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage act-6",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage act-6",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "act-8-configuration": {
+      "status": "conflict",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "嵌合翼骏狮",
+        "normal_resistance_pct": null,
+        "stun_seconds": null,
+        "stun_resistance_delta_pct": null,
+        "shield_units": null,
+        "enemy_level": null,
+        "hp": null,
+        "clear_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage act-8",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage act-8",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "conflicts": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "claims": {
+            "normal_high_res_elements": [
+              "cryo",
+              "electro"
+            ],
+            "stun_seconds": 13,
+            "res_delta_pct": -70
+          }
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "claims": {
+            "normal_high_res_elements": [
+              "anemo",
+              "electro"
+            ],
+            "stun_seconds": 12,
+            "res_delta_pct": -60,
+            "shield_units": [
+              12,
+              8,
+              6
+            ]
+          }
+        }
+      ]
+    },
+    "act-10-configuration": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "秘源机兵·统御械",
+        "resistance_pct": {
+          "normal_all": 10,
+          "cleansing_all": 210,
+          "stasis_cryo": -40,
+          "stasis_other": 0,
+          "nightsoul_all": 50
+        },
+        "enemy_level": null,
+        "hp": null,
+        "clear_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage act-10",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage act-10",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "card-1-configuration": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "兽境猎犬集群",
+        "enemy_count": 17,
+        "simultaneous_enemies": 3,
+        "completion": "survive until countdown ends; kills shorten countdown",
+        "enemy_level": null,
+        "countdown_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage card-1",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage card-1",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "card-2-configuration": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "enemy": "遗迹敌人集群",
+        "enemy_count": 10,
+        "simultaneous_enemies": 1,
+        "spawn_order": "cyclic around arena",
+        "completion": "survive until countdown ends; kills shorten countdown",
+        "enemy_level": null,
+        "countdown_seconds": null,
+        "star_seconds": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793",
+        "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "Stage card-2",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        },
+        {
+          "source": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+          "locator": "Stage card-2",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ]
+    },
+    "freeze-2-1": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-2-1"
+    },
+    "freeze-2-2": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "trigger": null,
+        "effects": {
+          "hydro_cryo_res_delta_pct_reported_total": -24
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "freeze-2-2"
+    },
+    "freeze-advanced": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-advanced"
+    },
+    "freeze-4-1A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-4-1A"
+    },
+    "freeze-4-1B": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-4-1B"
+    },
+    "freeze-4-2A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-4-2A"
+    },
+    "freeze-4-2B": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "freeze-4-2B"
+    },
+    "freeze-costs": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap"
+    },
+    "hydro-swirl-base": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "trigger": null,
+        "effects": {
+          "stellar_swirl_damage_pct_reported_total": 24,
+          "hp_pct_reported_total": 24
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "hydro-swirl-base"
+    },
+    "hydro-swirl-2-1": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-2-1"
+    },
+    "hydro-swirl-2-2": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-2-2"
+    },
+    "hydro-swirl-advanced": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-advanced"
+    },
+    "hydro-swirl-4-1A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-4-1A"
+    },
+    "hydro-swirl-4-1B": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-4-1B"
+    },
+    "hydro-swirl-4-2A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-4-2A"
+    },
+    "hydro-swirl-4-2B": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "hydro-swirl-4-2B"
+    },
+    "hydro-swirl-costs": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap"
+    },
+    "cryo-swirl-base": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "trigger": null,
+        "effects": {
+          "stellar_swirl_damage_pct_reported_total": 24,
+          "crit_damage_pct_reported_total": 48
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "cryo-swirl-base"
+    },
+    "cryo-swirl-2-1": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "cryo-swirl-2-1"
+    },
+    "cryo-swirl-2-2": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "trigger": "sprint",
+        "effects": {
+          "pull": true
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "cryo-swirl-2-2"
+    },
+    "cryo-swirl-advanced": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "cryo-swirl-advanced"
+    },
+    "cryo-swirl-4-1A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "cryo-swirl-4-1A"
+    },
+    "cryo-swirl-4-1B": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "cryo-swirl-4-1B"
+    },
+    "cryo-swirl-4-2A": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap",
+      "reference_id": "cryo-swirl-4-2A"
+    },
+    "cryo-swirl-4-2B": {
+      "status": "guide_supported",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": {
+        "trigger": null,
+        "effects": {
+          "cryo_anemo_res_delta_pct_reported_total": -30
+        },
+        "limits": null
+      },
+      "sources": [
+        "https://www.taptap.cn/moment/854722812772879793"
+      ],
+      "evidence": [
+        {
+          "source": "https://www.taptap.cn/moment/854722812772879793",
+          "locator": "二、祝福推荐",
+          "season_id": "2026-10-v7.1",
+          "reviewed_at": "2026-10-08"
+        }
+      ],
+      "reference_id": "cryo-swirl-4-2B"
+    },
+    "cryo-swirl-costs": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap"
+    },
+    "ordinary-encounter-pool": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap; not actual random outcome"
+    },
+    "event-catalog": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap; not actual random outcome"
+    },
+    "cumulative-blessing-attributes": {
+      "status": "unknown",
+      "season_id": "2026-10-v7.1",
+      "knowledge_class": "public",
+      "value": null,
+      "sources": [],
+      "evidence": [],
+      "reason": "public_research_gap; not actual random outcome"
     }
   },
   "encounters": {
@@ -224,21 +1098,438 @@
   "sources": [
     {
       "url": "https://www.taptap.cn/moment/854722812772879793",
-      "kind": "dated-current-cycle-guide",
+      "kind": "current-guide",
       "author": "冻梨游研社",
       "published_at": "2026-10-01",
-      "accessed_at": "2026-10-07"
+      "accessed_at": "2026-10-08",
+      "content_season": "2026-10-v7.1"
+    },
+    {
+      "url": "https://www.taptap.cn/moment/851520146462737868?group_id=201765",
+      "kind": "announcement-repost",
+      "author": "提瓦特测试员",
+      "published_at": "2026-09-23",
+      "accessed_at": "2026-10-08",
+      "content_season": "2026-10-v7.1",
+      "limitation": "Official-looking notice reproduced by a non-official account; not an authenticated official original."
+    },
+    {
+      "url": "https://www.bilibili.com/list/362965193",
+      "kind": "creator-description",
+      "author": "凝渡_Du",
+      "published_at": "2026-10-02",
+      "accessed_at": "2026-10-08",
+      "content_season": "2026-10-v7.1",
+      "limitation": "Description read; video/subtitles/images not retrieved. Mutable list URL: recheck title/date before use."
+    },
+    {
+      "url": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+      "kind": "current-guide",
+      "author": "Kerry",
+      "published_at": "2026-10-07",
+      "accessed_at": "2026-10-08",
+      "content_season": "2026-10-v7.1",
+      "limitation": "Secondary guide; act-8 resistance/window conflicts with TapTap. Images could not be retrieved."
     },
     {
       "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
-      "kind": "community-system-reference",
-      "accessed_at": "2026-10-07",
-      "limitation": "Accessible rendering does not establish exact October buff branches."
+      "kind": "system-reference",
+      "accessed_at": "2026-10-08",
+      "content_season": "system-reference",
+      "limitation": "Full reference tree is research material, not October primary confirmation. Historical sections must not be mixed."
+    },
+    {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗/当期",
+      "kind": "rejected-cycle-source",
+      "accessed_at": "2026-10-08",
+      "content_season": "2026-08",
+      "limitation": "Page updated October 5 but body explicitly August 2026; excluded from October support."
     }
   ],
   "unresolved": [
-    "Exact current blessing levels/branches/stack caps/costs need current in-game text or independently inspectable primary evidence.",
-    "Random ordinary encounters need live observation before their fight contract.",
-    "Account vigor/builds/current recruitment are operator-supplied; history is not a live snapshot."
-  ]
+    "24 branch nodes have reference inventory; exact October triggers/limits need accessible current text. Six current numeric/functional claims recorded separately without guessed fields.",
+    "Freeze/hydro L3 exact values, all four-level costs, cumulative blessing attributes, and special/mysterious event public catalogs still require research.",
+    "Fixed checkpoint level/HP/time tables unavailable in retrieved October text; act8 exact resistances/stun/shield values conflict. Common shield/airborne mechanic retained.",
+    "Ordinary encounter pool catalog is public research debt; actual selected enemy/objective, recruit offers, price modifiers, account builds and resources are live observations."
+  ],
+  "special_guests": [
+    "ineffa",
+    "yae-miko",
+    "thoma",
+    "chiori"
+  ],
+  "reference_catalog": {
+    "freeze-base": {
+      "value": {
+        "trigger": "freeze",
+        "effects": {
+          "hydro_cryo_crit_damage_pct": 40
+        },
+        "limits": {
+          "duration_s": 6
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-2-1": {
+      "value": {
+        "trigger": "active cryo/hydro character triggers freeze",
+        "effects": {
+          "opposite_element_shockwave": true
+        },
+        "limits": {
+          "shared_cooldown_s": 6
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-2-2": {
+      "value": {
+        "trigger": "hydro/cryo character attack hits during cold effect",
+        "effects": {
+          "hydro_cryo_res_delta_pct_per_stack": -8
+        },
+        "limits": {
+          "duration_s": 6,
+          "max_stacks": 3
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-advanced": {
+      "value": {
+        "trigger": "freeze",
+        "effects": {
+          "hydro_cryo_crit_damage_pct": null
+        },
+        "limits": {
+          "duration_s": 6
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-4-1A": {
+      "value": {
+        "trigger": "shockwave hit",
+        "effects": {
+          "extra_matching_element_hits": 2
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-4-1B": {
+      "value": {
+        "trigger": "shockwave",
+        "effects": {
+          "larger_area": true,
+          "cooldown_delta_s": -3
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-4-2A": {
+      "value": {
+        "trigger": "frostcrack at max stacks",
+        "effects": {
+          "cryo_damage_pct": 50
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "freeze-4-2B": {
+      "value": {
+        "trigger": "frostcrack at max stacks",
+        "effects": {
+          "hydro_damage_pct": 50
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "冻结",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-base": {
+      "value": {
+        "trigger": "swirl",
+        "effects": {
+          "swirl_damage_pct_per_stack": 80,
+          "hp_pct_per_stack": 8
+        },
+        "limits": {
+          "duration_s": 6,
+          "shared_max_stacks": 3
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-2-1": {
+      "value": {
+        "trigger": "heal party member",
+        "effects": {
+          "healing_ball_damage": "based on healing recorded and blessing stacks"
+        },
+        "limits": {
+          "duration_s": 4.5,
+          "cooldown_s": 5
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-2-2": {
+      "value": {
+        "trigger": "gain blessing builds nuclei; attack hit at 3 nuclei",
+        "effects": {
+          "consume_all_nuclei": "hydro vortex; pull"
+        },
+        "limits": {
+          "duration_s": 3.5,
+          "cooldown_s": 8
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-advanced": {
+      "value": {
+        "trigger": "swirl",
+        "effects": {
+          "swirl_damage_pct_per_stack": null,
+          "hp_pct_per_stack": null
+        },
+        "limits": "inherits base"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-4-1A": {
+      "value": {
+        "trigger": "healing ball explodes",
+        "effects": {
+          "ball_damage_pct": 60,
+          "healing_bonus_pct_per_stack": 10,
+          "larger_area": true
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-4-1B": {
+      "value": {
+        "trigger": "gain blessing",
+        "effects": {
+          "active_character_heal_max_hp_pct": 15
+        },
+        "limits": {
+          "cooldown_s": 3
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-4-2A": {
+      "value": {
+        "trigger": "blessing active",
+        "effects": {
+          "anemo_damage_pct_per_stack": 15
+        },
+        "limits": "inherits base"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "hydro-swirl-4-2B": {
+      "value": {
+        "trigger": "enter battle",
+        "effects": {
+          "starting_nuclei": 3,
+          "vortex_damage_pct": 60,
+          "larger_area": true
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 水",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-base": {
+      "value": {
+        "trigger": "swirl",
+        "effects": {
+          "swirl_damage_pct_per_stack": 80,
+          "crit_damage_pct_per_stack": 16
+        },
+        "limits": {
+          "duration_s": 6,
+          "shared_max_stacks": 3
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-2-1": {
+      "value": {
+        "trigger": "attack hit while blessing active",
+        "effects": {
+          "cryo_dot": true
+        },
+        "limits": {
+          "duration_s": 5,
+          "tick_s": 1
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-2-2": {
+      "value": {
+        "trigger": "sprint while blessing active",
+        "effects": {
+          "pull_anemo_damage": true,
+          "stamina_restore": 25
+        },
+        "limits": {
+          "cooldown_s": 8,
+          "stamina_interval_s": 8
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-advanced": {
+      "value": {
+        "trigger": "swirl",
+        "effects": {
+          "swirl_damage_pct_delta_per_stack": 20,
+          "crit_damage_pct_delta_per_stack": 4
+        },
+        "limits": "inherits base"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-4-1A": {
+      "value": {
+        "trigger": "dot active",
+        "effects": {
+          "dot_tick_s": 0.5
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-4-1B": {
+      "value": {
+        "trigger": "dot active",
+        "effects": {
+          "cryo_anemo_res_delta_pct_per_stack": -10
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-4-2A": {
+      "value": {
+        "trigger": "blessing active",
+        "effects": {
+          "sprint_and_stamina_interval_delta_s": -4
+        },
+        "limits": "inherits parent"
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    },
+    "cryo-swirl-4-2B": {
+      "value": {
+        "trigger": "sprint gust hits",
+        "effects": {
+          "cryo_anemo_res_delta_pct_per_stack": -10
+        },
+        "limits": {
+          "duration_s": 12
+        }
+      },
+      "source": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "扩散 / 冰（非2026年3月前历史表）",
+      "applicability": "not fully confirmed for October; no runtime reliance"
+    }
+  },
+  "research": {
+    "profile": "theater-monthly-v1",
+    "reviewed_at": "2026-10-08",
+    "retry_after": "2026-10-09",
+    "attempts": [
+      {
+        "date": "2026-10-08",
+        "target": "凝渡_Du",
+        "method": "two search engines; direct list page",
+        "result": "October 2 title and description read; video URL click failed; no transcript tool"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "是核善有爱的百渊呀 / UID520175970",
+        "method": "exact and alias searches; profile/list/video",
+        "result": "January/July/September identity corroborated; October item not retrieved; direct video HTTP412"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "official cycle",
+        "method": "miyoushe / patch notice search",
+        "result": "Repost September23 plus independent guide found; authenticated official original not retrieved"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "BWIKI current/year/general",
+        "method": "open and body-date checks",
+        "result": "Current body August; year no October; general24nodes reference only"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "current full buff screenshots",
+        "method": "TapTap image10; Enjoygm images9/10/11; raw image retry",
+        "result": "Image fetch timeout/inaccessible; advanced freeze/hydro numbers not in readable text"
+      },
+      {
+        "date": "2026-10-08",
+        "target": "HoneyHunter / HomDGCat",
+        "method": "public tutorial/database open",
+        "result": "inaccessible / HTTP502; no current detail extracted"
+      }
+    ]
+  }
 }

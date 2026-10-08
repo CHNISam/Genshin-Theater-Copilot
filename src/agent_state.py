@@ -78,8 +78,18 @@ def activate(snapshot, run):
     _require(snapshot['phase'] == 'intake', 'cannot reset an active run')
     result = deepcopy(snapshot)
     result.update(phase='active', harness=deepcopy(run))
+    if run['mode']=='live':
+        result['next_action']=harness.check(run)['next_action']
     validate(result)
     return result
+
+
+def research_status(snapshot, season=None):
+    """Host calls on first contact/restore and before public-data decisions."""
+    validate(snapshot)
+    pack=season if season is not None else (snapshot['harness']['season'] if snapshot['harness'] else None)
+    _require(pack is not None, 'intake requires current public season pack')
+    return harness.assess(pack)
 
 
 def act(snapshot, operation, payload=None):
