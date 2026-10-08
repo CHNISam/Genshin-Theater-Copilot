@@ -22,7 +22,7 @@ Windows [v1.0.0 Release](https://github.com/CHNISam/Genshin-Theater-Copilot/rele
 
 六份共享会话、两份 Google 文档已去重进入 [历史案例与来源](fixtures/history) 及 [复盘](docs/retrospectives.md)，关键错误对应回归。只保存提炼结果、来源与定位，不搬聊天原文。真实观察、未执行建议、合成测试指标各自标明。
 
-10 月现期固定关机制由有日期的现期攻略支持，保留 `guide_supported`；**精确祝福分支/数值尚未重新取得充分可检视的现期证据，标为 unknown**。依赖这些数值的 contract 会阻塞。普通随机战需现场确认。本工具不读取游戏、不推算自动伤害，不提供虚构概率。
+10 月共同机制保持 `guide_supported`，补充现期数值片段及24分支参考库存；完整当前文本仍有公共缺口，`partial_public` **不算正式资料完成**。首次/恢复/过期由Agent按 [公共证据协议](docs/season-evidence.md)主动研究，live guard拒绝相关缺失/错季/过期依赖。通用参考表不自动变成本期事实；普通敌人池须研究，实际选项才现场确认。全量严审及实际限制见 [验证记录](docs/season-validation.md)。
 
 每期由 Agent 按 [研究提示](prompts/season-research.md) 直接研究，使用 `harness.validate_season` 校验资料格式；复核来源后替换赛季包即可复用。用户推荐的 B 站 UP 可加入 [watchlist](maintenance/watchlist.json)，新材料先进入待核验记录。当前没有后台监控或订阅。
 

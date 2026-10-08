@@ -64,7 +64,7 @@ def display(report):
 
 def self_test():
     suite=unittest.TestSuite()
-    for pattern in ('test_theater_guard.py','test_fight_guard.py','test_harness.py','test_history.py','test_season.py'):
+    for pattern in ('test_theater_guard.py','test_fight_guard.py','test_harness.py','test_history.py','test_season.py','test_season_readiness.py','test_agent_state.py'):
         suite.addTests(unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern=pattern))
     return 0 if unittest.TextTestRunner(verbosity=1).run(suite).wasSuccessful() else 2
 
@@ -120,7 +120,9 @@ def main(argv=None):
         if cmd=='research':
             print((ROOT/'prompts/season-research.md').read_text(encoding='utf-8').replace('{{season}}',args.season));return 0
         if cmd=='validate-season':
-            harness.validate_season(load(args.input));print('VALID | sources and schema; semantic review still required');return 0
+            season=load(args.input);harness.validate_season(season)
+            print('SCHEMA_VALID | not evidence coverage or delivery approval')
+            print(json.dumps(harness.assess(season),ensure_ascii=False,indent=2));return 0
         with locked(args.run):
             if cmd=='init':
                 run=load(ROOT/'templates/demo-run.json') if args.demo else initial(load(args.season))

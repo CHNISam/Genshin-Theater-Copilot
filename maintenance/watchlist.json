@@ -1,5 +1,36 @@
 {
-  "creators": [],
-  "pending": [],
-  "policy": "Only add operator-recommended creator UID/profile URLs; creator commentary is evidence to review, never an automatic game-fact override. No background subscription or notification is currently enabled."
+  "creators": [
+    {
+      "name": "凝渡_Du",
+      "operator_name": "凝渡",
+      "uid": "362965193",
+      "profile": "https://space.bilibili.com/362965193",
+      "priority": 1,
+      "verified_via": "https://www.bilibili.com/list/362965193",
+      "accessed_at": "2026-10-08"
+    },
+    {
+      "name": "是核善有爱的百渊呀",
+      "operator_name": "核谐友善的百渊",
+      "uid": "520175970",
+      "profile": "https://space.bilibili.com/520175970",
+      "priority": 2,
+      "verified_via": "https://www.bilibili.com/list/520175970?bvid=BV1b4iLB2ESD&oid=115817014366610",
+      "accessed_at": "2026-10-08",
+      "identity_note": "Likely intended creator, matched by 百渊 and strategy channel; preserve supplied alias."
+    }
+  ],
+  "pending": [
+    {
+      "url": "https://www.bilibili.com/list/362965193",
+      "title": "试用散兵打不过？该换思路了！10月幻想真境剧诗+一图流攻略！全难度通用（2026年10月）水冰风",
+      "published_at": "2026-10-02",
+      "season_id": "2026-10-v7.1",
+      "material_read": "title/date/description only",
+      "claims": "freeze right branch; cryo-swirl left then right; hydro-swirl right then right; early Wanderer, act3 Neuvillette",
+      "observed_clear": "not watched; description is not an inspected clear reference",
+      "unresolved": "stable individual video URL, transcript, full blessing screenshots; creator preference differs from TapTap, keep as strategy opinions"
+    }
+  ],
+  "policy": "User-recommended sources only; search on first use/stale/public gaps in priority order. No background subscription. Description is not proof of video viewing or clear, commentary never auto-upgrades a fact."
 }

@@ -12,7 +12,7 @@
 
 ## 1. 本期预检与开局预算
 
-AI 直接按 [赛季研究提示](../prompts/season-research.md) 联网准备公共资料；不要求玩家调用 research。逐项获取来源、发布时间、访问时间、版本/有效区间、机制与 Buff 当前文本。`verified`、`guide_supported`、`unknown`、`conflict` 不能混用。`validate-season` 只验证结构、来源字段和同季范围，**不自动证明来源内容正确**。人工核对后导入；新月 init 新存档。
+AI 直接按 [赛季研究提示](../prompts/season-research.md) 联网准备公共资料；不要求玩家调用 research。逐项获取来源、发布时间、访问时间、版本/有效区间、机制与 Buff 当前文本。`verified`、`guide_supported`、`unknown`、`conflict` 不能混用。`validate_season` 只验证结构。必须再按 [公共证据协议](season-evidence.md) 执行 `assess`，读取独立清单、全部 public_gaps、证据过期和 decision_blockers；`partial_public`/旧 `partial_verified` 不能算资料交付。Agent 首次/恢复/过期主动研究；当天已尝试仍不可读的源次日重查。语义核对后同季 refresh，新月新存档。不可读图片/未检索的公共分支不是现场动态未知。
 
 账号能力从当前画面/操作事实取得，旧月份角色练度只作为提问线索。只录决策相关 build 和 tags/source：高频附着≠元素标签，全队治疗≠单人回血，治疗到满血≠护盾，普攻驱动≠重击，精通雷神≠直伤雷神。特殊队伍条件由人工检查后再给出能力标签；不要假装程序有完整角色伤害数据库。
 

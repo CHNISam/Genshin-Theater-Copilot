@@ -31,6 +31,8 @@ from src import harness
 # rows 为从云端读取的全部相关 journal 行（不含或含表头均可）。
 head = state.restore(rows, run_id)
 snapshot = head['snapshot']
+research = state.research_status(snapshot)  # intake 时显式传当前 pack
+# 有到期的公共研究债先由 Agent 联网补查/核验，按范围选择不依赖缺口的方案。
 snapshot, report = state.act(snapshot, 'check')
 # 授权后必须保存并读回，才提示用户进游戏。
 snapshot, report = state.act(snapshot, 'authorize')
@@ -71,3 +73,5 @@ Runs 为纯文本日志，无公式/下拉/chip/自动排序：首行是 `state.
 同账号聊天同步只能帮助找指针，不能替代云端 readback。手机没有 Sheets 写入/代码执行时不会神奇继承电脑能力；此时 AGENT.md 的降级不等于通过最终验收。Claude/Gemini 也必须逐会话实测读→决策/guard→写→新会话恢复后才宣称支持。
 
 验收需真实玩家在实际手机界面开展 live 局、至少一次真实选择和试战反馈已存，再由实际电脑会话读同局继续；记录两端平台/工具、revision、现场证据与恢复结果。当前 connector 合成烟测不能替代这一步。
+
+公共研究的首次/过期触发、证据元数据、按范围阻塞与日级重试见 [season-evidence.md](season-evidence.md)。完整快照中的赛季证据不是永久有效；恢复后应按当日重新检查。

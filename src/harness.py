@@ -5,6 +5,7 @@ from functools import wraps
 import hashlib
 import json
 import math
+from .season_readiness import assess, decision_requirements, mechanic_requirements, requirements, FOUNDATION
 from .fight_guard import convergence, strategy_key, validate_reroute
 from .theater_guard import Checkpoint, PlanOption, status_after_use, route_status, rank_recruit_candidates
 
@@ -141,11 +142,21 @@ def check(run):
     validate(run)
     reasons=[]; warnings=[]
     fight=run['fight']
+    readiness=None
+    if run['mode']=='live':
+        buff_ids=list(fight.get('buff_fact_ids',[])) if fight else []
+        canonical=set(requirements(run['season']))|set(run['season']['facts'])
+        buff_ids.extend(k for k in run['buffs'] if k in canonical)
+        scoped=list(FOUNDATION)+decision_requirements(run['season'],fight.get('encounter_id') if fight else None,buff_ids)
+        readiness=assess(run['season'],required=scoped)
+        reasons.extend('SEASON_RESEARCH_REQUIRED:'+g['fact_id']+':'+g['reason'] for g in readiness['decision_blockers'] if g['reason']!='LIVE_OBSERVATION_REQUIRED')
+        if readiness['policy_issue']: reasons.append('SEASON_RESEARCH_REQUIRED:'+readiness['policy_issue'])
+        if readiness['research_required']: warnings.append('PUBLIC_RESEARCH_DEBT')
     if fight is None:
-        return dict(status='BLOCKED',route='UNKNOWN',reasons=['FIGHT_CONTRACT_REQUIRED'],warnings=[],next_action='PREPARE_CONTRACT')
+        return dict(status='BLOCKED',route='UNKNOWN',reasons=reasons+['FIGHT_CONTRACT_REQUIRED'],warnings=warnings,season_readiness=readiness,next_action='RESEARCH_SEASON' if readiness and readiness['research_due'] else 'PREPARE_CONTRACT')
     if fight['encounter_id'] in run['completed']:
         route=route_status(run['vigor'],_checkpoints(run),set(run['unlocked']),set(run['vigor'])).name
-        return dict(status='COMPLETE',route=route,reasons=['ENCOUNTER_COMPLETE'],warnings=[],next_action='NEXT_ENCOUNTER_OR_FINISH')
+        return dict(status='COMPLETE',route=route,reasons=['ENCOUNTER_COMPLETE'],warnings=[],next_action='NEXT_ENCOUNTER_OR_FINISH',season_readiness=readiness)
     team=fight.get('team',[])
     team_ok=isinstance(team,list) and len(team)==4 and len(set(team))==4 and all(c in run['unlocked'] and run['vigor'].get(c,0)>0 for c in team)
     if not team_ok: reasons.append('TEAM_UNAVAILABLE_OR_NOT_FOUR')
@@ -156,7 +167,7 @@ def check(run):
     elif not (run['season']['starts_at']<=date.today().isoformat()<run['season']['ends_at']): reasons.append('SEASON_OUT_OF_DATE')
     encounter=fight['encounter_id']
     if encounter in run['completed']: reasons.append('ENCOUNTER_COMPLETE')
-    required=run['season']['encounters'].get(encounter)
+    required=mechanic_requirements(run['season'],encounter) if run['mode']=='live' else run['season']['encounters'].get(encounter)
     if not required: reasons.append('ENCOUNTER_FACTS_REQUIRED')
     actions=fight.get('mechanic_actions',{})
     if not isinstance(actions,dict): actions={}
@@ -193,7 +204,7 @@ def check(run):
     if stop and stop not in reasons: reasons.append(stop)
     if run['pending'] is not None: reasons.append('TRIAL_ALREADY_AUTHORIZED_RECORD_RESULT')
     return dict(status='BLOCKED' if reasons else ('WARN' if warnings else 'READY'),route=route,reasons=reasons,warnings=warnings,
-                next_action='RESEARCH_OR_REPLAN' if reasons else 'ONE_PREPARED_TRIAL',attempts=len(attempts))
+                next_action=('RESEARCH_SEASON' if readiness and readiness['research_due'] else ('RESEARCH_OR_REPLAN' if reasons else 'ONE_PREPARED_TRIAL')),attempts=len(attempts),season_readiness=readiness)
 
 
 def _transaction(fn):

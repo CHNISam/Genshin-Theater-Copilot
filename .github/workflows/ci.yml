@@ -18,7 +18,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s tests -v
+      - name: Core suite with non-UTF default encoding
+        run: env LC_ALL=C PYTHONUTF8=0 PYTHONCOERCECLOCALE=0 python -m src.cli self-test
       - run: python -m src.cli validate-season seasons/2026-10-v7.1.json
+      - name: Evidence audit (partial public coverage is visible, not a release approval)
+        run: python -m src.season_readiness seasons/2026-10-v7.1.json --mechanics > season-readiness.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: season-evidence-audit
+          path: season-readiness.json
   windows:
     needs: tests
     runs-on: windows-latest
