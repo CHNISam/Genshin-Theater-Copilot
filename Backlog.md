@@ -85,3 +85,11 @@ GUI / OCR / 自动读取游戏 / Web App / 后台监控暂不开发。只有 B-0
 **验证：** tests/test_season_readiness.py的18项重现分支删除、嵌套空值、过期、来源错季、捕获日期伪刷新、重分类逃逸、下一期清单、实际live authorize拒绝/刷新修复；全部86项回归通过（原68保留）。CI增加公共缺口audit artifact与共同机制门槛；strict是完整交付门槛，不能以CI绿代替。本次证据和限制见docs/season-validation.md；未发布/替换v1.0.0。
 
 D-03收尾证据：[PR #2](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/2) 已合入main；[源码a235bd1的CI](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37727185047)回归/非UTF环境/18项原生Windows烟测通过。完整公共严审仍12/48、退出2，B-04保持未完成。
+
+### D-04｜Agent生产适配的可验证收口（实战验收另列）
+
+已交付并复用原Harness：live账号能力/成功证据/有限probe分层并绑定相关事实、配置和目标；资源SAFE与未来能力路线分开，明确不足剔除，条件招募保留警告；当前公共依赖与全量资料欠账分开，现场未知走观察、pending优先记录；先完成required cards再末关；现有私有Sheet自动发现、literal/header/完整链验证、写前head核对、原行重试与readback确认；显式代码迁移保留全部历史。用户仍只需AGENT入口和最少当前画面，无新增App/服务。
+
+**实际证据：** [PR #3](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/3)，源码bcc6df7的[CI](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37733105296)全套105/非UTF core102/Windows smoke18通过。当前Work真实connector完成10检查点及重复相同行追加，逐步新进程读回，结果与资源未重复结算；既有live/intake留痕升级r2读回，没有补造账号。独立审查三项问题均重现修复并复核。详见[生产验证](docs/production-validation.md)。
+
+**范围：** 关闭本轮适配缺陷和当前工具技术闭环，不关闭B-01/B-02真实现场/实际跨设备、B-03阈值实战校准、B-04完整公共交付（仍12/48）。源码审查字段不能证明外部事实真伪，云端仍单写者；普通无工具AI/其他Agent没有新增已实测支持声明。

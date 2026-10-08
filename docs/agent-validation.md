@@ -39,3 +39,7 @@
 玩家在实际手机会话提供现场，记录该端实际工具；至少一次真实选择/试战反馈存到 live 局。电脑另开会话从相同 URL/run_id 读回完整状态，核对资源/pending/失败预算并继续一个真实步骤。缺任何一段就保留“未验证/平台受限”，不能靠模拟或聊天同步替代。最终主产品验收与下一步只在 [Backlog](../Backlog.md) 跟踪。
 
 v1.0.0 发布与原生 Windows smoke 是既有证据，不因这次 Linux/connector测试自动升级为新Windows发布验证；VERSION保留，无覆盖旧release。远端本次CI结果以PR current-head workflow为准。
+
+## 本轮生产适配验证
+
+新增账号审查、研究范围与Sheets适配的实际证据见[production-validation.md](production-validation.md)和[脱敏connector摘要](../fixtures/production-cloud-smoke.json)。105项回归/102项非UTF core/18项Windows smoke通过；既有准备live/intake已经留痕升级并r2读回，账号仍未知。10检查点新connector链与重复append实际通过，状态/战斗输入均合成，不替代上表的真实现场、手机→电脑或其他Agent验收。

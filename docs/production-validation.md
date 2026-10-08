@@ -16,7 +16,7 @@
 
 本地全套105项回归通过，非UTF默认环境102项core通过；保留原86项。新生产和session用例都是合成账号/反馈，不是现场证明。覆盖假就绪拒绝、有限probe、相关/无关资料、证据变化使review过期、未来能力不足、目标顺序、pending恢复、表头/公式/缺父拒绝、同提交重试/读回与代码迁移。
 
-本次真实connector链和远端CI在完成后记录。先前8检查点connector闭环见agent-validation.md，仍只证明真实云端IO和合成状态，不是策略成功或手机→电脑证明。
+本次已使用发布源码 `bcc6df74c9b055df36a6a95152675ee966baac73` 完成真实connector链：[摘要](../fixtures/production-cloud-smoke.json)。10个完整检查点依次为初始、候选招募、资源同步、授权、失败、授权、失败/停磨、新证据重规划、授权、合成成功；每步完整readback后由新Python进程confirm/restore。再次真实追加完全相同的成功行，恢复仍r10/3attempts、core耐力1，没有二次扣除。应答丢失重试逻辑使用已真实写入的行模拟验证，未声称发生真实网络超时。另已实际迁移既有live/intake到新代码并r2读回，没有生成账号或战斗事实。先前8检查点connector闭环见agent-validation.md，仍只证明真实云端IO和合成状态，不是策略成功或手机→电脑证明。
 
 ## 公共研究
 
@@ -27,3 +27,5 @@
 ## 必须由真实现场闭合
 
 需要玩家提供当前画面/目标难度，关键账号能力从画面或口述确认。之后真实选择与一次反馈保存，再由实际电脑会话恢复同局并继续。未提供这些现场时，不关闭B-01，不宣称完整生产实战验收。其他Agent/手机端必须实际具备仓库读取、视觉、研究、执行及云端工具，不能只因品牌/可读SOP宣布支持。无写入就明确未保存，不允许先执行未读回的授权。
+
+[PR #3](https://github.com/CHNISam/Genshin-Theater-Copilot/pull/3) 源码bcc6df7的[CI run16](https://github.com/CHNISam/Genshin-Theater-Copilot/actions/runs/37733105296)通过105项全套、102项非UTF core、18项原生Windows烟测；native日志核对105/18。独立审查提出的相关事实未使审查过期、能力条件路线漏随机警告、现场未知走错研究通道，均先重现再修复；复核无未解决critical/important。版本1.0.0未替换。
