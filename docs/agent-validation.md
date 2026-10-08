@@ -17,7 +17,7 @@
 
 ## 云端合成链
 
-源码适配版本 `7b3a0264c3e5cc4b25a1dd1a9031b6d1dee073d3`，当前 Work 会话的 Google Drive connector；每步由新 Python 进程处理刚读回的云端值，不取之前进程内 run。日期：2026-10-08；run_id=`cloud-smoke-2026-10-08`，mode=`demo`。
+源码适配版本 `8677b8b14899f5be0ab64e9c2ef5de24dc5adc32`，当前 Work 会话的 Google Drive connector；每步由新 Python 进程处理刚读回的云端值，不取之前进程内 run。日期：2026-10-08；run_id=`cloud-smoke-published-2026-10-08`，mode=`demo`。
 
 | revision | 动作/结果 |
 |---|---|
@@ -30,9 +30,9 @@
 | 7 | 有限试战授权 |
 | 8 | 合成成功，attempts=3、reroutes=1、completed=[act-8]、core vigor=1、pending=null |
 
-最终完整 readback SHA-256：`f29dace48a2573368b9fd686fec9a6394cbb320295cff7328a5057c8cc5715ac`。详细摘要见 [fixtures/agent-cloud-smoke.json](../fixtures/agent-cloud-smoke.json)。这是当前 connector 的真实 IO + 合成游戏输入，不能叫真实通关/跨设备验收。私有云端表链接只交给用户，不把游戏存档位置/真实账号数据写进公共仓库。
+最终完整 readback SHA-256：`e2f8dc0bc061137e52d386e29bc389560e72fabdf4b85c0291b890bbe73d8500`。详细摘要见 [fixtures/agent-cloud-smoke.json](../fixtures/agent-cloud-smoke.json)。这是当前 connector 的真实 IO + 合成游戏输入，不能叫真实通关/跨设备验收。私有云端表链接只交给用户，不把游戏存档位置/真实账号数据写进公共仓库。
 
-代码审查发现：如果先按局号列筛选，损坏的最新行可能被跳过，从而丢失 pending。修复于 `c5d04bf111c72f64c557b2011b367d5a9b16d39a`：先校验每行内嵌 JSON 与元数据，再选局号。新增坏例回归先失败、修复后通过；修复版重读同一云端 r1–r8 完整链通过。
+代码审查发现：如果先按局号列筛选，损坏的最新行可能被跳过，从而丢失 pending。在本地审查提交 c5d04bf 修复（已包含于上述远端源码ref）：先校验每行内嵌 JSON 与元数据，再选局号。新增坏例回归先失败、修复后通过；修复版重读同一云端 r1–r8 完整链通过；随后使用可从 GitHub 取得的已发布ref再次完成上述8步云端链。另建 live/intake 准备记录并读回，没有补造游戏事实，仍不算真实游戏或跨设备验收。
 
 ## 尚需真实验收
 

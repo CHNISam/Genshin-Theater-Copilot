@@ -1,13 +1,13 @@
 {
   "date": "2026-10-08",
   "environment": "this ChatGPT Work session: Google Drive connector + Linux Python 3.12, fresh process per step",
-  "source_ref": "7b3a0264c3e5cc4b25a1dd1a9031b6d1dee073d3",
+  "source_ref": "8677b8b14899f5be0ab64e9c2ef5de24dc5adc32",
   "population": "synthetic demo only, not real game, mobile UI, or other AI hosts",
-  "run_id": "cloud-smoke-2026-10-08",
-  "initial_commit_id": "9715aaed679e5eb9c28ce72899b4e40efd5512c69043659a10b74070aecf31c5",
+  "run_id": "cloud-smoke-published-2026-10-08",
+  "initial_commit_id": "70f15428f3d0faa5784f79ed8e12ff52b2ba7cff64024c5af0040d55c631a2b5",
   "steps": [
     {
-      "commit_id": "12674fb1efd73b05eb70327f449001f7d0d37e4261e159ed73d69dd358fa7a33",
+      "commit_id": "2e0cf6660d046dd1046355cf0527edc938dede0d8c987846b2289bcfdb0c1d72",
       "revision": 2,
       "stage": "authorize",
       "report": {
@@ -25,7 +25,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "a20fe6c87a9d6414b9b6a611abef0baa3d45e40e31f484fd981abbd309731b74",
+      "commit_id": "222afc6c0c7b1f20d2f54c60e2d1e7d2b96835a0f766ace82e5ac719476674db",
       "revision": 3,
       "stage": "record_fail",
       "report": {
@@ -43,7 +43,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "34abc9dae6518b7e5b098a88d99588acb8a3a478605d5cd8b24e8c823c6bf2db",
+      "commit_id": "d5fa4c228f5c788c9b826b23cefb056d3a62897892c09f8578476bcf2aa68eb9",
       "revision": 4,
       "stage": "authorize",
       "report": {
@@ -61,7 +61,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "31e6551526ae3c46896d48ea13dfdcbe84cdff89eb27f0aa166fd9c988335485",
+      "commit_id": "ff5c0352e97101ad4b64ac643599adae2d7bba19abc62c2b70a664ad2d0ceb9e",
       "revision": 5,
       "stage": "record_fail",
       "report": {
@@ -81,7 +81,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "b105fb038706666c8a97042d77c76a193cc782b4b3fbbf96bcd8808c4b12e212",
+      "commit_id": "eb561c50d9b04a85ab3796989195df83ff16141470f9b5b8cdb613531aa6e72d",
       "revision": 6,
       "stage": "reroute",
       "report": {
@@ -99,7 +99,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "efe82b88021716ef852d7e741e9bb6d2632441e5bd711983bbc9d282568f4d6d",
+      "commit_id": "81600d856c3d56e49e9838b151d4f8820e826e52ffb74bcbcd033f52646a8ea1",
       "revision": 7,
       "stage": "authorize",
       "report": {
@@ -117,7 +117,7 @@
       "core_vigor": 2
     },
     {
-      "commit_id": "f29dace48a2573368b9fd686fec9a6394cbb320295cff7328a5057c8cc5715ac",
+      "commit_id": "e2f8dc0bc061137e52d386e29bc389560e72fabdf4b85c0291b890bbe73d8500",
       "revision": 8,
       "stage": "record_pass",
       "report": {
@@ -134,5 +134,6 @@
       "core_vigor": 1
     }
   ],
-  "final_readback": "r8; 3 attempts; 1 reroute; act-8 complete; core vigor 1; no pending; hash matched"
+  "final_readback": "r8; 3 attempts; 1 reroute; act-8 complete; core vigor 1; no pending; hash matched; all 17 journal rows read and validated",
+  "live_intake_readback": "Separate live/intake r1 ready for field information; no game run activated and no current game facts supplied."
 }

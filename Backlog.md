@@ -68,6 +68,6 @@ GUI / OCR / 自动读取游戏 / Web App / 后台监控暂不开发。只有 B-0
 
 已交付：[AGENT.md](AGENT.md)、同一 [SOP](docs/SOP.md) 的原生步骤、[工具/存档协议](docs/agent-runtime.md)、`src/agent_state.py` 直接复用现有 Harness；intake 支持资料不齐先存；完整快照保留 pending/attempts/reroutes/预算与实际资源；追加式journal、元数据/hash校验、重复提交幂等、分叉拒绝和只允许同季资料更新。独立私有 Google Sheet 不复制项目任务，原项目表保持原样。
 
-**实际证据：** [验证记录](docs/agent-validation.md)、[云端合成链摘要](fixtures/agent-cloud-smoke.json)：当前 ChatGPT Work 的8检查点真实connector保存/readback，每步新Python进程恢复；两次无收敛失败拒绝第三次，有证据重规划允许，合成成功仅一次扣耐力。68项本地回归通过（原52 + 新16）。审查后的恢复修复见 `c5d04bf`，同一云端链重读通过。未发布新Windows版本，v1.0.0保留。
+**实际证据：** [验证记录](docs/agent-validation.md)、[云端合成链摘要](fixtures/agent-cloud-smoke.json)：当前 ChatGPT Work 的8检查点真实connector保存/readback，每步新Python进程恢复；两次无收敛失败拒绝第三次，有证据重规划允许，合成成功仅一次扣耐力。68项本地回归通过（原52 + 新16）。审查后的恢复修复已包含于源码ref 8677b8b；使用此可获取ref再次完成8步云端链及live/intake准备记录readback。未发布新Windows版本，v1.0.0保留。
 
 **范围：** 这关闭实现与当前工具的合成IO/guard验证；不关闭B-01/B-02真实跨设备/跨Agent/实际策略体验，不关闭B-03阈值校准/B-04资料未知。单写者，无服务器锁；hash不是防篡改或事实真伪证明。
