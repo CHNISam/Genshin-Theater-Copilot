@@ -1,30 +1,16 @@
 # Genshin Theater Copilot｜原神剧诗领航
 
-轻量的幻想真境剧诗 Harness / SOP：保护后续角色耐力，也检查当前战斗的依据；重复失败不收敛时，实际试战入口会停止放行。
+基于**通用 AI Agent** 的幻想真境剧诗策略系统。ChatGPT（包括 Work）、Claude、Gemini 等宿主负责推理、研究、规划和交互；本项目提供 SOP、策略知识、赛季资料、完整游戏状态和确定性 guard。各宿主是否能完整执行，取决于本次会话实际工具，不能只凭品牌保证。
 
-项目进度与下一步只看 [Backlog.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/Backlog.md)：当前 NOW 是真实账号 dogfood v1.0.0。项目级方向、Goals、Ideas、Docs 在 [项目表](https://docs.google.com/spreadsheets/d/1GCgixxH7XKs3jb68ohrV0SO1ai3Iesd2ZVBBuAk8v40/edit)；剧诗执行规则在 [docs/SOP.md](docs/SOP.md)。历史计划和复盘是资料与证据，不维护并行任务状态。
+**使用：** 在通用 AI 中提供 [AGENT.md](AGENT.md)、截图/当前局面、已有存档链接（新局可省）。Agent 按 [SOP](docs/SOP.md) 研究和建议，用户执行游戏操作；AI 负责记录。恢复同局只需存档链接和局号。无需用户学习 CLI、安装 Python 或运行本地进程。
 
-**Windows 下载：[GitHub Releases](https://github.com/CHNISam/Genshin-Theater-Copilot/releases/latest)** → `Genshin-Theater-Copilot-v1.0.0-win-x64.zip`。解压，双击 `theater.cmd`。自带官方 Python 精简运行时，无需安装 Python、clone 或联网运行。适用 Windows 10/11 x64。
+完整机械路径需要 Agent 能读仓库、执行 Python、读写 Google Sheets；云端只持久化数据，不运行 AI，不需要 Cloud Run、自建后端或专用 App。能力不足必须显式标明“未机械验证”或“未保存”，不是完整支持。
 
-第一次先选“演示”，或在解压目录 PowerShell 中运行：
+[运行适配/状态协议](docs/agent-runtime.md) · [已验证范围与平台限制](docs/agent-validation.md) · [唯一项目 Backlog](Backlog.md) · [项目表](https://docs.google.com/spreadsheets/d/1GCgixxH7XKs3jb68ohrV0SO1ai3Iesd2ZVBBuAk8v40/edit)
 
-```powershell
-.\theater.cmd init demo.json --demo
-.\theater.cmd check demo.json
-.\theater.cmd trial demo.json
-.\theater.cmd record demo.json --result fail --score 40 --seconds 90 --mechanics yes --reason timeout --observation "90秒窗口完成40%"
-```
+**当前验证：** 本次 ChatGPT Work 的 connector 保存/读取与独立 Python 进程恢复测试；合成局只证明状态链与 guard 仍工作。真实手机→电脑、真实账号整局和 Claude/Gemini 工具闭环仍待实测，不能宣称最终验收完成。
 
-演示是合成数据，不能当成真实赛季攻略。实际开局用 `init my-run.json`，交给 AI/操作者补入本期账号快照、剩余节点替代方案和当前 fight contract；已有 JSON 可以直接导入复用，不必逐个填写完整面板。具体步骤见 [QUICKSTART.md](QUICKSTART.md)，唯一执行流程见 [docs/SOP.md](docs/SOP.md)。
-
-| 当前状态 | 允许的下一步 |
-|---|---|
-| READY | 有明确机制、输出/生存/操作依据；允许一次有上限的试战，不承诺必过 |
-| WARN | 可试战，但必须看清当前攻略依据或后续招募的条件；不能称作保证 |
-| BLOCKED | 不能授权试战；按原因补数据、核实事实或诊断重规划 |
-| COMPLETE | 本关已过，推进下一关或结束；不能重复花耐力 |
-
-`SAFE / CONDITIONAL / BROKEN` 单独描述**后续战略资源**。SAFE 不代表当前队伍打得过，也不证明未来每关输出足够。未招募角色仍是 CONDITIONAL，替代方案照常搜索。
+Windows [v1.0.0 Release](https://github.com/CHNISam/Genshin-Theater-Copilot/releases/tag/v1.0.0) 保留为可选本地 Harness；它不是 Agent-first 必需下载，也不包含本次新增适配。源码 Agent 入口直接调用同一核心，不运行玩家 CLI。
 
 ## 停磨是可执行机制
 
@@ -38,7 +24,7 @@
 
 10 月现期固定关机制由有日期的现期攻略支持，保留 `guide_supported`；**精确祝福分支/数值尚未重新取得充分可检视的现期证据，标为 unknown**。依赖这些数值的 contract 会阻塞。普通随机战需现场确认。本工具不读取游戏、不推算自动伤害，不提供虚构概率。
 
-每期用 `research --season 2026-11` 生成研究任务，`validate-season` 校验资料格式；复核来源后替换赛季包即可复用。用户推荐的 B 站 UP 可加入 [watchlist](maintenance/watchlist.json)，新材料先进入待核验记录。当前没有后台监控或订阅。
+每期由 Agent 按 [研究提示](prompts/season-research.md) 直接研究，使用 `harness.validate_season` 校验资料格式；复核来源后替换赛季包即可复用。用户推荐的 B 站 UP 可加入 [watchlist](maintenance/watchlist.json)，新材料先进入待核验记录。当前没有后台监控或订阅。
 
 ## 维护与验证
 
