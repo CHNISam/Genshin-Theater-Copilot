@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ReadinessTests(unittest.TestCase):
     def setUp(self):
-        self.season = json.loads((ROOT/'seasons/2026-10-v7.1.json').read_text())
+        self.season = json.loads((ROOT/'seasons/2026-10-v7.1.json').read_text(encoding='utf-8'))
     def report(self, season=None, **kw):
         return assess(season or self.season, today=date(2026,10,8), **kw)
     def test_deleting_a_branch_is_detected_even_if_pack_says_verified(self):
@@ -63,7 +63,7 @@ class ReadinessTests(unittest.TestCase):
     def test_live_trial_rejects_public_gap_but_allows_common_mechanic(self):
         from unittest.mock import patch
         from src import harness
-        r=json.loads((ROOT/'templates/demo-run.json').read_text())
+        r=json.loads((ROOT/'templates/demo-run.json').read_text(encoding='utf-8'))
         r['mode']='live';r['season']=copy.deepcopy(self.season)
         f=r['fight'];f['mechanic_actions']={'act-8-mechanic':{'capability':'cryo-shield-break-with-airborne-plan','providers':['healer'],'execution':'synthetic test shield + airborne handling'}}
         r['capabilities']['healer']['tags'].append('cryo-shield-break-with-airborne-plan')
@@ -104,7 +104,7 @@ class ReadinessTests(unittest.TestCase):
     def test_acquired_branch_deletion_does_not_remove_guard_dependency(self):
         from unittest.mock import patch
         from src import harness
-        r=json.loads((ROOT/'templates/demo-run.json').read_text());r['mode']='live';r['season']=copy.deepcopy(self.season)
+        r=json.loads((ROOT/'templates/demo-run.json').read_text(encoding='utf-8'));r['mode']='live';r['season']=copy.deepcopy(self.season)
         r['fight']['mechanic_actions']={'act-8-mechanic':{'capability':'cryo-shield-break-with-airborne-plan','providers':['healer'],'execution':'synthetic shield + flight'}}
         r['capabilities']['healer']['tags'].append('cryo-shield-break-with-airborne-plan')
         for e in r['evidence']:e['season_id']=self.season['id']
