@@ -46,8 +46,8 @@ class GuideTests(unittest.TestCase):
         (self.root/'icon.png').write_bytes(b'wrong');self.assertTrue(any('hash' in s for s in self.validate()))
     def test_unreviewed_asset_rejected(self):
         self.data['assets']['a']['reviewed']=False;self.assertTrue(any('review' in s for s in self.validate()))
-    def test_empty_choice_rejected(self):
-        self.data['rows'][0]['before']='';self.assertTrue(any('before' in s for s in self.validate()))
+    def test_missing_choice_field_rejected(self):
+        self.data['rows'][0].pop('before');self.assertTrue(any('before' in s for s in self.validate()))
     def test_unsupported_source_reference_rejected(self):
         self.data['buffs'][0]['source_ids']=['missing'];self.assertTrue(any('source' in s for s in self.validate()))
     def test_duplicate_node_rejected(self):

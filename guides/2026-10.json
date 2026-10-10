@@ -963,8 +963,8 @@
       "asset_ids": [
         "secretsourceautomatonoverseerdevice"
       ],
-      "before": "先打两张圣牌，再把花花光",
-      "after": "演出结束",
+      "before": "",
+      "after": "",
       "tactic": "持续挂冰压条，窗口期输出",
       "kind": "boss",
       "source_ids": [

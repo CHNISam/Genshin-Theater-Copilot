@@ -59,7 +59,12 @@ def validate_editorial(data,root):
         return errors+['mechanic_spec independent encounter coverage required']
     for r in data['rows']:
         label=r['id']
-        for k in ROW_FIELDS:copy_check(r.get(k),label+' '+k,LIMITS[k])
+        for k in ROW_FIELDS:
+            if k in ('before','after'):
+                if r.get(k)=='':continue
+                if r.get(k) in ('先打两张圣牌，再把花花光','演出结束'):
+                    errors.append(label+' '+k+' filler prose')
+            copy_check(r.get(k),label+' '+k,LIMITS[k])
         evidence(r,label,True);review(r,label,('mechanic','route','recruitment'))
         spec=specs.get(label)
         if not isinstance(spec,dict) or not isinstance(spec.get('requires'),dict):

@@ -86,7 +86,9 @@ def validate_guide(data, root):
     uses=Counter();resources=data.get('resources',{})
     for r in rows:
         label=str(r.get('id','row'))
-        for k in ('label','team','enemy','before','after','tactic'):need(r.get(k),label+' '+k)
+        for k in ('label','team','enemy','tactic'):need(r.get(k),label+' '+k)
+        for k in ('before','after'):
+            if not isinstance(r.get(k),str):errors.append(label+' '+k+' string required')
         slots=r.get('slots',[])
         if len(slots)!=4 or len(set(slots))!=4:errors.append(label+' requires four distinct slots')
         uses.update(slots)

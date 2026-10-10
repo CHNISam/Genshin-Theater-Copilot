@@ -14,6 +14,18 @@ class EditorialTests(unittest.TestCase):
         return validate_guide(self.data, ROOT/'guides')
     def test_current_reviewed_guide_passes(self):
         self.assertEqual(self.errors(), [])
+    def test_no_decision_cells_can_be_empty(self):
+        self.data['rows'][-1].update(before='',after='')
+        self.assertEqual(self.errors(),[])
+    def test_empty_optional_copy_does_not_allow_missing_or_invalid_fields(self):
+        for value in [None,42,'   ']:
+            d=copy.deepcopy(self.data);d['rows'][-1]['before']=value
+            self.assertTrue(validate_guide(d,ROOT/'guides'))
+        self.data['rows'][-1]['team']=''
+        self.assertTrue(self.errors())
+    def test_known_filler_is_rejected(self):
+        self.data['rows'][-1]['before']='先打两张圣牌，再把花花光'
+        self.assertTrue(any('filler prose' in e for e in self.errors()))
     def test_surface_engineering_prose_rejected(self):
         self.data['rows'][1]['team'] = '琴未到需重算耐力；默认路线校验通过'
         self.assertTrue(any('editorial' in e for e in self.errors()))
