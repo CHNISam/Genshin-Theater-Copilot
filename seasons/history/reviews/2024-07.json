@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "month": "2024-07",
+  "plan_sha256": "85da5fdba92357e7a8161f6e4c1d598ba7c6f287cd069cfc25f481f46a257c4a",
+  "mode": "retrospective_mechanics_review_partial_expert_comparison",
+  "real_clear": false,
+  "sources": {
+    "kqm": {
+      "url": "https://library.keqingmains.com/evidence/characters/electro/raiden-shogun",
+      "locator": "Burst Mechanics: attacks during Burst cannot trigger Beidou Q",
+      "accessed_at": "2026-10-10",
+      "historical_month": "2024-07",
+      "historical_snapshot": false
+    },
+    "other_author": {
+      "url": "https://www.bilibili.com/video/BV1pi421e7Gk/",
+      "locator": "Search-indexed creator description: helper Kazuha and built Xiangling",
+      "author": "你的影月月",
+      "published_at": "2024-07-01",
+      "accessed_at": "2026-10-10",
+      "read_scope": "description only; direct page returned412",
+      "historical_month": "2024-07"
+    }
+  },
+  "differences": [
+    {
+      "dimension": "rotation",
+      "classification": "decision_error",
+      "evidence_ids": [
+        "kqm"
+      ],
+      "reason": "第7幕北斗+雷电的循环没有指定普攻伤害驾驶员；若默认雷电爆发站场，北斗放电不会触发。角色同队并非错误，错误是缺少触发条件。",
+      "action": "北斗爆发期间用多莉普攻触发；结束后雷电爆发补能。新增通用伤害类型触发合同；不禁用合理同队。"
+    },
+    {
+      "dimension": "helper_and_resource",
+      "classification": "condition_difference",
+      "evidence_ids": [
+        "other_author"
+      ],
+      "reason": "读取到的同期描述使用好友万叶、高练香菱；独立方案借班尼特并保留仆人终幕。不同账号与练度假设，不能据此认定任一路线更优。",
+      "action": "保留有条件路线；未取得逐幕正文，不计算一致率。"
+    },
+    {
+      "dimension": "expert_reference_coverage",
+      "classification": "insufficient_evidence",
+      "evidence_ids": [
+        "other_author"
+      ],
+      "reason": "优先检索凝渡、百渊，未取得可读的同期逐幕正文；其他作者只有简介，不能完成怪物/Buff/资源全面专家对照。",
+      "action": "本期保持部分机制复核，不认证完整专家回测。"
+    }
+  ],
+  "before": {
+    "rotation_errors": true
+  },
+  "after": {
+    "rotation_errors": false
+  },
+  "validation_scope": "Explicit trigger contract only; no damage/sustain/recruitment/clear certification"
+}

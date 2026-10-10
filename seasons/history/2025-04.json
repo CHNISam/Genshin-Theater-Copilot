@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "month": "2025-04",
+  "season_id": "2025-04",
+  "number": 10,
+  "ruleset_id": "visionary-10",
+  "game_version": null,
+  "sources": {
+    "bwiki-month": {
+      "url": "https://wiki.biligame.com/ys/index.php?title=%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97/%E7%AC%AC%E5%8D%81%E6%9C%9F",
+      "locator": "时间 / 限定元素(和角色) / 开幕角色 / 特邀角色 / 首领关卡怪物",
+      "accessed_at": "2026-10-10",
+      "published_at": null,
+      "page_update_label": "2025-04-01",
+      "revision_id": "600473",
+      "read_scope": "Downloaded HTML; monthly section parsed for time, elemental icons, opening/guest character identities, fixed boss/card tables. No ordinary enemy pool or per-season buff table present.",
+      "kind": "community_wiki_factual_archive",
+      "historical_validity": "Retrospective currently served revision; creation/publication date not established; no at-the-time snapshot proof.",
+      "license": "CC BY-NC-SA 4.0; attribution: 原神WIKI BWIKI / 旅行者酒馆 and page contributors",
+      "evidence_path": "seasons/history/evidence/2025-04-bwiki.html",
+      "evidence_sha256": "1843abc6c7f6a8b10d331fb8f573595e7d54c3f247cdf68d90d77aea45737639"
+    }
+  },
+  "facts": {
+    "elements": [
+      "火",
+      "雷",
+      "风"
+    ],
+    "opening_characters": [
+      "宵宫",
+      "托马",
+      "克洛琳德",
+      "北斗",
+      "魈",
+      "砂糖"
+    ],
+    "special_guests": [
+      "艾尔海森",
+      "希诺宁",
+      "瑶瑶",
+      "米卡"
+    ],
+    "encounters": [
+      {
+        "kind": "boss",
+        "label": "第三幕",
+        "level": 90,
+        "objective": "首领",
+        "challenge": "95秒/65秒",
+        "enemies": [
+          "冰风组曲·科培琉司的劫罚"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "时间 / 限定元素(和角色) / 开幕角色 / 特邀角色 / 首领关卡怪物 / 第三幕",
+        "source_cells": {
+          "幕次": "第三幕",
+          "怪物等级": "90",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "95秒/65秒",
+          "怪物": "冰风组曲·科培琉司的劫罚"
+        },
+        "act": 3
+      },
+      {
+        "kind": "boss",
+        "label": "第六幕",
+        "level": 92,
+        "objective": "首领",
+        "challenge": "110秒/75秒",
+        "enemies": [
+          "深邃摹结株"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "时间 / 限定元素(和角色) / 开幕角色 / 特邀角色 / 首领关卡怪物 / 第六幕",
+        "source_cells": {
+          "幕次": "第六幕",
+          "怪物等级": "92",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "110秒/75秒",
+          "怪物": "深邃摹结株"
+        },
+        "act": 6
+      },
+      {
+        "kind": "boss",
+        "label": "第八幕",
+        "level": 95,
+        "objective": "首领",
+        "challenge": "120秒/80秒",
+        "enemies": [
+          "水形幻人"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "时间 / 限定元素(和角色) / 开幕角色 / 特邀角色 / 首领关卡怪物 / 第八幕",
+        "source_cells": {
+          "幕次": "第八幕",
+          "怪物等级": "95",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "120秒/80秒",
+          "怪物": "水形幻人"
+        },
+        "act": 8
+      },
+      {
+        "kind": "boss",
+        "label": "第十幕",
+        "level": 100,
+        "objective": "首领",
+        "challenge": "110秒/75秒",
+        "enemies": [
+          "半永恒统辖矩阵"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "时间 / 限定元素(和角色) / 开幕角色 / 特邀角色 / 首领关卡怪物 / 第十幕",
+        "source_cells": {
+          "幕次": "第十幕",
+          "怪物等级": "100",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "110秒/75秒",
+          "怪物": "半永恒统辖矩阵"
+        },
+        "act": 10
+      }
+    ],
+    "buffs": []
+  },
+  "gaps": [
+    "Full ordinary encounter pools and per-act selectable candidates absent from read archive.",
+    "Per-season complete buff branches, coefficients, upgrade prices and historical revision validity not established.",
+    "Enemy mechanics/HP/resistance tables not read here; names and levels do not establish required counterplay.",
+    "No authenticated contemporaneous snapshot or historical account/playtest.",
+    "Game version not established; deliberately null."
+  ],
+  "validation": {
+    "status": "PARTIAL_FACTS",
+    "contemporaneous_snapshot": false,
+    "blind_backtest_eligible": false,
+    "played_clear_evidence": false,
+    "source_month_matches": true,
+    "source_month": "2025-04",
+    "core_identity_present": true,
+    "identity_review": "All26month identities reviewed against extraction: explicit icon names plus opening-table element background where icon absent."
+  },
+  "facts_provenance": {
+    "elements": [
+      "bwiki-month"
+    ],
+    "opening_characters": [
+      "bwiki-month"
+    ],
+    "special_guests": [
+      "bwiki-month"
+    ],
+    "encounters": [
+      "bwiki-month"
+    ],
+    "buffs": []
+  },
+  "rules_provenance": {
+    "selection": "Authorized historical boundary supplied by task; fixed boss/card tables corroborate3,4or6checkpoints. Detailed official rule registry maintained separately.",
+    "source_path": "seasons/history/research-provenance.json",
+    "maximum_acts": 10,
+    "sacred_cards": 0,
+    "blessing_system": "辉彩祝福",
+    "special_guest_5_2_bonus_validity": "Not assigned a month here; verify official5.2season timing."
+  },
+  "facts_extraction": {
+    "elements": "Ordered unique explicit elemental-image alt labels; supplemented by opening-character element-colour markup. Order is nonsemantic.",
+    "opening_characters": "Six named character links in opening section or first-column trial table.",
+    "encounters": "Fixed boss/card tables only; raw source cells retained. Enemy image alt is not used to override the visible enemy name."
+  }
+}

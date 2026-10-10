@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "accessed_at": "2026-10-10",
+  "sources": {
+    "bwiki-rules-current": {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "locator": "玩法说明 / 5.0新增：辉彩祝福 / 5.2 special guest change / 月谕 rules",
+      "published_at": null,
+      "accessed_at": "2026-10-10",
+      "read_scope": "Downloaded current factual system page; only dated rule-history labels and relevant paragraphs captured, current numeric branches not assigned backward.",
+      "historical_validity": "Current revised reference, not authenticated historical snapshot.",
+      "evidence_path": "seasons/history/evidence/rules-current-reference.txt",
+      "evidence_sha256": "16c7d8b1269dd6df744a95ee1892b58e1571fe3aa375bc72eab624c1ad5e392c",
+      "license": "CC BY-NC-SA 4.0; 原神WIKI BWIKI / 旅行者酒馆 and page contributors"
+    }
+  },
+  "observed_rule_labels": [
+    {
+      "claim": "辉彩祝福 introduced in5.0, replacing奇妙助益",
+      "source_id": "bwiki-rules-current",
+      "calendar_boundary": "2024-09",
+      "boundary_status": "Cross-check official5.0 announcement required; supplied boundary from task rules."
+    },
+    {
+      "claim": "Special guests blessing-level bonus increased100% from5.2",
+      "source_id": "bwiki-rules-current",
+      "calendar_boundary": null,
+      "boundary_status": "Do not map to2024-11 by assuming a whole month equals version5.2; official version/season timing must be checked."
+    },
+    {
+      "claim": "Star-count rewards introduced season12, June2025",
+      "source_id": "bwiki-rules-current",
+      "calendar_boundary": "2025-06",
+      "boundary_status": "Explicit retrospective wiki season/month label."
+    },
+    {
+      "claim": "Moon/lunar difficulty includes two optional persistent sacred-card events, final reward needs bothplusact10",
+      "source_id": "bwiki-rules-current",
+      "calendar_boundary": "2025-10",
+      "boundary_status": "Official notice discovered at https://genshin.hoyoverse.com/zh-tw/news/detail/159349 search snippet explicitly2025-10-01; full official body not read by this agent."
+    }
+  ],
+  "rejected_or_failed_sources": [
+    {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗/2024",
+      "result": "HTTP404; firstsix individual pages used instead."
+    },
+    {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗/2025",
+      "result": "HTTP404; nexttwelve individual pages used instead."
+    },
+    {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗/当期",
+      "result": "Body2026年8月, despite2026-10-05 update label; rejected for2026-09and10."
+    },
+    {
+      "url": "https://ys.mihoyo.com/main/m/news/detail/125543",
+      "result": "Official5.0 update notice located; webopen returned0textlines, no fulltextread."
+    }
+  ],
+  "knowledge_state": {
+    "deliberate_expert_guide_read": false,
+    "unsolicited_strategy_snippets_received": true,
+    "affected_target_months": [
+      "2024-07",
+      "2025-10"
+    ],
+    "blind_strategy_freeze_created": false,
+    "limitation": "Search results unexpectedly included expert guide snippets. This researcher cannot certify clean blindness. Monthly factual packets use only downloaded BWIKI factual archive sections."
+  }
+}

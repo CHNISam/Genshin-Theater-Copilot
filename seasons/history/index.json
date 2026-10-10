@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "coverage_start": "2024-07",
+  "coverage_end": "2026-10",
+  "generated_at": "2026-10-10",
+  "seasons": [
+    {
+      "month": "2024-07",
+      "number": 1,
+      "ruleset_id": "initial-8",
+      "facts_path": "seasons/history/2024-07.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 3,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2024-08",
+      "number": 2,
+      "ruleset_id": "initial-8",
+      "facts_path": "seasons/history/2024-08.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 3,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2024-09",
+      "number": 3,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2024-09.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2024-10",
+      "number": 4,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2024-10.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2024-11",
+      "number": 5,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2024-11.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2024-12",
+      "number": 6,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2024-12.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-01",
+      "number": 7,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-01.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-02",
+      "number": 8,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-02.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-03",
+      "number": 9,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-03.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-04",
+      "number": 10,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-04.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-05",
+      "number": 11,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-05.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-06",
+      "number": 12,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-06.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-07",
+      "number": 13,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-07.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-08",
+      "number": 14,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-08.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-09",
+      "number": 15,
+      "ruleset_id": "visionary-10",
+      "facts_path": "seasons/history/2025-09.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 4,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-10",
+      "number": 16,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2025-10.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-11",
+      "number": 17,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2025-11.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2025-12",
+      "number": 18,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2025-12.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-01",
+      "number": 19,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-01.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-02",
+      "number": 20,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-02.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-03",
+      "number": 21,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-03.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-04",
+      "number": 22,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-04.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-05",
+      "number": 23,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-05.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-06",
+      "number": 24,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-06.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-07",
+      "number": 25,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-07.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-08",
+      "number": 26,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-08.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false
+    },
+    {
+      "month": "2026-09",
+      "number": 27,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-09.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 0,
+      "blind_backtest_eligible": false,
+      "source_basis": "matching announcement reposts"
+    },
+    {
+      "month": "2026-10",
+      "number": 28,
+      "ruleset_id": "lunar-12",
+      "facts_path": "seasons/history/2026-10.json",
+      "status": "PARTIAL_FACTS",
+      "core_identity_present": true,
+      "encounter_count": 6,
+      "blind_backtest_eligible": false,
+      "source_basis": "existing October dossier import"
+    }
+  ]
+}

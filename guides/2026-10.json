@@ -1,12 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season_id": "2026-10-v7.1",
   "reviewed_at": "2026-10-10",
   "valid_until": "2026-11-01",
   "status": "reviewed_guide",
-  "title": "2026年10月 幻想真境剧诗 · 一图流",
-  "scope": "水 / 冰 / 风　｜　月谕：10幕＋2圣牌　｜　先稳通关，星章另看输出",
-  "subtitle": "凝渡路线整理 · 通用版；主C/助战需有相应练度，按实际招募与耐力调整",
+  "title": "2026年10月 幻想真境剧诗 · 通关一图流",
+  "scope": "水 / 冰 / 风　｜　月谕：10幕＋2圣牌　｜　冰系助战路线",
+  "subtitle": "按招募到队排；缺琴第2幕换奶/盾，第4幕用嘲讽/聚怪。圣牌均在第10幕前打。",
   "order": [
     "act-1",
     "act-2",
@@ -56,6 +56,41 @@
       "season_id": "asset-reference",
       "accessed_at": "2026-10-10",
       "locator": "官方游戏UI文件名与敌人ID对应；图片从Alioth/Enka镜像取得，已逐张视觉核对"
+    },
+    "vv": {
+      "url": "https://library.keqingmains.com/equipment/artifacts",
+      "kind": "original-theorycraft-findings",
+      "locator": "Viridescent Venerer / Findings: wearer on-field trigger, persisted shred10s",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10"
+    },
+    "rules": {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "kind": "system-reference",
+      "locator": "月谕28–32名；四人战斗；成功各扣1耐力；失败不扣",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10"
+    },
+    "survival": {
+      "url": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+      "kind": "secondary-current-guide",
+      "locator": "第4幕守护、两圣牌生存倒计时；只采与其他来源一致的机制，不采强度排行",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10"
+    },
+    "helper-builds": {
+      "url": "https://wiki.biligame.com/ys/桑多涅/攻略",
+      "kind": "character-mechanics-review",
+      "locator": "桑多涅星烁启动、关键2/6命；不把雷队伤害结论直接套水冰风",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10"
+    },
+    "secondary": {
+      "url": "https://www.bilibili.com/list/ml44731932?bvid=BV1RmN16vEhe&oid=116911157288714",
+      "kind": "guide-description",
+      "locator": "百渊/影月月合制10月简介，守护愚人众、圣牌治疗；未看视频；作为补充不复制整条路线",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10"
     }
   },
   "assets": {
@@ -256,315 +291,430 @@
       "icon_name": "UI_AvatarIcon_Varka",
       "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
       "reviewed_at": "2026-10-10"
+    },
+    "sandrone": {
+      "name": "桑多涅",
+      "url": "https://act-webstatic.hoyoverse.com/event-static-hoyowiki-admin/2026/06/29/4ee285b198b7bb8dba2a0a63aa9ffc9f_7866102664638374858.png",
+      "path": "assets/sandrone.png",
+      "sha256": "1ab3c4e05cae5db564a174b815ffad7d8d69c5f26d284ce4d10e1b6b6261bba3",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_MarionetteNew",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "odette": {
+      "name": "奥黛塔",
+      "url": "https://act-webstatic.hoyoverse.com/event-static-hoyowiki-admin/2026/08/07/963982ad49601f7de6a5ab1a364989f7_3689152522029267720.png",
+      "path": "assets/odette.png",
+      "sha256": "3599641cafa7bb97ae4dcffd635dd2eab4c6f9858828ba366a41024232aefd38",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Odette",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "channelcontact": {
+      "name": "渠道联络人",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Volkodlak_Beaver.png?f=png&w=256",
+      "path": "assets/channelcontact.png",
+      "sha256": "f7e8665d4df287c74136c7cf1bf85fab3b20c85ffebf602a1e5f84ed3cd82ebe",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Volkodlak_Beaver",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
     }
   },
   "resources": {
     "kaeya": {
       "name": "凯亚",
+      "element": "cryo",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "kaeya",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "wanderer": {
       "name": "流浪者",
+      "element": "anemo",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "wanderer",
-      "element": "anemo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "barbara": {
       "name": "芭芭拉",
+      "element": "hydro",
+      "capabilities": [
+        "heal"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "barbara",
-      "element": "hydro"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "prune": {
       "name": "布伦妮",
+      "element": "anemo",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "prune",
-      "element": "anemo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "jean": {
       "name": "琴",
+      "element": "anemo",
+      "capabilities": [
+        "heal",
+        "party_heal",
+        "control"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "jean",
-      "element": "anemo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "neuvillette": {
       "name": "那维莱特",
+      "element": "hydro",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "neuvillette",
-      "element": "hydro"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "hydro-a": {
-      "name": "水辅助A",
+    "mona": {
+      "name": "莫娜",
+      "element": "hydro",
+      "capabilities": [
+        "taunt"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "hydro-a",
-      "element": "hydro"
+      "character_id": "mona",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "citlali": {
       "name": "茜特菈莉",
+      "element": "cryo",
+      "capabilities": [
+        "shield"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "citlali",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "anemo-a": {
-      "name": "风辅助A",
+    "sucrose": {
+      "name": "砂糖",
+      "element": "anemo",
+      "capabilities": [
+        "vv4",
+        "control"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "anemo-a",
-      "element": "anemo"
+      "character_id": "sucrose",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "skirk": {
       "name": "丝柯克",
+      "element": "cryo",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "skirk",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
+    },
+    "candace": {
+      "name": "坎蒂丝",
+      "element": "hydro",
+      "capabilities": [],
+      "vigor": 2,
+      "character_id": "candace",
+      "availability": "conditional_on_actual_roster_and_recruitment"
+    },
+    "freminet": {
+      "name": "菲米尼",
+      "element": "cryo",
+      "capabilities": [],
+      "vigor": 2,
+      "character_id": "freminet",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "ayaka": {
       "name": "神里绫华",
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "ayaka",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "furina": {
       "name": "芙宁娜",
+      "element": "hydro",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "furina",
-      "element": "hydro"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "cryo-healer-a": {
-      "name": "冰治疗A",
+    "diona": {
+      "name": "迪奥娜",
+      "element": "cryo",
+      "capabilities": [
+        "heal",
+        "shield"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "cryo-healer-a",
-      "element": "cryo"
+      "character_id": "diona",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "support-a": {
-      "name": "辅助A",
+    "xingqiu": {
+      "name": "行秋",
+      "element": "hydro",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "support-a",
-      "element": "hydro"
+      "character_id": "xingqiu",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "mizuki": {
       "name": "梦见月瑞希",
+      "element": "anemo",
+      "capabilities": [],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "mizuki",
-      "element": "anemo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "traveler-cryo": {
       "name": "冰主",
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "traveler-cryo",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "healer-b": {
-      "name": "治疗B",
+    "sayu": {
+      "name": "早柚",
+      "element": "anemo",
+      "capabilities": [
+        "heal",
+        "party_heal"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "healer-b",
-      "element": "hydro"
+      "character_id": "sayu",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "support-b": {
-      "name": "辅助B",
+    "rosaria": {
+      "name": "罗莎莉亚",
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "support-b",
-      "element": "hydro"
+      "character_id": "rosaria",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
     "helper": {
       "name": "莱欧斯利（助战）",
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "wriothesley",
-      "element": "cryo"
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "cryo-a": {
-      "name": "冰辅助A",
+    "charlotte": {
+      "name": "夏洛蒂",
+      "element": "cryo",
+      "capabilities": [
+        "heal",
+        "party_heal"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "cryo-a",
-      "element": "cryo"
+      "character_id": "charlotte",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "cryo-b": {
-      "name": "冰辅助B（含治疗）",
+    "layla": {
+      "name": "莱依拉",
+      "element": "cryo",
+      "capabilities": [
+        "shield",
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "cryo-b",
-      "element": "cryo"
+      "character_id": "layla",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "healer-c": {
-      "name": "治疗C",
+    "kokomi": {
+      "name": "珊瑚宫心海",
+      "element": "hydro",
+      "capabilities": [
+        "heal"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "healer-c",
-      "element": "hydro"
+      "character_id": "kokomi",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     },
-    "water-b": {
-      "name": "水辅助B",
+    "chongyun": {
+      "name": "重云",
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ],
       "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "water-b",
-      "element": "hydro"
-    },
-    "cryo-c": {
-      "name": "冰辅助C",
-      "vigor": 2,
-      "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "cryo-c",
-      "element": "cryo"
+      "character_id": "chongyun",
+      "availability": "conditional_on_actual_roster_and_recruitment"
     }
   },
   "rows": [
     {
       "id": "act-1",
       "label": "第1幕",
-      "team": "凯亚＋流浪者＋芭芭拉＋布伦妮",
+      "team": "凯亚＋散兵＋芭芭拉＋布伦妮",
       "slots": [
         "kaeya",
         "wanderer",
         "barbara",
         "prune"
       ],
-      "enemy": "首选嵌合鍪甲兽",
+      "enemy": "嵌合鍪甲兽",
       "asset_ids": [
         "chimericarmoredbeast"
       ],
-      "before": "招募琴；冰风1级",
-      "after": "有琴补挂件；无琴继续找",
-      "tactic": "留那维莱特，集中处理目标。",
+      "before": "找琴；冰风1级起步",
+      "after": "有琴补水挂件，没琴继续找",
+      "tactic": "被打飞可飞高点",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ]
     },
     {
       "id": "act-2",
       "label": "第2幕",
-      "team": "凯亚＋流浪者＋芭芭拉＋琴\n琴未到：换可用风位并重算耐力",
+      "team": "凯亚＋散兵＋芭芭拉＋琴",
       "slots": [
         "kaeya",
         "wanderer",
         "barbara",
         "jean"
       ],
-      "enemy": "首选幼态树段",
+      "enemy": "优先可摔的人形怪",
       "asset_ids": [
-        "juveniletreesegment"
+        "fatuipyroagent"
       ],
-      "before": "找琴；冰风2级\n前期确实打不动再重开",
-      "after": "补水充能位/风套辅助",
-      "tactic": "别提前用那维莱特。",
+      "before": "继续找琴；冰风2级",
+      "after": "水充电宝、风套工具人",
+      "tactic": "能摔就摔，能冻就冻",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ]
     },
     {
       "id": "act-3",
       "label": "第3幕\n首领",
-      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "team": "龙王＋水充电宝＋茜特菈莉\n＋风套工具人",
       "slots": [
         "neuvillette",
-        "hydro-a",
+        "mona",
         "citlali",
-        "anemo-a"
+        "sucrose"
       ],
       "enemy": "恒常机关阵列",
       "asset_ids": [
         "perpetualmechanicalarray"
       ],
-      "before": "冻结2级右；冰风2级左",
-      "after": "找嘲讽/控制位；否则补风位",
-      "tactic": "打发光小机关，解除锁血。",
+      "before": "冻结2右；冰风2左",
+      "after": "找嘲讽位；没有就选挂件",
+      "tactic": "打发光小机关解锁血",
       "kind": "boss",
       "source_ids": [
         "reference",
-        "mechanics"
-      ]
+        "mechanics",
+        "rules",
+        "vv"
+      ],
+      "requires_vv": true
     },
     {
       "id": "act-4",
       "label": "第4幕\n守护",
-      "team": "琴＋布伦妮＋水辅助B＋冰辅助C\n低需求位可换嘲讽/控制位",
+      "team": "4挂件，最好带嘲讽位\n有琴可继续摔怪",
       "slots": [
         "jean",
         "prune",
-        "water-b",
-        "cryo-c"
+        "candace",
+        "freminet"
       ],
-      "enemy": "人形愚人众（图：债务处理人）",
+      "enemy": "守护：优先愚人众组合",
       "asset_ids": [
         "fatuipyroagent"
       ],
-      "before": "补嘲讽/控制；琴可摔怪",
-      "after": "补风套位；保住第5幕队",
-      "tactic": "拉住仇恨，保护镇石。",
+      "before": "找嘲讽或能聚怪的",
+      "after": "找风套工具人，留龙王",
+      "tactic": "拉仇恨，拖到倒计时结束",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules",
+        "secondary",
+        "survival"
       ]
     },
     {
       "id": "act-5",
       "label": "第5幕",
-      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "team": "龙王＋水充电宝＋茜特菈莉\n＋风套工具人",
       "slots": [
         "neuvillette",
-        "hydro-a",
+        "mona",
         "citlali",
-        "anemo-a"
+        "sucrose"
       ],
-      "enemy": "优先幼态树段类目标\n仍可用那维莱特",
+      "enemy": "渠道联络人（小型妖精）",
       "asset_ids": [
-        "juveniletreesegment"
+        "channelcontact"
       ],
-      "before": "角色少招募；角色足升冻结",
-      "after": "找丝柯克/后半主C",
-      "tactic": "那维莱特最后一次耐力。",
+      "before": "人少选挂件，人多选冻结",
+      "after": "找有点伤害的主C",
+      "tactic": "没有推荐怪：选可冻小怪",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
-      ]
+        "mechanics",
+        "rules",
+        "vv",
+        "secondary"
+      ],
+      "requires_vv": true
     },
     {
       "id": "act-6",
       "label": "第6幕\n首领",
-      "team": "丝柯克＋水辅助B＋冰辅助C\n＋治疗C（仅水冰）",
+      "team": "丝柯克＋3水冰队友\n其中至少1个奶/盾",
       "slots": [
         "skirk",
-        "water-b",
-        "cryo-c",
-        "healer-c"
+        "candace",
+        "freminet",
+        "kokomi"
       ],
-      "enemy": "历经百战的嵌合兽怪箭士",
+      "enemy": "嵌合兽怪箭士",
       "asset_ids": [
         "arrow"
       ],
-      "before": "冻结4级；备选水/风输出",
-      "after": "补第7—8幕主C",
-      "tactic": "先打高处根须/柱子，再输出。",
+      "before": "冻结4级；留能打高处的技能",
+      "after": "找有点伤害的主C",
+      "tactic": "打发光柱，瘫痪后输出",
       "kind": "boss",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ],
       "allowed_elements": [
         "hydro",
@@ -574,166 +724,180 @@
     {
       "id": "act-7",
       "label": "第7幕",
-      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "team": "神里＋芙芙＋奶妈＋辅助",
       "slots": [
         "ayaka",
         "furina",
-        "cryo-healer-a",
-        "support-a"
+        "diona",
+        "xingqiu"
       ],
-      "enemy": "冰多：打雷咏者\n水多：改打火咏者",
+      "enemy": "雷咏者 / 火咏者",
       "asset_ids": [
         "abysslectorvioletlightning",
         "abysslectorfathomlessflames"
       ],
-      "before": "缺主C补主C；缺奶先补奶",
-      "after": "有主C选主C；否则补治疗",
-      "tactic": "选择能破对应元素盾的队伍。",
+      "before": "找主C；先备好对应破盾位",
+      "after": "有C就选，没有就奶妈",
+      "tactic": "冰多打雷；水多打火",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ]
     },
     {
       "id": "act-8",
       "label": "第8幕\n首领",
-      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "team": "神里＋芙芙＋奶妈＋辅助",
       "slots": [
         "ayaka",
         "furina",
-        "cryo-healer-a",
-        "support-a"
+        "diona",
+        "xingqiu"
       ],
       "enemy": "嵌合翼骏狮",
       "asset_ids": [
         "chimericwingedlion"
       ],
-      "before": "角色少招募；角色足升冰风",
-      "after": "补瑞希/冰主或可用对群队",
-      "tactic": "冰伤/星烁破雷盾；处理风球。",
+      "before": "人少选挂件，人多选冰风",
+      "after": "找瑞希 / 冰主或对群C",
+      "tactic": "冰破雷盾，染风球再输出",
       "kind": "boss",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ]
     },
     {
       "id": "act-9",
       "label": "第9幕",
-      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "team": "瑞希＋冰主＋奶妈＋辅助",
       "slots": [
         "mizuki",
         "traveler-cryo",
-        "healer-b",
-        "support-b"
+        "sayu",
+        "rosaria"
       ],
-      "enemy": "优先幼态树段类目标",
+      "enemy": "嵌合鍪甲兽",
       "asset_ids": [
-        "juveniletreesegment"
+        "chimericarmoredbeast"
       ],
-      "before": "补本幕输出；保留末关冰位",
-      "after": "补助战及两张圣牌缺口",
-      "tactic": "本队还要打圣牌1，留一耐力。",
+      "before": "补本幕主C，留末关挂冰位",
+      "after": "找好友助阵、奶妈",
+      "tactic": "没有推荐怪：选可冻小怪",
       "kind": "ordinary",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ]
     },
     {
       "id": "card-1",
       "label": "圣牌1",
-      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "team": "瑞希＋冰主＋群奶＋辅助",
       "slots": [
         "mizuki",
         "traveler-cryo",
-        "healer-b",
-        "support-b"
+        "sayu",
+        "rosaria"
       ],
-      "enemy": "嗜岩·兽境猎犬",
+      "enemy": "兽境猎犬",
       "asset_ids": [
         "rockfondrifthound"
       ],
-      "before": "补治疗；冰风/水风",
-      "after": "补末关队；确认圣牌2未漏",
-      "tactic": "全队失血：群奶优先，先保命。",
+      "before": "找群奶；补冰风 / 水风",
+      "after": "找好友助阵、奶妈",
+      "tactic": "全队掉血；活到倒计时结束",
       "kind": "card",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules",
+        "survival"
+      ],
+      "required_capabilities": [
+        "party_heal"
       ]
     },
     {
       "id": "card-2",
       "label": "圣牌2",
-      "team": "莱欧斯利（助战）＋冰辅助A\n＋冰辅助B（治疗）＋水治疗C",
+      "team": "好友助阵＋奶妈＋2辅助",
       "slots": [
         "helper",
-        "cryo-a",
-        "cryo-b",
-        "healer-c"
+        "charlotte",
+        "layla",
+        "kokomi"
       ],
-      "enemy": "遗迹系列（图：遗迹巡弋者）",
+      "enemy": "遗迹系列",
       "asset_ids": [
         "ruincruiser"
       ],
-      "before": "确认已借到；冰风/水风",
-      "after": "留助战一耐力；圣牌都打完",
-      "tactic": "追怪，注意击杀殉爆，带奶。",
+      "before": "补奶/盾；补冰风 / 水风",
+      "after": "留助战1耐力、后台冰1耐力",
+      "tactic": "躲击杀殉爆；活到倒计时结束",
       "kind": "card",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules",
+        "survival"
+      ],
+      "required_capabilities": [
+        "heal"
       ]
     },
     {
       "id": "act-10",
       "label": "第10幕\n最终",
-      "team": "莱欧斯利（助战）＋丝柯克\n＋冰辅助A＋冰辅助B（治疗）",
+      "team": "冰系好友助阵＋后台冰\n＋奶妈＋辅助",
       "slots": [
         "helper",
-        "cryo-a",
-        "cryo-b",
-        "skirk"
+        "charlotte",
+        "layla",
+        "chongyun"
       ],
       "enemy": "秘源机兵·统御械",
       "asset_ids": [
         "secretsourceautomatonoverseerdevice"
       ],
-      "before": "先完成两圣牌；花用在本队",
-      "after": "演出结束；无法回头补圣牌",
-      "tactic": "持续冰伤压制液流动量；保持治疗。",
+      "before": "两张圣牌打完；把花用完",
+      "after": "演出结束",
+      "tactic": "持续挂冰，压住液流动量",
       "kind": "boss",
       "source_ids": [
         "reference",
-        "mechanics"
+        "mechanics",
+        "rules"
       ],
-      "allowed_elements": [
-        "hydro",
-        "cryo"
+      "required_capabilities": [
+        "cryo_application"
       ]
     }
   ],
   "buffs": [
     {
-      "name": "Buff优先级：冻结 ≥ 冰风 > 水风",
-      "text": "前期：冰风1—2级过渡。\n中期：冻结优先升4级。\n后期：补冰风，再按队伍补水风。\n缺角色时先招募。",
+      "name": "Buff推荐：冻结 ≥ 冰风 > 水风",
+      "text": "前期冰风1–2级过渡；中期冻结升满。\n后期补冰风、水风；缺角色先找人。",
       "source_ids": [
-        "reference"
+        "reference",
+        "ningdu"
       ]
     },
     {
-      "name": "冻结：2级右 → 3级 → 4级按主C",
-      "text": "2级右：减抗。\n4级看主C：冰多选冰伤，水多选水伤。\n按选项效果辨认，不把其他树的左右套来。",
+      "name": "冻结：2右 → 4看水冰主C",
+      "text": "2右减抗；冰C多选四级冰伤，水C多选水伤。",
       "source_ids": [
         "reference",
         "mechanics"
       ]
     },
     {
-      "name": "冰风 / 水风：分支这样选",
-      "text": "冰风：2左持续冰伤 → 4右减抗。\n缺聚怪：2右冲刺牵引 → 4右减抗。\n水风：2右 → 4右；优先级靠后。",
+      "name": "冰风2左4右；水风2右4右",
+      "text": "冰风：持续冰伤 → 减抗；缺聚怪可改2右。\n水风优先级靠后，剩花再补。",
       "source_ids": [
         "reference",
         "branches"
@@ -742,74 +906,158 @@
   ],
   "helpers": [
     {
-      "name": "莱欧斯利",
-      "asset_id": "wriothesley",
-      "text": "本图默认：圣牌2＋10\n冰辅助B须有治疗",
-      "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "恰斯卡",
-      "asset_id": "chasca",
-      "text": "高配置换线备选\n风系不可套本图末队",
-      "source_ids": [
-        "reference"
-      ]
-    },
-    {
       "name": "薇斯纳",
       "asset_id": "vesna",
-      "text": "换线备选\n先核对元素与耐力",
+      "text": "机制优先，0命可选\n带后台冰；可改打6/8",
       "source_ids": [
-        "reference"
+        "mechanics"
+      ]
+    },
+    {
+      "name": "桑多涅",
+      "asset_id": "sandrone",
+      "text": "机制优先，2/6命更佳\n带后台风，触发星扩散",
+      "source_ids": [
+        "mechanics",
+        "helper-builds"
+      ]
+    },
+    {
+      "name": "奥黛塔",
+      "asset_id": "odette",
+      "text": "机制候选，0命可选\n有对应主C再借",
+      "source_ids": [
+        "mechanics"
       ]
     },
     {
       "name": "丝柯克",
       "asset_id": "skirk",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "text": "高配直伤候选\n队友只配水冰",
       "source_ids": [
-        "reference"
+        "mechanics"
       ]
     },
     {
-      "name": "法尔伽",
-      "asset_id": "varka",
-      "text": "高配置换线备选\n风系不可套本图末队",
+      "name": "恰斯卡",
+      "asset_id": "chasca",
+      "text": "优先6命\n带异色队友＋奶",
       "source_ids": [
-        "reference"
+        "reference",
+        "mechanics"
       ]
     },
     {
-      "name": "梦见月瑞希",
-      "asset_id": "yumemizukimizuki",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "name": "莱欧斯利",
+      "asset_id": "wriothesley",
+      "text": "优先6命；本图冰助战\n留圣牌2 / 第10幕",
       "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "神里绫华",
-      "asset_id": "kamisatoayaka",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
-      "source_ids": [
-        "reference"
+        "reference",
+        "mechanics"
       ]
     }
   ],
   "notes": [
-    "留人：那维3/5；神里＋芙宁娜7/8；瑞希＋冰主9/圣牌1；默认借莱欧斯利留圣牌2/10。冰辅助B必须兼治疗。",
-    "本线按24名各2耐力；辅助A/B/C都是互不重复且不占已列角色的人。只有22名至少需实际恢复4次角色耐力，不能预支。",
-    "本图默认冰系助战，末队全冰；丝柯克队只配水冰。其他头像为换线备选，不能直接替换；开幕角色不能借好友版本。",
-    "神秘事件取确定收益，别赌；随机敌人未出现就按本行机制改选。队伍或招募变化后核对全程耐力，别默认低练度能照搬。"
+    "留人：龙王3/5；神里＋芙芙7/8；瑞希＋冰主9/圣牌1；冰系助战留圣牌2/10。丝柯克只配水冰。",
+    "风套工具人：先挂水/冰，再切风套佩戴者在场扩散；后台扩散不刷新减抗。",
+    "月谕需28名角色入场。圣牌成功每人扣1耐力；神秘事件选确定收益，缺人先招募。"
   ],
-  "footer": "参考：凝渡用户图/本期简介＋冻梨攻略；UI © HoYoverse（Alioth/Enka）。通用路线，未作本账号通关验证。",
+  "footer": "原创策略修订 · 参考：凝渡_Du（格式/思路）、百渊（补充）、冻梨（机制）；游戏UI © HoYoverse",
   "target_spec": {
     "acts": 10,
     "cards": [
       "card-1",
       "card-2"
     ]
+  },
+  "borrowed_character_id": "wriothesley",
+  "opening_characters": [
+    "neuvillette",
+    "barbara",
+    "citlali",
+    "kaeya",
+    "wanderer",
+    "prune"
+  ],
+  "strategy": {
+    "mode": "conditional_witness",
+    "entry_requirement": 28,
+    "requirements": [
+      {
+        "row": "card-1",
+        "capability": "party_heal",
+        "providers": [
+          "sayu"
+        ]
+      },
+      {
+        "row": "card-2",
+        "capability": "heal",
+        "providers": [
+          "charlotte",
+          "kokomi"
+        ]
+      },
+      {
+        "row": "act-10",
+        "capability": "cryo_application",
+        "providers": [
+          "helper",
+          "layla",
+          "chongyun"
+        ]
+      }
+    ],
+    "vv_rotations": [
+      {
+        "row": "act-3",
+        "provider": "sucrose",
+        "on_field": true,
+        "reaction": "swirl"
+      },
+      {
+        "row": "act-5",
+        "provider": "sucrose",
+        "on_field": true,
+        "reaction": "swirl"
+      }
+    ]
+  },
+  "review": {
+    "revision": 2,
+    "status": "source_reviewed_conditional_route",
+    "clear_evidence": false,
+    "independent_blind_backtest": false,
+    "reason": "This revision has already inspected the expert references; cannot claim independent blind generation.",
+    "route_scope": "Displayed roles are flexible; concrete character assignment below is one conditional resource witness, not guaranteed recruitment or player build verification.",
+    "deviations": [
+      {
+        "item": "act-3/5 wind",
+        "reason": "Opening Prune already spends1 vigor in act1. Use a separately recruited VV support twice instead of pretending the same Prune can cover all3 appearances."
+      },
+      {
+        "item": "act-7",
+        "reason": "Healing retained in Furina team; Diona heals the active character, not the entire party. Rotate damaged teammates into her field; build/execution still needs review."
+      },
+      {
+        "item": "act-10",
+        "reason": "Remove Skirk as unused second field DPS; preserve frequent off-field Cryo and a healer. Borrowed Cryo is one route, not universal strongest helper."
+      },
+      {
+        "item": "helpers",
+        "reason": "Remove low-value generic helpers; add mechanic-matched Sandrone and Odette. C0 mechanism eligibility is not a clear guarantee."
+      }
+    ],
+    "unresolved": [
+      "Full October ordinary pools not acquired; alternative selection by freeze/control criteria, no exact pool completeness claim.",
+      "Card2 star quota/countdown and current UI thresholds unverified; no such numerical claim in player image.",
+      "No actual player builds, recruitment, clear or helper DPS comparison.",
+      "Buff complete coefficients remain B-04; only evidenced semantic branch directions used."
+    ],
+    "mechanical_review": {
+      "card_goal": "survive; kills accelerate and quota applies to star only",
+      "vv": "equipped holder triggers on-field, do not infer from anemo identity",
+      "helpers": "mechanism shortlist vs C6 damage shortlist; switch route by actual roster"
+    }
   }
 }
