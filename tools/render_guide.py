@@ -89,8 +89,8 @@ def render_guide(path,output,font_path,width=3200):
     text(data['scope'],pad,scope_y,width-2*pad,head)
     text(subtitle,pad,subtitle_y,width-2*pad,small,muted)
     y=top
-    for label,w in zip(['幕次','阵容排布','怪物推荐 / 关键打法','开打前','打完选'],columns):
-        x=sum(columns[:['幕次','阵容排布','怪物推荐 / 关键打法','开打前','打完选'].index(label)])
+    for label,w in zip(['幕次','阵容排布','怪物推荐','开打前','打完选'],columns):
+        x=sum(columns[:['幕次','阵容排布','怪物推荐','开打前','打完选'].index(label)])
         draw.rectangle((x,y,x+w,y+header_h),fill='#e9ecef',outline=line)
         text(label,x+pad,y+px(18),w-2*pad,head)
     y+=header_h
