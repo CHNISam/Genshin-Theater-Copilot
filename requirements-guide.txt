@@ -1,0 +1,2 @@
+# Optional offline image exporter only; gameplay guard needs no dependency.
+Pillow==12.3.0

@@ -4,6 +4,8 @@
 
 ## 0. Agent 原生执行边界
 
+默认产品交付是[凝渡式每期一图流](season-guide.md)：先研究并形成完整逐幕攻略，覆盖阵容、带图怪物选择、开打前/打完选择、Buff路线和好友助战。以下步骤服务于实际执行与动态修订，不要求玩家每幕先来问下一步，也不以存档/guard验收代替攻略内容准确性。只制作公共攻略时不伪造live状态或强制创建游戏局。
+
 主入口是 [AGENT.md](../AGENT.md)：用户打开通用 AI，提供截图/口述并执行游戏操作；AI 负责研究、计划、录入和下一步决策。云端仅保存游戏局状态，不负责推理。工具、完整状态和手机/电脑恢复协议见 [agent-runtime.md](agent-runtime.md)。没有执行/写入工具时须标明降级，不能伪称 guard 已执行或状态已保存。
 
 下文 `sync / check / trial / record / next / prepare / reroute / event / research` 表示工作步骤，**不要求玩家运行命令**。有代码执行能力的 Agent 通过 `src.agent_state.act` 调同一 Harness：trial→authorize、next→next_fight、event→purchase、season→refresh_season；research 由 Agent 联网按 prompts/season-research.md 完成。Windows CLI 是可选适配器。
@@ -92,3 +94,7 @@ Agent从AGENT.md唯一入口自动发现存档、初始化和研究，玩家只�
 当前check.next_action不因无关公共资料欠账退回研究。持有但未依赖的未知增益不纳入论证；一旦作为依据就必须列入buff_fact_ids并核验。首次/恢复研究一次并记实际尝试，无法读取时按范围选择已具备证据的打法；关键依赖不足才暂停，不问玩家整理公开表。默认目标含两张圣牌时，必须先完成它们再进第10幕；check和next均检查。
 
 保存和恢复用session.prepare_save/confirm_save，不把工具成功返回视为保存完成。暂离/切设备先保留pending与最近实际资源，返回只询问未记录结果/现场变化。仅有模拟与connector验证时，不关闭真实手机/电脑验收。
+
+## 一图流制作入口
+
+当前成品：[2026年10月完整攻略图](../guides/output/2026-10-guide.png)。制作合同与离线导出方法见[season-guide.md](../docs/season-guide.md)。新期先取得当期内容及可追溯真实UI素材，更新guides期次JSON再导出；玩家默认直接使用整图，不要求运行命令。
