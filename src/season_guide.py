@@ -119,6 +119,9 @@ def validate_guide(data, root):
             need(item.get('name'),section+' name');need(item.get('text'),section+' text');refs(item,section)
             if section=='helpers' and item.get('asset_id') not in assets:errors.append('helper asset missing')
     if not data.get('notes'):errors.append('notes required')
+    if 'editorial_profile' in data:
+        from src.guide_editorial import validate_editorial
+        errors.extend(validate_editorial(data,root))
     return errors
 
 
@@ -126,5 +129,7 @@ def load_guide(path):
     path=Path(path)
     data=json.loads(path.read_text(encoding='utf-8'))
     errors=validate_guide(data,path.parent)
+    if data.get('editorial_profile') != 'one-image-v2':
+        errors.append('editorial_profile required for production export')
     if errors:raise ValueError('\n'.join(errors))
     return data

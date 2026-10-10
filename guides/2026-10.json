@@ -4,9 +4,8 @@
   "reviewed_at": "2026-10-10",
   "valid_until": "2026-11-01",
   "status": "reviewed_guide",
-  "title": "2026年10月 幻想真境剧诗 · 一图流",
-  "scope": "水 / 冰 / 风　｜　月谕：10幕＋2圣牌　｜　先稳通关，星章另看输出",
-  "subtitle": "凝渡路线整理 · 通用版；主C/助战需有相应练度，按实际招募与耐力调整",
+  "title": "2026年10月 · 幻想真境剧诗",
+  "scope": "月谕｜水·冰·风｜10幕＋2圣牌",
   "order": [
     "act-1",
     "act-2",
@@ -27,7 +26,7 @@
       "kind": "user-provided-guide-image",
       "season_id": "2026-10-v7.1",
       "accessed_at": "2026-10-10",
-      "locator": "用户提供凝渡_Du五列表格：12行、Buff与助战推荐；直接可视，布局与路线基线"
+      "locator": "仅借鉴用户提供的列名、排版、简短表达；不作独立机制或强度证据"
     },
     "ningdu": {
       "url": "https://www.bilibili.com/video/BV12Zak6LEMF",
@@ -56,20 +55,114 @@
       "season_id": "asset-reference",
       "accessed_at": "2026-10-10",
       "locator": "官方游戏UI文件名与敌人ID对应；图片从Alioth/Enka镜像取得，已逐张视觉核对"
+    },
+    "current-route": {
+      "url": "https://www.enjoygm.com/zh-TW/blog/genshin-impact/v7-1-imaginarium-theater-guide",
+      "kind": "current-guide",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "2026-10-07：第4幕愚人众拖时间；第6幕根须顶端；第7幕咏者；第9幕树人；10幕高频冰。数值冲突不采用。"
+    },
+    "opening-capture": {
+      "url": "https://img1.ali213.net/glpic/2026/10/08/584_2026100811725976.png",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期第1幕对手与开幕队伍截图：角熊图标"
+    },
+    "act2-capture": {
+      "url": "https://img1.ali213.net/glpic/2026/10/08/584_202610081172659.png",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期第2幕对手截图：碎石隙境原体（大、小）"
+    },
+    "defense-capture": {
+      "url": "https://img1.ali213.net/glpic/2026/10/08/584_2026100811726224.png",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期第4幕对手截图：债务处理人等愚人众；不由截图推断同时存活数量"
+    },
+    "act5-capture": {
+      "url": "https://img1.ali213.net/glpic/2026/10/08/584_2026100811726354.png",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期第5幕对手截图：渠道联络人及两种人形怪；可用水输出队"
+    },
+    "buff-capture": {
+      "url": "https://img2-tc.tapimg.com/moment/etag/FhRibWihMyZKqKvgBenL3MTRibe3_20261001135950.jpg/_tap_ugc.jpg",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "2026-10-01本期游戏祝福界面：冻结2右减抗、冰风2右冲刺聚怪与4右减抗；其他路径结合游戏文本核对"
+    },
+    "buff-text": {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "kind": "game-text",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "当下正文祝福文本（不用旧期归档数值）：冻结2右冰裂之势，4左冰裂/右水蚀；冰风2左肃蚀/右旋岚，4右减抗；水风2右水瀑/4右凝核"
+    },
+    "vv-text": {
+      "url": "https://wiki.hoyolab.com/m/genshin/entry/2091?lang=ja-jp",
+      "kind": "game-text",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "翠绿之影4件套：扩散对应元素减抗40%，10秒；实际须佩戴者在场触发并刷新"
+    },
+    "chasca-kit": {
+      "url": "https://wiki.biligame.com/ys/恰斯卡",
+      "kind": "game-text",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "技能与命座原文：转化元素弹；2命范围伤害，6命缩短蓄力、追加瞬发及暴伤提升"
+    },
+    "vesna-kit": {
+      "url": "https://wiki.biligame.com/ys/薇斯纳",
+      "kind": "game-text",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "当期技能原文：冰扩散转星扩散；按攻击力提高星扩散基础伤害；风冰配队"
+    },
+    "sandrone-kit": {
+      "url": "https://img2-tc.tapimg.com/moment/etag/FgvRZuP8Ysfrhr70csymi92RPYIf_20261001135946.jpg/_tap_ugc.jpg",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "当前游戏技能界面：桑多涅直伤星扩散倍率；独立当前攻略推荐其处理怪群"
+    },
+    "skirk-kit": {
+      "url": "https://wiki.hoyolab.com/pc/genshin/entry/7706?lang=zh-cn",
+      "kind": "game-text",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "官方托管角色条目搜索索引技能文本：水冰队伍强化；网页正文JS未抓取，不当作完整阅读"
+    },
+    "card1-capture": {
+      "url": "https://img2-tc.tapimg.com/moment/etag/0ba877adddb9b6d7dc322900bdb35d17.jpg/_tap_ugc.jpg",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期圣牌1：倒计时生存、17击杀星章；挑战自带全队扣血与猎犬侵蚀应分别核对"
+    },
+    "card2-capture": {
+      "url": "https://img2-tc.tapimg.com/moment/etag/c2908b3647ff72a34df1672c28a596f6.jpg/_tap_ugc.jpg",
+      "kind": "game-capture",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "本期圣牌2游戏画面：顺时针刷新、殉爆扣血；未据此宣称护盾抵消强制扣血"
+    },
+    "sandrone-text": {
+      "url": "https://baike.mihoyo.com/ys/obc/content/508841/detail",
+      "kind": "game-text",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "官方托管角色技能文本：冰扩散转星扩散，辉映星扩散的冷凝射线；配风触发而非纯冰水。"
     }
   },
   "assets": {
-    "chimericarmoredbeast": {
-      "name": "嵌合鍪甲兽",
-      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Chimera_BeetleLion.png?f=png&w=256",
-      "path": "assets/chimericarmoredbeast.png",
-      "sha256": "f4ba31d14c65c1257f15bbe917a904d9048628192f3c7052d10e4f8044bad060",
-      "kind": "game-ui",
-      "reviewed": true,
-      "icon_name": "UI_MonsterIcon_Chimera_BeetleLion",
-      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
-      "reviewed_at": "2026-10-10"
-    },
     "juveniletreesegment": {
       "name": "幼态树段",
       "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Leshy_Normal_01.png?f=png&w=256",
@@ -202,28 +295,6 @@
       "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
       "reviewed_at": "2026-10-10"
     },
-    "kamisatoayaka": {
-      "name": "神里绫华",
-      "url": "https://enka.network/ui/UI_AvatarIcon_Ayaka.png",
-      "path": "assets/kamisatoayaka.png",
-      "sha256": "53f0ebc62c98597e66ad65c3496ffa6d83db9ec936c04c7f0019357049386e56",
-      "kind": "game-ui",
-      "reviewed": true,
-      "icon_name": "UI_AvatarIcon_Ayaka",
-      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
-      "reviewed_at": "2026-10-10"
-    },
-    "yumemizukimizuki": {
-      "name": "梦见月瑞希",
-      "url": "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
-      "path": "assets/yumemizukimizuki.png",
-      "sha256": "8a704794e461a2dbd8be0300247319ec424a85ece8aeef58867fffbcdb0e94b5",
-      "kind": "game-ui",
-      "reviewed": true,
-      "icon_name": "UI_AvatarIcon_Mizuki",
-      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
-      "reviewed_at": "2026-10-10"
-    },
     "vesna": {
       "name": "薇斯纳",
       "url": "https://enka.network/ui/UI_AvatarIcon_Vesna.png",
@@ -235,25 +306,47 @@
       "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
       "reviewed_at": "2026-10-10"
     },
-    "wriothesley": {
-      "name": "莱欧斯利",
-      "url": "https://enka.network/ui/UI_AvatarIcon_Wriothesley.png",
-      "path": "assets/wriothesley.png",
-      "sha256": "986e60a8aa2f4d7786b7701e15ee764b6b0983b6ebd248cf7b053b6d57e3acc3",
+    "chimerichornedbear": {
+      "name": "嵌合角熊",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Chimera_BearDeer.png?f=png&w=256",
+      "path": "assets/chimerichornedbear.png",
+      "sha256": "ae2ced5710f0da8871c3e1efb1d069ec91620040c304c7fb56a16fd032b98d6c",
       "kind": "game-ui",
       "reviewed": true,
-      "icon_name": "UI_AvatarIcon_Wriothesley",
-      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "icon_name": "UI_MonsterIcon_Chimera_BearDeer",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
       "reviewed_at": "2026-10-10"
     },
-    "varka": {
-      "name": "法尔伽",
-      "url": "https://enka.network/ui/UI_AvatarIcon_Varka.png",
-      "path": "assets/varka.png",
-      "sha256": "88b35ab59b8b86a555eba6c6f281ea4d6543a89b21870523df2a9195a39d8636",
+    "shatterstonebreacherprimus": {
+      "name": "碎石隙境原体",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Ovacua_Order_02.png?f=png&w=256",
+      "path": "assets/shatterstonebreacherprimus.png",
+      "sha256": "4ff43b55f3526f7b353dca8a32231522906f2f2ee3e8387aabe15f01b34e6f3a",
       "kind": "game-ui",
       "reviewed": true,
-      "icon_name": "UI_AvatarIcon_Varka",
+      "icon_name": "UI_MonsterIcon_Ovacua_Order_02",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "channelcontact": {
+      "name": "渠道联络人",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Volkodlak_Beaver.png?f=png&w=256",
+      "path": "assets/channelcontact.png",
+      "sha256": "f7e8665d4df287c74136c7cf1bf85fab3b20c85ffebf602a1e5f84ed3cd82ebe",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Volkodlak_Beaver",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "sandrone": {
+      "name": "桑多涅",
+      "url": "https://enka.network/ui/UI_AvatarIcon_MarionetteNew.png",
+      "path": "assets/sandrone.png",
+      "sha256": "1ab3c4e05cae5db564a174b815ffad7d8d69c5f26d284ce4d10e1b6b6261bba3",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_MarionetteNew",
       "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
       "reviewed_at": "2026-10-10"
     }
@@ -264,168 +357,228 @@
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "kaeya",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": []
     },
     "wanderer": {
       "name": "流浪者",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "wanderer",
-      "element": "anemo"
+      "element": "anemo",
+      "capabilities": []
     },
     "barbara": {
       "name": "芭芭拉",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "barbara",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": [
+        "party_heal",
+        "active_heal"
+      ]
     },
     "prune": {
       "name": "布伦妮",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "prune",
-      "element": "anemo"
+      "element": "anemo",
+      "capabilities": []
     },
     "jean": {
       "name": "琴",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "jean",
-      "element": "anemo"
+      "element": "anemo",
+      "capabilities": [
+        "party_heal",
+        "active_heal"
+      ]
     },
     "neuvillette": {
       "name": "那维莱特",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "neuvillette",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": []
     },
     "hydro-a": {
       "name": "水辅助A",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "hydro-a",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": []
     },
     "citlali": {
       "name": "茜特菈莉",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "citlali",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": [
+        "shield",
+        "interruption_resistance"
+      ]
     },
     "anemo-a": {
       "name": "风辅助A",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "anemo-a",
-      "element": "anemo"
+      "element": "anemo",
+      "capabilities": []
     },
     "skirk": {
       "name": "丝柯克",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "skirk",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": []
     },
     "ayaka": {
       "name": "神里绫华",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "ayaka",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": []
     },
     "furina": {
       "name": "芙宁娜",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "furina",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": []
     },
     "cryo-healer-a": {
       "name": "冰治疗A",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "cryo-healer-a",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": [
+        "party_heal",
+        "active_heal"
+      ]
     },
     "support-a": {
       "name": "辅助A",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "support-a",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": []
     },
     "mizuki": {
       "name": "梦见月瑞希",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "mizuki",
-      "element": "anemo"
+      "element": "anemo",
+      "capabilities": []
     },
     "traveler-cryo": {
       "name": "冰主",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "traveler-cryo",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ]
     },
     "healer-b": {
       "name": "治疗B",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "healer-b",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": [
+        "party_heal",
+        "active_heal"
+      ]
     },
     "support-b": {
       "name": "辅助B",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "support-b",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": []
     },
     "helper": {
-      "name": "莱欧斯利（助战）",
+      "name": "恰斯卡（助战）",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
-      "character_id": "wriothesley",
-      "element": "cryo"
+      "character_id": "chasca",
+      "element": "anemo",
+      "capabilities": []
     },
     "cryo-a": {
       "name": "冰辅助A",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "cryo-a",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application"
+      ]
     },
     "cryo-b": {
       "name": "冰辅助B（含治疗）",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "cryo-b",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": [
+        "cryo_application",
+        "active_heal"
+      ]
     },
     "healer-c": {
       "name": "治疗C",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "healer-c",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": [
+        "active_heal"
+      ]
     },
     "water-b": {
-      "name": "水辅助B",
+      "name": "水弓（夜兰或达达利亚）",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "water-b",
-      "element": "hydro"
+      "element": "hydro",
+      "capabilities": [
+        "aimed_shot"
+      ]
     },
     "cryo-c": {
       "name": "冰辅助C",
       "vigor": 2,
       "availability": "conditional_on_actual_roster_and_recruitment",
       "character_id": "cryo-c",
-      "element": "cryo"
+      "element": "cryo",
+      "capabilities": []
+    },
+    "cryo-d": {
+      "name": "后台冰（末关）",
+      "character_id": "cryo-d",
+      "element": "cryo",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "capabilities": [
+        "cryo_application"
+      ]
     }
   },
   "rows": [
@@ -439,46 +592,60 @@
         "barbara",
         "prune"
       ],
-      "enemy": "首选嵌合鍪甲兽",
+      "enemy": "嵌合角熊",
       "asset_ids": [
-        "chimericarmoredbeast"
+        "chimerichornedbear"
       ],
       "before": "招募琴；冰风1级",
-      "after": "有琴补挂件；无琴继续找",
-      "tactic": "留那维莱特，集中处理目标。",
+      "after": "有琴找挂件，没琴继续找琴",
+      "tactic": "没角熊选精锐；流浪者飞起来打",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "opening-capture",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "流浪者飞起来打",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {}
     },
     {
       "id": "act-2",
       "label": "第2幕",
-      "team": "凯亚＋流浪者＋芭芭拉＋琴\n琴未到：换可用风位并重算耐力",
+      "team": "凯亚＋流浪者＋芭芭拉＋琴",
       "slots": [
         "kaeya",
         "wanderer",
         "barbara",
         "jean"
       ],
-      "enemy": "首选幼态树段",
+      "enemy": "碎石隙境原体",
       "asset_ids": [
-        "juveniletreesegment"
+        "shatterstonebreacherprimus"
       ],
-      "before": "找琴；冰风2级\n前期确实打不动再重开",
-      "after": "补水充能位/风套辅助",
-      "tactic": "别提前用那维莱特。",
+      "before": "找琴；冰风2左",
+      "after": "找水系充电宝、风套工具人",
+      "tactic": "没原体选精锐；冰水冻结再输出",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "act2-capture",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "冰水触发冻结，流浪者输出",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。琴尚未到队时可用布伦妮；需使用实际可用角色重新绑定，保留第4幕挂件。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {}
     },
     {
       "id": "act-3",
-      "label": "第3幕\n首领",
-      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "label": "第3幕",
+      "team": "龙王＋水系充电宝＋茜特菈莉＋风套工具人",
       "slots": [
         "neuvillette",
         "hydro-a",
@@ -489,116 +656,173 @@
       "asset_ids": [
         "perpetualmechanicalarray"
       ],
-      "before": "冻结2级右；冰风2级左",
-      "after": "找嘲讽/控制位；否则补风位",
-      "tactic": "打发光小机关，解除锁血。",
+      "before": "冻结2右；冰风2左",
+      "after": "找嘲讽角色；没有就找挂件",
+      "tactic": "先扩散水；锁血打发光机关",
       "kind": "boss",
       "source_ids": [
-        "reference",
         "mechanics"
-      ]
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "锁血就打发光小机关",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {},
+      "vv_element": "hydro",
+      "vv": {
+        "slot": "anemo-a",
+        "set": "viridescent-4",
+        "on_field": true,
+        "elements": [
+          "hydro"
+        ],
+        "refresh": "先挂水，风套角色在场扩散水；10秒内刷新及新目标覆盖；成图补此操作"
+      }
     },
     {
       "id": "act-4",
-      "label": "第4幕\n守护",
-      "team": "琴＋布伦妮＋水辅助B＋冰辅助C\n低需求位可换嘲讽/控制位",
+      "label": "第4幕",
+      "team": "4挂件，最好带嘲讽或琴",
       "slots": [
         "jean",
         "prune",
         "water-b",
         "cryo-c"
       ],
-      "enemy": "人形愚人众（图：债务处理人）",
+      "enemy": "愚人众",
       "asset_ids": [
         "fatuipyroagent"
       ],
-      "before": "补嘲讽/控制；琴可摔怪",
-      "after": "补风套位；保住第5幕队",
-      "tactic": "拉住仇恨，保护镇石。",
+      "before": "找嘲讽角色",
+      "after": "找风套工具人",
+      "tactic": "拉住仇恨，拖时间",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "defense-capture",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "拉住仇恨，拖时间",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {}
     },
     {
       "id": "act-5",
       "label": "第5幕",
-      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "team": "龙王＋水系充电宝＋茜特菈莉＋风套工具人",
       "slots": [
         "neuvillette",
         "hydro-a",
         "citlali",
         "anemo-a"
       ],
-      "enemy": "优先幼态树段类目标\n仍可用那维莱特",
+      "enemy": "渠道联络人＋人形怪",
       "asset_ids": [
-        "juveniletreesegment"
+        "channelcontact"
       ],
-      "before": "角色少招募；角色足升冻结",
-      "after": "找丝柯克/后半主C",
-      "tactic": "那维莱特最后一次耐力。",
+      "before": "人少找挂件，人多升冻结",
+      "after": "找有点伤害的主C（自己的）",
+      "tactic": "先扩散水；龙王扫远程怪",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "act5-capture"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "先打远程怪，龙王扫射",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {},
+      "vv_element": "hydro",
+      "vv": {
+        "slot": "anemo-a",
+        "set": "viridescent-4",
+        "on_field": true,
+        "elements": [
+          "hydro"
+        ],
+        "refresh": "先挂水，风套角色在场扩散水；10秒内刷新及新目标覆盖；成图补此操作"
+      }
     },
     {
       "id": "act-6",
-      "label": "第6幕\n首领",
-      "team": "丝柯克＋水辅助B＋冰辅助C\n＋治疗C（仅水冰）",
+      "label": "第6幕",
+      "team": "丝柯克＋水弓＋冰＋奶妈（水冰）",
       "slots": [
         "skirk",
         "water-b",
         "cryo-c",
         "healer-c"
       ],
-      "enemy": "历经百战的嵌合兽怪箭士",
+      "enemy": "嵌合兽怪箭士",
       "asset_ids": [
         "arrow"
       ],
-      "before": "冻结4级；备选水/风输出",
-      "after": "补第7—8幕主C",
-      "tactic": "先打高处根须/柱子，再输出。",
+      "before": "冻结4级（冰伤）",
+      "after": "找有点伤害的主C",
+      "tactic": "弓箭打根须顶端，再打本体",
       "kind": "boss",
       "source_ids": [
-        "reference",
-        "mechanics"
+        "mechanics",
+        "current-route"
       ],
       "allowed_elements": [
         "hydro",
         "cryo"
-      ]
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "非星烁队由水弓瞄准根须顶端；水弓只可绑定实际具瞄准射击能力的水元素角色，如夜兰/达达利亚。",
+        "route": "高冰抗下依靠冻结冰裂减抗和丝柯克真实输出；水弓负责根须，未招募水弓则改星烁压低根须路线并重新安排角色。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "active_heal": 1,
+        "aimed_shot": 1
+      }
     },
     {
       "id": "act-7",
       "label": "第7幕",
-      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "team": "神里绫华＋芙宁娜＋群奶＋挂件",
       "slots": [
         "ayaka",
         "furina",
         "cryo-healer-a",
         "support-a"
       ],
-      "enemy": "冰多：打雷咏者\n水多：改打火咏者",
+      "enemy": "冰多打雷咏者，水多打火咏者",
       "asset_ids": [
         "abysslectorvioletlightning",
         "abysslectorfathomlessflames"
       ],
-      "before": "缺主C补主C；缺奶先补奶",
-      "after": "有主C选主C；否则补治疗",
-      "tactic": "选择能破对应元素盾的队伍。",
+      "before": "找有点伤害的主C",
+      "after": "有C就选，没有就找奶妈",
+      "tactic": "跑到边缘聚怪，再破盾",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "跑到边缘聚怪，再破盾",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "party_heal": 1
+      }
     },
     {
       "id": "act-8",
-      "label": "第8幕\n首领",
-      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "label": "第8幕",
+      "team": "神里绫华＋芙宁娜＋群奶＋挂件",
       "slots": [
         "ayaka",
         "furina",
@@ -609,207 +833,481 @@
       "asset_ids": [
         "chimericwingedlion"
       ],
-      "before": "角色少招募；角色足升冰风",
-      "after": "补瑞希/冰主或可用对群队",
-      "tactic": "冰伤/星烁破雷盾；处理风球。",
+      "before": "人少找挂件，人多升冰风",
+      "after": "有C就选，没有就找群奶",
+      "tactic": "冰破雷盾；冰水打风球",
       "kind": "boss",
       "source_ids": [
-        "reference",
-        "mechanics"
-      ]
+        "mechanics",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "冰破雷盾；冰水打风球",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "party_heal": 1
+      }
     },
     {
       "id": "act-9",
       "label": "第9幕",
-      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "team": "瑞希＋冰主＋群奶＋挂件",
       "slots": [
         "mizuki",
         "traveler-cryo",
         "healer-b",
         "support-b"
       ],
-      "enemy": "优先幼态树段类目标",
+      "enemy": "树人",
       "asset_ids": [
         "juveniletreesegment"
       ],
-      "before": "补本幕输出；保留末关冰位",
-      "after": "补助战及两张圣牌缺口",
-      "tactic": "本队还要打圣牌1，留一耐力。",
+      "before": "找有点伤害的主C、群奶",
+      "after": "找好友大哥",
+      "tactic": "优先精锐；否则选树人",
       "kind": "ordinary",
       "source_ids": [
-        "reference",
+        "current-route",
         "mechanics"
-      ]
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "冰主挂冰，瑞希扩散",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "party_heal": 1
+      }
     },
     {
       "id": "card-1",
       "label": "圣牌1",
-      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "team": "瑞希＋冰主＋群奶＋挂件",
       "slots": [
         "mizuki",
         "traveler-cryo",
         "healer-b",
         "support-b"
       ],
-      "enemy": "嗜岩·兽境猎犬",
+      "enemy": "兽境猎犬",
       "asset_ids": [
         "rockfondrifthound"
       ],
-      "before": "补治疗；冰风/水风",
-      "after": "补末关队；确认圣牌2未漏",
-      "tactic": "全队失血：群奶优先，先保命。",
+      "before": "找群奶；冰风、水风",
+      "after": "找好友大哥",
+      "tactic": "全队持续扣血，带群奶",
       "kind": "card",
       "source_ids": [
-        "reference",
+        "card1-capture",
         "mechanics"
-      ]
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "全队持续扣血，带群奶",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "party_heal": 1
+      },
+      "hp_loss": "forced_party_drain"
     },
     {
       "id": "card-2",
       "label": "圣牌2",
-      "team": "莱欧斯利（助战）＋冰辅助A\n＋冰辅助B（治疗）＋水治疗C",
+      "team": "好友大哥＋2后台冰＋奶妈",
       "slots": [
         "helper",
         "cryo-a",
         "cryo-b",
         "healer-c"
       ],
-      "enemy": "遗迹系列（图：遗迹巡弋者）",
+      "enemy": "遗迹系列",
       "asset_ids": [
         "ruincruiser"
       ],
-      "before": "确认已借到；冰风/水风",
-      "after": "留助战一耐力；圣牌都打完",
-      "tactic": "追怪，注意击杀殉爆，带奶。",
+      "before": "冰风、水风",
+      "after": "留好友大哥打第10幕",
+      "tactic": "追怪；殉爆扣血，及时奶",
       "kind": "card",
       "source_ids": [
-        "reference",
+        "card2-capture",
         "mechanics"
-      ]
+      ],
+      "review": {
+        "status": "reviewed",
+        "mechanic": "追怪；殉爆扣血，及时奶",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "active_heal": 1
+      },
+      "hp_loss": "on_field_explosion_unresolved_damage_type"
     },
     {
       "id": "act-10",
-      "label": "第10幕\n最终",
-      "team": "莱欧斯利（助战）＋丝柯克\n＋冰辅助A＋冰辅助B（治疗）",
+      "label": "第10幕",
+      "team": "好友大哥＋2后台冰＋冰奶",
       "slots": [
         "helper",
         "cryo-a",
         "cryo-b",
-        "skirk"
+        "cryo-d"
       ],
       "enemy": "秘源机兵·统御械",
       "asset_ids": [
         "secretsourceautomatonoverseerdevice"
       ],
-      "before": "先完成两圣牌；花用在本队",
-      "after": "演出结束；无法回头补圣牌",
-      "tactic": "持续冰伤压制液流动量；保持治疗。",
+      "before": "先打两张圣牌，再把花花光",
+      "after": "演出结束",
+      "tactic": "持续挂冰压条，窗口期输出",
       "kind": "boss",
       "source_ids": [
-        "reference",
-        "mechanics"
+        "mechanics",
+        "current-route"
       ],
-      "allowed_elements": [
-        "hydro",
-        "cryo"
-      ]
+      "review": {
+        "status": "reviewed",
+        "mechanic": "持续挂冰压条，窗口期输出",
+        "route": "依据本期截图/机制选择；普通关选已证实可出现的组合，不声称全角色全难度最优。",
+        "recruitment": "条件路线：关键主C、群奶、充能和后台冰须已招募；随机事件后实际身份必须重新绑定并核对全程。"
+      },
+      "requires": {
+        "cryo_application": 2,
+        "active_heal": 1
+      }
     }
   ],
   "buffs": [
     {
-      "name": "Buff优先级：冻结 ≥ 冰风 > 水风",
-      "text": "前期：冰风1—2级过渡。\n中期：冻结优先升4级。\n后期：补冰风，再按队伍补水风。\n缺角色时先招募。",
+      "name": "水冰主C：冻结≥冰风＞水风",
+      "text": "前期冰风1—2级；中期冻结4级\n星扩散主C多，先升冰风；缺人先招募",
+      "review": {
+        "status": "reviewed",
+        "effect": "水冰/冰风祝祷分别服务主C与冰扩散，优先级随输出来源变化。",
+        "priority": "试用风先冰风；龙王→冰主C路线中期冻结；星扩散偏冰风。非强制全期固定排名。",
+        "branches": "等级与路径见另两格"
+      },
       "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "冻结：2级右 → 3级 → 4级按主C",
-      "text": "2级右：减抗。\n4级看主C：冰多选冰伤，水多选水伤。\n按选项效果辨认，不把其他树的左右套来。",
-      "source_ids": [
-        "reference",
+        "buff-capture",
+        "buff-text",
         "mechanics"
       ]
     },
     {
-      "name": "冰风 / 水风：分支这样选",
-      "text": "冰风：2左持续冰伤 → 4右减抗。\n缺聚怪：2右冲刺牵引 → 4右减抗。\n水风：2右 → 4右；优先级靠后。",
+      "name": "冻结2右；4级看主C",
+      "text": "冰多4左，水多4右\n冰风2左持续冰／2右聚怪，4右减抗",
+      "review": {
+        "status": "reviewed",
+        "effect": "冻结冰裂减水冰抗性；冰风肃蚀补冰或旋岚牵引，四级右减冰风抗。",
+        "priority": "第3幕龙王起冻结2右，中期冰主C用4左；不买互斥分支。",
+        "branches": "冻结2右冰裂之势→4左极限冰裂/4右极限水蚀；冰风2左肃蚀或2右旋岚→对应4右。"
+      },
       "source_ids": [
-        "reference",
-        "branches"
+        "buff-capture",
+        "buff-text",
+        "mechanics"
+      ]
+    },
+    {
+      "name": "水风2右→4右",
+      "text": "水瀑→凝核；风主C多可改4左\n风套四件：扩散主C元素，10秒刷新",
+      "review": {
+        "status": "reviewed",
+        "effect": "初阶水瀑的水核/漩涡输出，四级凝核增强水核；漩风强化风伤。",
+        "priority": "本路线水风靠后，风主C切换四级漩风。",
+        "branches": "2右初阶水瀑→4右极限凝核；风伤队4左极限漩风。"
+      },
+      "source_ids": [
+        "buff-capture",
+        "buff-text",
+        "mechanics"
       ]
     }
   ],
   "helpers": [
     {
-      "name": "莱欧斯利",
-      "asset_id": "wriothesley",
-      "text": "本图默认：圣牌2＋10\n冰辅助B须有治疗",
-      "source_ids": [
-        "reference"
-      ]
-    },
-    {
       "name": "恰斯卡",
       "asset_id": "chasca",
-      "text": "高配置换线备选\n风系不可套本图末队",
+      "text": "优先6命",
       "source_ids": [
-        "reference"
-      ]
+        "chasca-kit",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "strength": "2命范围输出、6命缩短蓄力及追加瞬发；本期独立攻略优先满命，移动追怪适合圣牌2。",
+        "mechanic": "圣牌2追怪与末关持续冰需求；不把盾、抗打断当治疗。",
+        "constellation": "优先6命，不把0命视为同等一拖三",
+        "team": "队友水冰可转化元素弹；末关2后台冰持续压条。"
+      },
+      "route": {
+        "element": "anemo",
+        "requires_elements": [
+          "cryo"
+        ],
+        "row_slots": {},
+        "extra_resources": {},
+        "remove_resources": []
+      }
     },
     {
       "name": "薇斯纳",
       "asset_id": "vesna",
-      "text": "换线备选\n先核对元素与耐力",
+      "text": "配后台冰",
       "source_ids": [
-        "reference"
-      ]
+        "vesna-kit",
+        "mechanics"
+      ],
+      "review": {
+        "status": "reviewed",
+        "strength": "自身直伤及直伤星扩散，本期独立实战攻略将0命列作备选，冰风祝福服务其体系。",
+        "mechanic": "圣牌2追怪与末关持续冰需求；不把盾、抗打断当治疗。",
+        "constellation": "0命机制成立；高命收益不编造量化排名",
+        "team": "配后台冰触发星扩散，末关后台冰同时处理条。"
+      },
+      "route": {
+        "element": "anemo",
+        "requires_elements": [
+          "cryo"
+        ],
+        "row_slots": {},
+        "extra_resources": {},
+        "remove_resources": []
+      }
+    },
+    {
+      "name": "桑多涅",
+      "asset_id": "sandrone",
+      "text": "奶妈换风系",
+      "source_ids": [
+        "sandrone-kit",
+        "mechanics",
+        "sandrone-text"
+      ],
+      "review": {
+        "status": "reviewed",
+        "strength": "游戏技能截图可核对直伤星扩散输出，本期攻略推荐其处理群怪与星烁首领。",
+        "mechanic": "圣牌2追怪与末关持续冰需求；不把盾、抗打断当治疗。",
+        "constellation": "2/6命有明确输出提升，0命仍可触发星扩散；不编造伤害名次。",
+        "team": "必须配风触发星扩散；末队奶妈改风系（早期已用琴、瑞希不可重复，例：闲云/早柚），两个后台冰压条。"
+      },
+      "route": {
+        "element": "cryo",
+        "requires_elements": [
+          "anemo"
+        ],
+        "row_slots": {
+          "card-2": [
+            "helper",
+            "cryo-a",
+            "cryo-b",
+            "anemo-healer-d"
+          ],
+          "act-10": [
+            "helper",
+            "cryo-a",
+            "cryo-d",
+            "anemo-healer-d"
+          ]
+        },
+        "extra_resources": {
+          "anemo-healer-d": {
+            "name": "风系奶妈（闲云或早柚）",
+            "character_id": "anemo-healer-d",
+            "element": "anemo",
+            "vigor": 2,
+            "availability": "conditional_on_actual_roster_and_recruitment",
+            "capabilities": [
+              "active_heal",
+              "party_heal"
+            ]
+          }
+        },
+        "remove_resources": []
+      }
     },
     {
       "name": "丝柯克",
       "asset_id": "skirk",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "text": "6幕换自有主C；只配水冰",
       "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "法尔伽",
-      "asset_id": "varka",
-      "text": "高配置换线备选\n风系不可套本图末队",
-      "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "梦见月瑞希",
-      "asset_id": "yumemizukimizuki",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
-      "source_ids": [
-        "reference"
-      ]
-    },
-    {
-      "name": "神里绫华",
-      "asset_id": "kamisatoayaka",
-      "text": "自有缺席时可借\n须重排同名角色耐力",
-      "source_ids": [
-        "reference"
-      ]
+        "skirk-kit",
+        "mechanics",
+        "current-route"
+      ],
+      "review": {
+        "status": "reviewed",
+        "strength": "高倍率冰直伤，本期攻略认为可顶第6幕冰抗；当前第10幕冰附着需求适配。",
+        "mechanic": "圣牌2追怪与末关持续冰需求；不把盾、抗打断当治疗。",
+        "constellation": "优先更高配置；没有统一同配置DPS对照不宣称绝对名次",
+        "team": "只能按水冰队最大化被动；若已在6幕上场，借好友同名须替换自有并重排，不能当两个角色。"
+      },
+      "route": {
+        "element": "cryo",
+        "requires_elements": [
+          "cryo"
+        ],
+        "row_slots": {
+          "act-6": [
+            "carry-six",
+            "water-b",
+            "cryo-c",
+            "healer-c"
+          ]
+        },
+        "extra_resources": {
+          "carry-six": {
+            "name": "自有冰主C（如莱欧斯利）",
+            "character_id": "carry-six",
+            "element": "cryo",
+            "vigor": 2,
+            "availability": "conditional_on_actual_roster_and_recruitment",
+            "capabilities": []
+          }
+        },
+        "remove_resources": [
+          "skirk"
+        ],
+        "allowed_elements": [
+          "hydro",
+          "cryo"
+        ]
+      }
     }
   ],
   "notes": [
-    "留人：那维3/5；神里＋芙宁娜7/8；瑞希＋冰主9/圣牌1；默认借莱欧斯利留圣牌2/10。冰辅助B必须兼治疗。",
-    "本线按24名各2耐力；辅助A/B/C都是互不重复且不占已列角色的人。只有22名至少需实际恢复4次角色耐力，不能预支。",
-    "本图默认冰系助战，末队全冰；丝柯克队只配水冰。其他头像为换线备选，不能直接替换；开幕角色不能借好友版本。",
-    "神秘事件取确定收益，别赌；随机敌人未出现就按本行机制改选。队伍或招募变化后核对全程耐力，别默认低练度能照搬。"
+    "资料和条件见review；阵容为招募成功后的条件路线，不构成账号通关证明。"
   ],
-  "footer": "参考：凝渡用户图/本期简介＋冻梨攻略；UI © HoYoverse（Alioth/Enka）。通用路线，未作本账号通关验证。",
   "target_spec": {
     "acts": 10,
     "cards": [
       "card-1",
       "card-2"
     ]
+  },
+  "editorial_profile": "one-image-v2",
+  "side_note": "神秘事件只选稳赚的，不要赌",
+  "helper_note": "开场先借高配大哥；关键角色没招到，先补人再升Buff",
+  "review": {
+    "unresolved": [
+      "第4幕两只同时存在的数量尚无独立原始录像核实，未写入PNG。",
+      "圣牌2殉爆是否属于可被护盾抵消的冰伤，来源措辞不一致，PNG仅要求及时治疗。",
+      "缺同配置逐角色伤害测量，不给绝对强度排名；未完成真实账号照图通关。"
+    ],
+    "excluded_helpers": {
+      "神里绫华": "可用自有主C，不具当前优先借用的独立高强度依据",
+      "梦见月瑞希": "自身对群/反应队可用，不据参考头像升为顶级carry",
+      "莱欧斯利": "可用自有冰主C；当前追怪与单人carry证据不足以优先于恰斯卡",
+      "法尔伽": "当前参考候选；完整命座/元素限制和对本期机制适配证据不足，暂不列优先头像"
+    },
+    "conditional_route": "资源槽是角色能力要求，必须绑定实际独立角色。仅证明此排布无超次/元素冲突，不证明已招募或伤害足够。",
+    "reference_usage": "视觉与用语参考，路线与角色独立核对；未冒用原作者身份。"
+  },
+  "mechanic_spec": {
+    "act-1": {
+      "requires": {},
+      "source_ids": [
+        "opening-capture"
+      ]
+    },
+    "act-2": {
+      "requires": {},
+      "source_ids": [
+        "act2-capture"
+      ]
+    },
+    "act-3": {
+      "requires": {},
+      "source_ids": [
+        "mechanics"
+      ],
+      "vv_element": "hydro"
+    },
+    "act-4": {
+      "requires": {},
+      "source_ids": [
+        "defense-capture",
+        "current-route"
+      ]
+    },
+    "act-5": {
+      "requires": {},
+      "source_ids": [
+        "act5-capture"
+      ],
+      "vv_element": "hydro"
+    },
+    "act-6": {
+      "requires": {
+        "active_heal": 1,
+        "aimed_shot": 1
+      },
+      "source_ids": [
+        "mechanics",
+        "current-route"
+      ]
+    },
+    "act-7": {
+      "requires": {
+        "party_heal": 1
+      },
+      "source_ids": [
+        "current-route"
+      ]
+    },
+    "act-8": {
+      "requires": {
+        "party_heal": 1
+      },
+      "source_ids": [
+        "mechanics",
+        "current-route"
+      ]
+    },
+    "act-9": {
+      "requires": {
+        "party_heal": 1
+      },
+      "source_ids": [
+        "current-route",
+        "mechanics"
+      ]
+    },
+    "card-1": {
+      "requires": {
+        "party_heal": 1
+      },
+      "source_ids": [
+        "card1-capture",
+        "mechanics"
+      ],
+      "hp_loss": "forced_party_drain"
+    },
+    "card-2": {
+      "requires": {
+        "active_heal": 1
+      },
+      "source_ids": [
+        "card2-capture",
+        "mechanics"
+      ],
+      "hp_loss": "on_field_explosion_unresolved_damage_type"
+    },
+    "act-10": {
+      "requires": {
+        "cryo_application": 2,
+        "active_heal": 1
+      },
+      "source_ids": [
+        "mechanics",
+        "current-route"
+      ]
+    }
   }
 }

@@ -1,15 +1,15 @@
-# One-image guide validation — 2026-10-10
+# One-image guide validation — 2026-10-10 revision
 
-Current delivery: `guides/output/2026-10-guide.png` and its self-contained HTML preview.
-Source/asset inventory: `guides/2026-10.json`; machine receipt beside the PNG.
+Delivery: `guides/output/2026-10-guide.png`, self-contained HTML, JSON content and export receipt. Builds on merged PR #4; no new service/framework.
 
-- Full suite with optional Pillow: **129 passed** (105 existing + 24 guide/export cases).
-- Core self-test with C locale, Python UTF-8 mode disabled: **102 passed**.
-- Existing season schema validation: passed; its separate full public audit remains PARTIAL_PUBLIC, 12/48.
-- Current image: **3200 × 3265**, 12 rows, 18 identified UI assets, 138 measured text lines, no text outside measured horizontal cell or image bounds.
-- Full-image visual review: Chinese text legible, enemy/name match, two lector alternatives both illustrated, five columns and all lower sections present.
-- Export works offline; hashes bind content, font and PNG. Hashes and tests are integrity/implementation evidence, not independent proof of game truth.
+- Full suite with Pillow: **145 passed** (129 previous + 16 editorial/semantic regressions).
+- Core self-test with C locale and UTF-8 mode disabled: **102 passed**.
+- Existing season schema passes. The broader public audit remains **PARTIAL_PUBLIC, 12/48**, separate from guide production. Its complete branch coefficients/prices, encounter parameters and act-8 conflicts remain B-04.
+- Current PNG: **3200 × 1924**, 12 rows, 17 used identified UI assets, 113 measured text lines, no horizontal/image clipping.
+- Fresh whole-image review: five reference-style columns, two Sacred Cards, concise sidebar, actual enemy icons, three Buff groups and four helper portraits; no internal calculation/source prose. Portrait text includes helper-specific team conditions.
 
-Review regressions cover missing encounters from both rows/order, reordered acts, alias character duplication, vigor overuse, restricted team elements, absent/changed/unreviewed assets, wrong-season sources, long CJK text, four Buff groups, long headings, and malformed sections/entries/scalars. The fresh review's original five findings were reproduced and fixed.
+Changes independently reviewed against current game captures, TapTap October mechanics, current guide route text and available game skill/Buff text: first-act horned bear, second-act Primus, fifth-act channel contact; fourth-act Fatui aggro/time route; all-party healing for card 1; aimed shots for act 6; Cryo shield/balls for act 8; sustained Cryo for act 10. Conflicting exact resistances/times excluded. Helpers independently reviewed for strength, constellation, encounter and team fit; no comparable measured DPS dataset, hence no absolute ranking.
 
-The concrete default helper is cryo Wriothesley; Skirk teams use only water/ice slots. Other portrait recommendations require a different full allocation, not a direct swap. Auxiliary roles are conditional placeholders for distinct recruited characters, not a claim that this account owns them or has cleared the season. No actual-account clear or user-use acceptance is recorded here. Project status lives only in Backlog.md.
+Regressions reject excessive/internal player prose, template-only helper/Buff evidence, missing review, shield/active-only healing replacing party healing, deleting card requirements to bypass the encounter contract, generic Anemo replacing equipped on-field VV, missing Cryo application, malformed capability/VV data and unversioned production export. Allowed healing fallback remains allowed. Existing asset/hash, identity/vigor/element, encounter coverage and layout regressions remain. Candidate helper routes reuse the core identity/vigor/element checks and capability requirements.
+
+Factual evidence and limitations remain in JSON review/source records and offline HTML: Fatui simultaneous count lacks independent original footage; card-2 explosion shield interaction is unresolved and not claimed; no actual-account clear, observed recruitment sequence or user acceptance. Sources/typed tags/reviewed markers are author inputs, not an automated game-truth oracle. The human content review gate is required each season.
