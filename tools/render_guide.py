@@ -28,106 +28,99 @@ def wrap_text(text,font,width):
 
 def render_guide(path,output,font_path,width=3200):
     from PIL import Image,ImageDraw,ImageFont,ImageOps
+    from src.guide_editorial import player_rows
     path=Path(path);output=Path(output);root=path.parent
     data=load_guide(path)
     if width<2400 or width>4800:raise ValueError('width must be 2400..4800')
     scale=width/3200
     def px(n):return round(n*scale)
     font=ImageFont.truetype(str(font_path),px(34))
-    small=ImageFont.truetype(str(font_path),px(29))
-    large=ImageFont.truetype(str(font_path),px(62))
-    head=ImageFont.truetype(str(font_path),px(38))
-    step=px(49);pad=px(22);icon=px(108)
-    columns=[px(x) for x in (180,800,900,630,630)]
-    # Keep the exact requested five columns; mechanics sit within monster cell.
-    columns[-1]=width-sum(columns[:-1])
+    small=ImageFont.truetype(str(font_path),px(31))
+    head=ImageFont.truetype(str(font_path),px(36))
+    step=px(42);pad=px(12);icon=px(88)
+    side=px(200);table_width=width-side
+    columns=[px(x) for x in (245,835,710,605,605)]
+    columns[-1]=table_width-sum(columns[:-1])
     images={}
     for key,a in data['assets'].items():
-        with Image.open(root/a['path']) as im:
-            im.load()
-            if im.width<32 or im.height<32:raise ValueError('Asset too small: '+key)
-            images[key]=im.convert('RGBA')
+        with Image.open(root/a['path']) as source:
+            source.load()
+            if source.width<32 or source.height<32:raise ValueError('Asset too small: '+key)
+            images[key]=source.convert('RGBA')
     def measure(t,w,f=font):return len(wrap_text(t,f,w))*step
     cells=[];heights=[]
-    for row in data['rows']:
-        values=[row['label'],row['team'],row['enemy']+'\n'+row['tactic'],row['before'],row['after']]
-        h=max(measure(values[i],columns[i]-2*pad-(icon+pad if i==2 else 0)) for i in range(5))+2*pad
-        h=max(h,len(row['asset_ids'])*(icon+px(8))+2*pad)
-        heights.append(h);cells.append(values)
-    title_step=px(76)
-    title_h=len(wrap_text(data['title'],large,width-2*pad))*title_step
-    scope_y=pad+title_h
-    subtitle_y=scope_y+measure(data['scope'],width-2*pad,head)
-    subtitle=data.get('subtitle','通用参考路线；按实际招募与耐力修订')
-    top=subtitle_y+measure(subtitle,width-2*pad,small)+pad
-    header_h=px(76)
-    buff_w=width//len(data['buffs'])
-    buff_heading=max(measure(b['name'],buff_w-2*pad,head) for b in data['buffs'])
-    buff_h=buff_heading+max(measure(b['text'],buff_w-2*pad,small) for b in data['buffs'])+3*pad
-    helper_w=width//len(data['helpers'])
-    helper_top=max(px(140),max(px(34)+measure(h['name'],helper_w-px(160)-pad,small)+pad for h in data['helpers']))
-    helper_h=helper_top+max(measure(h['text'],helper_w-2*pad,small) for h in data['helpers'])+pad
-    note_text='\n'.join(data['notes'])
-    notes_h=measure(note_text,width-2*pad,small)+2*pad
-    footer=data.get('footer','')+'  |  GI Theater · '+data['reviewed_at']
-    footer_h=measure(footer,width-2*pad,small)+2*pad
-    height=top+header_h+sum(heights)+buff_h+helper_h+notes_h+footer_h
+    for row,visible in zip(data['rows'],player_rows(data)):
+        values=[visible['label'],visible['team'],visible['enemy']+'\n'+visible['tactic'],visible['before'],visible['after']]
+        enemy_offset=len(row['asset_ids'])*(icon+px(6))+pad
+        h=max(measure(values[i],columns[i]-2*pad-(enemy_offset if i==2 else 0),small if i==2 else font) for i in range(5))+2*pad
+        heights.append(max(h,icon+2*pad));cells.append(values)
+    title_h=px(64);header_h=px(64)
+    buff_width=(table_width-columns[0])//len(data['buffs'])
+    buff_h=max(measure(b['name']+'\n'+b['text'],buff_width-2*pad,small) for b in data['buffs'])+2*pad
+    helper_width=(table_width-columns[0])//len(data['helpers'])
+    helper_icon=px(140)
+    helper_h=helper_icon+2*step+2*pad
+    helper_note_h=measure(data['helper_note'],table_width-columns[0]-2*pad,small)+pad
+    height=title_h+header_h+sum(heights)+buff_h+helper_h+helper_note_h
     im=Image.new('RGB',(width,height),'white');draw=ImageDraw.Draw(im)
-    ink='#17232d';muted='#52606b';gold='#fff0bf';line='#dce1e5';red='#b33329'
-    bounds=[]
+    ink='#111111';gold='#ffe89d';line='#e2e2e2';red='#df1717'
+    bounds=[];visible_text=[]
     def text(t,x,y,w,f=font,color=ink,line_step=None):
+        visible_text.append(t)
         spacing=line_step or step
         for s in wrap_text(t,f,w):
             box=draw.textbbox((x,y),s,font=f,anchor='lt')
             if box[0]<0 or box[1]<0 or box[2]>width or box[3]>height or box[2]>x+w+1:
                 raise ValueError('Text exceeds measured image/cell bounds: '+s)
-            bounds.append(box)
-            draw.text((x,y),s,font=f,fill=color,anchor='lt');y+=spacing
+            bounds.append(box);draw.text((x,y),s,font=f,fill=color,anchor='lt');y+=spacing
         return y
-    draw.rectangle((0,0,width,top),fill='#f5f6f7')
-    text(data['title'],pad,pad,width-2*pad,large,line_step=title_step)
-    text(data['scope'],pad,scope_y,width-2*pad,head)
-    text(subtitle,pad,subtitle_y,width-2*pad,small,muted)
-    y=top
-    for label,w in zip(['幕次','阵容排布','怪物推荐 / 关键打法','开打前','打完选'],columns):
-        x=sum(columns[:['幕次','阵容排布','怪物推荐 / 关键打法','开打前','打完选'].index(label)])
-        draw.rectangle((x,y,x+w,y+header_h),fill='#e9ecef',outline=line)
-        text(label,x+pad,y+px(18),w-2*pad,head)
+    def cell(x,y,w,h,fill='white'):
+        draw.rectangle((x,y,x+w,y+h),fill=fill,outline=line,width=max(1,px(1)))
+    def paste(key,x,y,size):
+        asset=ImageOps.contain(images[key],(size,size),Image.Resampling.LANCZOS)
+        im.paste(asset,(x+(size-asset.width)//2,y+(size-asset.height)//2),asset)
+    draw.rectangle((0,0,width,title_h),fill='#e9e7e7')
+    text(data['title'],pad,px(20),px(1550),head)
+    text(data['scope'],px(1600),px(20),width-px(1600)-pad,head)
+    y=title_h
+    for label,w,x in zip(['幕次','阵容排布','怪物推荐','开打前','打完选'],columns,[sum(columns[:i]) for i in range(5)]):
+        cell(x,y,w,header_h,'#e9e7e7');text(label,x+pad,y+px(22),w-2*pad,head)
     y+=header_h
     for row,values,h in zip(data['rows'],cells,heights):
         x=0
         for i,(t,w) in enumerate(zip(values,columns)):
-            fill=gold if i==0 else '#fffaf1' if row.get('kind')=='card' else 'white'
-            draw.rectangle((x,y,x+w,y+h),fill=fill,outline=line,width=max(1,px(2)))
+            cell(x,y,w,h,gold if i==0 else 'white')
             offset=0
             if i==2:
-                for j,key in enumerate(row['asset_ids']):
-                    asset=ImageOps.contain(images[key],(icon,icon),Image.Resampling.LANCZOS)
-                    im.paste(asset,(x+pad+(icon-asset.width)//2,y+pad+j*(icon+px(8))+(icon-asset.height)//2),asset)
-                offset=icon+pad
-            text(t,x+pad+offset,y+pad,w-2*pad-offset,color=red if i==1 and row.get('kind')=='boss' else ink)
+                for j,key in enumerate(row['asset_ids']):paste(key,x+pad+j*(icon+px(6)),y+(h-icon)//2,icon)
+                offset=len(row['asset_ids'])*(icon+px(6))+pad
+            f=small if i==2 else font
+            th=measure(t,w-2*pad-offset,f)
+            text(t,x+pad+offset,y+(h-th)//2+px(4),w-2*pad-offset,f,color=red if i==1 and row.get('kind')=='boss' else ink)
             x+=w
         y+=h
+    cell(0,y,columns[0],buff_h,gold);text('buff推荐',pad,y+(buff_h-step)//2,columns[0]-2*pad)
     for i,b in enumerate(data['buffs']):
-        x=i*width//len(data['buffs']);w=(i+1)*width//len(data['buffs'])-x
-        draw.rectangle((x,y,x+w,y+buff_h),fill='#f4f8fb',outline=line)
-        text(b['name'],x+pad,y+pad,w-2*pad,head,red)
-        text(b['text'],x+pad,y+2*pad+buff_heading,w-2*pad,small)
+        x=columns[0]+i*buff_width;w=buff_width if i<len(data['buffs'])-1 else table_width-x
+        cell(x,y,w,buff_h)
+        text(b['name'],x+pad,y+pad,w-2*pad,small,red)
+        text(b['text'],x+pad,y+pad+measure(b['name'],w-2*pad,small),w-2*pad,small)
     y+=buff_h
-    helper_w=width//len(data['helpers'])
+    cell(0,y,columns[0],helper_h+helper_note_h,gold)
+    text('大哥角色\n推荐',pad,y+px(80),columns[0]-2*pad)
     for i,h in enumerate(data['helpers']):
-        x=i*helper_w;w=helper_w if i<len(data['helpers'])-1 else width-x
-        draw.rectangle((x,y,x+w,y+helper_h),fill='white',outline=line)
-        asset=ImageOps.contain(images[h['asset_id']],(px(118),px(118)),Image.Resampling.LANCZOS)
-        im.paste(asset,(x+pad,y+px(12)),asset)
-        text(h['name'],x+px(152),y+px(34),w-px(160)-pad,small)
-        text(h['text'],x+pad,y+helper_top,w-2*pad,small)
+        x=columns[0]+i*helper_width;w=helper_width if i<len(data['helpers'])-1 else table_width-x
+        paste(h['asset_id'],x+(w-helper_icon)//2,y+pad,helper_icon)
+        text(h['name'],x+(w-small.getlength(h['name']))//2,y+pad+helper_icon+px(8),w-2*pad,small)
+        text(h['text'],x+(w-small.getlength(h['text']))//2,y+pad+helper_icon+step+px(8),w-2*pad,small,red)
     y+=helper_h
-    draw.rectangle((0,y,width,y+notes_h),fill='#fff0bf')
-    text(note_text,pad,y+pad,width-2*pad,small)
-    y+=notes_h
-    footer=data.get('footer','')+'  |  GI Theater · '+data['reviewed_at']
-    text(footer,pad,y+px(20),width-2*pad,small,muted)
+    text(data['helper_note'],columns[0]+pad,y,table_width-columns[0]-2*pad,small)
+    cell(table_width,title_h,side,height-title_h)
+    # Reference-style sidebar, once. Sources/internal notes never enter this surface.
+    side_chars=list(data['side_note'])
+    sy=title_h+(height-title_h-len(side_chars)*step)//2
+    for char in side_chars:
+        text(char,table_width+(side-font.getlength(char))//2,sy,side-pad,font,red if char in '不要赌' else ink);sy+=step
     output.parent.mkdir(parents=True,exist_ok=True)
     fd,tmp=tempfile.mkstemp(dir=output.parent,suffix='.png');os.close(fd)
     try:
@@ -140,10 +133,11 @@ def render_guide(path,output,font_path,width=3200):
         'clipped_cells':sum(1 for b in bounds if b[0]<0 or b[1]<0 or b[2]>width or b[3]>height),'checked_text_lines':len(bounds),'guide_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
         'font_sha256':hashlib.sha256(Path(font_path).read_bytes()).hexdigest(),
         'png_sha256':hashlib.sha256(png).hexdigest(),'reviewed_at':data['reviewed_at'],
+        'player_text':visible_text,'editorial_profile':data['editorial_profile'],
         'claim':'Export contract passed; source review is not account-specific clear evidence.'}
     output.with_suffix('.receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     links=''.join('<li><a href="'+html.escape(s['url'],quote=True)+'">'+html.escape(k+' — '+s['locator'])+'</a></li>' for k,s in data['sources'].items())
-    page='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>'+html.escape(data['title'])+'</title><style>body{margin:0;font:16px sans-serif}img{width:100%;height:auto}details{padding:20px}</style><img alt="'+html.escape(data['title'],quote=True)+'" src="data:image/png;base64,'+base64.b64encode(png).decode()+'"><details><summary>来源与适用条件</summary><ul>'+links+'</ul></details></html>'
+    page='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>'+html.escape(data['title'])+'</title><style>body{margin:0;font:16px sans-serif}img{width:100%;height:auto}details{padding:20px}</style><img alt="'+html.escape(data['title'],quote=True)+'" src="data:image/png;base64,'+base64.b64encode(png).decode()+'"><details><summary>来源与适用条件</summary><ul>'+links+'</ul><pre>'+html.escape(json.dumps({'scope':data['scope'],'review':data.get('review',{}),'rows':[{k:r[k] for k in ('id','slots','review','requires')} for r in data['rows']], 'buffs':data['buffs'],'helpers':data['helpers']},ensure_ascii=False,indent=2))+'</pre></details></html>'
     output.with_suffix('.html').write_text(page,encoding='utf-8')
     return receipt
 

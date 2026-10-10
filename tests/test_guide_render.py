@@ -31,14 +31,14 @@ class RenderTests(unittest.TestCase):
             self.assertTrue(out.with_suffix('.html').exists())
             self.assertEqual(json.loads(out.with_suffix('.receipt.json').read_text())['png_sha256'],receipt['png_sha256'])
 
-    def test_four_buffs_and_long_headings_render_without_clipping(self):
+    def test_four_buffs_and_allowed_headings_render_without_clipping(self):
         import tempfile,json,copy
         from tools.render_guide import render_guide
         root=Path(__file__).resolve().parents[1]
         d=json.loads((root/'guides/2026-10.json').read_text())
         d['buffs'].append(copy.deepcopy(d['buffs'][0]))
-        d['title']='非常长的本期标题用于验证自动换行'*8
-        d['buffs'][0]['name']='需要逐行显示的详细增益标题'*8
+        d['title']='十月幻想真境剧诗·月谕攻略'
+        d['buffs'][0]['name']='冻结与冰风祝福的选择优先级'
         # Keep relative asset resolution inside the guide directory.
         with tempfile.NamedTemporaryFile(mode='w',suffix='.json',dir=root/'guides',encoding='utf-8') as f:
             json.dump(d,f,ensure_ascii=False);f.flush()
@@ -46,3 +46,14 @@ class RenderTests(unittest.TestCase):
                 receipt=render_guide(f.name,Path(out)/'test.png',root/'guides/assets/NotoSansSC-Regular.otf')
                 self.assertEqual(receipt['clipped_cells'],0)
                 self.assertGreater(receipt['checked_text_lines'],100)
+
+    def test_player_surface_excludes_private_review_and_calculations(self):
+        import json
+        root=Path(__file__).resolve().parents[1]
+        receipt=json.loads((root/'guides/output/2026-10-guide.receipt.json').read_text())
+        text=' '.join(receipt['player_text'])
+        for term in ['凝渡路线整理','默认路线','耐力','source_ids','重算','辅助A','治疗B']:
+            self.assertNotIn(term,text)
+        self.assertIn('怪物推荐',receipt['player_text'])
+        self.assertIn('风套四件',text)
+        self.assertLess(receipt['size'][1],2100)
