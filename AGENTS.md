@@ -3,6 +3,10 @@
 This repository is an Agent-first strategy/constraint project for Imaginarium Theater.
 General-purpose AI hosts own reasoning/research/interaction. Start gameplay at
 [AGENT.md](AGENT.md); the player must not operate the CLI or maintain internal JSON.
+The default product deliverable is a complete, accurate per-season one-image
+guide in the Ningdu reference format; see [docs/season-guide.md](docs/season-guide.md).
+Step-by-step dialogue, persistence and guards support the guide and live play;
+they do not substitute for the guide or prove its factual accuracy.
 Cloud storage owns persistence only; no model backend, app or Cloud Run service.
 Verify actual host tools; never infer mobile/other-agent support from SOP readability.
 

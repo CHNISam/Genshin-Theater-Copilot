@@ -1,5 +1,7 @@
 # 使用入口
 
+默认先要本期完整的[凝渡式一图流攻略](docs/season-guide.md)：逐幕阵容、带图怪物推荐、开打前/打完后的选择，以及Buff路线与好友助战推荐。把AGENT.md入口和目标难度交给AI即可，公开资料由它研究；账号/现场截图只用于必要适配。攻略未完成时须标明缺口，不能以技术测试通过宣称完整。
+
 主入口：打开通用 AI，把 [AGENT.md](https://github.com/CHNISam/Genshin-Theater-Copilot/blob/main/AGENT.md)、游戏截图和已有存档链接交给它。AI 负责研究、记录与 guard；你只提供现场并操作游戏。恢复时说“继续局号 …”，不需要学下面的命令。工具与平台限制见 [Agent 运行适配](docs/agent-runtime.md)。
 
 ## 可选 Windows CLI 上手

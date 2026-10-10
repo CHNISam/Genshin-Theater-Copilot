@@ -1,0 +1,815 @@
+{
+  "schema_version": 1,
+  "season_id": "2026-10-v7.1",
+  "reviewed_at": "2026-10-10",
+  "valid_until": "2026-11-01",
+  "status": "reviewed_guide",
+  "title": "2026年10月 幻想真境剧诗 · 一图流",
+  "scope": "水 / 冰 / 风　｜　月谕：10幕＋2圣牌　｜　先稳通关，星章另看输出",
+  "subtitle": "凝渡路线整理 · 通用版；主C/助战需有相应练度，按实际招募与耐力调整",
+  "order": [
+    "act-1",
+    "act-2",
+    "act-3",
+    "act-4",
+    "act-5",
+    "act-6",
+    "act-7",
+    "act-8",
+    "act-9",
+    "card-1",
+    "card-2",
+    "act-10"
+  ],
+  "sources": {
+    "reference": {
+      "url": "user:IMG_1024.png",
+      "kind": "user-provided-guide-image",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "用户提供凝渡_Du五列表格：12行、Buff与助战推荐；直接可视，布局与路线基线"
+    },
+    "ningdu": {
+      "url": "https://www.bilibili.com/video/BV12Zak6LEMF",
+      "kind": "guide-proposal",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "合集页2026-10-02本期标题与简介；未完整观看视频"
+    },
+    "mechanics": {
+      "url": "https://www.taptap.cn/moment/854722812772879793",
+      "kind": "current-guide",
+      "season_id": "2026-10-v7.1",
+      "accessed_at": "2026-10-10",
+      "locator": "角色准备与对局分析：第3/6/8/10幕与圣牌；不使用冲突抗性/瘫痪秒数"
+    },
+    "branches": {
+      "url": "https://wiki.biligame.com/ys/幻想真境剧诗",
+      "kind": "system-reference",
+      "season_id": "system-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "冰风二级左持续冰伤/右冲刺聚怪；两条四级右均减抗；仅语义对照，不引入旧期数值"
+    },
+    "assets": {
+      "url": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "kind": "asset-reference",
+      "season_id": "asset-reference",
+      "accessed_at": "2026-10-10",
+      "locator": "官方游戏UI文件名与敌人ID对应；图片从Alioth/Enka镜像取得，已逐张视觉核对"
+    }
+  },
+  "assets": {
+    "chimericarmoredbeast": {
+      "name": "嵌合鍪甲兽",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Chimera_BeetleLion.png?f=png&w=256",
+      "path": "assets/chimericarmoredbeast.png",
+      "sha256": "f4ba31d14c65c1257f15bbe917a904d9048628192f3c7052d10e4f8044bad060",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Chimera_BeetleLion",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "juveniletreesegment": {
+      "name": "幼态树段",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Leshy_Normal_01.png?f=png&w=256",
+      "path": "assets/juveniletreesegment.png",
+      "sha256": "d3be61db2dc4bf36bca4c11eecaafab08b68870b75bec97b14b0b9209b940fd8",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Leshy_Normal_01",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "perpetualmechanicalarray": {
+      "name": "恒常机关阵列",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Apparatus_Perpetual.png?f=png&w=256",
+      "path": "assets/perpetualmechanicalarray.png",
+      "sha256": "cc0d06ebd4fae0fb3123f0e478d0e6693e495754001a2f3274c0609e22a63bda",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Apparatus_Perpetual",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "fatuipyroagent": {
+      "name": "愚人众·债务处理人",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Fatuus_Fire_01.png?f=png&w=256",
+      "path": "assets/fatuipyroagent.png",
+      "sha256": "3ff6957f3a4e1f3275aa070d5804e5fb74d8bb2e16689a651617d3f4817469c9",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Fatuus_Fire_01",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "abysslectorvioletlightning": {
+      "name": "深渊咏者·紫电",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Invoker_Deacon_Electric_01.png?f=png&w=256",
+      "path": "assets/abysslectorvioletlightning.png",
+      "sha256": "8e572a69e6f7fa0f898404470b04865deeaecb360a62ca97d59932f1a273af8e",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Invoker_Deacon_Electric_01",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "abysslectorfathomlessflames": {
+      "name": "深渊咏者·渊火",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Invoker_Deacon_Fire.png?f=png&w=256",
+      "path": "assets/abysslectorfathomlessflames.png",
+      "sha256": "38abd243bd8a5afac63a6d2c71a4054db2041a3b23ee48915ab143a6ba2088c6",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Invoker_Deacon_Fire",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "chimericwingedlion": {
+      "name": "嵌合翼骏狮",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Chimera_Manticore.png?f=png&w=256",
+      "path": "assets/chimericwingedlion.png",
+      "sha256": "abd05f839494187a40aade3cfcc7ed942aa0bf5549863335ed87df38fa2ada51",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Chimera_Manticore",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "rockfondrifthound": {
+      "name": "嗜岩·兽境猎犬",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Hound_Riftstalker_Rock.png?f=png&w=256",
+      "path": "assets/rockfondrifthound.png",
+      "sha256": "1418ec098a113f5d5ec01e4480ad1825d81c65f35a694523921845f3400bbe81",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Hound_Riftstalker_Rock",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "ruincruiser": {
+      "name": "遗迹巡弋者",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Apparatus_Enigma_BionicDrone.png?f=png&w=256",
+      "path": "assets/ruincruiser.png",
+      "sha256": "90398ce0156e9e58a6c8e7457e56c913f3492f0941229cd0cf4dfee233f59133",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Apparatus_Enigma_BionicDrone",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "secretsourceautomatonoverseerdevice": {
+      "name": "秘源机兵·统御械",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_DragonCollar.png?f=png&w=256",
+      "path": "assets/secretsourceautomatonoverseerdevice.png",
+      "sha256": "1f43b976f4211c60e07383035c6f7f2ac4d693b8bd6282f94da3aa97419d21eb",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_DragonCollar",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "arrow": {
+      "name": "历经百战的嵌合兽怪箭士",
+      "url": "https://transform.alioth.wiki/i/gi/MonsterIcon/UI_MonsterIcon_Volkodlak_Greyhound_Furiosa.png?f=png&w=256",
+      "path": "assets/arrow.png",
+      "sha256": "df30af6a6fd6728b32e9505be37c9ac39da915d86ae503b8d8efc69bac33fc5c",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Volkodlak_Greyhound_Furiosa",
+      "identity_source": "https://alioth.wiki/gi/monster/51338",
+      "reviewed_at": "2026-10-10"
+    },
+    "chasca": {
+      "name": "恰斯卡",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Chasca.png",
+      "path": "assets/chasca.png",
+      "sha256": "afb2e129a8e7c8abdc493efbc10834e726c2d444fe6b0b970ed4394db6c4aef7",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Chasca",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "skirk": {
+      "name": "丝柯克",
+      "url": "https://enka.network/ui/UI_AvatarIcon_SkirkNew.png",
+      "path": "assets/skirk.png",
+      "sha256": "d93cbe0bb923cd197a99a582de5728e84abeb17ca306fffadd16fd4fb3f6c828",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_SkirkNew",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "kamisatoayaka": {
+      "name": "神里绫华",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Ayaka.png",
+      "path": "assets/kamisatoayaka.png",
+      "sha256": "53f0ebc62c98597e66ad65c3496ffa6d83db9ec936c04c7f0019357049386e56",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Ayaka",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "yumemizukimizuki": {
+      "name": "梦见月瑞希",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Mizuki.png",
+      "path": "assets/yumemizukimizuki.png",
+      "sha256": "8a704794e461a2dbd8be0300247319ec424a85ece8aeef58867fffbcdb0e94b5",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Mizuki",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "vesna": {
+      "name": "薇斯纳",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Vesna.png",
+      "path": "assets/vesna.png",
+      "sha256": "09b3656a2e92bc170a9018f14b8117c03f68ff3b80bdf2ed6d700cd43fbae580",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Vesna",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "wriothesley": {
+      "name": "莱欧斯利",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Wriothesley.png",
+      "path": "assets/wriothesley.png",
+      "sha256": "986e60a8aa2f4d7786b7701e15ee764b6b0983b6ebd248cf7b053b6d57e3acc3",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Wriothesley",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "varka": {
+      "name": "法尔伽",
+      "url": "https://enka.network/ui/UI_AvatarIcon_Varka.png",
+      "path": "assets/varka.png",
+      "sha256": "88b35ab59b8b86a555eba6c6f281ea4d6543a89b21870523df2a9195a39d8636",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_AvatarIcon_Varka",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/characters.json",
+      "reviewed_at": "2026-10-10"
+    }
+  },
+  "resources": {
+    "kaeya": {
+      "name": "凯亚",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "kaeya",
+      "element": "cryo"
+    },
+    "wanderer": {
+      "name": "流浪者",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "wanderer",
+      "element": "anemo"
+    },
+    "barbara": {
+      "name": "芭芭拉",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "barbara",
+      "element": "hydro"
+    },
+    "prune": {
+      "name": "布伦妮",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "prune",
+      "element": "anemo"
+    },
+    "jean": {
+      "name": "琴",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "jean",
+      "element": "anemo"
+    },
+    "neuvillette": {
+      "name": "那维莱特",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "neuvillette",
+      "element": "hydro"
+    },
+    "hydro-a": {
+      "name": "水辅助A",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "hydro-a",
+      "element": "hydro"
+    },
+    "citlali": {
+      "name": "茜特菈莉",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "citlali",
+      "element": "cryo"
+    },
+    "anemo-a": {
+      "name": "风辅助A",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "anemo-a",
+      "element": "anemo"
+    },
+    "skirk": {
+      "name": "丝柯克",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "skirk",
+      "element": "cryo"
+    },
+    "ayaka": {
+      "name": "神里绫华",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "ayaka",
+      "element": "cryo"
+    },
+    "furina": {
+      "name": "芙宁娜",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "furina",
+      "element": "hydro"
+    },
+    "cryo-healer-a": {
+      "name": "冰治疗A",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "cryo-healer-a",
+      "element": "cryo"
+    },
+    "support-a": {
+      "name": "辅助A",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "support-a",
+      "element": "hydro"
+    },
+    "mizuki": {
+      "name": "梦见月瑞希",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "mizuki",
+      "element": "anemo"
+    },
+    "traveler-cryo": {
+      "name": "冰主",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "traveler-cryo",
+      "element": "cryo"
+    },
+    "healer-b": {
+      "name": "治疗B",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "healer-b",
+      "element": "hydro"
+    },
+    "support-b": {
+      "name": "辅助B",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "support-b",
+      "element": "hydro"
+    },
+    "helper": {
+      "name": "莱欧斯利（助战）",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "wriothesley",
+      "element": "cryo"
+    },
+    "cryo-a": {
+      "name": "冰辅助A",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "cryo-a",
+      "element": "cryo"
+    },
+    "cryo-b": {
+      "name": "冰辅助B（含治疗）",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "cryo-b",
+      "element": "cryo"
+    },
+    "healer-c": {
+      "name": "治疗C",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "healer-c",
+      "element": "hydro"
+    },
+    "water-b": {
+      "name": "水辅助B",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "water-b",
+      "element": "hydro"
+    },
+    "cryo-c": {
+      "name": "冰辅助C",
+      "vigor": 2,
+      "availability": "conditional_on_actual_roster_and_recruitment",
+      "character_id": "cryo-c",
+      "element": "cryo"
+    }
+  },
+  "rows": [
+    {
+      "id": "act-1",
+      "label": "第1幕",
+      "team": "凯亚＋流浪者＋芭芭拉＋布伦妮",
+      "slots": [
+        "kaeya",
+        "wanderer",
+        "barbara",
+        "prune"
+      ],
+      "enemy": "首选嵌合鍪甲兽",
+      "asset_ids": [
+        "chimericarmoredbeast"
+      ],
+      "before": "招募琴；冰风1级",
+      "after": "有琴补挂件；无琴继续找",
+      "tactic": "留那维莱特，集中处理目标。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-2",
+      "label": "第2幕",
+      "team": "凯亚＋流浪者＋芭芭拉＋琴\n琴未到：换可用风位并重算耐力",
+      "slots": [
+        "kaeya",
+        "wanderer",
+        "barbara",
+        "jean"
+      ],
+      "enemy": "首选幼态树段",
+      "asset_ids": [
+        "juveniletreesegment"
+      ],
+      "before": "找琴；冰风2级\n前期确实打不动再重开",
+      "after": "补水充能位/风套辅助",
+      "tactic": "别提前用那维莱特。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-3",
+      "label": "第3幕\n首领",
+      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "slots": [
+        "neuvillette",
+        "hydro-a",
+        "citlali",
+        "anemo-a"
+      ],
+      "enemy": "恒常机关阵列",
+      "asset_ids": [
+        "perpetualmechanicalarray"
+      ],
+      "before": "冻结2级右；冰风2级左",
+      "after": "找嘲讽/控制位；否则补风位",
+      "tactic": "打发光小机关，解除锁血。",
+      "kind": "boss",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-4",
+      "label": "第4幕\n守护",
+      "team": "琴＋布伦妮＋水辅助B＋冰辅助C\n低需求位可换嘲讽/控制位",
+      "slots": [
+        "jean",
+        "prune",
+        "water-b",
+        "cryo-c"
+      ],
+      "enemy": "人形愚人众（图：债务处理人）",
+      "asset_ids": [
+        "fatuipyroagent"
+      ],
+      "before": "补嘲讽/控制；琴可摔怪",
+      "after": "补风套位；保住第5幕队",
+      "tactic": "拉住仇恨，保护镇石。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-5",
+      "label": "第5幕",
+      "team": "那维莱特＋水充能A＋茜特菈莉\n＋风套辅助A",
+      "slots": [
+        "neuvillette",
+        "hydro-a",
+        "citlali",
+        "anemo-a"
+      ],
+      "enemy": "优先幼态树段类目标\n仍可用那维莱特",
+      "asset_ids": [
+        "juveniletreesegment"
+      ],
+      "before": "角色少招募；角色足升冻结",
+      "after": "找丝柯克/后半主C",
+      "tactic": "那维莱特最后一次耐力。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-6",
+      "label": "第6幕\n首领",
+      "team": "丝柯克＋水辅助B＋冰辅助C\n＋治疗C（仅水冰）",
+      "slots": [
+        "skirk",
+        "water-b",
+        "cryo-c",
+        "healer-c"
+      ],
+      "enemy": "历经百战的嵌合兽怪箭士",
+      "asset_ids": [
+        "arrow"
+      ],
+      "before": "冻结4级；备选水/风输出",
+      "after": "补第7—8幕主C",
+      "tactic": "先打高处根须/柱子，再输出。",
+      "kind": "boss",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ],
+      "allowed_elements": [
+        "hydro",
+        "cryo"
+      ]
+    },
+    {
+      "id": "act-7",
+      "label": "第7幕",
+      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "slots": [
+        "ayaka",
+        "furina",
+        "cryo-healer-a",
+        "support-a"
+      ],
+      "enemy": "冰多：打雷咏者\n水多：改打火咏者",
+      "asset_ids": [
+        "abysslectorvioletlightning",
+        "abysslectorfathomlessflames"
+      ],
+      "before": "缺主C补主C；缺奶先补奶",
+      "after": "有主C选主C；否则补治疗",
+      "tactic": "选择能破对应元素盾的队伍。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-8",
+      "label": "第8幕\n首领",
+      "team": "神里绫华＋芙宁娜＋冰治疗A\n＋辅助A",
+      "slots": [
+        "ayaka",
+        "furina",
+        "cryo-healer-a",
+        "support-a"
+      ],
+      "enemy": "嵌合翼骏狮",
+      "asset_ids": [
+        "chimericwingedlion"
+      ],
+      "before": "角色少招募；角色足升冰风",
+      "after": "补瑞希/冰主或可用对群队",
+      "tactic": "冰伤/星烁破雷盾；处理风球。",
+      "kind": "boss",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-9",
+      "label": "第9幕",
+      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "slots": [
+        "mizuki",
+        "traveler-cryo",
+        "healer-b",
+        "support-b"
+      ],
+      "enemy": "优先幼态树段类目标",
+      "asset_ids": [
+        "juveniletreesegment"
+      ],
+      "before": "补本幕输出；保留末关冰位",
+      "after": "补助战及两张圣牌缺口",
+      "tactic": "本队还要打圣牌1，留一耐力。",
+      "kind": "ordinary",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "card-1",
+      "label": "圣牌1",
+      "team": "梦见月瑞希＋冰主＋治疗B\n＋辅助B",
+      "slots": [
+        "mizuki",
+        "traveler-cryo",
+        "healer-b",
+        "support-b"
+      ],
+      "enemy": "嗜岩·兽境猎犬",
+      "asset_ids": [
+        "rockfondrifthound"
+      ],
+      "before": "补治疗；冰风/水风",
+      "after": "补末关队；确认圣牌2未漏",
+      "tactic": "全队失血：群奶优先，先保命。",
+      "kind": "card",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "card-2",
+      "label": "圣牌2",
+      "team": "莱欧斯利（助战）＋冰辅助A\n＋冰辅助B（治疗）＋水治疗C",
+      "slots": [
+        "helper",
+        "cryo-a",
+        "cryo-b",
+        "healer-c"
+      ],
+      "enemy": "遗迹系列（图：遗迹巡弋者）",
+      "asset_ids": [
+        "ruincruiser"
+      ],
+      "before": "确认已借到；冰风/水风",
+      "after": "留助战一耐力；圣牌都打完",
+      "tactic": "追怪，注意击杀殉爆，带奶。",
+      "kind": "card",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "id": "act-10",
+      "label": "第10幕\n最终",
+      "team": "莱欧斯利（助战）＋丝柯克\n＋冰辅助A＋冰辅助B（治疗）",
+      "slots": [
+        "helper",
+        "cryo-a",
+        "cryo-b",
+        "skirk"
+      ],
+      "enemy": "秘源机兵·统御械",
+      "asset_ids": [
+        "secretsourceautomatonoverseerdevice"
+      ],
+      "before": "先完成两圣牌；花用在本队",
+      "after": "演出结束；无法回头补圣牌",
+      "tactic": "持续冰伤压制液流动量；保持治疗。",
+      "kind": "boss",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ],
+      "allowed_elements": [
+        "hydro",
+        "cryo"
+      ]
+    }
+  ],
+  "buffs": [
+    {
+      "name": "Buff优先级：冻结 ≥ 冰风 > 水风",
+      "text": "前期：冰风1—2级过渡。\n中期：冻结优先升4级。\n后期：补冰风，再按队伍补水风。\n缺角色时先招募。",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "冻结：2级右 → 3级 → 4级按主C",
+      "text": "2级右：减抗。\n4级看主C：冰多选冰伤，水多选水伤。\n按选项效果辨认，不把其他树的左右套来。",
+      "source_ids": [
+        "reference",
+        "mechanics"
+      ]
+    },
+    {
+      "name": "冰风 / 水风：分支这样选",
+      "text": "冰风：2左持续冰伤 → 4右减抗。\n缺聚怪：2右冲刺牵引 → 4右减抗。\n水风：2右 → 4右；优先级靠后。",
+      "source_ids": [
+        "reference",
+        "branches"
+      ]
+    }
+  ],
+  "helpers": [
+    {
+      "name": "莱欧斯利",
+      "asset_id": "wriothesley",
+      "text": "本图默认：圣牌2＋10\n冰辅助B须有治疗",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "恰斯卡",
+      "asset_id": "chasca",
+      "text": "高配置换线备选\n风系不可套本图末队",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "薇斯纳",
+      "asset_id": "vesna",
+      "text": "换线备选\n先核对元素与耐力",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "丝柯克",
+      "asset_id": "skirk",
+      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "法尔伽",
+      "asset_id": "varka",
+      "text": "高配置换线备选\n风系不可套本图末队",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "梦见月瑞希",
+      "asset_id": "yumemizukimizuki",
+      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "source_ids": [
+        "reference"
+      ]
+    },
+    {
+      "name": "神里绫华",
+      "asset_id": "kamisatoayaka",
+      "text": "自有缺席时可借\n须重排同名角色耐力",
+      "source_ids": [
+        "reference"
+      ]
+    }
+  ],
+  "notes": [
+    "留人：那维3/5；神里＋芙宁娜7/8；瑞希＋冰主9/圣牌1；默认借莱欧斯利留圣牌2/10。冰辅助B必须兼治疗。",
+    "本线按24名各2耐力；辅助A/B/C都是互不重复且不占已列角色的人。只有22名至少需实际恢复4次角色耐力，不能预支。",
+    "本图默认冰系助战，末队全冰；丝柯克队只配水冰。其他头像为换线备选，不能直接替换；开幕角色不能借好友版本。",
+    "神秘事件取确定收益，别赌；随机敌人未出现就按本行机制改选。队伍或招募变化后核对全程耐力，别默认低练度能照搬。"
+  ],
+  "footer": "参考：凝渡用户图/本期简介＋冻梨攻略；UI © HoYoverse（Alioth/Enka）。通用路线，未作本账号通关验证。",
+  "target_spec": {
+    "acts": 10,
+    "cards": [
+      "card-1",
+      "card-2"
+    ]
+  }
+}

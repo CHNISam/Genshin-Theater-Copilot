@@ -13,3 +13,7 @@
 不要求用户重新填写公共赛季信息；不伪造出现率/通关概率；不要新建 GUI/数据库/自动 OCR 平台。研究交付是经过来源核对的数据和验证记录，不是新的一份平行攻略。
 
 每次首次接手/恢复/资料过期按 docs/season-evidence.md 触发，无需玩家提醒。每条 public evidence 带 source/locator/season_id/reviewed_at，注册 source 的正文适用期和 accessed_at；不得只续 captured_at。当前选择候选 Buff 与父节点必须按 decision_requirements 审核，不能省略依赖。
+
+## 一图流制作入口
+
+当前成品：[2026年10月完整攻略图](../guides/output/2026-10-guide.png)。制作合同与离线导出方法见[season-guide.md](../docs/season-guide.md)。新期先取得当期内容及可追溯真实UI素材，更新guides期次JSON再导出；玩家默认直接使用整图，不要求运行命令。
