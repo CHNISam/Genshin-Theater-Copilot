@@ -25,9 +25,9 @@ def main():
     stage.mkdir(parents=True)
     with zipfile.ZipFile(runtime_zip) as archive:archive.extractall(stage/'runtime')
     (stage/'runtime/python313._pth').write_text('python313.zip\n.\n..\n',encoding='ascii')
-    for folder in ('src','tests','templates','policies','fixtures','seasons','docs','plans','prompts','maintenance'):
+    for folder in ('src','tests','templates','policies','fixtures','seasons','docs','plans','prompts','maintenance','guides','tools'):
         shutil.copytree(ROOT/folder,stage/folder,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-    for file in ('theater.cmd','README.md','QUICKSTART.md','VERSION','LICENSE','AGENTS.md'):
+    for file in ('theater.cmd','README.md','QUICKSTART.md','VERSION','LICENSE','AGENTS.md','requirements-guide.txt'):
         shutil.copy2(ROOT/file,stage/file)
     (stage/'runtime/ORIGIN.json').write_text(json.dumps(dict(version=RUNTIME_VERSION,url=RUNTIME_URL,sha256=RUNTIME_SHA256),indent=2)+'\n')
     archive_path=dist/(name+'.zip')
@@ -36,10 +36,10 @@ def main():
             if file.is_file():archive.write(file,file.relative_to(stage.parent))
     source_path=dist/f'Genshin-Theater-Copilot-v{version}-source.zip'
     with zipfile.ZipFile(source_path,'w',compression=zipfile.ZIP_DEFLATED) as archive:
-        for folder in ('src','tests','templates','policies','fixtures','seasons','docs','plans','prompts','maintenance','tools','.github'):
+        for folder in ('src','tests','templates','policies','fixtures','seasons','docs','plans','prompts','maintenance','guides','tools','.github'):
             for file in sorted((ROOT/folder).rglob('*')):
                 if file.is_file() and '__pycache__' not in file.parts and file.suffix!='.pyc':archive.write(file,Path('Genshin-Theater-Copilot')/file.relative_to(ROOT))
-        for file in ('theater.cmd','README.md','QUICKSTART.md','VERSION','LICENSE','AGENTS.md','.gitignore'):
+        for file in ('theater.cmd','README.md','QUICKSTART.md','VERSION','LICENSE','AGENTS.md','.gitignore','requirements-guide.txt'):
             archive.write(ROOT/file,Path('Genshin-Theater-Copilot')/file)
     runtime_zip.unlink()
     (dist/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(file.read_bytes()).hexdigest()+'  '+file.name+'\n' for file in (archive_path,source_path)),encoding='utf-8')
