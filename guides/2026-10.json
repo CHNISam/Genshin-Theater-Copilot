@@ -55,7 +55,7 @@
       "kind": "asset-reference",
       "season_id": "asset-reference",
       "accessed_at": "2026-10-10",
-      "locator": "官方游戏UI文件名与敌人ID对应；图片从Alioth/Enka镜像取得，已逐张视觉核对"
+      "locator": "游戏UI文件名与敌人ID对应；图片从Alioth/Enka/TGSRedStone素材镜像取得，已逐张视觉核对"
     },
     "vv": {
       "url": "https://library.keqingmains.com/equipment/artifacts",
@@ -322,6 +322,17 @@
       "kind": "game-ui",
       "reviewed": true,
       "icon_name": "UI_MonsterIcon_Volkodlak_Beaver",
+      "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
+      "reviewed_at": "2026-10-10"
+    },
+    "blackserpentknightwindcutter": {
+      "name": "黑蛇骑士·斩风之剑",
+      "url": "https://raw.githubusercontent.com/TGSRedStone/GenshinTextures/master/Texture2D/UI/MonsterIcon/Darkwraith/Strong/Wind/UI_MonsterIcon_Darkwraith_Strong_Wind.png",
+      "path": "assets/blackserpentknightwindcutter.png",
+      "sha256": "34572f74e331496f3fc6e1e82ee6fc25c89239d43e6052d1fa0b94489fe2da46",
+      "kind": "game-ui",
+      "reviewed": true,
+      "icon_name": "UI_MonsterIcon_Darkwraith_Strong_Wind",
       "identity_source": "https://raw.githubusercontent.com/theBowja/genshin-db/main/src/data/image/enemies.json",
       "reviewed_at": "2026-10-10"
     }
@@ -602,7 +613,7 @@
       ],
       "enemy": "优先可摔的人形怪",
       "asset_ids": [
-        "fatuipyroagent"
+        "blackserpentknightwindcutter"
       ],
       "before": "继续找琴；冰风2级",
       "after": "水充电宝、风套工具人",
@@ -864,7 +875,7 @@
       "asset_ids": [
         "secretsourceautomatonoverseerdevice"
       ],
-      "before": "两张圣牌打完；把花用完",
+      "before": "备好高频挂冰",
       "after": "演出结束",
       "tactic": "持续挂冰，压住液流动量",
       "kind": "boss",
@@ -908,7 +919,7 @@
     {
       "name": "薇斯纳",
       "asset_id": "vesna",
-      "text": "机制优先，0命可选\n带后台冰；可改打6/8",
+      "text": "0命可选；带后台冰\n可改打第6 / 8幕",
       "source_ids": [
         "mechanics"
       ]
@@ -916,7 +927,7 @@
     {
       "name": "桑多涅",
       "asset_id": "sandrone",
-      "text": "机制优先，2/6命更佳\n带后台风，触发星扩散",
+      "text": "2 / 6命更佳\n带后台风，触发星扩散",
       "source_ids": [
         "mechanics",
         "helper-builds"
@@ -925,7 +936,7 @@
     {
       "name": "奥黛塔",
       "asset_id": "odette",
-      "text": "机制候选，0命可选\n有对应主C再借",
+      "text": "0命可选\n有对应主C再借",
       "source_ids": [
         "mechanics"
       ]
@@ -1024,7 +1035,7 @@
     ]
   },
   "review": {
-    "revision": 2,
+    "revision": 3,
     "status": "source_reviewed_conditional_route",
     "clear_evidence": false,
     "independent_blind_backtest": false,
@@ -1046,6 +1057,10 @@
       {
         "item": "helpers",
         "reason": "Remove low-value generic helpers; add mechanic-matched Sandrone and Odette. C0 mechanism eligibility is not a clear guarantee."
+      },
+      {
+        "item": "act-2 icon correction",
+        "reason": "Direct visual comparison identifies the reference act2 portrait as Black Serpent Knight: Windcutter (UI_MonsterIcon_Darkwraith_Strong_Wind). Replace the unrelated Pyro Agent portrait with that game UI asset. Reference proves the illustrated candidate, not the full current ordinary enemy pool."
       }
     ],
     "unresolved": [

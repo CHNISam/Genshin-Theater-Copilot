@@ -25,3 +25,12 @@ Archive:28partial factual packets,3frozen independent retrospective proposals,Ju
 
 
 Native Windows CI exposed two packaging boundaries: guide JSON was absent from the ZIP, and checkout CRLF conversion changed captured evidence bytes. Both were reproduced; distributables now include guide/tool inputs, and `.gitattributes` pins text toLF while retaining binary game assets. A real packaging regression builds both ZIP manifests with a synthetic checksum-pinned runtime fixture and verifies guide/evidence bytes; it does not claim to run Windows. Full local suite164passed; native confirmation remains the PR CI result.
+
+
+## Revision 3 — wording and act2 portrait
+
+Based on latest main f6ddd342 (PR #6), removed the unexplained “机制优先／机制候选” labels from helper recommendations; kept explicit constellation/team conditions. Act10 preparation now says “备好高频挂冰”, with the existing Sacred Card ordering guard retained.
+
+The act2 reference portrait visually matches Black Serpent Knight: Windcutter, not the previously displayed Fatui Pyro Agent. Its genuine UI_MonsterIcon_Darkwraith_Strong_Wind asset was obtained from the TGSRedStone/GenshinTextures mirror and checked against the user reference and genshin-db filename mapping. This corrects the illustration; it does not certify the full October ordinary enemy pool.
+
+Fresh verification: all164unittest cases passed; PNG re-exported at3200×3087 with12rows and zero clipped cells. Full PNG inspected for act2 portrait, helper text, act10 preparation, footer and table alignment. Guide/font/PNG hashes are bound by the regenerated receipt. No new clear or historical completion claim.

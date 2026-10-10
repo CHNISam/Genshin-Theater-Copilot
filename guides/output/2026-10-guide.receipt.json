@@ -7,9 +7,9 @@
   ],
   "clipped_cells": 0,
   "checked_text_lines": 120,
-  "guide_sha256": "0b28e4b1fba8fd8e14fb5f43cb2192a8f8f6795322cffa060cb9d6142f67eb57",
+  "guide_sha256": "b744d0801322cdbb2950d83f64a82c3c55787b4ae9ae87b8cb7acb0187c6dbc3",
   "font_sha256": "faa6c9df652116dde789d351359f3d7e5d2285a2b2a1f04a2d7244df706d5ea9",
-  "png_sha256": "bf57b9b6a15263db18d68a953b9028acb1c7eac337a7e7f6bb1add0d7efe2182",
+  "png_sha256": "c757031bd7a9e862cd7227362b84469c606a97c0d0b868c911ba12fb3d218685",
   "reviewed_at": "2026-10-10",
   "claim": "Export contract passed; source review is not account-specific clear evidence."
 }
