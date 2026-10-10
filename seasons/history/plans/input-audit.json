@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-10-10",
+  "timing": "post-freeze audit; original proposals untouched",
+  "inputs": {
+    "seasons/history/plans/2024-09.freeze.json": {
+      "plan_sha256": "627c37028cf37e6a76bcfa6f59c4cadb2f2545a0c90f84dc72214de2c78991e9",
+      "fact_packet": "seasons/history/2024-09.json",
+      "sha256": "63399f7b4b6bfb9057b0dec09c6cf71d7769ff3bfc309fc3e2560ccb5dc42dc4"
+    },
+    "seasons/history/plans/2024-07.freeze.json": {
+      "plan_sha256": "85da5fdba92357e7a8161f6e4c1d598ba7c6f287cd069cfc25f481f46a257c4a",
+      "fact_packet": "seasons/history/2024-07.json",
+      "sha256": "66982ae7e4b19896070f5c96c58c5c34c7414ad2f413c3bd16b3850d33feca38"
+    },
+    "seasons/history/plans/2025-10.freeze.json": {
+      "plan_sha256": "3a8925caabf8bda8ea7b4ff9f690f4aa436b4e074784b6ebeb3ed5a70d0e7485",
+      "fact_packet": "seasons/history/2025-10.json",
+      "sha256": "1bdea10772d5ea78c707326e1270db6b42cec08d3f2dd85e68db72590b526388"
+    }
+  }
+}

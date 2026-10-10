@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "3a8925caabf8bda8ea7b4ff9f690f4aa436b4e074784b6ebeb3ed5a70d0e7485",
+  "plan_file_sha256": "c030bbeb12bd3d66d88860951ddfb476c0c58b5336cee78ed855480368df2222",
+  "plan": {
+    "month": "2025-10",
+    "mode": "retrospective_reconstruction",
+    "expert_exposure": false,
+    "generated_at": "2026-10-10",
+    "knowledge_cutoff": "2025-10-31",
+    "sources": {
+      "monthly_facts": {
+        "path": "seasons/history/2025-10.json",
+        "scope": "月档首领身份；后于知识截止的事实只来自月档",
+        "historical_snapshot": false
+      }
+    },
+    "rows": [
+      {
+        "act": 3,
+        "columns": {
+          "幕次": "第3幕",
+          "敌人/选择": "历经百战的机关·算力增幅器",
+          "队伍": "待核验，不锁具体四人",
+          "助益/事件": "读当期原文",
+          "打法": "保留输出/生存位；专用反制待核验"
+        },
+        "before": "确认当期变体与机制，再确定角色预算",
+        "after": "记录已用次数，重算下一首领可行性",
+        "proposal_basis": "月档只证明首领身份，不能由名称推出已验证反制",
+        "reservation": "仅保留后续首领的输出/生存预算；暂不规定硬元素反制"
+      },
+      {
+        "act": 6,
+        "columns": {
+          "幕次": "第6幕",
+          "敌人/选择": "半永恒统辖矩阵",
+          "队伍": "待核验，不锁具体四人",
+          "助益/事件": "读当期原文",
+          "打法": "保留输出/生存位；专用反制待核验"
+        },
+        "before": "确认当期变体与机制，再确定角色预算",
+        "after": "记录已用次数，重算下一首领可行性",
+        "proposal_basis": "月档只证明首领身份，不能由名称推出已验证反制",
+        "reservation": "仅保留后续首领的输出/生存预算；暂不规定硬元素反制"
+      },
+      {
+        "act": 8,
+        "columns": {
+          "幕次": "第8幕",
+          "敌人/选择": "魔像督军",
+          "队伍": "待核验，不锁具体四人",
+          "助益/事件": "读当期原文",
+          "打法": "保留输出/生存位；专用反制待核验"
+        },
+        "before": "确认当期变体与机制，再确定角色预算",
+        "after": "记录已用次数，重算下一首领可行性",
+        "proposal_basis": "月档只证明首领身份，不能由名称推出已验证反制",
+        "reservation": "仅保留后续首领的输出/生存预算；暂不规定硬元素反制"
+      },
+      {
+        "act": 10,
+        "columns": {
+          "幕次": "第10幕",
+          "敌人/选择": "金焰绒翼龙暴君",
+          "队伍": "待核验，不锁具体四人",
+          "助益/事件": "读当期原文",
+          "打法": "保留输出/生存位；专用反制待核验"
+        },
+        "before": "确认当期变体与机制，再确定角色预算",
+        "after": "记录已用次数，重算下一首领可行性",
+        "proposal_basis": "月档只证明首领身份，不能由名称推出已验证反制",
+        "reservation": "仅保留后续首领的输出/生存预算；暂不规定硬元素反制"
+      }
+    ],
+    "resources": {},
+    "decisions": {
+      "objective": "仅检查点保留提案；不是完整配队攻略",
+      "full_route_claim": false,
+      "reservation_level": "generic_budget_only_pending_mechanics",
+      "known_since_policy": "不根据2024-07知识截止推断后实装角色能力",
+      "sacred_card_12": "若2025-10累计耗耐力12圣牌：目标是坚持至倒计时结束，17击杀是明星挑战；生存优先，不能把17击杀写成通关硬条件。",
+      "sacred_card_24": "若2025-10累计耗耐力24圣牌：翠翎恐蕈，110秒通关/70秒明星；完整角色预算尚未规划。"
+    },
+    "gaps": [
+      "回溯读取现存事实档案，未证明同时代快照；不是当时盲测或实战回测。",
+      "普通关完整候选池未核验；表内只给筛选条件，不宣称实际刷出该敌人。",
+      "历史奇妙助益文本未取得；不列精确效果、倍率或升级收益，禁止套用现行辉彩祝福/枝树。",
+      "账号拥有、等级、装备、招募顺序与实际通关证据均未知；方案不是保证。",
+      "首领名字之外缺少本次许可内的可靠机制证据；因此不提出未经核验的强制元素反制。",
+      "未构造完整次数/招募见证，不能称全季完成。"
+    ],
+    "status": "proposal_unvalidated",
+    "cutoff_note": "The planner left a July cutoff template; corrected before comparison to the period of this factual packet. No specific later character/capability decisions are present."
+  },
+  "contemporaneous_blind_validated": false,
+  "claim": "Frozen independent proposal; chronology/source semantics and real clear need separate review."
+}

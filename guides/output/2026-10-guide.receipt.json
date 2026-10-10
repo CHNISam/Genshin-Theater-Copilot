@@ -3,13 +3,13 @@
   "rows": 12,
   "size": [
     3200,
-    3265
+    3087
   ],
   "clipped_cells": 0,
-  "checked_text_lines": 138,
-  "guide_sha256": "8a6e6f092d76d6898d13fbcb479821d48471bf4086e0ab417903628bf1413d18",
+  "checked_text_lines": 120,
+  "guide_sha256": "0b28e4b1fba8fd8e14fb5f43cb2192a8f8f6795322cffa060cb9d6142f67eb57",
   "font_sha256": "faa6c9df652116dde789d351359f3d7e5d2285a2b2a1f04a2d7244df706d5ea9",
-  "png_sha256": "1feb9285904ba0bf21b4df58c09e6596e650620d82136c663886fcb281e9568b",
+  "png_sha256": "bf57b9b6a15263db18d68a953b9028acb1c7eac337a7e7f6bb1add0d7efe2182",
   "reviewed_at": "2026-10-10",
   "claim": "Export contract passed; source review is not account-specific clear evidence."
 }

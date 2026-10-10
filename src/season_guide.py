@@ -39,7 +39,7 @@ def validate_guide(data, root):
     root=Path(root).resolve()
     def need(value,label):
         if not isinstance(value,str) or not value.strip(): errors.append(label+' required')
-    if data.get('schema_version')!=1: errors.append('schema_version unsupported')
+    if data.get('schema_version') not in (1,2): errors.append('schema_version unsupported')
     for k in ('season_id','title','scope','reviewed_at','valid_until'): need(data.get(k),k)
     try:
         reviewed=date.fromisoformat(data['reviewed_at']); end=date.fromisoformat(data['valid_until'])
@@ -119,6 +119,9 @@ def validate_guide(data, root):
             need(item.get('name'),section+' name');need(item.get('text'),section+' text');refs(item,section)
             if section=='helpers' and item.get('asset_id') not in assets:errors.append('helper asset missing')
     if not data.get('notes'):errors.append('notes required')
+    if data.get('schema_version')==2:
+        from src.guide_policy import strategy_errors
+        errors.extend(strategy_errors(data))
     return errors
 
 

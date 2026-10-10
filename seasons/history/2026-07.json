@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "month": "2026-07",
+  "season_id": "2026-07",
+  "number": 25,
+  "ruleset_id": "lunar-12",
+  "game_version": null,
+  "sources": {
+    "bwiki-month": {
+      "url": "https://wiki.biligame.com/ys/%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97/2026",
+      "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物",
+      "accessed_at": "2026-10-10",
+      "published_at": null,
+      "page_update_label": "2026-04-13",
+      "revision_id": "674411",
+      "read_scope": "Downloaded HTML; monthly section parsed for time, elemental icons, opening/guest character identities, fixed boss/card tables. No ordinary enemy pool or per-season buff table present.",
+      "kind": "community_wiki_factual_archive",
+      "historical_validity": "Retrospective currently served revision; creation/publication date not established; no at-the-time snapshot proof.",
+      "license": "CC BY-NC-SA 4.0; attribution: 原神WIKI BWIKI / 旅行者酒馆 and page contributors",
+      "evidence_path": "seasons/history/evidence/2026-07-bwiki.html",
+      "evidence_sha256": "b00443071e6a9c230a21bf8163974d50729e2b8f4ae61c1945bf388f2f8036bb"
+    }
+  },
+  "facts": {
+    "elements": [
+      "火",
+      "雷",
+      "冰"
+    ],
+    "opening_characters": [
+      "阿蕾奇诺",
+      "班尼特",
+      "赛诺",
+      "北斗",
+      "甘雨",
+      "迪奥娜"
+    ],
+    "special_guests": [
+      "基尼奇",
+      "梦见月瑞希",
+      "哥伦比娅",
+      "雅珂达"
+    ],
+    "encounters": [
+      {
+        "kind": "boss",
+        "label": "第三幕",
+        "level": 90,
+        "objective": "首领",
+        "challenge": "110秒/75秒",
+        "enemies": [
+          "翠翎恐蕈"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 第三幕",
+        "source_cells": {
+          "幕次": "第三幕",
+          "怪物等级": "90",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "110秒/75秒",
+          "怪物": "翠翎恐蕈"
+        },
+        "act": 3
+      },
+      {
+        "kind": "boss",
+        "label": "第六幕",
+        "level": 92,
+        "objective": "首领",
+        "challenge": "120秒/80秒",
+        "enemies": [
+          "古岩龙蜥"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 第六幕",
+        "source_cells": {
+          "幕次": "第六幕",
+          "怪物等级": "92",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "120秒/80秒",
+          "怪物": "古岩龙蜥"
+        },
+        "act": 6
+      },
+      {
+        "kind": "boss",
+        "label": "第八幕",
+        "level": 95,
+        "objective": "首领",
+        "challenge": "110秒/75秒",
+        "enemies": [
+          "超重型陆巡舰·机动战垒"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 第八幕",
+        "source_cells": {
+          "幕次": "第八幕",
+          "怪物等级": "95",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "110秒/75秒",
+          "怪物": "超重型陆巡舰·机动战垒"
+        },
+        "act": 8
+      },
+      {
+        "kind": "boss",
+        "label": "第十幕",
+        "level": 100,
+        "objective": "首领",
+        "challenge": "100秒/65秒",
+        "enemies": [
+          "兆载永劫龙兽"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 第十幕",
+        "source_cells": {
+          "幕次": "第十幕",
+          "怪物等级": "100",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "100秒/65秒",
+          "怪物": "兆载永劫龙兽"
+        },
+        "act": 10
+      },
+      {
+        "kind": "sacred_card",
+        "label": "12",
+        "level": 100,
+        "objective": "坚持战斗到倒计时结束",
+        "challenge": "击败17名敌人",
+        "enemies": [
+          "镀金旅团集群"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 12",
+        "source_cells": {
+          "累计消耗耐力": "12",
+          "怪物等级": "100",
+          "挑战内容": "坚持战斗到倒计时结束",
+          "明星挑战要求": "击败17名敌人",
+          "怪物": "镀金旅团集群"
+        },
+        "act": null,
+        "unlock_vigor_consumed": 12
+      },
+      {
+        "kind": "sacred_card",
+        "label": "24",
+        "level": 100,
+        "objective": "首领",
+        "challenge": "100秒/70秒",
+        "enemies": [
+          "实验性场力发生装置"
+        ],
+        "source_id": "bwiki-month",
+        "locator": "第25期 / 时间 / 限定元素和角色 / 首领关卡怪物 / 24",
+        "source_cells": {
+          "累计消耗耐力": "24",
+          "怪物等级": "100",
+          "挑战内容": "首领",
+          "限时/明星挑战限时": "100秒/70秒",
+          "怪物": "实验性场力发生装置"
+        },
+        "act": null,
+        "unlock_vigor_consumed": 24
+      }
+    ],
+    "buffs": []
+  },
+  "gaps": [
+    "Full ordinary encounter pools and per-act selectable candidates absent from read archive.",
+    "Per-season complete buff branches, coefficients, upgrade prices and historical revision validity not established.",
+    "Enemy mechanics/HP/resistance tables not read here; names and levels do not establish required counterplay.",
+    "No authenticated contemporaneous snapshot or historical account/playtest.",
+    "Game version not established; deliberately null."
+  ],
+  "validation": {
+    "status": "PARTIAL_FACTS",
+    "contemporaneous_snapshot": false,
+    "blind_backtest_eligible": false,
+    "played_clear_evidence": false,
+    "source_month_matches": true,
+    "source_month": "2026-07",
+    "core_identity_present": true,
+    "identity_review": "All26month identities reviewed against extraction: explicit icon names plus opening-table element background where icon absent."
+  },
+  "facts_provenance": {
+    "elements": [
+      "bwiki-month"
+    ],
+    "opening_characters": [
+      "bwiki-month"
+    ],
+    "special_guests": [
+      "bwiki-month"
+    ],
+    "encounters": [
+      "bwiki-month"
+    ],
+    "buffs": []
+  },
+  "rules_provenance": {
+    "selection": "Authorized historical boundary supplied by task; fixed boss/card tables corroborate3,4or6checkpoints. Detailed official rule registry maintained separately.",
+    "source_path": "seasons/history/research-provenance.json",
+    "maximum_acts": 10,
+    "sacred_cards": 2,
+    "blessing_system": "辉彩祝福",
+    "special_guest_5_2_bonus_validity": "Not assigned a month here; verify official5.2season timing."
+  },
+  "facts_extraction": {
+    "elements": "Ordered unique explicit elemental-image alt labels; supplemented by opening-character element-colour markup. Order is nonsemantic.",
+    "opening_characters": "Six named character links in opening section or first-column trial table.",
+    "encounters": "Fixed boss/card tables only; raw source cells retained. Enemy image alt is not used to override the visible enemy name."
+  }
+}

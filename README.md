@@ -45,3 +45,6 @@ python -m src.cli validate-season seasons/2026-10-v7.1.json
 Windows 用户可运行 `theater.cmd self-test` 检验随包核心回归。CI 同时验证完整 CLI 测试、官方运行时 SHA-256，以及干净中文/空格目录中解压 ZIP 的原生 Windows smoke；只有全部通过才发布。Release 附 `SHA256SUMS.txt`、`WINDOWS-SMOKE.json` 和源码包。
 
 人工审核边界：来源是否真实可靠、账号操作能否执行、输出/治疗是否足够、哪些条件是硬机制，仍需人根据实战判断。程序检查证据的适用范围与状态，不能自动证明攻略正确。存档是可读 JSON，修改或删除历史等同人为绕开审计；正常命令拒绝静默覆盖和并发写入。
+
+
+历史研究与原创提案：[28期期次入口](docs/history-results.md)。部分事实、独立提案、专家对照、合成机制验证和实际通关分开标记。

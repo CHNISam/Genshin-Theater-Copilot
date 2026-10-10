@@ -1,0 +1,573 @@
+{
+  "month": "2024-07",
+  "mode": "retrospective_reconstruction",
+  "expert_exposure": false,
+  "generated_at": "2026-10-10",
+  "knowledge_cutoff": "2024-07-31",
+  "sources": {
+    "monthly_facts": {
+      "path": "seasons/history/2024-07.json",
+      "scope": "元素、开幕、特邀、固定首领；非专家指南",
+      "published_at": null
+    },
+    "coppelius_tutorial": {
+      "url": "https://wiki.biligame.com/ys/index.php?title=%E6%95%99%E7%A8%8B%EF%BC%9A%E5%86%B0%E9%A3%8E%E7%BB%84%E6%9B%B2",
+      "accessed_at": "2026-10-10",
+      "revision_id": "616918",
+      "page_update_label": "2025-08-17",
+      "verified_fact": "科培琉司高潮施加护罩，露出芒性奇械发条，产生三枚霜心",
+      "historical_snapshot": false,
+      "published_at": null
+    },
+    "mechanics_memory": {
+      "kind": "model_prior_unverified",
+      "claims": [
+        "科培琉司冰罩用火反应处理；不是歌裴莉娅的风场",
+        "翠翎恐蕈雷激化提高活性，活化狂暴后虚弱；火会抑制活性并可能引出蕈兽",
+        "深海龙蜥群吸能弹需闪避；两只血量协调收尾"
+      ],
+      "status": "许可教程翠翎恐蕈/深海龙蜥及直接KQM页面返回403；不能宣称本次已原文核验",
+      "published_at": null
+    }
+  },
+  "rows": [
+    {
+      "act": 1,
+      "columns": {
+        "幕次": "第1幕",
+        "敌人/选择": "普通候选：无硬破盾门槛",
+        "队伍": "流浪者 / 珐露珊 / 托马 / 久岐忍",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "托马护盾，忍维持血线"
+      },
+      "team": [
+        "wanderer",
+        "faruzan",
+        "thoma",
+        "kuki"
+      ],
+      "before": "仅六开幕可用；仆人不动",
+      "after": "流浪者/珐露珊/托马/忍各1",
+      "encounter_status": "ordinary_pool_unverified_selection_predicate",
+      "conditional": false,
+      "remaining_vigor": {
+        "arle": 2,
+        "thoma": 1,
+        "clorinde": 2,
+        "kuki": 1,
+        "wanderer": 1,
+        "faruzan": 1,
+        "fischl": 2,
+        "sucrose": 2,
+        "diluc": 2,
+        "sayu": 2,
+        "beidou": 2,
+        "dori": 2,
+        "xiangling": 2,
+        "jean": 2,
+        "bennett": 2,
+        "raiden": 2
+      },
+      "survival": {
+        "healing_source": "久岐忍",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 2,
+      "columns": {
+        "幕次": "第2幕",
+        "敌人/选择": "普通候选：风队可处理",
+        "队伍": "流浪者 / 珐露珊 / 托马 / 克洛琳德",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "保盾输出，不借终幕火位"
+      },
+      "team": [
+        "wanderer",
+        "faruzan",
+        "thoma",
+        "clorinde"
+      ],
+      "before": "仅开幕可用；留克洛/忍各一次",
+      "after": "流浪者/珐露珊/托马耗尽",
+      "encounter_status": "ordinary_pool_unverified_selection_predicate",
+      "conditional": false,
+      "remaining_vigor": {
+        "arle": 2,
+        "thoma": 0,
+        "clorinde": 1,
+        "kuki": 1,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 2,
+        "sucrose": 2,
+        "diluc": 2,
+        "sayu": 2,
+        "beidou": 2,
+        "dori": 2,
+        "xiangling": 2,
+        "jean": 2,
+        "bennett": 2,
+        "raiden": 2
+      },
+      "survival": {
+        "healing_source": "克洛琳德仅自疗，其他人靠托马护盾与闪避",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 3,
+      "columns": {
+        "幕次": "第3幕",
+        "敌人/选择": "翠翎恐蕈",
+        "队伍": "克洛琳德 / 久岐忍 / 菲谢尔 / 砂糖",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "雷促活化，躲狂暴后打虚弱"
+      },
+      "team": [
+        "clorinde",
+        "kuki",
+        "fischl",
+        "sucrose"
+      ],
+      "before": "菲谢尔、砂糖已招募才成立",
+      "after": "双雷开幕耗尽；菲谢尔/砂糖各1",
+      "encounter_status": "fixed_boss_from_month_archive",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 2,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 1,
+        "sucrose": 1,
+        "diluc": 2,
+        "sayu": 2,
+        "beidou": 2,
+        "dori": 2,
+        "xiangling": 2,
+        "jean": 2,
+        "bennett": 2,
+        "raiden": 2
+      },
+      "survival": {
+        "healing_source": "久岐忍及克洛琳德自疗",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 4,
+      "columns": {
+        "幕次": "第4幕",
+        "敌人/选择": "普通候选：火雷可处理",
+        "队伍": "迪卢克 / 早柚 / 北斗 / 多莉",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "迪卢克输出，治疗保命"
+      },
+      "team": [
+        "diluc",
+        "sayu",
+        "beidou",
+        "dori"
+      ],
+      "before": "四人均招募；不动仆人/班尼特",
+      "after": "迪卢克/早柚/北斗/多莉各1",
+      "encounter_status": "ordinary_pool_unverified_selection_predicate",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 2,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 1,
+        "sucrose": 1,
+        "diluc": 1,
+        "sayu": 1,
+        "beidou": 1,
+        "dori": 1,
+        "xiangling": 2,
+        "jean": 2,
+        "bennett": 2,
+        "raiden": 2
+      },
+      "survival": {
+        "healing_source": "早柚/多莉",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 5,
+      "columns": {
+        "幕次": "第5幕",
+        "敌人/选择": "普通候选：火队可处理",
+        "队伍": "迪卢克 / 早柚 / 香菱 / 琴",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "确认香菱充能，避火免疫"
+      },
+      "team": [
+        "diluc",
+        "sayu",
+        "xiangling",
+        "jean"
+      ],
+      "before": "香菱、琴到队；检查充能",
+      "after": "迪卢克/早柚耗尽；琴/香菱各1",
+      "encounter_status": "ordinary_pool_unverified_selection_predicate",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 2,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 1,
+        "sucrose": 1,
+        "diluc": 0,
+        "sayu": 0,
+        "beidou": 1,
+        "dori": 1,
+        "xiangling": 1,
+        "jean": 1,
+        "bennett": 2,
+        "raiden": 2
+      },
+      "survival": {
+        "healing_source": "早柚/琴",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 6,
+      "columns": {
+        "幕次": "第6幕",
+        "敌人/选择": "深海龙蜥之群",
+        "队伍": "阿蕾奇诺 / 班尼特 / 雷电将军 / 琴",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "躲吸能弹；先压血再收尾"
+      },
+      "team": [
+        "arle",
+        "bennett",
+        "raiden",
+        "jean"
+      ],
+      "before": "仆人/班尼特各留终幕一次",
+      "after": "终幕火位各1；琴耗尽",
+      "encounter_status": "fixed_boss_from_month_archive",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 1,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 1,
+        "sucrose": 1,
+        "diluc": 0,
+        "sayu": 0,
+        "beidou": 1,
+        "dori": 1,
+        "xiangling": 1,
+        "jean": 0,
+        "bennett": 1,
+        "raiden": 1
+      },
+      "survival": {
+        "healing_source": "琴/班尼特治疗其他三人；阿蕾奇诺只靠自身爆发",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 7,
+      "columns": {
+        "幕次": "第7幕",
+        "敌人/选择": "普通候选：雷火可处理",
+        "队伍": "北斗 / 香菱 / 雷电将军 / 多莉",
+        "助益/事件": "缺人先招募；助益读原文",
+        "打法": "雷电补能；多莉连线保命"
+      },
+      "team": [
+        "beidou",
+        "xiangling",
+        "raiden",
+        "dori"
+      ],
+      "before": "确认多莉爆发；终幕四人不借用",
+      "after": "雷电/北斗/香菱/多莉耗尽",
+      "encounter_status": "ordinary_pool_unverified_selection_predicate",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 1,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 1,
+        "sucrose": 1,
+        "diluc": 0,
+        "sayu": 0,
+        "beidou": 0,
+        "dori": 0,
+        "xiangling": 0,
+        "jean": 0,
+        "bennett": 1,
+        "raiden": 0
+      },
+      "survival": {
+        "healing_source": "多莉",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    },
+    {
+      "act": 8,
+      "columns": {
+        "幕次": "第8幕",
+        "敌人/选择": "冰风组曲·科培琉司的劫罚",
+        "队伍": "阿蕾奇诺 / 班尼特 / 菲谢尔 / 砂糖",
+        "助益/事件": "助益不作硬门槛",
+        "打法": "火打冰罩；仆人留爆发自疗"
+      },
+      "team": [
+        "arle",
+        "bennett",
+        "fischl",
+        "sucrose"
+      ],
+      "before": "仆人/班尼特/菲谢尔/砂糖各≥1",
+      "after": "完成8幕；仅为条件配额见证",
+      "encounter_status": "fixed_boss_from_month_archive",
+      "conditional": true,
+      "remaining_vigor": {
+        "arle": 0,
+        "thoma": 0,
+        "clorinde": 0,
+        "kuki": 0,
+        "wanderer": 0,
+        "faruzan": 0,
+        "fischl": 0,
+        "sucrose": 0,
+        "diluc": 0,
+        "sayu": 0,
+        "beidou": 0,
+        "dori": 0,
+        "xiangling": 0,
+        "jean": 0,
+        "bennett": 0,
+        "raiden": 0
+      },
+      "survival": {
+        "healing_source": "班尼特治疗其他三人；阿蕾奇诺只靠自身爆发",
+        "required_live_check": "角色存活、爆发能量、装备伤害、敌人抗性与盾种；配额通过不等于战斗能过"
+      }
+    }
+  ],
+  "resources": {
+    "arle": {
+      "name": "阿蕾奇诺",
+      "element": "火",
+      "vigor": 2,
+      "known_since": "2024-04-01",
+      "capabilities": "持续火输出；战斗中靠自身爆发回血，不能把班尼特/琴当作其战斗回血",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "4.6，2024-04"
+    },
+    "thoma": {
+      "name": "托马",
+      "element": "火",
+      "vigor": 2,
+      "known_since": "2021-01-01",
+      "capabilities": "护盾，需能量与普攻刷新；不当作强火破盾主力",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "2.2，2021"
+    },
+    "clorinde": {
+      "name": "克洛琳德",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2024-06-01",
+      "capabilities": "站场雷与技能自身回复；需执行命契循环",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "4.7，2024-06"
+    },
+    "kuki": {
+      "name": "久岐忍",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2022-01-01",
+      "capabilities": "持续近身雷与治疗；技能扣自身血，不能把低血忍当无风险站场",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "2.7，2022"
+    },
+    "wanderer": {
+      "name": "流浪者",
+      "element": "风",
+      "vigor": 2,
+      "known_since": "2022-01-01",
+      "capabilities": "站场风输出，依赖抗打断与练度",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "3.3，2022"
+    },
+    "faruzan": {
+      "name": "珐露珊",
+      "element": "风",
+      "vigor": 2,
+      "known_since": "2022-01-01",
+      "capabilities": "风输出支持，爆发能量须现场确认",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "opening",
+      "availability_original_note": "3.3，2022"
+    },
+    "fischl": {
+      "name": "菲谢尔",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "脱手雷；第三幕与终幕各留一次",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "sucrose": {
+      "name": "砂糖",
+      "element": "风",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "可聚小型敌人，扩散；不保证聚动所有敌人",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "diluc": {
+      "name": "迪卢克",
+      "element": "火",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "火输出；普通关主输出",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "sayu": {
+      "name": "早柚",
+      "element": "风",
+      "vigor": 2,
+      "known_since": "2021-01-01",
+      "capabilities": "治疗；爆发充能须确认",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "2.0，2021"
+    },
+    "beidou": {
+      "name": "北斗",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "弹反与爆发减伤；不假定一命护盾，单体弹跳收益下降",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "dori": {
+      "name": "多莉",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2022-01-01",
+      "capabilities": "治疗与能量支持；受爆发能量和灯连接约束",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "3.0，2022"
+    },
+    "xiangling": {
+      "name": "香菱",
+      "element": "火",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "脱手火；无班尼特时提前验证充能",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "jean": {
+      "name": "琴",
+      "element": "风",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "团队治疗；不能战斗中治疗阿蕾奇诺",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "bennett": {
+      "name": "班尼特",
+      "element": "火",
+      "vigor": 2,
+      "known_since": "2020-01-01",
+      "capabilities": "攻击支持、对可接受治疗角色回血；近身火附着",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "1.0，2020"
+    },
+    "raiden": {
+      "name": "雷电将军",
+      "element": "雷",
+      "vigor": 2,
+      "known_since": "2021-01-01",
+      "capabilities": "雷输出与能量支持；不能替代破冰盾的火",
+      "capability_evidence": "既有角色机制记忆，未在本次许可资料内逐项重验；需账号/技能面板确认",
+      "availability": "standby_conditional",
+      "availability_original_note": "2.1，2021"
+    }
+  },
+  "decisions": {
+    "objective": "稳定打通8幕，明星挑战限时为次要；不追现行10/12幕或圣牌",
+    "route_kind": "complete_eight_act_conditional_vigor_witness",
+    "total_distinct_characters": 16,
+    "total_vigor_used": 32,
+    "opening_eligibility": [
+      "阿蕾奇诺",
+      "托马",
+      "克洛琳德",
+      "久岐忍",
+      "流浪者",
+      "珐露珊"
+    ],
+    "first_two_acts_opening_only": true,
+    "help_character_policy": "如借助演，选名单内非开幕角色；例如班尼特。不额外增加第17人，不假定助演立即入队。",
+    "recruitment": "第三幕前菲谢尔与砂糖到队；第四幕前迪卢克/早柚/北斗/多莉到队；第五幕前香菱/琴到队；第六幕前班尼特/雷电到队。此为有条件顺序，未证明事件概率或招募预算可达。缺人立即重算，不能把待招募视为已拥有。",
+    "reservation": "前两幕不耗阿蕾奇诺；第六/八幕各一次阿蕾奇诺与班尼特；第三幕克洛琳德/久岐忍双雷，第八幕菲谢尔/砂糖各一次。",
+    "ordinary_selection": "仅从实际候选选当前队可稳定输出、可治疗/护盾且无未解决元素盾者；敌人池未知，不列虚构具体敌人。",
+    "shield_gate": "若实际出现火深渊咏者等火盾，不把火输出/超载当可靠破火盾；本16人队没有水位，不选择该路线。若无替代关，需改带已拥有且允许的水特邀（如希格雯）并重算全程，不能声称原见证仍成立。冰罩与火盾不是同一机制。",
+    "buff_policy": "仅采用当时现场奇妙助益原文确认的适用项；优先招募补机制/生存缺口，不能据当前辉彩祝福树给历史路线加伤害。",
+    "fallback": "角色替换必须同时满足元素准入、招募到队、剩余次数、当前输出/生存与未来火位/雷位。允许有条件改线；本见证没有验证另一条完整替代路径。",
+    "validation": {
+      "vigor_witness": true,
+      "played_clear": false,
+      "historical_blind_backtest": false,
+      "expert_comparison_not_started": true
+    },
+    "ordinary_objective_gate": "普通关先读实际目标：生存关以坚持至倒计时结束为主，击杀数若仅为明星不作硬门槛；守护关先保目标生命，不能只按个人不死判成功；清敌关按实际通关限时完成。目标未记录不猜本幕类型。",
+    "recruitment_budget_status": "未取得当期完整招募事件次数/费用/随机算法；以上到队顺序只构成条件资源见证，未证明随机事件能生成该顺序。"
+  },
+  "gaps": [
+    "回溯读取现存事实档案，未证明同时代快照；不是当时盲测或实战回测。",
+    "普通关完整候选池未核验；表内只给筛选条件，不宣称实际刷出该敌人。",
+    "历史奇妙助益文本未取得；不列精确效果、倍率或升级收益，禁止套用现行辉彩祝福/枝树。",
+    "账号拥有、等级、装备、招募顺序与实际通关证据均未知；方案不是保证。",
+    "首领护盾/活化/吸能的完整参数与当期变体未核验；只给机制记忆并显式降级。",
+    "16人恰好32次，没有资源余量；随机招募、减员或伤害不足会使此具体路线失效。",
+    "角色能力与实装版本为模型既有知识，未附本次独立逐角色证据。"
+  ],
+  "status": "proposal_unvalidated"
+}

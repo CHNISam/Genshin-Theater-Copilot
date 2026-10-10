@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "month": "2026-09",
+  "season_id": "2026-09",
+  "number": 27,
+  "ruleset_id": "lunar-12",
+  "game_version": "7.0",
+  "gaps": [
+    "No correct-month BWIKI enemy/card archive located; individual season27page returned 404, aggregate ends August.",
+    "September fixed boss/card identities, levels, timing and mechanics not obtained.",
+    "Complete ordinary encounter pools and complete buff text/branches/prices not obtained.",
+    "Opening blessing is named by reposts; exact effect values not supplied.",
+    "Official original announcement/account not authenticated; two matching reposts do not remove common-source dependency.",
+    "No contemporaneous snapshot or historical playtest."
+  ],
+  "validation": {
+    "status": "PARTIAL_FACTS",
+    "contemporaneous_snapshot": false,
+    "blind_backtest_eligible": false,
+    "played_clear_evidence": false,
+    "core_identity_present": true,
+    "source_month_matches": true,
+    "source_month": "2026-09",
+    "identity_review": "Roster identities corroborated by the Chinese and Traditional Chinese versions of the same announcement repost; source independence not assumed."
+  },
+  "facts_provenance": {
+    "elements": [
+      "version-repost-zh-tw",
+      "version-repost-zh-cn"
+    ],
+    "opening_characters": [
+      "version-repost-zh-tw",
+      "version-repost-zh-cn"
+    ],
+    "special_guests": [
+      "version-repost-zh-tw",
+      "version-repost-zh-cn"
+    ],
+    "encounters": [],
+    "buffs": [],
+    "opening_blessing": [
+      "version-repost-zh-tw",
+      "version-repost-zh-cn"
+    ]
+  },
+  "rules_provenance": {
+    "selection": "Authorized historical boundary supplied by task; fixed boss/card tables corroborate3,4or6checkpoints. Detailed official rule registry maintained separately.",
+    "source_path": "seasons/history/research-provenance.json",
+    "maximum_acts": 10,
+    "sacred_cards": 2,
+    "blessing_system": "辉彩祝福",
+    "special_guest_5_2_bonus_validity": "Not assigned a month here; verify official5.2season timing."
+  },
+  "version_evidence": {
+    "status": "repost_supported",
+    "source_ids": [
+      "version-repost-zh-tw",
+      "version-repost-zh-cn"
+    ],
+    "claim": "7.0 version update notice explicitly schedules September1,2026 Theater."
+  },
+  "facts_extraction": {
+    "identities": "Literal named roster from theSeptember 1 Theater update section;Chinese character spelling fromSimplified Chinese repost, corroborated byTraditional Chinese repost.",
+    "encounters": "Not available; not inferred from August or October."
+  },
+  "sources": {
+    "bwiki-rejected": {
+      "url": "https://wiki.biligame.com/ys/%E5%B9%BB%E6%83%B3%E7%9C%9F%E5%A2%83%E5%89%A7%E8%AF%97/%E5%BD%93%E6%9C%9F",
+      "locator": "时间",
+      "accessed_at": "2026-10-10",
+      "published_at": null,
+      "read_scope": "Full HTML; time body explicitly 2026年8月, rejected for September/October.",
+      "source_month": "2026-08",
+      "accepted": false
+    },
+    "version-repost-zh-tw": {
+      "url": "https://genshininfo.reh.tw/archives/10263",
+      "locator": "十一、幻想真境剧诗 / 9月1日更新 / 限定元素、开幕角色、特邀角色",
+      "accessed_at": "2026-10-10",
+      "published_at": null,
+      "page_update_label": "2026/09/13 03:45:37",
+      "kind": "official-announcement-repost",
+      "read_scope": "Downloaded full HTML; extracted only the Theater update section. Both reposts independently accessible; no original official account authenticated.",
+      "historical_validity": "Currently served repost; its date/body supports theSeptember 2026 cycle, not proof of at-the-time unmodified content.",
+      "read_text_sha256": "b6cab43513b514345bb67f6711723cf6f38bf0d2129c98b8fbadf6fe5c330ea1",
+      "limitation": "Site byline says official, but third-party hosting/byline cannot establish official original authorship.",
+      "read_text_snapshot": "十一、幻想真境劇詩9月1日更新7.0版本更新完成後，新一期幻想真境劇詩將於2026年9月1日更新。\n限定元素：水元素、雷元素、草元素開幕角色：「空月歸鄉·哥倫比婭(水)」、「少年春衫薄·行秋(水)」、「緘秘的裁遣·賽諾(雷)」、「煩惱刈除·久岐忍(雷)」、「永月的祀歌·菈烏瑪(草)」、「天穹之鏡·卡維(草)」幻想真境劇詩開啟期間，對應開幕角色將獲得幻境祝福。特邀角色：「翾風迴雪·奧黛塔(冰)」、「鏡水析謬·桑多涅(冰)」、「無害甜度·砂糖(風)」、「喧寂於心·尼可(火)」新一期的幻想真境劇詩開啟後，角色「詭燈陌影·菲林斯(雷)」、「空月歸鄉·哥倫比婭(水)」、「檐宇貓遊·綺良良(草)」、「魘夜燃芯·葉洛亞(岩)」會各新增1個「表演訣竅」，旅行者可在NPC「小狼」處兌換。\n「繪想遊跡」更新7.0版本更新後，新增「『公子』·達達利亞(水)」、「護法夜叉·魈(風)」的挑戰關卡和遊跡特效。"
+    },
+    "version-repost-zh-cn": {
+      "url": "https://h5.9game.cn/content/postsDetail?postId=1000088581",
+      "locator": "十一、幻想真境剧诗 / 9月1日更新 / 限定元素、开幕角色、特邀角色",
+      "accessed_at": "2026-10-10",
+      "published_at": null,
+      "page_update_label": null,
+      "kind": "official-announcement-repost",
+      "read_scope": "Downloaded full HTML; extracted only the Theater update section. Both reposts independently accessible; no original official account authenticated.",
+      "historical_validity": "Currently served repost; its date/body supports theSeptember 2026 cycle, not proof of at-the-time unmodified content.",
+      "read_text_sha256": "91b96e8d07b92cc0f50391c0cb023d37a2709fa96ca6e1ae25a547f6537d4882",
+      "limitation": "Site byline says official, but third-party hosting/byline cannot establish official original authorship.",
+      "read_text_snapshot": "十一、幻想真境剧诗 \n   9月1日更新 \n   7.0版本更新完成后，新一期幻想真境剧诗将于2026年9月1日更新。 \n   限定元素：水元素、雷元素、草元素 \n   开幕角色：「空月归乡·哥伦比娅(水)」「少年春衫薄·行秋(水)」「缄秘的裁遣·赛诺(雷)」「烦恼刈除·久岐忍(雷)」「永月的祀歌·菈乌玛(草)」「天穹之镜·卡维(草)」 \n   幻想真境剧诗开启期间，对应开幕角色将获得幻境祝福。 \n   特邀角色：「翾风回雪·奥黛塔(冰)」「镜水析谬·桑多涅(冰)」「无害甜度·砂糖(风)」「喧寂于心·尼可(火)」 \n   新一期的幻想真境剧诗开启后，角色「诡灯陌影·菲林斯(雷)」「空月归乡·哥伦比娅(水)」「檐宇猫游·绮良良(草)」「魇夜燃芯·叶洛亚(岩)」会各新增1个「表演诀窍」，旅行者可在NPC「小狼」处兑换。 \n   「绘想游迹」更新 \n   7.0版本更新后，新增「『公子』·达达利亚(水)」「护法夜叉·魈(风)」的挑战关卡和游迹特效。"
+    }
+  },
+  "facts": {
+    "elements": [
+      "水",
+      "雷",
+      "草"
+    ],
+    "opening_characters": [
+      "哥伦比娅",
+      "行秋",
+      "赛诺",
+      "久岐忍",
+      "菈乌玛",
+      "卡维"
+    ],
+    "special_guests": [
+      "奥黛塔",
+      "桑多涅",
+      "砂糖",
+      "尼可"
+    ],
+    "encounters": [],
+    "buffs": [],
+    "opening_blessing": {
+      "text": "对应开幕角色将获得幻境祝福。",
+      "effect_values": null,
+      "source_ids": [
+        "version-repost-zh-tw",
+        "version-repost-zh-cn"
+      ]
+    }
+  }
+}
