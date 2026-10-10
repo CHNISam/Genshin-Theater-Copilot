@@ -14,4 +14,4 @@ Regressions reject excessive/internal player prose, template-only helper/Buff ev
 
 Factual evidence and limitations remain in JSON review/source records and offline HTML: Fatui simultaneous count lacks independent original footage; card-2 explosion shield interaction is unresolved and not claimed; no actual-account clear, observed recruitment sequence or user acceptance. Sources/typed tags/reviewed markers are author inputs, not an automated game-truth oracle. The human content review gate is required each season.
 
-User editorial follow-up: act-10 before/after cells now blank; no-choice cells may be empty without filler, while missing/non-string fields and missing core team/encounter/mechanic content still fail. 148 tests pass after updating the obsolete forced-nonempty regression.
+User editorial follow-up: act-10 before cell retains 找好友大哥, after cell is blank; no-choice cells may be empty without filler, while missing/non-string fields and missing core team/encounter/mechanic content still fail. 148 tests pass after updating the obsolete forced-nonempty regression.
